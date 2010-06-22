@@ -1,0 +1,3 @@
+LIBRARY	"SyntaxParserDLL"
+EXPORTS
+   parseSyntax @1

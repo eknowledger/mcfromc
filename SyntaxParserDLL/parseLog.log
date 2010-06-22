@@ -1,0 +1,1304 @@
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(881) main: Started
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:foo
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:x
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(848) yyparse: Type FuncName(Parameters) {}
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(826) yyparse: Function definition
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:main
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(548) yyparse: Got Function Declaration without parameters
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:i
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:z
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:k
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 3
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:j
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:ji
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 18
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 7
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 100
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: j
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: ji
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(758) yyparse: If else
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(656) yyparse: Selection statement
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 1
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(848) yyparse: Type FuncName(Parameters) {}
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(826) yyparse: Function definition
+Tue Jun 22 10:53:25 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(883) main: End
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(881) main: Started
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:foo
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:x
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(848) yyparse: Type FuncName(Parameters) {}
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(826) yyparse: Function definition
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:main
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(548) yyparse: Got Function Declaration without parameters
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:i
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:z
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:k
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 3
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:j
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:ji
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 18
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 7
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 100
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: j
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: ji
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(758) yyparse: If else
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(656) yyparse: Selection statement
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 1
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(848) yyparse: Type FuncName(Parameters) {}
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(826) yyparse: Function definition
+Tue Jun 22 10:55:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(883) main: End
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(881) main: Started
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:foo
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:x
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(848) yyparse: Type FuncName(Parameters) {}
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(826) yyparse: Function definition
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:main
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(548) yyparse: Got Function Declaration without parameters
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:i
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:z
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:k
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 3
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:j
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:ji
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 18
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 7
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 100
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: j
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: ji
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(758) yyparse: If else
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(656) yyparse: Selection statement
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 1
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(848) yyparse: Type FuncName(Parameters) {}
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(826) yyparse: Function definition
+Tue Jun 22 10:56:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(883) main: End
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(881) main: Started
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:foo
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:x
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(848) yyparse: Type FuncName(Parameters) {}
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(826) yyparse: Function definition
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:main
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(548) yyparse: Got Function Declaration without parameters
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:i
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:z
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:k
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 3
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:j
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:ji
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 18
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 7
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 100
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: j
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: ji
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(758) yyparse: If else
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(656) yyparse: Selection statement
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 1
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(848) yyparse: Type FuncName(Parameters) {}
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(826) yyparse: Function definition
+Tue Jun 22 10:58:59 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(883) main: End
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(881) main: Started
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:foo
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:x
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(848) yyparse: Type FuncName(Parameters) {}
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(826) yyparse: Function definition
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:main
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(548) yyparse: Got Function Declaration without parameters
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:i
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:z
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:k
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 3
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:j
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:ji
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 18
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 7
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 100
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: j
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: ji
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(758) yyparse: If else
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(656) yyparse: Selection statement
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 1
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(848) yyparse: Type FuncName(Parameters) {}
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(826) yyparse: Function definition
+Tue Jun 22 11:03:03 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(883) main: End
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(881) main: Started
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:foo
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:x
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(848) yyparse: Type FuncName(Parameters) {}
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(826) yyparse: Function definition
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:main
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(548) yyparse: Got Function Declaration without parameters
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:i
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:z
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:k
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 3
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:j
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:ji
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 18
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 7
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 100
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: j
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: ji
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(758) yyparse: If else
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(656) yyparse: Selection statement
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 1
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(848) yyparse: Type FuncName(Parameters) {}
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(826) yyparse: Function definition
+Tue Jun 22 11:04:56 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(883) main: End
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(881) main: Started
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:foo
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:x
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(848) yyparse: Type FuncName(Parameters) {}
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(826) yyparse: Function definition
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:main
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(548) yyparse: Got Function Declaration without parameters
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:i
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:z
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:k
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 3
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:j
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:ji
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 18
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 7
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 100
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: j
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: ji
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(758) yyparse: If else
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(656) yyparse: Selection statement
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 1
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(848) yyparse: Type FuncName(Parameters) {}
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(826) yyparse: Function definition
+Tue Jun 22 11:06:38 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(883) main: End
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(881) main: Started
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:foo
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:x
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(848) yyparse: Type FuncName(Parameters) {}
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(826) yyparse: Function definition
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:main
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(548) yyparse: Got Function Declaration without parameters
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:i
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:z
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:k
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 3
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:j
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:ji
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 18
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 7
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 100
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: j
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: ji
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(758) yyparse: If else
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(656) yyparse: Selection statement
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 1
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(848) yyparse: Type FuncName(Parameters) {}
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(826) yyparse: Function definition
+Tue Jun 22 11:08:11 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(883) main: End
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(881) main: Started
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:foo
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:x
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(848) yyparse: Type FuncName(Parameters) {}
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(826) yyparse: Function definition
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:main
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(548) yyparse: Got Function Declaration without parameters
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:i
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:z
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:k
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 3
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:j
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:ji
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 18
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 7
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 100
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: j
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: ji
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(758) yyparse: If else
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(656) yyparse: Selection statement
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 1
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(848) yyparse: Type FuncName(Parameters) {}
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(826) yyparse: Function definition
+Tue Jun 22 11:10:15 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(883) main: End
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(881) main: Started
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:foo
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:x
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(848) yyparse: Type FuncName(Parameters) {}
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(826) yyparse: Function definition
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:main
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(548) yyparse: Got Function Declaration without parameters
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:i
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:z
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:k
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 3
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:j
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:ji
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 18
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 7
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 100
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: j
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: ji
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(758) yyparse: If else
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(656) yyparse: Selection statement
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 1
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(848) yyparse: Type FuncName(Parameters) {}
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(826) yyparse: Function definition
+Tue Jun 22 14:17:26 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(883) main: End
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(879) main: Started
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:foo
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:x
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(848) yyparse: Type FuncName(Parameters) {}
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(828) yyparse: Function definition
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:main
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(548) yyparse: Got Function Declaration without parameters
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:i
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:z
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:k
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 3
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:j
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:ji
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 18
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 7
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 100
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: j
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: ji
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(758) yyparse: If else
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(656) yyparse: Selection statement
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 1
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(848) yyparse: Type FuncName(Parameters) {}
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(828) yyparse: Function definition
+Tue Jun 22 14:27:28 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(881) main: End
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(879) main: Started
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:foo
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:x
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(848) yyparse: Type FuncName(Parameters) {}
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(828) yyparse: Function definition
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:main
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(548) yyparse: Got Function Declaration without parameters
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:i
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:z
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:k
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 3
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:j
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:ji
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 18
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 7
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 100
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: j
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: ji
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(758) yyparse: If else
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(656) yyparse: Selection statement
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 1
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(848) yyparse: Type FuncName(Parameters) {}
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(828) yyparse: Function definition
+Tue Jun 22 14:28:08 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(881) main: End
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(878) main: Started
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:foo
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:x
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(847) yyparse: Type FuncName(Parameters) {}
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(827) yyparse: Function definition
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:main
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(548) yyparse: Got Function Declaration without parameters
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:i
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:z
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:k
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 3
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:j
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:ji
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 18
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 7
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 100
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: j
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: ji
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(758) yyparse: If else
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(656) yyparse: Selection statement
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 1
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(847) yyparse: Type FuncName(Parameters) {}
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(827) yyparse: Function definition
+Tue Jun 22 14:29:47 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(880) main: End
+Tue Jun 22 14:30:41 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(878) main: Started
+Tue Jun 22 14:30:41 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 14:30:41 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:foo
+Tue Jun 22 14:30:41 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 14:30:41 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:x
+Tue Jun 22 14:30:41 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 14:30:41 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 14:30:41 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:30:41 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 14:30:41 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(847) yyparse: Type FuncName(Parameters) {}
+Tue Jun 22 14:30:41 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(827) yyparse: Function definition
+Tue Jun 22 14:30:41 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 14:30:41 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:main
+Tue Jun 22 14:30:41 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(548) yyparse: Got Function Declaration without parameters
+Tue Jun 22 14:30:42 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 14:30:42 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:i
+Tue Jun 22 14:30:42 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 14:30:42 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:z
+Tue Jun 22 14:30:42 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 14:30:42 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:k
+Tue Jun 22 14:30:42 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 3
+Tue Jun 22 14:30:42 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 14:30:42 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:j
+Tue Jun 22 14:30:42 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 14:30:42 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 14:30:42 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 14:30:42 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:ji
+Tue Jun 22 14:30:42 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 18
+Tue Jun 22 14:30:42 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 14:30:42 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 14:30:42 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 14:30:42 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 7
+Tue Jun 22 14:30:42 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 14:30:42 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:30:42 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 14:30:42 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 14:30:42 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 14:30:42 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 14:30:42 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 14:30:42 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 100
+Tue Jun 22 14:30:42 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 14:30:42 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 14:30:42 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 14:30:42 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 14:30:42 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: foo
+Tue Jun 22 14:30:42 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(880) main: End
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(878) main: Started
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:foo
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:x
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(847) yyparse: Type FuncName(Parameters) {}
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(827) yyparse: Function definition
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:main
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(548) yyparse: Got Function Declaration without parameters
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:i
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:z
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:k
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 3
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:j
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:ji
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 18
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 7
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 100
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: j
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: ji
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(758) yyparse: If else
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(656) yyparse: Selection statement
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 1
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(847) yyparse: Type FuncName(Parameters) {}
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(827) yyparse: Function definition
+Tue Jun 22 14:31:06 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(880) main: End
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(878) main: Started
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:foo
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(548) yyparse: Got Function Declaration without parameters
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 174
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(847) yyparse: Type FuncName(Parameters) {}
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(827) yyparse: Function definition
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:main
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(548) yyparse: Got Function Declaration without parameters
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:i
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:z
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:k
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 3
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:j
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(376) yyparse: Type
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(514) yyparse: rule direct_declarator:IDENTIFIER with:ji
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 18
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 7
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 100
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: z
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: x
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: k
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: j
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 0
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: ji
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(52) yyparse: primary_expression got identifier: i
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 5
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(649) yyparse: Expression statement
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(758) yyparse: If else
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(656) yyparse: Selection statement
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(719) yyparse: Single Statement
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(685) yyparse: Block With statements only(no declarations)
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(642) yyparse: Compound statement
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(59) yyparse: primary_expression got constant: 1
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(727) yyparse: Recursive Statement List
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(847) yyparse: Type FuncName(Parameters) {}
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(827) yyparse: Function definition
+Tue Jun 22 14:31:55 2010 [DEBUG] c:mcfromcsyntaxparsernsi c.y(880) main: End
