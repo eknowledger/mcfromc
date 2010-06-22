@@ -1,6 +1,6 @@
-int foo(int x)
+int foo()
 {
-	return x*x;
+	return 174;
 }
 
 int main()
@@ -16,7 +16,7 @@ int main()
 			for (z = 5; z < 100; ++z) {
 				if(x<5)
 				{
-					z=0;
+					z = x;
 					k=i*5;
 				}
 				else
