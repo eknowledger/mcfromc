@@ -4,14 +4,13 @@
 #endif
 #include "SyntaxTree.h"
 #include "Logger.h"
-#include <conio.h>
 
-Node* root_node;
+NodeData* root_node;
 
 /* Macro Definitions */
 #define ADD_NOOP_NODE_1(p,c)					\
 	{										\
-		Node *me = createNode(NONE);		\
+		NodeData *me = createNode(NONE);		\
 		appendChild(me,c);					\
 		p = me;							\
 	}
@@ -20,7 +19,7 @@ Node* root_node;
 	int value;		/* A constant or expression value */
 	char index;		/* an index in the variable symbols */
 	char *sVal;		/* string							*/
-	Node* node;		/* a pointer to node in the syntax tree */
+	NodeData* node;		/* a pointer to node in the syntax tree */
 }
 
 %token <sVal> IDENTIFIER
@@ -48,14 +47,14 @@ Node* root_node;
 primary_expression
 	: IDENTIFIER
 	{
-		Node* p = createNode(ID); 
+		NodeData* p = createNode(ID); 
 		p->m_name = strdup($1);
 		$$ = p;
 		WRITE_TO_LOG_1(lDebug,"primary_expression got identifier: %s",$1);
 	}
 	| CONSTANT
 	{
-		Node* p = createNode(CONST_TYPE); 
+		NodeData* p = createNode(CONST_TYPE); 
 		p->m_constVal = $1;
 		$$ = p;
 		WRITE_TO_LOG_1(lDebug,"primary_expression got constant: %d",$1);
@@ -73,13 +72,13 @@ postfix_expression
 	}
 	| postfix_expression INC_OP
 	{
-		Node* p = createNode(POST_INCREMENT_EXPR);
+		NodeData* p = createNode(POST_INCREMENT_EXPR);
 		appendChild(p, $1);
 		$$ = p;
 	}
 	| postfix_expression DEC_OP
 	{
-		Node* p = createNode(POST_DECREMENT_EXPR);
+		NodeData* p = createNode(POST_DECREMENT_EXPR);
 		appendChild(p, $1);
 		$$ = p;
 	}
@@ -92,19 +91,19 @@ unary_expression
 	}
 	| INC_OP unary_expression 
 	{
-		Node* p = createNode(PRE_INCREMENT_UNARY_EXPR);
+		NodeData* p = createNode(PRE_INCREMENT_UNARY_EXPR);
 		appendChild(p, $2);
 		$$ = p;
 	}
 	| DEC_OP unary_expression
 	{
-		Node* p = createNode(PRE_DECREMENT_UNARY_EXPR);
+		NodeData* p = createNode(PRE_DECREMENT_UNARY_EXPR);
 		appendChild(p, $2);
 		$$ = p;
 	}
 	| unary_operator unary_expression
 	{
-		Node* p = createNode(PREFIX_OP_UNARY_EXPR);
+		NodeData* p = createNode(PREFIX_OP_UNARY_EXPR);
 		appendChild(p, $2);
 		$$ = p;
 	}
@@ -132,21 +131,21 @@ multiplicative_expression
 	}
 	| multiplicative_expression '*' unary_expression
 	{
-		Node* p = createNode(MULT_EXPR);
+		NodeData* p = createNode(MULT_EXPR);
 		appendChild(p, $1);
 		appendChild(p, $3);	
 		$$ = p;
 	}
 	| multiplicative_expression '/' unary_expression
 	{
-		Node* p = createNode(DIV_EXPR);
+		NodeData* p = createNode(DIV_EXPR);
 		appendChild(p, $1);
 		appendChild(p, $3);	
 		$$ = p;
 	}
 	| multiplicative_expression '%' unary_expression
 	{
-		Node* p = createNode(MOD_EXPR);
+		NodeData* p = createNode(MOD_EXPR);
 		appendChild(p, $1);
 		appendChild(p, $3);	
 		$$ = p;
@@ -160,14 +159,14 @@ additive_expression
 	}
 	| additive_expression '+' multiplicative_expression
 	{
-		Node* p = createNode(ADD_EXPR);
+		NodeData* p = createNode(ADD_EXPR);
 		appendChild(p, $1);
 		appendChild(p, $3);	
 		$$ = p;
 	}
 	| additive_expression '-' multiplicative_expression
 	{
-		Node* p = createNode(SUB_EXPR);
+		NodeData* p = createNode(SUB_EXPR);
 		appendChild(p, $1);
 		appendChild(p, $3);	
 		$$ = p;
@@ -188,28 +187,28 @@ relational_expression
 	}
 	| relational_expression '<' shift_expression
 	{
-		Node* p = createNode(LESS_THAN_EXPR);
+		NodeData* p = createNode(LESS_THAN_EXPR);
 		appendChild(p, $1);
 		appendChild(p, $3);	
 		$$ = p;
 	}				
 	| relational_expression '>' shift_expression
 	{
-		Node* p = createNode(GREATER_THAN_EXPR);
+		NodeData* p = createNode(GREATER_THAN_EXPR);
 		appendChild(p, $1);
 		appendChild(p, $3);	
 		$$ = p;
 	}
 	| relational_expression LE_OP shift_expression
 	{
-		Node* p = createNode(LESS_EQ_THAN_EXPR);
+		NodeData* p = createNode(LESS_EQ_THAN_EXPR);
 		appendChild(p, $1);
 		appendChild(p, $3);	
 		$$ = p;
 	}
 	| relational_expression GE_OP shift_expression
 	{
-		Node* p = createNode(GREATER_EQ_THAN_EXPR);
+		NodeData* p = createNode(GREATER_EQ_THAN_EXPR);
 		appendChild(p, $1);
 		appendChild(p, $3);	
 		$$ = p;
@@ -223,14 +222,14 @@ equality_expression
 	}
 	| equality_expression EQ_OP relational_expression
 	{
-		Node* p = createNode(EQUAL_EXPR);
+		NodeData* p = createNode(EQUAL_EXPR);
 		appendChild(p, $1);
 		appendChild(p, $3);	
 		$$ = p;				
 	}
 	| equality_expression NE_OP relational_expression
 	{
-		Node* p = createNode(NOT_EQUAL_EXPR);
+		NodeData* p = createNode(NOT_EQUAL_EXPR);
 		appendChild(p, $1);
 		appendChild(p, $3);	
 		$$ = p;				
@@ -244,7 +243,7 @@ and_expression
 	}
 	| and_expression '&' equality_expression
 	{
-		Node* p = createNode(AND_EXPR);
+		NodeData* p = createNode(AND_EXPR);
 		appendChild(p, $1);
 		appendChild(p, $3);	
 		$$ = p;				
@@ -272,7 +271,7 @@ logical_and_expression
 	}
 	| logical_and_expression AND_OP inclusive_or_expression
 	{
-		Node* p = createNode(LOGICAL_AND_EXPR);
+		NodeData* p = createNode(LOGICAL_AND_EXPR);
 		appendChild(p, $1);
 		appendChild(p, $3);	
 		$$ = p;		
@@ -286,7 +285,7 @@ logical_or_expression
 	}
 	| logical_or_expression OR_OP logical_and_expression
 	{
-		Node* p = createNode(LOGICAL_OR_EXPR);
+		NodeData* p = createNode(LOGICAL_OR_EXPR);
 		appendChild(p, $1);
 		appendChild(p, $3);	
 		$$ = p;	
@@ -300,7 +299,7 @@ conditional_expression
 	}
 	| logical_or_expression '?' expression ':' conditional_expression
 	{
-		Node* p = createNode(CONDITIONAL_EXPRESSION);
+		NodeData* p = createNode(CONDITIONAL_EXPRESSION);
 		appendChild(p, $1);
 		appendChild(p, $3);
 		appendChild(p, $5);
@@ -315,7 +314,7 @@ assignment_expression
 	}
 	| unary_expression assignment_operator assignment_expression
 	{		
-		Node* p = createNode(ASSIGNMENT_EXPR);
+		NodeData* p = createNode(ASSIGNMENT_EXPR);
 		appendChild(p, $1);
 		appendChild(p, $3);
 		$$ = p;
@@ -343,7 +342,7 @@ expression
 	}
 	| expression ',' assignment_expression
 	{
-		Node* p = createNode(EXPRESSION);
+		NodeData* p = createNode(EXPRESSION);
 		appendChild(p, $1);
 		appendChild(p, $3);
 		$$ = p;
@@ -364,7 +363,7 @@ declaration
 	}
 	| declaration_specifiers init_declarator_list ';'
 	{
-		Node* p = createNode(DECLARATION);
+		NodeData* p = createNode(DECLARATION);
 		appendChild(p, $1);
 		appendChild(p, $2);
 		$$ = p;
@@ -385,7 +384,7 @@ init_declarator_list
 	}
 	| init_declarator_list ',' init_declarator
 	{
-		Node* p = createNode(INIT_DECLARATOR_LIST);
+		NodeData* p = createNode(INIT_DECLARATOR_LIST);
 		appendChild(p, $1);
 		appendChild(p, $3);
 		$$ = p;		
@@ -399,7 +398,7 @@ init_declarator
 	}
 	| declarator '=' initializer
 	{
-		Node* p = createNode(ASSIGNMENT_EXPR);
+		NodeData* p = createNode(ASSIGNMENT_EXPR);
 		appendChild(p, $1);
 		appendChild(p, $3);
 		$$ = p;				
@@ -417,55 +416,55 @@ storage_class_specifier
 type_specifier
 	: VOID
 	{
-		Node* p = createNode(TYPE_SPECIFIER); 
+		NodeData* p = createNode(TYPE_SPECIFIER); 
 		p->m_name = strdup("void");
 		$$ = p;		
 	}
 	| CHAR
 	{
-		Node* p = createNode(TYPE_SPECIFIER); 
+		NodeData* p = createNode(TYPE_SPECIFIER); 
 		p->m_name = strdup("char");
 		$$ = p;	
 	}	
 	| SHORT
 	{
-		Node* p = createNode(TYPE_SPECIFIER); 
+		NodeData* p = createNode(TYPE_SPECIFIER); 
 		p->m_name = strdup("short");
 		$$ = p;	
 	}	
 	| INT
 	{
-		Node* p = createNode(TYPE_SPECIFIER); 
+		NodeData* p = createNode(TYPE_SPECIFIER); 
 		p->m_name = strdup("int");
 		$$ = p;	
 	}	
 	| LONG
 	{
-		Node* p = createNode(TYPE_SPECIFIER); 
+		NodeData* p = createNode(TYPE_SPECIFIER); 
 		p->m_name = strdup("long");
 		$$ = p;	
 	}	
 	| FLOAT
 	{
-		Node* p = createNode(TYPE_SPECIFIER); 
+		NodeData* p = createNode(TYPE_SPECIFIER); 
 		p->m_name = strdup("float");
 		$$ = p;	
 	}	
 	| DOUBLE
 	{
-		Node* p = createNode(TYPE_SPECIFIER); 
+		NodeData* p = createNode(TYPE_SPECIFIER); 
 		p->m_name = strdup("double");
 		$$ = p;	
 	}	
 	| SIGNED
 	{
-		Node* p = createNode(TYPE_SPECIFIER); 
+		NodeData* p = createNode(TYPE_SPECIFIER); 
 		p->m_name = strdup("signed");
 		$$ = p;	
 	}	
 	| UNSIGNED
 	{
-		Node* p = createNode(TYPE_SPECIFIER); 
+		NodeData* p = createNode(TYPE_SPECIFIER); 
 		p->m_name = strdup("unsigned");
 		$$ = p;	
 	}		
@@ -510,7 +509,7 @@ declarator
 direct_declarator
 	: IDENTIFIER
 	{
-		Node* p = createNode(ID); 
+		NodeData* p = createNode(ID); 
 		p->m_name = strdup($1);
 		$$ = p;
 		WRITE_TO_LOG_1(lDebug,"rule direct_declarator:IDENTIFIER with:%s",$1);
@@ -569,7 +568,7 @@ parameter_list
 	}
 	| parameter_list ',' parameter_declaration
 	{
-		Node* p = createNode(PARAM_LIST);
+		NodeData* p = createNode(PARAM_LIST);
 		appendChild(p,$1);
 		appendChild(p,$3);
 		$$ = p;
@@ -579,7 +578,7 @@ parameter_list
 parameter_declaration
 	: declaration_specifiers declarator
 	{
-		Node* p = createNode(PARAM_DECLARATION);
+		NodeData* p = createNode(PARAM_DECLARATION);
 		appendChild(p,$1);
 		appendChild(p,$2);
 		$$ = p;	
@@ -624,7 +623,7 @@ initializer_list
 	}
 	| initializer_list ',' initializer
 	{
-		Node* p = createNode(NONE);
+		NodeData* p = createNode(NONE);
 		appendChild(p, $1);
 		appendChild(p, $3);
 		$$ = p;
@@ -638,21 +637,21 @@ statement
 	}
 	| compound_statement
 	{
-		Node* t = createNode(STATEMENT);
+		NodeData* t = createNode(STATEMENT);
 		appendChild(t,$1);
 		$$ = t;		
  		WRITE_TO_LOG(lDebug,"Compound statement");
 	}
 	| expression_statement
 	  {
-		Node* t = createNode(STATEMENT);
+		NodeData* t = createNode(STATEMENT);
 		appendChild(t,$1);
 		$$ = t;		
  		WRITE_TO_LOG(lDebug,"Expression statement");
 	  }
 	| selection_statement
 	  {
-		Node* t = createNode(STATEMENT);
+		NodeData* t = createNode(STATEMENT);
 		appendChild(t,$1);
 		$$ = t;		
 		WRITE_TO_LOG(lDebug,"Selection statement");
@@ -693,7 +692,7 @@ compound_statement
 	}
 	| '{' declaration_list statement_list '}'
 	{
-		Node* p = createNode(COMPOUND_STATEMENT);
+		NodeData* p = createNode(COMPOUND_STATEMENT);
 		appendChild(p, $2);
 		appendChild(p, $3);
 		$$ = p;
@@ -707,7 +706,7 @@ declaration_list
 	}
 	| declaration_list declaration
 	{
-		Node* t = createNode(DECLARATION_LIST);
+		NodeData* t = createNode(DECLARATION_LIST);
 		appendChild(t,$1);
 		appendChild(t,$2);
 		$$ = t;		
@@ -722,7 +721,7 @@ statement_list
 	  }
 	| statement_list statement
 	  {
-		Node* t = createNode(STATEMENT_LIST);
+		NodeData* t = createNode(STATEMENT_LIST);
 		appendChild(t,$1);
 		appendChild(t,$2);
 		$$ = t;		
@@ -744,7 +743,7 @@ expression_statement
 selection_statement
 	: IF '(' expression ')' statement
 	{
-		Node* p = createNode(CONDITION_IF);
+		NodeData* p = createNode(CONDITION_IF);
 		appendChild(p,$3);
 		appendChild(p,$5);
 		$$ = p;
@@ -752,7 +751,7 @@ selection_statement
 	}
 	| IF '(' expression ')' statement ELSE statement
 	{
-		Node* p = createNode(CONDITION_IF_ELSE);
+		NodeData* p = createNode(CONDITION_IF_ELSE);
 		appendChild(p,$3);
 		appendChild(p,$5);
 		appendChild(p,$7);	
@@ -768,21 +767,21 @@ selection_statement
 iteration_statement
 	: WHILE '(' expression ')' statement
 	{
-		Node* p = createNode(WHILE_LOOP);
+		NodeData* p = createNode(WHILE_LOOP);
 		appendChild(p, $3);
 		appendChild(p, $5);
 		$$ = p;
 	}
 	| DO statement WHILE '(' expression ')' ';'
 	{
-		Node* p = createNode(DO_WHILE_LOOP);
+		NodeData* p = createNode(DO_WHILE_LOOP);
 		appendChild(p, $2);
 		appendChild(p, $5);
 		$$ = p;
 	}
 	| FOR '(' expression_statement expression_statement ')' statement
 	{
-		Node* p = createNode(FOR_LOOP);
+		NodeData* p = createNode(FOR_LOOP);
 		appendChild(p, $3);
 		appendChild(p, $4);
 		appendChild(p, $6);
@@ -790,7 +789,7 @@ iteration_statement
 	}
 	| FOR '(' expression_statement expression_statement expression ')' statement
 	{
-		Node* p = createNode(FOR_LOOP);
+		NodeData* p = createNode(FOR_LOOP);
 		appendChild(p, $3);
 		appendChild(p, $4);
 		appendChild(p, $5);
@@ -814,12 +813,11 @@ translation_unit	/* We begin here the tree */
 	}
 	| translation_unit external_declaration
 	{
-		Node* p = createNode(TRANSLATION_UNIT);
+		NodeData* p = createNode(TRANSLATION_UNIT);
 		appendChild(p, $1);
 		appendChild(p, $2);
 		$$ = p;
 		root_node = p;
-		print(p,0);
 	}
 	;
 
@@ -875,7 +873,7 @@ char *s;
 	printf("\n%*s\n%*s\n", column, "^", column, s);
 }
 
-int parseSyntax(char* filename, Node** root) {
+int parseSyntax(char* filename, NodeData** root) {
 	InitLogger("parseLog.log",lDebug);
 	freopen(filename,"r",stdin);
 	WRITE_TO_LOG(lDebug,"Started");
@@ -883,6 +881,5 @@ int parseSyntax(char* filename, Node** root) {
 	WRITE_TO_LOG(lDebug,"End");
 	TerminateLog();
 	*root = root_node;
-	_getch();
 	return 0;
 }

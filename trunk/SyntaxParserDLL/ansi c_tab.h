@@ -2,7 +2,7 @@ typedef union {
 	int value;		/* A constant or expression value */
 	char index;		/* an index in the variable symbols */
 	char *sVal;		/* string							*/
-	Node* node;		/* a pointer to node in the syntax tree */
+	NodeData* node;		/* a pointer to node in the syntax tree */
 } YYSTYPE;
 #define	IDENTIFIER	258
 #define	CONSTANT	259
