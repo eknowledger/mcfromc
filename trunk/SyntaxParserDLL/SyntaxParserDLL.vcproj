@@ -229,7 +229,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\SyntaxParserInterface.h"
+				RelativePath="..\Include\SyntaxParserInterface.h"
 				>
 			</File>
 			<File
