@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="windows-1255"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="CommonProperties"
+	>
+	<Tool
+		Name="VCCLCompilerTool"
+		AdditionalIncludeDirectories="&quot;$(SolutionDir)\ThirdParty\Include&quot;;&quot;$(SolutionDir)\Include&quot;"
+		WarningLevel="4"
+		WarnAsError="true"
+	/>
+	<Tool
+		Name="VCLibrarianTool"
+		AdditionalLibraryDirectories="&quot;$(SolutionDir)\ThirdParty\lib\$(ConfigurationName)\log4cpp&quot;"
+	/>
+	<Tool
+		Name="VCLinkerTool"
+		AdditionalLibraryDirectories="&quot;$(SolutionDir)\ThirdParty\lib\$(ConfigurationName)\boost&quot;;&quot;$(SolutionDir)\ThirdParty\lib\$(ConfigurationName)\log4cpp&quot;"
+	/>
+</VisualStudioPropertySheet>
