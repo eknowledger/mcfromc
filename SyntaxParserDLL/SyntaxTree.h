@@ -2,8 +2,7 @@
 
 #include "SyntaxParserInterface.h"
 
-Node *createNode(nodeType type);
-void appendChild(Node *parent,Node *child);
-Node *getChildAt(Node *parent , unsigned int idx);
-unsigned int getChildsCount(Node *parent);
-void print(Node *root, unsigned int level);
+NodeData *createNode(nodeType type);
+void appendChild(NodeData *parent,NodeData *child);
+NodeData *getChildAt(NodeData *parent , unsigned int idx);
+unsigned int getChildsCount(NodeData *parent);

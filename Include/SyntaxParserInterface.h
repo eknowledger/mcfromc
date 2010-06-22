@@ -57,11 +57,11 @@ typedef struct tagNode{
 	char* m_name;
 	int   m_constVal;
 	struct tagNode **m_childs;
-} Node;
+} NodeData;
 
 #ifdef __cplusplus 
 	extern "C"
 	{
-		int parseSyntax(char* filename, Node** root);
+		int parseSyntax(char* filename, NodeData** root);
 	}
 #endif

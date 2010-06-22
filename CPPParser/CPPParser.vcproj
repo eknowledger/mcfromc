@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="windows-1255"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8.00"
+	Version="9.00"
 	Name="CPPParser"
 	ProjectGUID="{D32E1F03-EBF9-43B4-9EFC-D8CE3D7560AD}"
 	RootNamespace="CPPParser"
 	Keyword="Win32Proj"
+	TargetFrameworkVersion="131072"
 	>
 	<Platforms>
 		<Platform
@@ -66,6 +67,8 @@
 				LinkIncremental="2"
 				GenerateDebugInformation="true"
 				SubSystem="1"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -85,9 +88,6 @@
 			/>
 			<Tool
 				Name="VCAppVerifierTool"
-			/>
-			<Tool
-				Name="VCWebDeploymentTool"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
@@ -142,6 +142,8 @@
 				SubSystem="1"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -163,9 +165,6 @@
 				Name="VCAppVerifierTool"
 			/>
 			<Tool
-				Name="VCWebDeploymentTool"
-			/>
-			<Tool
 				Name="VCPostBuildEventTool"
 			/>
 		</Configuration>
@@ -183,7 +182,39 @@
 				>
 			</File>
 			<File
+				RelativePath=".\SAssignmentNode.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\SConstantNode.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\SDoWhileNode.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\SExpressionNode.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\SForNode.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\SIdentifierNode.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\SNode.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\SWhileNode.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\SyntaxNodeFactory.cpp"
 				>
 			</File>
 		</Filter>
@@ -193,7 +224,39 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
+				RelativePath=".\SAssignmentNode.h"
+				>
+			</File>
+			<File
+				RelativePath=".\SConstantNode.h"
+				>
+			</File>
+			<File
+				RelativePath=".\SDoWhileNode.h"
+				>
+			</File>
+			<File
+				RelativePath=".\SExpressionNode.h"
+				>
+			</File>
+			<File
+				RelativePath=".\SForNode.h"
+				>
+			</File>
+			<File
+				RelativePath=".\SIdentifierNode.h"
+				>
+			</File>
+			<File
 				RelativePath=".\SNode.h"
+				>
+			</File>
+			<File
+				RelativePath=".\SWhileNode.h"
+				>
+			</File>
+			<File
+				RelativePath=".\SyntaxNodeFactory.h"
 				>
 			</File>
 		</Filter>
