@@ -1,4 +1,4 @@
-#include <SyntaxParserInterface.h>
+#include "SyntaxParserInterface.h"
 #include "SNode.h"
 
 int main(int argc, char** argv)

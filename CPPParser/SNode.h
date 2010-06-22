@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include <SyntaxParserInterface.h>
+#include "SyntaxParserInterface.h"
 
 class SNode
 {
