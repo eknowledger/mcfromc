@@ -3,6 +3,7 @@
 #include <iostream>
 #include <conio.h>
 #include "SyntaxNodeFactory.h"
+#include "SyntaxSimplifier.h"
 
 int main(int argc, char** argv)
 {	
@@ -15,6 +16,7 @@ int main(int argc, char** argv)
 	parseSyntax(argv[1], &root);
 	if (root) {
 		SNode* sroot = SyntaxNodeFactory::the().createNode(root);
+		SyntaxSimplifier(sroot).execute();
 		std::cout << *sroot;
 		delete sroot;
 	}

@@ -7,6 +7,7 @@
 #include "SAssignmentNode.h"
 #include "SIdentifierNode.h"
 #include "SConstantNode.h"
+#include "SReducibleNode.h"
 
 SyntaxNodeFactory::SyntaxNodeFactory(void)
 {
@@ -50,6 +51,18 @@ SNode* SyntaxNodeFactory::createNode(NodeData* n)
 			case CONST_TYPE:
 				ret = new SConstantNode(*n);
 				break;
+			case STATEMENT_LIST:
+			case STATEMENT:
+			case COMPOUND_STATEMENT:
+			case EXPRESSION_STATEMENT:
+			case SELECTION_STATEMENT:
+			case DECLARATION:
+			case INIT_DECLARATOR_LIST:
+			case PARAM_LIST:
+			case PARAM_DECLARATION:
+			case DECLARATION_LIST:
+				ret = new SReducibleNode(*n);
+				break;			
 			default:
 				ret = new SNode(*n);
 				break;
