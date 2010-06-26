@@ -49,7 +49,6 @@
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="true"
 				DebugInformationFormat="4"
 			/>
 			<Tool
@@ -210,11 +209,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\SReducibleNode.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\SWhileNode.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\SyntaxNodeFactory.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\SyntaxSimplifier.cpp"
 				>
 			</File>
 		</Filter>
@@ -252,11 +259,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\SReducibleNode.h"
+				>
+			</File>
+			<File
 				RelativePath=".\SWhileNode.h"
 				>
 			</File>
 			<File
 				RelativePath=".\SyntaxNodeFactory.h"
+				>
+			</File>
+			<File
+				RelativePath=".\SyntaxSimplifier.h"
 				>
 			</File>
 		</Filter>

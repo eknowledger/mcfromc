@@ -12,21 +12,47 @@ SNode::SNode(const NodeData& node) :
 	m_Type(node.m_type), 
 	m_Parent(NULL)
 {
-	m_chidren.reserve(node.m_childCount);
+	m_children.reserve(node.m_childCount);
 	for (size_t i = 0; i < node.m_childCount; ++i) {
 		SNode* sn = SyntaxNodeFactory::the().createNode(node.m_childs[i]);
 		sn->SetParent(this);
-		m_chidren.push_back(sn);
+		m_children.push_back(sn);
 	}
 
 }
 
 SNode::~SNode(void)
 {
-	for (size_t i = 0; i < m_chidren.size(); ++i) {
-		delete m_chidren[i];
+	for (size_t i = 0; i < m_children.size(); ++i) {
+		delete m_children[i];
 	}
 }
+
+void SNode::AddChild(SNode* newChild) 
+{
+	m_children.push_back(newChild);
+}
+
+void SNode::AddChildren(SNodeIterator& where, SNodeIterator& begin, SNodeIterator& end)
+{
+	m_children.insert(where, begin, end);
+}
+
+
+void SNode::RemoveChild(SNode* child) 
+{
+	std::vector<SNode*>::iterator it = 
+		std::find(m_children.begin(), m_children.end(), child);
+	if (it != m_children.end()) {
+		m_children.erase(it);
+	}
+}
+
+std::vector<SNode*>::iterator SNode::childIter(SNode* child)
+{
+	return std::find(m_children.begin(), m_children.end(), child);
+}
+
 
 void SNode::print(std::ostream& ostr, size_t level) const
 {
@@ -36,7 +62,7 @@ void SNode::print(std::ostream& ostr, size_t level) const
 	ostr << ("\n");
 
 	//go over the children 
-	size_t nChilds = m_chidren.size();
+	size_t nChilds = m_children.size();
 	for(size_t i = 0; i < nChilds; i++) {
 		if (m_Parent)  {
 			for(size_t j = 0; j < level+1; j++) {
@@ -50,7 +76,7 @@ void SNode::print(std::ostream& ostr, size_t level) const
 				}
 			}
 		}
-		m_chidren[i]->print(ostr, level+1);
+		m_children[i]->print(ostr, level+1);
 	}
 }
 

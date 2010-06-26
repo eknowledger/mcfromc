@@ -4,6 +4,9 @@
 #include <iostream>
 #include "SyntaxParserInterface.h"
 
+class SNode;
+typedef std::vector<SNode*>::iterator SNodeIterator;
+
 class SNode
 {
 public:
@@ -14,8 +17,8 @@ public:
 		return m_Type;
 	}
 
-	const std::vector<SNode*>& children() {
-		return m_chidren;
+	std::vector<SNode*>& children() {
+		return m_children;
 	}
 
 	SNode* parent() {
@@ -24,6 +27,17 @@ public:
 
 	void SetParent(SNode* newParent) {
 		m_Parent = newParent;
+	}
+
+	SNodeIterator childIter(SNode* child);
+
+	void AddChild(SNode* newChild);
+	void AddChildren(SNodeIterator& where, SNodeIterator& begin, SNodeIterator& end);
+
+	void RemoveChild(SNode* child);
+
+	virtual bool ShouldBeReduced() {
+		return false;
 	}
 
 protected:
@@ -36,7 +50,7 @@ protected:
 private:
 	nodeType m_Type;
 	SNode* m_Parent;
-	std::vector<SNode*> m_chidren;
+	std::vector<SNode*> m_children;
 };
 
 inline
