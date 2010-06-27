@@ -7,6 +7,7 @@
 #include "SAssignmentNode.h"
 #include "SIdentifierNode.h"
 #include "SConstantNode.h"
+#include "SIfElseNode.h"
 #include "SReducibleNode.h"
 
 SyntaxNodeFactory::SyntaxNodeFactory(void)
@@ -50,6 +51,10 @@ SNode* SyntaxNodeFactory::createNode(NodeData* n)
 				break;
 			case CONST_TYPE:
 				ret = new SConstantNode(*n);
+				break;
+			case CONDITION_IF:
+			case CONDITION_IF_ELSE:
+				ret = new SIfElseNode(*n);
 				break;
 			case STATEMENT_LIST:
 			case STATEMENT:
