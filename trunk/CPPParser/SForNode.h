@@ -9,4 +9,8 @@ public:
 	}
 
 	virtual ~SForNode(void);
+
+	virtual bool ShouldCreateEdgeFromChildren() {
+		return true;
+	}
 };

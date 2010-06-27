@@ -25,6 +25,9 @@ void SyntaxSimplifier::reduceChildren(SNode* node)
 	if (node->parent() && node->ShouldBeReduced()) {
 		std::vector<SNode*>::iterator it = node->parent()->childIter(node);
 		node->parent()->AddChildren(it, node->children().begin(), node->children().end());
+		for (size_t i = 0; i < node->children().size(); ++i) {
+			node->children()[i]->SetParent(node->parent());
+		}
 		node->parent()->RemoveChild(node);
 		node->children().clear();
 		delete node;

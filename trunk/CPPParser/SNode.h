@@ -40,6 +40,10 @@ public:
 		return false;
 	}
 
+	virtual bool ShouldCreateEdgeFromChildren() {
+		return false;
+	}
+
 protected:
 	friend std::ostream& operator<<(std::ostream& os,const SNode& node);
 	

@@ -126,7 +126,7 @@ void SNode::printType(std::ostream& ostr) const
 		break;
 	case POST_INCREMENT_EXPR: ostr << "POST_INCREMENT ";
 		break;
-	case POST_DECREMENT_EXPR: ostr << "POST_INCREMENT ";
+	case POST_DECREMENT_EXPR: ostr << "POST_DECREMENT ";
 		break;
 	case PREFIX_PLUS: ostr << "PREFIX_PLUS ";
 		break;
