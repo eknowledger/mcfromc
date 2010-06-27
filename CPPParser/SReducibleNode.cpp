@@ -14,8 +14,10 @@ bool SReducibleNode::ShouldBeReduced()
 	//else {
 		switch(Type()) {
 		case STATEMENT:
-			rc = parent()->Type() == STATEMENT ||
-				 parent()->Type() == STATEMENT_LIST;
+			{
+				rc = parent()->Type() == STATEMENT ||
+					parent()->Type() == STATEMENT_LIST;
+			}
 			break;
 		}
 	//}

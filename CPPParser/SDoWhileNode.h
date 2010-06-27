@@ -9,4 +9,8 @@ public:
 	}
 
 	virtual ~SDoWhileNode(void);
+
+	virtual bool ShouldCreateEdgeFromChildren() {
+		return true;
+	}
 };
