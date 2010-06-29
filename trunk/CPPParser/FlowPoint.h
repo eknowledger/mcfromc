@@ -4,15 +4,19 @@
 
 class SNode;
 
+//////////////////////////////////////////////////////////////////////////
+/// Basic class representing a flow point in a Control Flow Graph.
+//////////////////////////////////////////////////////////////////////////
 class FlowPoint
 {
 public:
 	enum FlowPointType {
 		FLOW_POINT,
-		EXPRESSION_BLOCK
+		EXPRESSION_BLOCK,
+		COMPOUND_BLOCK
 	};
 	FlowPoint(void);
-	FlowPoint(SNode* _node, std::string _name): 
+	FlowPoint(SNode* _node, const std::string& _name): 
 		m_name(_name),
 		m_node(_node)
 	{

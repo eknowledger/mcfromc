@@ -3,6 +3,11 @@
 
 class SNode;
 
+//////////////////////////////////////////////////////////////////////////
+/// Singleton factory for Syntax Nodes. 
+/// Note that it is not currently thread safe !
+/// (since it uses local static variable inside the 'the()' method). 
+//////////////////////////////////////////////////////////////////////////
 class SyntaxNodeFactory
 {
 public:
