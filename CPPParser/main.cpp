@@ -4,6 +4,8 @@
 #include <conio.h>
 #include "SyntaxNodeFactory.h"
 #include "SyntaxSimplifier.h"
+#include "Syntax2CFG.h"
+#include "CFG.h"
 
 int main(int argc, char** argv)
 {	
@@ -16,8 +18,10 @@ int main(int argc, char** argv)
 	parseSyntax(argv[1], &root);
 	if (root) {
 		SNode* sroot = SyntaxNodeFactory::the().createNode(root);
-		SyntaxSimplifier(sroot).execute();
-		std::cout << *sroot;
+		CFG cfg;
+		Syntax2CFG(sroot, cfg).execute();
+		cfg.printForDot();
+		//std::cout << *sroot;
 		delete sroot;
 	}
 	else {

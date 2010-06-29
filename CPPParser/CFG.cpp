@@ -28,6 +28,16 @@ FlowPoint* CFG::AddFlowPoint(SNode* node, std::string name)
 	return fp;
 }
 
+FlowPoint* CFG::AddFlowPoint(FlowPoint* fp)
+{
+	if (fp) {
+		m_AdjList.push_back(Vertex(fp));
+	}
+
+	return fp;
+}
+
+
 
 FlowPoint* CFG::RemoveFlowPoint(FlowPoint* fp)
 {
@@ -90,33 +100,6 @@ FlowPointIterator CFG::findFlowPoint(const std::list<CFG::Vertex>::iterator& it,
 	return fpIt;
 }
 
-void CFG::print()
-{
-	std::list<CFG::Vertex>::iterator it;
-	for (it = m_AdjList.begin(); it != m_AdjList.end(); ++it) {
-		if ((*it).first->syntaxNode()->Type() == ASSIGNMENT_EXPR ||
-			(*it).first->syntaxNode()->Type() == POST_INCREMENT_EXPR ||
-			(*it).first->syntaxNode()->Type() == POST_DECREMENT_EXPR) {
-			continue;
-		}
-
-		std::cout << std::endl << (*it).first->index() << " " 
-			<< (*it).first->name() << " : Edges to: ";
-		for (FlowPointIterator fpIt = (*it).second.begin(); fpIt != (*it).second.end(); ++fpIt) {
-			std::cout << (*fpIt)->index() << ", ";
-		}
-		std::cout << std::endl << *((*it).first->syntaxNode());
-		
-	}
-}
-
-Block* CFG::AddBlock(SNode* statement, std::string name )
-{
-	Block* block = new Block(statement, name);
-	m_AdjList.push_back(Vertex(block));
-	return block;
-}
-
 FlowPointList CFG::neighbors(FlowPoint* fp)
 {
 	std::list<Vertex>::iterator fpIt = findFlowPoint(fp);
@@ -124,6 +107,18 @@ FlowPointList CFG::neighbors(FlowPoint* fp)
 		return (*fpIt).second;
 	else
 		return FlowPointList();
+}
+
+std::vector<FlowPoint*> CFG::flowPoints()
+{
+	std::vector<FlowPoint*> vec;
+	vec.reserve(m_AdjList.size());
+	std::list<CFG::Vertex>::iterator it;
+	for (it = m_AdjList.begin(); it != m_AdjList.end(); ++it) {
+		vec.push_back((*it).first);
+	}
+
+	return vec;
 }
 
 bool CFG::isEdge( Edge e )
@@ -138,4 +133,23 @@ bool CFG::isEdge( Edge e )
 	}
 
 	return rc;
+}
+
+void CFG::printForDot()
+{
+	printForDot(std::cout);
+}
+
+void CFG::printForDot(std::ostream& ostr)
+{
+	ostr << "digraph CFG {" << std::endl;
+	std::vector<FlowPoint*> fpVec = flowPoints();
+	for (size_t i = 0; i < fpVec.size(); ++i) {	
+		FlowPointList fpList = neighbors(fpVec[i]);	
+		for (FlowPointIterator fpIt = fpList.begin(); fpIt != fpList.end(); ++fpIt) {
+			ostr << fpVec[i]->name() << fpVec[i]->index() << " -> " 
+				<< (*fpIt)->name() << (*fpIt)->index() << std::endl;
+		}
+	}
+	std::cout << "}\n" ;
 }
