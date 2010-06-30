@@ -30,11 +30,9 @@ private:
 	FlowPoint* generateLoopNodeFlowPoints(SNode* root, FlowPoint* parent);
 	FlowPoint* generateBranchNodeFlowPoints(SNode* root, FlowPoint* parent);
 
-	void connectFlowPoints(FlowPoint* root, 
-						   std::vector<FlowPoint*>& startFPs, 
-						   std::vector<FlowPoint*>& endFPs);	
-	void connectFlowPointsInCompoundBlock(CompoundBlock* block,
-										  std::vector<FlowPoint*>& startFPs, 
+	FlowPoint* connectFlowPoints(FlowPoint* root,  
+			 			         std::vector<FlowPoint*>& endFPs);	
+	FlowPoint* connectFlowPointsInCompoundBlock(CompoundBlock* block,
 										  std::vector<FlowPoint*>& endFPs);
 
 	void reduceExpressionBlocks();
@@ -42,9 +40,10 @@ private:
 	Block* newCompoundBlock(SNode* statement, FlowPoint* parent);
 	Block* newExpressionBlock(SNode* statement = NULL, FlowPoint* parent = NULL);	
 	void concatVecs(std::vector<FlowPoint*>& a, const std::vector<FlowPoint*>& b);
+	void clearCompoundBlocks();
 	
 	stdext::hash_map<FlowPoint*, std::vector<FlowPoint*>> ChildrenOf;
-	std::vector<FlowPoint*> m_blocks;
+	std::vector<FlowPoint*> m_compoundBlocks;
 
 	SNode* m_root;
 	CFG& m_cfg;
