@@ -15,12 +15,7 @@ Syntax2CFG::Syntax2CFG(SNode* root, CFG& cfg):
 
 Syntax2CFG::~Syntax2CFG()
 {
-	for (size_t i = 0; i < m_blocks.size(); ++i) {
-		//delete only compound blocks since they are not added to the CFG.
-		if (m_blocks[i]->Type() == FlowPoint::COMPOUND_BLOCK) {
-			delete m_blocks[i];
-		}
-	}
+	clearCompoundBlocks();
 }
 
 /// Description: The starting point of the algorithm
@@ -28,14 +23,14 @@ Syntax2CFG::~Syntax2CFG()
 bool Syntax2CFG::execute()
 {
 	bool rc = false;
-	m_blocks.clear();
+	clearCompoundBlocks();
 	ChildrenOf.clear();
 	SyntaxSimplifier(m_root).execute();
 	FlowPoint* fp = generateFlowPoints(m_root);
 	if (fp) {
 		reduceExpressionBlocks();
-		std::vector<FlowPoint*> startFPs, endFPs;
-		connectFlowPoints(fp, startFPs, endFPs);
+		std::vector<FlowPoint*> endFPs;
+		connectFlowPoints(fp, endFPs);
 		rc = true;
 	}
 
@@ -45,37 +40,37 @@ bool Syntax2CFG::execute()
 /// Description: Connects all flow points from root FP and below.
 /// Params:
 ///		[in]  root - the root flow point on which to operate.
-///		[out] startFPs  - will contain all FPs which should be connected
-///						  from previous flow points in parent scope.
 ///		[out] endFPs - will contain all FPs which should be connected to
 ///					   next flow points in parent scope.
-void Syntax2CFG::connectFlowPoints(FlowPoint* root, 
-								   std::vector<FlowPoint*>& startFPs, 
-								   std::vector<FlowPoint*>& endFPs)
+/// Return value: A Flow Point which should be connected
+///				  from previous ending flow points in parent scope.
+FlowPoint* Syntax2CFG::connectFlowPoints(FlowPoint* root, 
+										 std::vector<FlowPoint*>& endFPs)
 {	
-	startFPs.clear();
+	FlowPoint* startFP = NULL;
 	endFPs.clear();
+
 	if (root) {
 		if (root->Type() == FlowPoint::EXPRESSION_BLOCK) {
-			startFPs.push_back(root);
+			startFP = root;
 			endFPs.push_back(root);
 		}
 		else if (root->Type() == FlowPoint::COMPOUND_BLOCK) {
-			connectFlowPointsInCompoundBlock((CompoundBlock*)root, startFPs, endFPs);
+			startFP = connectFlowPointsInCompoundBlock((CompoundBlock*)root, endFPs);
 		}
 		else {
 			std::vector<FlowPoint*>& children = ChildrenOf[root];
-			std::vector<FlowPoint*> leaves;
 			for (size_t i = 0; i < children.size(); ++i) {
-				std::vector<FlowPoint*> currStartFPs, currEndFPs;
-				connectFlowPoints(children[i], currStartFPs, currEndFPs);
-				for (size_t j = 0; j < currStartFPs.size(); ++j) {
-					//add downstream edges
-					m_cfg.AddEdge(Edge(root, currStartFPs[j]));
+				FlowPoint* currStartFP = NULL;
+				std::vector<FlowPoint*> currEndFPs;
+				currStartFP = connectFlowPoints(children[i], currEndFPs);
+				if (currStartFP) {
+					//add downstream edge
+					m_cfg.AddEdge(Edge(root, currStartFP));
 				}
 
-				bool concatStartFPs = true;
 				bool concatEndFPs = true;
+
 				if (root->syntaxNode()) {					
 					//check for loop FP
 					if (root->syntaxNode()->ShouldCreateEdgeFromChildren()) {
@@ -84,20 +79,18 @@ void Syntax2CFG::connectFlowPoints(FlowPoint* root,
 							m_cfg.AddEdge(Edge(currEndFPs[j],root));
 						}
 						//make sure that loop FP is connected to next&prev FP by
-						//adding the loop FP to the start & end vectors.
+						//adding the loop FP to the end vector and setting the
+						//start FP to it.
 						//In this case, any FPs inside the loop statement
 						//should not be passed to the parent scope.
 						endFPs.push_back(root);
-						startFPs.push_back(root);
-						concatStartFPs = false;
+						startFP = root;
 						concatEndFPs = false;
 					}
 					else if (SyntaxUtils::isBranch(root->syntaxNode())) {
-						//if it's an if / if else branch, add the FP
-						//to the start FPs vector.
-						startFPs.push_back(root);
-						//no need to add it's sub statements
-						concatStartFPs = false;
+						//if it's an if / if else branch, return the FP
+						//as the start FP.
+						startFP = root;
 						if (SyntaxUtils::isIfBranch(root->syntaxNode())) {
 							//if it's an 'if' branch(no else), add the FP
 							//also to the end FPs vector (it needs to be connected
@@ -108,15 +101,14 @@ void Syntax2CFG::connectFlowPoints(FlowPoint* root,
 					}
 				}
 
-				if (concatStartFPs) {
-					concatVecs(startFPs, currStartFPs);
-				}
 				if (concatEndFPs) {
 					concatVecs(endFPs, currEndFPs);
 				}
 			}
 		}
 	}
+
+	return startFP;
 }
 
 /// Description: Connects all flow points from within a compound block.
@@ -124,25 +116,25 @@ void Syntax2CFG::connectFlowPoints(FlowPoint* root,
 ///              are consecutive in the program flow.
 /// Params:
 ///		[in]  block - the compound block on which to operate.
-///		[out] startFPs  - will contain all FPs which should be connected
-///						  from previous flow points in parent scope.
 ///		[out] endFPs - will contain all FPs which should be connected to
 ///					   next flow points in parent scope.
-void Syntax2CFG::connectFlowPointsInCompoundBlock(CompoundBlock* block,
-												std::vector<FlowPoint*>& startFPs, 
-												std::vector<FlowPoint*>& endFPs)
+/// Return value: A Flow Point which should be connected
+///				  from previous ending flow points in parent scope.
+FlowPoint* Syntax2CFG::connectFlowPointsInCompoundBlock(CompoundBlock* block,
+													    std::vector<FlowPoint*>& endFPs)
 {
-	startFPs.clear();
+	FlowPoint* startFP = NULL;
 	endFPs.clear();
 	std::vector<FlowPoint*> fps = block->flowPoints();
 	std::vector<FlowPoint*> prevEndFPs;
 	
 	//for each flow point in block
 	for (size_t i = 0; i < fps.size(); ++i) {
-		std::vector<FlowPoint*> currStartFPs, currEndFPs;
+		FlowPoint* currStartFP = NULL;
+		std::vector<FlowPoint*> currEndFPs;
 	
 		//connect it's sub tree flow points
-		connectFlowPoints(fps[i], currStartFPs, currEndFPs);
+		currStartFP = connectFlowPoints(fps[i], currEndFPs);
 
 		//for each ending flow point of the previous flow point sub-tree 
 		for (size_t j = 0; j < prevEndFPs.size(); ++j) {
@@ -154,17 +146,15 @@ void Syntax2CFG::connectFlowPointsInCompoundBlock(CompoundBlock* block,
 			}
 			else {
 				//otherwise, current FP is actually a compound block.
-				//connect all previous end FP's to current node start FP's.
-				for (size_t k = 0; k < currStartFPs.size(); ++k) {
-					m_cfg.AddEdge(Edge(prevEndFPs[j],currStartFPs[k]));
-				}
+				//connect all previous end FP's to current node start FP.
+				m_cfg.AddEdge(Edge(prevEndFPs[j],currStartFP));
 			}
 		}	
 		
 		//the general block starting Flow Points are the ones produced by
 		//analyzing the sub-tree of the 1st FP in the block.
 		if (i == 0) {
-			startFPs = currStartFPs;
+			startFP = currStartFP;
 		}	
 		//the general block ending Flow Points are the ones produced by
 		//analyzing the sub-tree of the last FP in the block.
@@ -176,6 +166,8 @@ void Syntax2CFG::connectFlowPointsInCompoundBlock(CompoundBlock* block,
 		//in block in the next iteration.
 		prevEndFPs = currEndFPs;
 	}
+
+	return startFP;
 }
 
 /// Description: Generates:
@@ -186,12 +178,9 @@ void Syntax2CFG::connectFlowPointsInCompoundBlock(CompoundBlock* block,
 ///              Maps ChildrenOf relation between each Flow Point/Block and it's
 ///              children in the AST.
 /// Params:
-///		[in]  block - the compound block on which to operate.
-///		[out] startFPs  - will contain all FPs which should be connected
-///						  from previous flow points in parent scope.
-///		[out] endFPs - will contain all FPs which should be connected to
-///					   next flow points in parent scope.
-/// Return value: The root block generated.
+///		[in]  root - the syntax node root to generate it's subtree FPs.
+///		[in] parent  - parent FP of the current subtree uppermost FP.
+/// Return value: The uppermost Flow Point generated for the given subtree.
 FlowPoint* Syntax2CFG::generateFlowPoints(SNode* root, FlowPoint* parent)
 {	
 	FlowPoint* ret = NULL;
@@ -290,11 +279,11 @@ FlowPoint* Syntax2CFG::generateBranchNodeFlowPoints( SNode* root, FlowPoint* par
 ///         this sequence.
 void Syntax2CFG::reduceExpressionBlocks()
 {
-	size_t nBlocks = m_blocks.size();
+	size_t nBlocks = m_compoundBlocks.size();
 	for (size_t i = 0; i < nBlocks; ++i) {
-		if (m_blocks[i]->Type() == FlowPoint::COMPOUND_BLOCK) {
+		if (m_compoundBlocks[i]->Type() == FlowPoint::COMPOUND_BLOCK) {
 			std::vector<FlowPoint*> newBlocks = 
-				((CompoundBlock*)m_blocks[i])->ReduceExpressionsToBlocks();
+				((CompoundBlock*)m_compoundBlocks[i])->ReduceExpressionsToBlocks();
 			for (size_t j = 0; j < newBlocks.size(); ++j) {
 				m_cfg.AddFlowPoint(newBlocks[j]);
 			}
@@ -312,12 +301,12 @@ void Syntax2CFG::reduceExpressionBlocks()
 Block* Syntax2CFG::newCompoundBlock(SNode* statement, FlowPoint* parent)
 {
 	Block* b = new CompoundBlock(statement, parent);
-	m_blocks.push_back(b);
+	m_compoundBlocks.push_back(b);
 	return b;
 }
 
 /// Description: Creates a new expression block from the Statement syntax node
-///       and adds it to the m_blocks vector and the CFG.
+///       and adds it to the CFG.
 /// Params:
 ///		[in]  statement - the statement syntax node which will be assigned to
 ///                       the block.
@@ -327,7 +316,6 @@ Block* Syntax2CFG::newExpressionBlock(SNode* statement, FlowPoint* parent)
 {
 	Block* b = new ExpressionBlock(statement, parent);
 	m_cfg.AddFlowPoint(b);
-	m_blocks.push_back(b);
 	return b;
 }
 
@@ -341,3 +329,12 @@ void Syntax2CFG::concatVecs(std::vector<FlowPoint*>& a, const std::vector<FlowPo
 	}
 }
 
+/// Description: Deletes compound blocks and clears the blocks array.
+void Syntax2CFG::clearCompoundBlocks()
+{
+	for (size_t i = 0; i < m_compoundBlocks.size(); ++i) {
+		//delete only compound blocks since they are not added to the CFG.
+		delete m_compoundBlocks[i];
+	}
+	m_compoundBlocks.clear();
+}
