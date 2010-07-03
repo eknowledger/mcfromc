@@ -1,0 +1,40 @@
+Algorithm for Generating MC from Expression blocks 
+
+= Introduction =
+
+Add your content here.
+
+= Details =
+
+Below you can find the algorithm for converting the C.F.G flow points along with the Syntax Tree to A.C.F.G (Annotated Control Flow Graph, this is a C.F.G that on its edges you can find MCs)
+
+== Assumptions ==
+ * We handle expression of the following format x = ay +b (a,b constants, x and y are variables)
+== Algorithm == 
+ # Initialize map with all known variables to UNKNOWN (maybe INFINITE)
+ # Add empty MCs to all C.F.G edges.
+ # Perform D.F.S and while examining edges do the following:
+     ## f <- source(e)
+     ## g <- target(e)
+     ## current <- map of f
+     ## for each expression in the expression block of f do
+           ## replace the variables with their values according to the current map.
+           ## evaluate the expression
+           ## set the new value in the map.
+     ## if the number of in edges of g = 1 then copy the map of variable values from current to g.
+
+== Ideas == 
+
+ #  We check that the in degree of the target flow point is equal to 1 since we cannot know what is the new value for example the following program: 
+  {{{ 
+      x = y;
+      if ()
+          x = 100;
+      else 
+          x = 5;
+      z = 3*x - 100;
+  }}}
+  then if we got from the if block (x = 100) we know that z > x but if we got from else 
+  block then z < x.
+ # if the value of some variable (y) is unknown then assign the recent equation of (y) and simplify the equation. and assign the equation to x.
+ # maybe deal only with unsigned int where negative values are considered as underflow. 
