@@ -2,6 +2,7 @@
 #include <algorithm>
 #include "SNode.h"
 #include "Block.h"
+#include "boost\graph\graphviz.hpp"
 
 CFG::CFG(void)
 {
@@ -11,67 +12,61 @@ CFG::CFG(void)
 
 CFG::~CFG(void)
 {
-	struct VertexDelete
-	{
-		void operator()(Vertex& v) {
-			delete v.first;
-		}
-	};
+	//struct VertexDelete
+	//{
+	//	void operator()(Vertex& v) {
+	//		delete v.first;
+	//	}
+	//};
 
-	std::for_each(m_AdjList.begin(), m_AdjList.end(), VertexDelete());
+	//std::for_each(m_AdjList.begin(), m_AdjList.end(), VertexDelete());
 }
 
 FlowPoint* CFG::AddFlowPoint(SNode* node, std::string name)
 {
-	FlowPoint* fp = new FlowPoint(node, name);
-	m_AdjList.push_back(Vertex(fp));
+	FlowPoint* fp = AddFlowPoint(new FlowPoint(node, name));
+	boost::put(boost::vertex_name,*this,m_fpToV[fp],name);
 	return fp;
 }
 
 FlowPoint* CFG::AddFlowPoint(FlowPoint* fp)
 {
-	if (fp) {
-		m_AdjList.push_back(Vertex(fp));
-	}
-
-	return fp;
+	FPSharedPtr spFP(fp);
+	m_knownFPs.insert(spFP);
+	CFGBase::vertex_descriptor v = boost::add_vertex(*this);
+	m_fpToV[spFP.get()] = v;
+	boost::put(boost::vertex_attachedFP,*this,v,FPointWeakPtr(spFP));
+	return spFP.get();
 }
 
 
 
-FlowPoint* CFG::RemoveFlowPoint(FlowPoint* fp)
+void CFG::RemoveFlowPoint(FlowPoint* fp)
 {
-	FlowPoint* fpOut = NULL;
-
-	std::list<Vertex>::iterator it = findFlowPoint(fp);
-	if (it != m_AdjList.end()) {
-		fpOut = (*it).first;
-		m_AdjList.erase(it);
-	}
-
-	return fpOut;
+	CFGBase::vertex_descriptor v = m_fpToV[fp];
+	boost::clear_vertex(v,*this);
+	boost::remove_vertex(v,*this);
+	FPSet::iterator itr = m_knownFPs.find(FPSharedPtr(fp));
+	if(itr != m_knownFPs.end())
+		m_knownFPs.erase(itr);
+	FPToVertex::iterator itr2 = m_fpToV.find(fp);
+	if(itr2 != m_fpToV.end())
+		m_fpToV.erase(itr2);
 }
 
-void CFG::AddEdge(Edge e)
+void CFG::AddEdge(FlowPoint* f,FlowPoint* g)
 {
-	std::list<Vertex>::iterator adjIt = findFlowPoint(e.first);
-	if (adjIt != m_AdjList.end()) {
-		FlowPointIterator fpIt = findFlowPoint(adjIt, e.second);
-		if (fpIt == (*adjIt).second.end()) {
-			(*adjIt).second.push_back(e.second);
-		}
-	}
+	CFGBase::vertex_descriptor u = m_fpToV[f];
+	CFGBase::vertex_descriptor v = m_fpToV[g];
+	boost::add_edge(u,v,*this);
 }
 
-void CFG::RemoveEdge(Edge edge)
+void CFG::RemoveEdge(FlowPoint* f,FlowPoint* g)
 {
-	std::list<Vertex>::iterator adjIt = findFlowPoint(edge.first);
-	if (adjIt != m_AdjList.end()) {
-		FlowPointIterator fpIt = findFlowPoint(adjIt, edge.second);
-		if (fpIt != (*adjIt).second.end()) {
-			(*adjIt).second.erase(fpIt);
-		}
-	}
+
+	CFGBase::vertex_descriptor u = m_fpToV[f];
+	CFGBase::vertex_descriptor v = m_fpToV[g];
+	boost::remove_edge(u,v,*this);
 }
 
 std::list<CFG::Vertex>::iterator CFG::findFlowPoint( FlowPoint* fp )
@@ -102,37 +97,39 @@ FlowPointIterator CFG::findFlowPoint(const std::list<CFG::Vertex>::iterator& it,
 
 FlowPointList CFG::neighbors(FlowPoint* fp)
 {
-	std::list<Vertex>::iterator fpIt = findFlowPoint(fp);
-	if (fpIt != m_AdjList.end())
-		return (*fpIt).second;
-	else
-		return FlowPointList();
+	//std::list<Vertex>::iterator fpIt = findFlowPoint(fp);
+	//if (fpIt != m_AdjList.end())
+	//	return (*fpIt).second;
+	//else
+	//	return FlowPointList();
+	FlowPointList retNeighbors;
+	CFGBase::vertex_descriptor fpV = m_fpToV[fp];
+	CFGBase::adjacency_iterator adjItr,adjEnd;
+	for(boost::tie(adjItr,adjEnd) = boost::adjacent_vertices(fpV,*this); adjItr != adjEnd; ++adjItr){
+		FPointWeakPtr attachedFP = boost::get(boost::vertex_attachedFP,*this,*adjItr);
+		FPSharedPtr adjFP = attachedFP.lock();
+		retNeighbors.push_back(adjFP.get());
+	}
+	return retNeighbors;
 }
 
 std::vector<FlowPoint*> CFG::flowPoints()
 {
-	std::vector<FlowPoint*> vec;
-	vec.reserve(m_AdjList.size());
-	std::list<CFG::Vertex>::iterator it;
-	for (it = m_AdjList.begin(); it != m_AdjList.end(); ++it) {
-		vec.push_back((*it).first);
+	std::vector<FlowPoint*> fps;
+	for(FPSet::iterator fpItr = m_knownFPs.begin();fpItr != m_knownFPs.end(); ++fpItr){
+		fps.push_back((*fpItr).get());
 	}
 
-	return vec;
+	return fps;
 }
 
-bool CFG::isEdge( Edge e )
+bool CFG::isEdge(FlowPoint* f,FlowPoint *g)
 {
-	bool rc = false;
-	std::list<Vertex>::iterator adjIt = findFlowPoint(e.first);
-	if (adjIt != m_AdjList.end()) {
-		FlowPointIterator fpIt = findFlowPoint(adjIt, e.second);
-		if (fpIt != (*adjIt).second.end()) {
-			rc = true;
-		}
-	}
-
-	return rc;
+	CFGBase::vertex_descriptor u = m_fpToV[f];
+	CFGBase::vertex_descriptor v = m_fpToV[g];
+	
+	//pair <descriptor,exists>
+	return boost::edge(u,v,*this).second;
 }
 
 void CFG::printForDot()
@@ -142,14 +139,5 @@ void CFG::printForDot()
 
 void CFG::printForDot(std::ostream& ostr)
 {
-	ostr << "digraph CFG {" << std::endl;
-	std::vector<FlowPoint*> fpVec = flowPoints();
-	for (size_t i = 0; i < fpVec.size(); ++i) {	
-		FlowPointList fpList = neighbors(fpVec[i]);	
-		for (FlowPointIterator fpIt = fpList.begin(); fpIt != fpList.end(); ++fpIt) {
-			ostr << fpVec[i]->name() << fpVec[i]->index() << " -> " 
-				<< (*fpIt)->name() << (*fpIt)->index() << std::endl;
-		}
-	}
-	std::cout << "}\n" ;
+	boost::write_graphviz(ostr,*this);
 }
