@@ -66,7 +66,7 @@ FlowPoint* Syntax2CFG::connectFlowPoints(FlowPoint* root,
 				currStartFP = connectFlowPoints(children[i], currEndFPs);
 				if (currStartFP) {
 					//add downstream edge
-					m_cfg.AddEdge(Edge(root, currStartFP));
+					m_cfg.AddEdge(root, currStartFP);
 				}
 
 				bool concatEndFPs = true;
@@ -76,7 +76,7 @@ FlowPoint* Syntax2CFG::connectFlowPoints(FlowPoint* root,
 					if (root->syntaxNode()->ShouldCreateEdgeFromChildren()) {
 						//loop flow point - connect leaves to it
 						for (size_t j = 0; j < currEndFPs.size(); ++j) {
-							m_cfg.AddEdge(Edge(currEndFPs[j],root));
+							m_cfg.AddEdge(currEndFPs[j],root);
 						}
 						//make sure that loop FP is connected to next&prev FP by
 						//adding the loop FP to the end vector and setting the
@@ -142,12 +142,12 @@ FlowPoint* Syntax2CFG::connectFlowPointsInCompoundBlock(CompoundBlock* block,
 			if (fps[i]->Type() == FlowPoint::FLOW_POINT ||
 				fps[i]->Type() == FlowPoint::EXPRESSION_BLOCK) {
 				//if next node is a FP or Expression Block, connect directly to it,
-				m_cfg.AddEdge(Edge(prevEndFPs[j], fps[i]));
+				m_cfg.AddEdge(prevEndFPs[j], fps[i]);
 			}
 			else {
 				//otherwise, current FP is actually a compound block.
 				//connect all previous end FP's to current node start FP.
-				m_cfg.AddEdge(Edge(prevEndFPs[j],currStartFP));
+				m_cfg.AddEdge(prevEndFPs[j],currStartFP);
 			}
 		}	
 		
