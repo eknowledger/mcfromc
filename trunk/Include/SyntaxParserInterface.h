@@ -56,6 +56,8 @@ typedef struct tagNode{
 	unsigned int m_size;
 	char* m_name;
 	int   m_constVal;
+	int   m_row;
+	int   m_column;
 	struct tagNode **m_childs;
 } NodeData;
 
