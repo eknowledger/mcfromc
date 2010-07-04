@@ -1,15 +1,20 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SyntaxParser", "SyntaxParser\SyntaxParser.vcproj", "{44228F87-1D4E-4B06-BAA7-E4EC7D88561C}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SyntaxParserDLL", "SyntaxParserDLL\SyntaxParserDLL.vcproj", "{B0581DE2-1B7F-4711-BFCE-7662F35E3678}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CFGViewer", "CFGViewer\CFGViewer.csproj", "{BB3E1891-E88C-48A3-885E-3AAA4A642DC0}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ParserDotNetBridge", "ParserDotNetBridge\ParserDotNetBridge.vcproj", "{18BA556D-6D89-4A71-BED4-60CBCF31F105}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D32E1F03-EBF9-43B4-9EFC-D8CE3D7560AD} = {D32E1F03-EBF9-43B4-9EFC-D8CE3D7560AD}
+		{B0581DE2-1B7F-4711-BFCE-7662F35E3678} = {B0581DE2-1B7F-4711-BFCE-7662F35E3678}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CFGGen", "CFGGen\CFGGen.vcproj", "{D32E1F03-EBF9-43B4-9EFC-D8CE3D7560AD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B0581DE2-1B7F-4711-BFCE-7662F35E3678} = {B0581DE2-1B7F-4711-BFCE-7662F35E3678}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,16 +26,6 @@ Global
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{44228F87-1D4E-4B06-BAA7-E4EC7D88561C}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{44228F87-1D4E-4B06-BAA7-E4EC7D88561C}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
-		{44228F87-1D4E-4B06-BAA7-E4EC7D88561C}.Debug|Mixed Platforms.Build.0 = Debug|Win32
-		{44228F87-1D4E-4B06-BAA7-E4EC7D88561C}.Debug|Win32.ActiveCfg = Debug|Win32
-		{44228F87-1D4E-4B06-BAA7-E4EC7D88561C}.Debug|Win32.Build.0 = Debug|Win32
-		{44228F87-1D4E-4B06-BAA7-E4EC7D88561C}.Release|Any CPU.ActiveCfg = Release|Win32
-		{44228F87-1D4E-4B06-BAA7-E4EC7D88561C}.Release|Mixed Platforms.ActiveCfg = Release|Win32
-		{44228F87-1D4E-4B06-BAA7-E4EC7D88561C}.Release|Mixed Platforms.Build.0 = Release|Win32
-		{44228F87-1D4E-4B06-BAA7-E4EC7D88561C}.Release|Win32.ActiveCfg = Release|Win32
-		{44228F87-1D4E-4B06-BAA7-E4EC7D88561C}.Release|Win32.Build.0 = Release|Win32
 		{B0581DE2-1B7F-4711-BFCE-7662F35E3678}.Debug|Any CPU.ActiveCfg = Debug|Win32
 		{B0581DE2-1B7F-4711-BFCE-7662F35E3678}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
 		{B0581DE2-1B7F-4711-BFCE-7662F35E3678}.Debug|Mixed Platforms.Build.0 = Debug|Win32
