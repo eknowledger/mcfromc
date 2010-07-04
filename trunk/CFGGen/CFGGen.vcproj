@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="CPPParser"
+	Name="CFGGen"
 	ProjectGUID="{D32E1F03-EBF9-43B4-9EFC-D8CE3D7560AD}"
 	RootNamespace="CPPParser"
 	Keyword="Win32Proj"
@@ -20,7 +20,7 @@
 			Name="Debug|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="1"
+			ConfigurationType="2"
 			InheritedPropertySheets="..\CommonProperties.vsprops"
 			CharacterSet="1"
 			>
@@ -64,6 +64,7 @@
 				Name="VCLinkerTool"
 				AdditionalDependencies="../Debug/SyntaxParserDLL.lib"
 				LinkIncremental="2"
+				ModuleDefinitionFile="CFGGen.def"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				RandomizedBaseAddress="1"
@@ -96,7 +97,7 @@
 			Name="Release|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="1"
+			ConfigurationType="2"
 			InheritedPropertySheets="..\CommonProperties.vsprops"
 			CharacterSet="1"
 			WholeProgramOptimization="1"
@@ -137,6 +138,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				LinkIncremental="1"
+				ModuleDefinitionFile="CFGGen.def"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				OptimizeReferences="2"
@@ -177,7 +179,11 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\main.cpp"
+				RelativePath=".\CFGGen.def"
+				>
+			</File>
+			<File
+				RelativePath=".\CFGInterface.cpp"
 				>
 			</File>
 		</Filter>
@@ -186,6 +192,14 @@
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
+			<File
+				RelativePath="..\Include\CFGInterface.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Include\SyntaxParserInterface.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Resource Files"

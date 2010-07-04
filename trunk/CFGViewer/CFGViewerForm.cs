@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using ParserDotNetBridge;
 
 namespace CFGViewer
 {
@@ -17,7 +18,9 @@ namespace CFGViewer
             InitializeComponent();
             GraphPictureBox.Image = Image.FromFile("Untitled1.png");
             m_app = new CFGViewerApp();
+            codeTextBox.Text = m_app.readFlowPoints("test2.c");
             m_app.readDotSpec("out.dot");
+            GraphPictureBox.Size = new Size(m_app.ImageWidth, m_app.ImageHeight);
         }
 
         private void GraphPictureBox_MouseClick(object sender, MouseEventArgs e)
@@ -27,9 +30,8 @@ namespace CFGViewer
             Point imgSize = new Point(GraphPictureBox.Image.Size);
             Point cntrlSize = new Point(GraphPictureBox.Size);
 
-            int xClick = (int)( ( ((float)e.X) / ((float)cntrlSize.X) ) * ((float)imgSize.X));
-            int yClick = (int)((((float)(cntrlSize.Y - e.Y)) / ((float)cntrlSize.Y)) * ((float)imgSize.Y));
-
+            int xClick = e.X;
+            int yClick = cntrlSize.Y - e.Y;
             foreach (Point p in m_app.Locations)
             {
                 int diffX = p.X-xClick; 
@@ -43,7 +45,33 @@ namespace CFGViewer
             }
 
             if (closestPoint != null) {
-                codeTextBox.Text = m_app.FlowPointName[closestPoint];
+                if (m_app.FlowPoint.ContainsKey(m_app.FlowPointName[closestPoint]))
+                {
+                    VisualFlowPoint fp = m_app.FlowPoint[m_app.FlowPointName[closestPoint]];
+                    if (fp != null)
+                    {
+                        int rowNum = 0;
+                        int charCount = 0;
+                        int charStart = 0;
+                        for (int i = 0; i < codeTextBox.Lines.Length; i++)
+                        {
+                            if (i == fp.Row)
+                            {
+                                charStart = charCount;
+                                charCount = codeTextBox.Lines[i].Length;  
+                                break;
+                            }
+
+                            charCount+=codeTextBox.Lines[i].Length + 2;
+
+                        }
+
+                        //codeTextBox.Lines = lines;
+                        int index = m_app.findOpeningParentheses(codeTextBox.Text, charStart);
+                        codeTextBox.SelectionStart = charStart;
+                        codeTextBox.SelectionLength = 0;
+                    }
+                }
             }
         }
 

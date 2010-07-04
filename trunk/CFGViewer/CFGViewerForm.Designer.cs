@@ -82,7 +82,6 @@
             // 
             // GraphPictureBox
             // 
-            this.GraphPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GraphPictureBox.Location = new System.Drawing.Point(0, 0);
             this.GraphPictureBox.Name = "GraphPictureBox";
             this.GraphPictureBox.Size = new System.Drawing.Size(271, 379);
