@@ -1,0 +1,4 @@
+LIBRARY	"CFGGen"
+EXPORTS
+   generateCFG @1
+
