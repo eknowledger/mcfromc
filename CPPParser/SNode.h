@@ -44,6 +44,14 @@ public:
 		return false;
 	}
 
+	int codeRow() const {
+		return m_row;
+	}
+
+	int codeColumn() const {
+		return m_column;
+	}
+
 protected:
 	friend std::ostream& operator<<(std::ostream& os,const SNode& node);
 	
@@ -52,6 +60,8 @@ protected:
 	virtual void printInfo(std::ostream& ostr) const;
 
 private:
+	int m_row;
+	int m_column;
 	nodeType m_Type;
 	SNode* m_Parent;
 	std::vector<SNode*> m_children;

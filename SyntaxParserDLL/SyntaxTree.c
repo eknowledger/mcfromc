@@ -4,6 +4,9 @@
 #include <stdio.h>
 #include <crtdbg.h>
 
+extern int column;
+extern int row;
+
 NodeData *createNode(nodeType nType)
 {
 	NodeData * newNode = (NodeData *) malloc(sizeof(NodeData));
@@ -15,6 +18,8 @@ NodeData *createNode(nodeType nType)
 	newNode->m_childCount = 0;
 	newNode->m_childs = (NodeData **)malloc(sizeof(NodeData *));
 	newNode->m_size = 1;
+	newNode->m_row = row;
+	newNode->m_column = column;
 	return newNode;
 }
 

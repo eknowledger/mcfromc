@@ -865,6 +865,7 @@ function_definition
 #include <stdio.h>
 extern char yytext[];
 extern int column;
+extern int row;
 
 yyerror(s)
 char *s;

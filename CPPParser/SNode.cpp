@@ -10,7 +10,9 @@ SNode::SNode(nodeType type) :
 
 SNode::SNode(const NodeData& node) : 
 	m_Type(node.m_type), 
-	m_Parent(NULL)
+	m_Parent(NULL),
+	m_row(node.m_row),
+	m_column(node.m_column)
 {
 	m_children.reserve(node.m_childCount);
 	for (size_t i = 0; i < node.m_childCount; ++i) {
