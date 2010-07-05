@@ -6,17 +6,28 @@ using System.IO;
 using System.Drawing;
 using ParserDotNetBridge;
 using System.Collections;
+using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace CFGViewer
 {
+    public delegate void DelegateMessage(string message);
+
     class CFGViewerApp
     {
-        public string readFlowPoints(string filename)
+        public CFGViewerApp(DelegateMessage msgDelegator)
         {
-            CodeText = null;
+            OnMessage += msgDelegator;
+        }
+
+        public event DelegateMessage OnMessage;
+
+        public void readFlowPoints(string filename)
+        {
             ArrayList arr = null;
             FlowPoint = new Dictionary<string, VisualFlowPoint>();
-            arr = CFGParser.GenerateCFG(filename);
+            string graphText = null;
+            arr = CFGParser.GenerateCFG(filename, out graphText);
 
             if (arr != null)
             {
@@ -26,12 +37,11 @@ namespace CFGViewer
                 }
             }
 
-            using (StreamReader reader = new StreamReader(filename))
+            if (graphText != null)
             {
-                CodeText = reader.ReadToEnd();
+                WriteGraphToFile(graphText);
+                RunDot();
             }
-
-            return CodeText;
         }
 
         public void readDotSpec(string filename)
@@ -74,6 +84,8 @@ namespace CFGViewer
                     }
                 }
             }
+            reader.Close();
+            reader.Dispose();
         }
 
         public int ImageHeight
@@ -123,10 +135,47 @@ namespace CFGViewer
             return closingIndex;
         }
 
+        private void WriteGraphToFile(string graphText)
+        {
+            OnMessage("Writing graph to file");
+            FileStream fstr = File.OpenWrite(DIGRAPH_FILE);
+            using (StreamWriter writer = new StreamWriter(fstr))
+            {
+                writer.AutoFlush = true;
+                writer.Write(graphText);
+                writer.Flush();
+                writer.Close();
+                writer.Dispose();
+            }
+            fstr.Close();
+            fstr.Dispose();
+        }
+
+        private void RunDot()
+        {
+            OnMessage("Running dot tool - generating layout");
+            ProcessStartInfo startInfo = new ProcessStartInfo("../ThirdParty/Graphviz/bin/dot.exe");
+            startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            startInfo.Arguments = "-Tdot " + DIGRAPH_FILE + " -o " + DOT_LAYOUT_FILE;
+            Process p1 = Process.Start(startInfo);
+            OnMessage("Running dot tool - generating bitmap");
+            startInfo.Arguments = "-Tgif " + DIGRAPH_FILE + " -o " + DOT_IMAGE_FILE;
+            Process p2 = Process.Start(startInfo);
+
+            p1.WaitForExit();
+            p2.WaitForExit();
+        }
+
         public Dictionary<Point, string> FlowPointName;
         public Dictionary<string, VisualFlowPoint> FlowPoint;
         private int m_Height;
         private int m_Width;
         public string CodeText;
+
+        const string OUT_FILE = "temp_cfg";
+        public readonly string DIGRAPH_FILE = Application.StartupPath + "\\Temp\\" + OUT_FILE + ".g";
+        public readonly string DOT_LAYOUT_FILE = Application.StartupPath + "\\Temp\\" + OUT_FILE + ".dot";
+        public readonly string DOT_IMAGE_FILE = Application.StartupPath + "\\Temp\\" + OUT_FILE + ".gif";
+        public readonly string CODE_FILE = Application.StartupPath + "\\Temp\\" + OUT_FILE + ".c";
     }
 }

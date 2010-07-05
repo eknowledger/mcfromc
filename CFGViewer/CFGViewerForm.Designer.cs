@@ -31,16 +31,18 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CFGViewerForm));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.codeTextBox = new System.Windows.Forms.TextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.CFGProgressBar = new System.Windows.Forms.ProgressBar();
             this.GraphPanel = new System.Windows.Forms.Panel();
             this.GraphPictureBox = new System.Windows.Forms.PictureBox();
             this.upperToolStrip = new System.Windows.Forms.ToolStrip();
             this.OpenFileButton = new System.Windows.Forms.ToolStripButton();
             this.editCodeButton = new System.Windows.Forms.ToolStripButton();
             this.GenerateCFGButton = new System.Windows.Forms.ToolStripButton();
-            this.CFGProgressBar = new System.Windows.Forms.ProgressBar();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.GraphPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GraphPictureBox)).BeginInit();
             this.upperToolStrip.SuspendLayout();
@@ -60,7 +62,9 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Panel2.Controls.Add(this.GraphPanel);
+            this.splitContainer1.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint);
             this.splitContainer1.Size = new System.Drawing.Size(547, 354);
             this.splitContainer1.SplitterDistance = 272;
             this.splitContainer1.TabIndex = 1;
@@ -68,6 +72,7 @@
             // codeTextBox
             // 
             this.codeTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.codeTextBox.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.codeTextBox.Location = new System.Drawing.Point(0, 0);
             this.codeTextBox.Multiline = true;
             this.codeTextBox.Name = "codeTextBox";
@@ -77,23 +82,45 @@
             this.codeTextBox.TabIndex = 0;
             this.codeTextBox.WordWrap = false;
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.CFGProgressBar);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 331);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(271, 23);
+            this.panel1.TabIndex = 2;
+            // 
+            // CFGProgressBar
+            // 
+            this.CFGProgressBar.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.CFGProgressBar.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.CFGProgressBar.ForeColor = System.Drawing.Color.Chartreuse;
+            this.CFGProgressBar.Location = new System.Drawing.Point(0, 2);
+            this.CFGProgressBar.Name = "CFGProgressBar";
+            this.CFGProgressBar.Size = new System.Drawing.Size(271, 21);
+            this.CFGProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.CFGProgressBar.TabIndex = 5;
+            this.CFGProgressBar.Visible = false;
+            // 
             // GraphPanel
             // 
+            this.GraphPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.GraphPanel.AutoScroll = true;
             this.GraphPanel.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.GraphPanel.Controls.Add(this.GraphPictureBox);
-            this.GraphPanel.Controls.Add(this.CFGProgressBar);
-            this.GraphPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GraphPanel.Location = new System.Drawing.Point(0, 0);
             this.GraphPanel.Name = "GraphPanel";
-            this.GraphPanel.Size = new System.Drawing.Size(271, 354);
+            this.GraphPanel.Size = new System.Drawing.Size(271, 327);
             this.GraphPanel.TabIndex = 0;
             // 
             // GraphPictureBox
             // 
             this.GraphPictureBox.Location = new System.Drawing.Point(0, 0);
             this.GraphPictureBox.Name = "GraphPictureBox";
-            this.GraphPictureBox.Size = new System.Drawing.Size(271, 327);
+            this.GraphPictureBox.Size = new System.Drawing.Size(271, 324);
             this.GraphPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.GraphPictureBox.TabIndex = 0;
             this.GraphPictureBox.TabStop = false;
@@ -140,18 +167,6 @@
             this.GenerateCFGButton.Text = "Generate CFG";
             this.GenerateCFGButton.Click += new System.EventHandler(this.GenerateCFGButton_Click);
             // 
-            // CFGProgressBar
-            // 
-            this.CFGProgressBar.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.CFGProgressBar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.CFGProgressBar.ForeColor = System.Drawing.Color.Chartreuse;
-            this.CFGProgressBar.Location = new System.Drawing.Point(0, 333);
-            this.CFGProgressBar.Name = "CFGProgressBar";
-            this.CFGProgressBar.Size = new System.Drawing.Size(271, 21);
-            this.CFGProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.CFGProgressBar.TabIndex = 3;
-            this.CFGProgressBar.Visible = false;
-            // 
             // CFGViewerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -166,6 +181,7 @@
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.GraphPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GraphPictureBox)).EndInit();
             this.upperToolStrip.ResumeLayout(false);
@@ -185,6 +201,7 @@
         private System.Windows.Forms.ToolStripButton OpenFileButton;
         private System.Windows.Forms.ToolStripButton editCodeButton;
         private System.Windows.Forms.ToolStripButton GenerateCFGButton;
+        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ProgressBar CFGProgressBar;
     }
 }

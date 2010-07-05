@@ -9,6 +9,7 @@
 
 using namespace System;
 using namespace System::Collections;
+using namespace System::Runtime::InteropServices;
 
 ///this project serves as an inter-op between the native C++ projects and
 ///.NET applications code.
@@ -19,6 +20,6 @@ namespace ParserDotNetBridge {
 		static bool To_string( String^ source, std::string &target);
 
 	public:
-		static ArrayList^ GenerateCFG(String^ cfilename);
+		static ArrayList^ GenerateCFG(String^ cfilename, [Out] String^% graphText);
 	};
 }
