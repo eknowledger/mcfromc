@@ -8,7 +8,7 @@
 #include "CFG.h"
 #include "CFGInterface.h"
 
-std::vector<FlowPointVisualData> generateCFG(std::string cfilename)
+std::vector<FlowPointVisualData> generateCFG(std::string cfilename, std::ostream& ostr)
 {	
 	std::vector<FlowPointVisualData> fpData;
 	NodeData* root = NULL;
@@ -28,6 +28,8 @@ std::vector<FlowPointVisualData> generateCFG(std::string cfilename)
 													 fps[i]->name()));
 			}
 		}
+
+		cfg.printForDot(ostr);
 
 		//std::cout << *sroot;
 		delete sroot;

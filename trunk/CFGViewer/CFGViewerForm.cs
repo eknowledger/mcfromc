@@ -19,11 +19,7 @@ namespace CFGViewer
             InitializeComponent();
             codeTextBox.BackColor = Color.White;
             codeTextBox.ForeColor = codeTextBox.ReadOnly ? Color.Gray : Color.Black;
-            //GraphPictureBox.Image = Image.FromFile("Untitled1.png");
-            m_app = new CFGViewerApp();
-            //codeTextBox.Text = m_app.readFlowPoints("test2.c");
-            //m_app.readDotSpec("out.dot");
-            //GraphPictureBox.Size = new Size(m_app.ImageWidth, m_app.ImageHeight);
+            m_app = new CFGViewerApp(SetMessage);
         }
 
         private void GraphPictureBox_MouseClick(object sender, MouseEventArgs e)
@@ -79,16 +75,15 @@ namespace CFGViewer
         }
 
         private CFGViewerApp m_app;
-        private const string TEMP_C_FILE_PATH = "temp.c";
 
         private void SetMessage(string text)
         {
+            CFGProgressBar.Value += 10;
             CFGProgressBar.CreateGraphics().DrawString(
                 text, 
                 new Font("Arial", (float)8.25, FontStyle.Regular), 
                 Brushes.Black, 
                 new PointF(CFGProgressBar.Width / 8 - 10, CFGProgressBar.Height / 2 - 7));
-            Thread.Sleep(200);
         }
         private void OpenFileButton_Click(object sender, EventArgs e)
         {
@@ -99,9 +94,13 @@ namespace CFGViewer
             if (res == DialogResult.OK) 
             {
                 this.Text = "Control Flow Graph Viewer" + " - " + dlg.FileName;
-                codeTextBox.Text = m_app.readFlowPoints(dlg.FileName);
-            }
-            
+                
+                using (StreamReader reader = new StreamReader(dlg.FileName))
+                {
+                    codeTextBox.Text = reader.ReadToEnd();
+                    m_app.CodeText = codeTextBox.Text;
+                }
+            }     
         }
 
         private void EditCodeButton_Click(object sender, EventArgs e)
@@ -113,28 +112,66 @@ namespace CFGViewer
 
         private void GenerateCFGButton_Click(object sender, EventArgs e)
         {
+            try
+            {
+                Directory.SetCurrentDirectory(Application.StartupPath);
+                string[] files = Directory.GetFiles(Application.StartupPath + "\\Temp");
+                foreach(string f in files)
+                {
+                    File.Delete(f);
+                }
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                Directory.CreateDirectory("Temp");
+            }
+            catch
+            {
+            }
+
             bool fileRead = false;
+            if (GraphPictureBox.Image != null) {
+                GraphPictureBox.Image = null;
+            }
             CFGProgressBar.Show();
             CFGProgressBar.Value = 0;
-            CFGProgressBar.Value += 15;
-            SetMessage("Writing temporary code file '" + TEMP_C_FILE_PATH + "'");
+            Guid id = Guid.NewGuid();
+            string codeFileName =  m_app.CODE_FILE +  "_" + id.ToString();
+            SetMessage("Writing temporary code file '" + codeFileName + "'");
             try
-            {        
-                using (StreamWriter writer = new StreamWriter(TEMP_C_FILE_PATH, false)) {
+            {
+
+                FileStream fstr = File.OpenWrite(codeFileName);
+                using (StreamWriter writer = new StreamWriter(fstr))
+                {
+                    writer.AutoFlush = true;
                     writer.Write(codeTextBox.Text);
                     writer.Flush();
                     writer.Close();
+                    writer.Dispose();
                 }
-                CFGProgressBar.Value += 15;
-                //SetMessage("Finished writing temporary code file '" + TEMP_C_FILE_PATH + "'");
+                fstr.Close();
+                fstr.Dispose();
+
                 SetMessage("Generating flow points");
-                m_app.readFlowPoints(TEMP_C_FILE_PATH);
-                CFGProgressBar.Value += 40;
-                //SetMessage("Finished generating flow points");
+                m_app.readFlowPoints(codeFileName);
                 fileRead = true;
+                SetMessage("loading CFG image");
+                GraphPictureBox.Load(m_app.DOT_IMAGE_FILE);
+               // GraphPictureBox.Image = Image.FromFile(m_app.DOT_IMAGE_FILE);
+                m_app.readDotSpec(m_app.DOT_LAYOUT_FILE);
+                GraphPictureBox.Size = new Size(m_app.ImageWidth, m_app.ImageHeight);
+                GraphPictureBox.Refresh();
                 SetMessage("Cleaning up");
-                 File.Delete(TEMP_C_FILE_PATH);
-                CFGProgressBar.Value += 30;
+               
+                File.Delete(m_app.DIGRAPH_FILE);
+                //File.Delete(m_app.CODE_FILE);
+                File.Delete(m_app.DOT_LAYOUT_FILE);
+                
                 SetMessage("");
             }
             catch (System.Exception ex)
@@ -146,6 +183,11 @@ namespace CFGViewer
             }
             CFGProgressBar.Value += 10;
             CFGProgressBar.Hide();
+        }
+
+        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include <ostream>
 
 struct FlowPointVisualData
 {
@@ -16,4 +17,4 @@ struct FlowPointVisualData
 	}
 };
 
-std::vector<FlowPointVisualData> generateCFG(std::string cfilename);
+std::vector<FlowPointVisualData> generateCFG(std::string cfilename, std::ostream& ostr);

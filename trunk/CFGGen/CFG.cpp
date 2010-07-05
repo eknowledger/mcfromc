@@ -56,9 +56,11 @@ void CFG::RemoveFlowPoint(FlowPoint* fp)
 
 void CFG::AddEdge(FlowPoint* f,FlowPoint* g)
 {
-	CFGBase::vertex_descriptor u = m_fpToV[f];
-	CFGBase::vertex_descriptor v = m_fpToV[g];
-	boost::add_edge(u,v,*this);
+	if (!isEdge(f,g)) {
+		CFGBase::vertex_descriptor u = m_fpToV[f];
+		CFGBase::vertex_descriptor v = m_fpToV[g];
+		boost::add_edge(u,v,*this);
+	}
 }
 
 void CFG::RemoveEdge(FlowPoint* f,FlowPoint* g)

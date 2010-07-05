@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "CFGParser.h"
 #include "VisualFlowPoint.h"
+#include <sstream>
 
 namespace ParserDotNetBridge {
 	bool CFGParser::To_CharStar( String^ source, char*& target )
@@ -23,12 +24,15 @@ namespace ParserDotNetBridge {
 	}
 
 	///returns an ArrayList of VisualFlowPoints read and parsed from the C file.
-	ArrayList^ CFGParser::GenerateCFG(String^ cfilename)
+	ArrayList^ CFGParser::GenerateCFG(String^ cfilename, [Out] String^% graphText)
 	{
 		ArrayList^ arr = gcnew ArrayList();
 		std::string fname;
 		To_string(cfilename, fname);
-		std::vector<FlowPointVisualData> fpData = generateCFG(fname);
+		std::ostringstream ostr;
+		std::vector<FlowPointVisualData> fpData = generateCFG(fname, ostr);
+		std::string graphTextStr = ostr.str();
+		graphText = gcnew String(graphTextStr.c_str());
 		for (size_t i = 0; i < fpData.size(); ++i) {
 			arr->Add(gcnew VisualFlowPoint(fpData[i]));
 		}
