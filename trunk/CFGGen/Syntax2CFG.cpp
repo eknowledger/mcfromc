@@ -31,6 +31,7 @@ bool Syntax2CFG::execute()
 		reduceExpressionBlocks();
 		std::vector<FlowPoint*> endFPs;
 		connectFlowPoints(fp, endFPs);
+		hideIsolatedExpressions();
 		rc = true;
 	}
 
@@ -337,4 +338,15 @@ void Syntax2CFG::clearCompoundBlocks()
 		delete m_compoundBlocks[i];
 	}
 	m_compoundBlocks.clear();
+}
+
+void Syntax2CFG::hideIsolatedExpressions()
+{
+	std::vector<FlowPoint*> fps = m_cfg.flowPoints();
+	for (size_t i = 0; i < fps.size(); ++i)
+	{
+		if (fps[i] && fps[i]->syntaxNode() && 
+			fps[i]->syntaxNode()->Type() == ASSIGNMENT_EXPR)
+			m_cfg.RemoveFlowPoint(fps[i]);
+	}
 }

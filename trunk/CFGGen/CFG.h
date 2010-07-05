@@ -22,6 +22,7 @@ namespace boost{
 }
 
 typedef boost::shared_ptr<FlowPoint> FPSharedPtr;
+
 typedef std::set<FPSharedPtr> FPSet;
 
 typedef boost::weak_ptr<FlowPoint> FPointWeakPtr;
@@ -68,6 +69,8 @@ public:
 	//prints graph edges in GraphViz Dot format to given output stream
 	void printForDot(std::ostream& ostr);
 
+	void Hide(FlowPoint* fp);
+
 private:
 	struct Vertex : public FlowPointAndNeighbors {
 		Vertex(FlowPoint* fp) {
@@ -86,6 +89,7 @@ private:
 	std::list<Vertex> m_AdjList;
 private:
 	FPSet m_knownFPs;
+	FPSet m_hiddenFPs;
 	typedef std::map<FlowPoint*,CFGBase::vertex_descriptor> FPToVertex;
 	FPToVertex m_fpToV;
 };
