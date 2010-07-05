@@ -46,12 +46,27 @@ void CFG::RemoveFlowPoint(FlowPoint* fp)
 	CFGBase::vertex_descriptor v = m_fpToV[fp];
 	boost::clear_vertex(v,*this);
 	boost::remove_vertex(v,*this);
-	FPSet::iterator itr = m_knownFPs.find(FPSharedPtr(fp));
-	if(itr != m_knownFPs.end())
-		m_knownFPs.erase(itr);
+	FPSet::iterator itr = m_knownFPs.begin();
+	while (itr != m_knownFPs.end()) {
+		if ((*itr).get() == fp) {
+			m_knownFPs.erase(itr);
+			break;
+		}
+		++itr;
+	}
 	FPToVertex::iterator itr2 = m_fpToV.find(fp);
 	if(itr2 != m_fpToV.end())
 		m_fpToV.erase(itr2);
+
+	
+	//repopulate flow point to vertex descriptor map.
+	CFGBase::vertex_iterator adjItr,adjEnd;
+	for(boost::tie(adjItr,adjEnd) = boost::vertices(*this); adjItr != adjEnd; ++adjItr){
+		CFGBase::vertex_descriptor desc = (*adjItr);
+		FPointWeakPtr attachedFP = boost::get(boost::vertex_attachedFP,*this,*adjItr);
+		FPSharedPtr adjFP(attachedFP.lock());
+		m_fpToV[adjFP.get()] = desc;
+	}
 }
 
 void CFG::AddEdge(FlowPoint* f,FlowPoint* g)
@@ -109,7 +124,7 @@ FlowPointList CFG::neighbors(FlowPoint* fp)
 	CFGBase::adjacency_iterator adjItr,adjEnd;
 	for(boost::tie(adjItr,adjEnd) = boost::adjacent_vertices(fpV,*this); adjItr != adjEnd; ++adjItr){
 		FPointWeakPtr attachedFP = boost::get(boost::vertex_attachedFP,*this,*adjItr);
-		FPSharedPtr adjFP = attachedFP.lock();
+		FPSharedPtr adjFP(attachedFP.lock());
 		retNeighbors.push_back(adjFP.get());
 	}
 	return retNeighbors;
@@ -139,7 +154,24 @@ void CFG::printForDot()
 	printForDot(std::cout);
 }
 
+struct VertexFlowPointPropertyWriter {
+	VertexFlowPointPropertyWriter(CFG &g_) : g(g_) {}
+	template <class MyVertex>
+	void operator() (std::ostream &out, MyVertex u) {
+		std::string name = boost::get(boost::vertex_attachedFP,g,u).lock().get()->name();
+		out << "[label=" << name << "]";
+	}
+
+	CFG &g;
+};
+
 void CFG::printForDot(std::ostream& ostr)
 {
-	boost::write_graphviz(ostr,*this);
+	boost::write_graphviz(ostr,*this, VertexFlowPointPropertyWriter(*this));
+}
+
+void CFG::Hide( FlowPoint* fp )
+{
+	RemoveFlowPoint(fp);
+	m_hiddenFPs.insert(FPSharedPtr(fp));
 }
