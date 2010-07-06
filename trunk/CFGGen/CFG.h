@@ -58,6 +58,7 @@ public:
 
 	FlowPoint* AddFlowPoint(SNode* node, std::string name);
 	FlowPoint* AddFlowPoint(FlowPoint* fp);
+	FlowPoint* AddHiddenFlowPoint(SNode* node, std::string name);
 	void RemoveFlowPoint(FlowPoint* fp);
 	void AddEdge(FlowPoint* f,FlowPoint* g);
 	void RemoveEdge(FlowPoint* f,FlowPoint* g);
@@ -68,8 +69,7 @@ public:
 	void printForDot();
 	//prints graph edges in GraphViz Dot format to given output stream
 	void printForDot(std::ostream& ostr);
-
-	void Hide(FlowPoint* fp);
+	std::string getName(FlowPoint* fp);
 
 private:
 	struct Vertex : public FlowPointAndNeighbors {

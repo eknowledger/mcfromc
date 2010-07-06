@@ -31,7 +31,6 @@ bool Syntax2CFG::execute()
 		reduceExpressionBlocks();
 		std::vector<FlowPoint*> endFPs;
 		connectFlowPoints(fp, endFPs);
-		hideIsolatedExpressions();
 		rc = true;
 	}
 
@@ -189,7 +188,7 @@ FlowPoint* Syntax2CFG::generateFlowPoints(SNode* root, FlowPoint* parent)
 		ret = generateStatementNodeFlowPoints(root, parent);
 	}
 	else if (SyntaxUtils::isExpression(root)) {
-		ret = m_cfg.AddFlowPoint(root, "Expression");
+		ret = m_cfg.AddHiddenFlowPoint(root, "Expression");
 	}
 	else if (SyntaxUtils::isLoop(root)) {
 		ret = generateLoopNodeFlowPoints(root, parent);
@@ -324,7 +323,7 @@ Block* Syntax2CFG::newExpressionBlock(SNode* statement, FlowPoint* parent)
 /// Description: Concatenates vector b to the end of vector a.
 void Syntax2CFG::concatVecs(std::vector<FlowPoint*>& a, const std::vector<FlowPoint*>& b)
 {
-	a.resize(a.size() + b.size());
+	a.reserve(a.size() + b.size());
 	for (size_t i = 0; i < b.size(); ++i) {
 		a.push_back(b[i]);
 	}
@@ -338,15 +337,4 @@ void Syntax2CFG::clearCompoundBlocks()
 		delete m_compoundBlocks[i];
 	}
 	m_compoundBlocks.clear();
-}
-
-void Syntax2CFG::hideIsolatedExpressions()
-{
-	std::vector<FlowPoint*> fps = m_cfg.flowPoints();
-	for (size_t i = 0; i < fps.size(); ++i)
-	{
-		if (fps[i] && fps[i]->syntaxNode() && 
-			fps[i]->syntaxNode()->Type() == ASSIGNMENT_EXPR)
-			m_cfg.RemoveFlowPoint(fps[i]);
-	}
 }

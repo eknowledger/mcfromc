@@ -137,6 +137,10 @@ std::vector<FlowPoint*> CFG::flowPoints()
 		fps.push_back((*fpItr).get());
 	}
 
+	for(FPSet::iterator fpItr = m_hiddenFPs.begin();fpItr != m_hiddenFPs.end(); ++fpItr){
+		fps.push_back((*fpItr).get());
+	}
+
 	return fps;
 }
 
@@ -170,8 +174,18 @@ void CFG::printForDot(std::ostream& ostr)
 	boost::write_graphviz(ostr,*this, VertexFlowPointPropertyWriter(*this));
 }
 
-void CFG::Hide( FlowPoint* fp )
+FlowPoint* CFG::AddHiddenFlowPoint( SNode* node, std::string name )
 {
-	RemoveFlowPoint(fp);
+	FlowPoint* fp = new FlowPoint(node, name);
 	m_hiddenFPs.insert(FPSharedPtr(fp));
+	return fp;
+}
+
+std::string CFG::getName( FlowPoint* fp )
+{
+	CFGBase::vertex_descriptor fpV = m_fpToV[fp];
+	std::ostringstream ostr;
+	ostr << fpV;
+
+	return ostr.str();
 }

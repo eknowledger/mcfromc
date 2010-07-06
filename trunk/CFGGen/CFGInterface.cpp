@@ -25,7 +25,7 @@ std::vector<FlowPointVisualData> generateCFG(std::string cfilename, std::ostream
 				fpData.push_back(FlowPointVisualData(node->codeRow(), 
 													 node->codeColumn(),
 													 fps[i]->index(),
-													 fps[i]->name()));
+													 cfg.getName(fps[i])));
 			}
 		}
 

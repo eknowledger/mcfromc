@@ -863,6 +863,7 @@ function_definition
 
 %%
 #include <stdio.h>
+
 extern char yytext[];
 extern int column;
 extern int row;
@@ -875,8 +876,10 @@ char *s;
 }
 
 int parseSyntax(char* filename, NodeData** root) {
+    row = 0;
+    column = 0;
 	InitLogger("parseLog.log",lDebug);
-	freopen(filename,"r",stdin);
+	freopen(filename,"r", stdin);
 	WRITE_TO_LOG(lDebug,"Started");
 	yyparse();
 	WRITE_TO_LOG(lDebug,"End");
