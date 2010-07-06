@@ -809,15 +809,11 @@ jump_statement
 translation_unit	/* We begin here the tree */
 	: external_declaration
 	{
-		$$ = $1;
-	}
-	| translation_unit external_declaration
-	{
 		NodeData* p = createNode(TRANSLATION_UNIT);
 		appendChild(p, $1);
-		appendChild(p, $2);
 		$$ = p;
 		root_node = p;
+		WRITE_TO_LOG(lDebug,"Translation Unit");
 	}
 	;
 
