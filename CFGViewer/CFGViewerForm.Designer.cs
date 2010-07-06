@@ -34,6 +34,9 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.CFGProgressBar = new System.Windows.Forms.ProgressBar();
             this.GraphPanel = new System.Windows.Forms.Panel();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.ButtonZoomIn = new System.Windows.Forms.ToolStripButton();
+            this.ButtonZoomOut = new System.Windows.Forms.ToolStripButton();
             this.GraphPictureBox = new System.Windows.Forms.PictureBox();
             this.upperToolStrip = new System.Windows.Forms.ToolStrip();
             this.OpenFileButton = new System.Windows.Forms.ToolStripButton();
@@ -44,6 +47,7 @@
             this.splitContainer1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.GraphPanel.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GraphPictureBox)).BeginInit();
             this.upperToolStrip.SuspendLayout();
             this.SuspendLayout();
@@ -62,6 +66,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.toolStrip1);
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Panel2.Controls.Add(this.GraphPanel);
             this.splitContainer1.Size = new System.Drawing.Size(547, 354);
@@ -110,30 +115,66 @@
             this.GraphPanel.AutoScroll = true;
             this.GraphPanel.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.GraphPanel.Controls.Add(this.GraphPictureBox);
-            this.GraphPanel.Location = new System.Drawing.Point(0, 0);
+            this.GraphPanel.Location = new System.Drawing.Point(0, 26);
             this.GraphPanel.Name = "GraphPanel";
-            this.GraphPanel.Size = new System.Drawing.Size(271, 327);
+            this.GraphPanel.Size = new System.Drawing.Size(271, 301);
             this.GraphPanel.TabIndex = 0;
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ButtonZoomIn,
+            this.ButtonZoomOut});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(271, 27);
+            this.toolStrip1.TabIndex = 1;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // ButtonZoomIn
+            // 
+            this.ButtonZoomIn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ButtonZoomIn.Image = ((System.Drawing.Image)(resources.GetObject("ButtonZoomIn.Image")));
+            this.ButtonZoomIn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ButtonZoomIn.Name = "ButtonZoomIn";
+            this.ButtonZoomIn.Size = new System.Drawing.Size(24, 24);
+            this.ButtonZoomIn.Text = "Zoom In";
+            this.ButtonZoomIn.ToolTipText = "Zoom In";
+            this.ButtonZoomIn.Click += new System.EventHandler(this.ButtonZoomIn_Click);
+            // 
+            // ButtonZoomOut
+            // 
+            this.ButtonZoomOut.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ButtonZoomOut.Image = ((System.Drawing.Image)(resources.GetObject("ButtonZoomOut.Image")));
+            this.ButtonZoomOut.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ButtonZoomOut.Name = "ButtonZoomOut";
+            this.ButtonZoomOut.Size = new System.Drawing.Size(24, 24);
+            this.ButtonZoomOut.Text = "Zoom Out";
+            this.ButtonZoomOut.ToolTipText = "Zoom Out";
+            this.ButtonZoomOut.Click += new System.EventHandler(this.ButtonZoomOut_Click);
             // 
             // GraphPictureBox
             // 
-            this.GraphPictureBox.Location = new System.Drawing.Point(0, 0);
+            this.GraphPictureBox.Location = new System.Drawing.Point(3, 4);
             this.GraphPictureBox.Name = "GraphPictureBox";
-            this.GraphPictureBox.Size = new System.Drawing.Size(271, 324);
+            this.GraphPictureBox.Size = new System.Drawing.Size(262, 295);
             this.GraphPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.GraphPictureBox.TabIndex = 0;
             this.GraphPictureBox.TabStop = false;
+            this.GraphPictureBox.WaitOnLoad = true;
             this.GraphPictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.GraphPictureBox_MouseClick);
             // 
             // upperToolStrip
             // 
+            this.upperToolStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.upperToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.OpenFileButton,
             this.editCodeButton,
             this.GenerateCFGButton});
             this.upperToolStrip.Location = new System.Drawing.Point(0, 0);
             this.upperToolStrip.Name = "upperToolStrip";
-            this.upperToolStrip.Size = new System.Drawing.Size(571, 25);
+            this.upperToolStrip.Size = new System.Drawing.Size(571, 27);
             this.upperToolStrip.TabIndex = 2;
             this.upperToolStrip.Text = "Upper Tool Strip";
             // 
@@ -142,7 +183,7 @@
             this.OpenFileButton.Image = ((System.Drawing.Image)(resources.GetObject("OpenFileButton.Image")));
             this.OpenFileButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.OpenFileButton.Name = "OpenFileButton";
-            this.OpenFileButton.Size = new System.Drawing.Size(82, 22);
+            this.OpenFileButton.Size = new System.Drawing.Size(86, 24);
             this.OpenFileButton.Text = "Open C File";
             this.OpenFileButton.Click += new System.EventHandler(this.OpenFileButton_Click);
             // 
@@ -152,7 +193,7 @@
             this.editCodeButton.Image = ((System.Drawing.Image)(resources.GetObject("editCodeButton.Image")));
             this.editCodeButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.editCodeButton.Name = "editCodeButton";
-            this.editCodeButton.Size = new System.Drawing.Size(73, 22);
+            this.editCodeButton.Size = new System.Drawing.Size(77, 24);
             this.editCodeButton.Text = "Edit Code";
             this.editCodeButton.ToolTipText = "Enable editing of C Code on left pane";
             this.editCodeButton.Click += new System.EventHandler(this.EditCodeButton_Click);
@@ -162,7 +203,7 @@
             this.GenerateCFGButton.Image = ((System.Drawing.Image)(resources.GetObject("GenerateCFGButton.Image")));
             this.GenerateCFGButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.GenerateCFGButton.Name = "GenerateCFGButton";
-            this.GenerateCFGButton.Size = new System.Drawing.Size(95, 22);
+            this.GenerateCFGButton.Size = new System.Drawing.Size(99, 24);
             this.GenerateCFGButton.Text = "Generate CFG";
             this.GenerateCFGButton.Click += new System.EventHandler(this.GenerateCFGButton_Click);
             // 
@@ -179,9 +220,12 @@
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
             this.splitContainer1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.GraphPanel.ResumeLayout(false);
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GraphPictureBox)).EndInit();
             this.upperToolStrip.ResumeLayout(false);
             this.upperToolStrip.PerformLayout();
@@ -202,6 +246,9 @@
         private System.Windows.Forms.ToolStripButton GenerateCFGButton;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ProgressBar CFGProgressBar;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton ButtonZoomIn;
+        private System.Windows.Forms.ToolStripButton ButtonZoomOut;
     }
 }
 

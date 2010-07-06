@@ -8,21 +8,40 @@ using ParserDotNetBridge;
 using System.Collections;
 using System.Diagnostics;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 namespace CFGViewer
 {
-    public delegate void DelegateMessage(string message);
+    public delegate void MessageDelegate(string message);
+    public delegate void ImageUpdateDelegate();
+    public delegate void ErrorDelegate(string err);
 
     class CFGViewerApp
     {
-        public CFGViewerApp(DelegateMessage msgDelegator)
+        [DllImport("kernel32.dll")]
+        public static extern IntPtr LoadLibrary(string lpFileName);
+
+        [DllImport("kernel32.dll")]
+        public static extern IntPtr FreeLibrary(IntPtr library);
+
+        [DllImport("kernel32.dll")]
+        public static extern IntPtr GetModuleHandle(string lpFileName);
+
+        public event MessageDelegate OnMessage;
+        public event ImageUpdateDelegate OnImageUpdate;
+        public event ErrorDelegate OnError;
+
+        public CFGViewerApp(MessageDelegate msgDelegator,
+                            ImageUpdateDelegate imgDelegator,
+                            ErrorDelegate errDelegator)
         {
             OnMessage += msgDelegator;
+            OnImageUpdate += imgDelegator;
+            OnError += errDelegator;
         }
 
-        public event DelegateMessage OnMessage;
-
-        public void readFlowPoints(string filename)
+ 
+        private void ReadFlowPoints(string filename)
         {
             ArrayList arr = null;
             FlowPoint = new Dictionary<string, VisualFlowPoint>();
@@ -165,6 +184,89 @@ namespace CFGViewer
             p1.WaitForExit();
             p2.WaitForExit();
         }
+
+        public void GenerateCFG(string code)
+        {
+            CleanTempDir();
+
+            bool fileRead = false;
+            Guid id = Guid.NewGuid();
+            string codeFileName = CODE_FILE + "_" + id.ToString();
+            OnMessage("Writing temporary code file '" + codeFileName + "'");
+
+            try
+            {
+                WriteTextFile(codeFileName, code);
+                OnMessage("Generating flow points");
+                ReadFlowPoints(codeFileName);
+                fileRead = true;
+                OnMessage("loading CFG image");
+                readDotSpec(DOT_LAYOUT_FILE);
+                OnImageUpdate();
+                OnMessage("Cleaning up");
+
+                File.Delete(DIGRAPH_FILE);
+                //File.Delete(m_app.CODE_FILE);
+                File.Delete(DOT_LAYOUT_FILE);
+
+                OnMessage("");
+            }
+            catch (System.Exception ex)
+            {
+                if (!fileRead)
+                {
+                }
+
+            }
+            string err = CFGParser.GetLastError();
+            if (err != "")
+            {
+                OnError(err);
+                FreeLibrary(GetModuleHandle("SyntaxParserDLL.dll"));
+                LoadLibrary("SyntaxParserDLL.dll");
+            }
+
+        }
+
+        private void WriteTextFile(string filename, string text)
+        {
+            FileStream fstr = File.OpenWrite(filename);
+            using (StreamWriter writer = new StreamWriter(fstr))
+            {
+                writer.AutoFlush = true;
+                writer.Write(text);
+                writer.Flush();
+                writer.Close();
+                writer.Dispose();
+            }
+            fstr.Close();
+            fstr.Dispose();
+        }
+
+        private void CleanTempDir()
+        {
+            try
+            {
+                Directory.SetCurrentDirectory(Application.StartupPath);
+                string[] files = Directory.GetFiles(Application.StartupPath + "\\Temp");
+                foreach (string f in files)
+                {
+                    File.Delete(f);
+                }
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                Directory.CreateDirectory("Temp");
+            }
+            catch
+            {
+            }
+        }
+
 
         public Dictionary<Point, string> FlowPointName;
         public Dictionary<string, VisualFlowPoint> FlowPoint;
