@@ -1,4 +1,5 @@
 LIBRARY	"CFGGen"
 EXPORTS
    generateCFG @1
+   getLastError @2
 

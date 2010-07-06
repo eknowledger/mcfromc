@@ -39,4 +39,10 @@ namespace ParserDotNetBridge {
 
 		return arr;
 	}
+
+	String^ CFGParser::GetLastError()
+	{
+		std::string lastError = getLastError();
+		return gcnew String(lastError.c_str());
+	}
 }

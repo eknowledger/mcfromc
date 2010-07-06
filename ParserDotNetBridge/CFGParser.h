@@ -21,5 +21,6 @@ namespace ParserDotNetBridge {
 
 	public:
 		static ArrayList^ GenerateCFG(String^ cfilename, [Out] String^% graphText);
+		static String^ GetLastError();
 	};
 }

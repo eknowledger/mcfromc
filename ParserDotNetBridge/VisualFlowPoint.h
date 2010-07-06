@@ -36,7 +36,6 @@ namespace ParserDotNetBridge {
 		VisualFlowPoint(FlowPointVisualData creationData)
 		{
 			m_Name = gcnew String(creationData.name.c_str());
-			m_Name = m_Name->Concat(m_Name, Int32(creationData.index).ToString());
 			m_row = creationData.row;
 			m_col = creationData.col;
 		}

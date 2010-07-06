@@ -867,10 +867,12 @@ function_definition
 extern char yytext[];
 extern int column;
 extern int row;
+int errorFlag;
 
 yyerror(s)
 char *s;
 {
+    errorFlag = 1;
 	fflush(stdout);
 	printf("\n%*s\n%*s\n", column, "^", column, s);
 }
@@ -878,6 +880,8 @@ char *s;
 int parseSyntax(char* filename, NodeData** root) {
     row = 0;
     column = 0;
+    errorFlag = 0;
+
 	InitLogger("parseLog.log",lDebug);
 	freopen(filename,"r", stdin);
 	WRITE_TO_LOG(lDebug,"Started");
@@ -885,5 +889,5 @@ int parseSyntax(char* filename, NodeData** root) {
 	WRITE_TO_LOG(lDebug,"End");
 	TerminateLog();
 	*root = root_node;
-	return 0;
+	return errorFlag;
 }
