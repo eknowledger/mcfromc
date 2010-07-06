@@ -66,9 +66,9 @@ namespace CFGViewer
                         }
 
                         //codeTextBox.Lines = lines;
-                        int index = m_app.findOpeningParentheses(codeTextBox.Text, charStart);
+                        //int index = m_app.findOpeningParentheses(codeTextBox.Text, charStart);
                         codeTextBox.SelectionStart = charStart;
-                        codeTextBox.SelectionLength = 0;
+                        codeTextBox.SelectionLength = charCount;
                     }
                 }
             }
@@ -162,7 +162,7 @@ namespace CFGViewer
                 fileRead = true;
                 SetMessage("loading CFG image");
                 GraphPictureBox.Load(m_app.DOT_IMAGE_FILE);
-               // GraphPictureBox.Image = Image.FromFile(m_app.DOT_IMAGE_FILE);
+                //GraphPictureBox.Image = Image.FromFile(m_app.DOT_IMAGE_FILE);
                 m_app.readDotSpec(m_app.DOT_LAYOUT_FILE);
                 GraphPictureBox.Size = new Size(m_app.ImageWidth, m_app.ImageHeight);
                 GraphPictureBox.Refresh();
@@ -183,11 +183,6 @@ namespace CFGViewer
             }
             CFGProgressBar.Value += 10;
             CFGProgressBar.Hide();
-        }
-
-        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

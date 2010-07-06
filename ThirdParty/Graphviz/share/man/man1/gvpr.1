@@ -1,8 +1,3 @@
-.de TQ
-.  br
-.  ns
-.  TP \\$1
-..
 .TH GVPR 1 "24 April 2008"
 .SH NAME
 gvpr \- graph pattern scanning and processing language
@@ -12,7 +7,7 @@ gvpr \- graph pattern scanning and processing language
 )
 .SH SYNOPSIS
 .B gvpr
-[\fB\-icqV?\fP]
+[\fB\-icV?\fP]
 [
 .BI \-o
 .I outfile
@@ -37,7 +32,7 @@ It copies input graphs to its
 output, possibly transforming their structure and attributes,
 creating new graphs, or printing arbitrary information.
 The graph model is that provided by
-.IR libcgraph (3).
+.IR libagraph (3).
 In particular, \fBgvpr\fP reads and writes graphs using the
 dot language.
 .PP
@@ -93,9 +88,6 @@ for the file. If
 is not given,
 .B gvpr
 will use the first non\(hyoption argument as the program.
-.TP
-.B \-q
-Turns off warning messages.
 .TP
 .B \-V
 Causes the program to print version information and exit.
@@ -257,7 +249,7 @@ and \fBE\fP clauses, and the current graph in \fBBEG_G\fP and \fBEND_G\fP
 clauses.
 .PP
 As usual in the 
-.IR libcgraph (3)
+.IR libagraph (3)
 model, attributes are string\(hyvalued.
 In addition,
 .B gvpr
@@ -474,6 +466,8 @@ If \fIx\fP is a graph or subgraph, it is closed unless \fIx\fP is locked.
 .TP
 \fBisIn\fP(\fIg\fP : \fBgraph_t\fP, \fIx\fP : \fBobj_t\fP) : \fBint\fP
 returns true if \fIx\fP is in subgraph \fIg\fP.
+If \fIx\fP is a graph, this indicates that \fIg\fP is the immediate parent
+graph of \fIx\fP.
 .TP
 \fBclone\fP(\fIg\fP : \fBgraph_t\fP, \fIx\fP : \fBobj_t\fP) : \fBobj_t\fP
 creates a clone of object \fIx\fP in graph \fIg\fP.
@@ -506,23 +500,11 @@ any attribute values \fItgt\fP may initially have.
 \fBinduce\fP(\fIg\fP : \fBgraph_t\fP) : \fBvoid\fP
 extends \fIg\fP to its node\(hyinduced subgraph extension in its root graph.
 .TP
-\fBhasAttr\fP(\fIsrc\fP : \fBobj_t\fP, \fIname\fP : \fBstring\fP) : \fBint\fP
-returns non-zero if object \fIsrc\fP has an attribute whose name is
-\fIname\fP. It returns 0 otherwise.
-.TP
-\fBisAttr\fP(\fIg\fP : \fBgraph_t\fP, \fIkind\fP : \fBstring\fP, \fIname\fP : \fBstring\fP) : \fBint\fP
-returns non-zero if an attribute \fIname\fP has been defined in \fIg\fP
-for objects of the given \fIkind\fP. For nodes, edges, and graphs, \fIkind\fP
-should be "N", "E", and "G", respectively.
-It returns 0 otherwise.
-.TP
 \fBaget\fP(\fIsrc\fP : \fBobj_t\fP, \fIname\fP : \fBstring\fP) : \fBstring\fP
 returns the value of attribute \fIname\fP in object \fIsrc\fP. This is
 useful for those cases when \fIname\fP conflicts with one of the keywords
 such as "head" or "root".
-If the attribute has not been declared in the graph, the function will
-initialize it with a default value of "". To avoid this, one should use
-the \fBhasAttr\fP or \fBisAttr\fP function to check that the attribute exists.
+Returns \fBNULL\fP on failure or if the attribute is not defined.
 .TP
 \fBaset\fP(\fIsrc\fP : \fBobj_t\fP, \fIname\fP : \fBstring\fP, \fIvalue\fP : \fBstring\fP) : \fBint\fP
 sets the value of attribute \fIname\fP in object \fIsrc\fP to \fIvalue\fP.
@@ -532,32 +514,14 @@ Returns 0 on success, non\(hyzero on failure. See \fBaget\fP above.
 returns the default value of attribute \fIname\fP in objects in \fIg\fP of
 the given \fIkind\fP. For nodes, edges, and graphs, \fIkind\fP
 should be "N", "E", and "G", respectively.
-If the attribute has not been declared in the graph, the function will
-initialize it with a default value of "". To avoid this, one should use
-the \fBisAttr\fP function to check that the attribute exists.
+Returns \fBNULL\fP on failure or if the attribute is not defined.
 .TP
 \fBsetDflt\fP(\fIg\fP : \fBgraph_t\fP, \fIkind\fP : \fBstring\fP, \fIname\fP : \fBstring\fP, \fIvalue\fP : \fBstring\fP) : \fBint\fP
 sets the default value of attribute \fIname\fP to \fIvalue\fP in 
 objects in \fIg\fP of
 the given \fIkind\fP. For nodes, edges, and graphs, \fIkind\fP
 should be "N", "E", and "G", respectively.
-Returns 0 on success, non\(hyzero on failure. See \fBgetDflt\fP above.
-.TP
-\fBfstAttr\fP(\fIg\fP : \fBgraph_t\fP, \fIkind\fP : \fBstring\fP) : \fBstring\fP
-returns the name of the first attribute of objects in \fIg\fP of
-the given \fIkind\fP. For nodes, edges, and graphs, \fIkind\fP
-should be "N", "E", and "G", respectively.
-If there are no attributes, the string "" is returned.
-.TP
-\fBnxtAttr\fP(\fIg\fP : \fBgraph_t\fP, \fIkind\fP : \fBstring\fP, \fIname\fP : \fBstring\fP) : \fBstring\fP
-returns the name of the next attribute of objects in \fIg\fP of
-the given \fIkind\fP after the attribute \fIname\fP. 
-The argument \fIname\fP must be the name of an existing attribute; it will
-typically be the return value of an previous call to \fBfstAttr\fP or
-\fBnxtAttr\fP.
-For nodes, edges, and graphs, \fIkind\fP
-should be "N", "E", and "G", respectively.
-If there are no attributes left, the string "" is returned.
+Returns 0 on success, non\(hyzero on failure. See \fBsetDflt\fP above.
 .TP
 \fBcompOf\fP(\fIg\fP : \fBgraph_t\fP, \fIn\fP : \fBnode_t\fP) : \fBgraph_t\fP
 returns the connected component of the graph \fIg\fP containing node \fIn\fP,
@@ -617,10 +581,8 @@ length of \fIstr\fP, a fatal error occurs.
 returns the length of the string \fIs\fP.
 .TP
 \fBindex\fP(\fIs\fP : \fBstring\fP, \fIt\fP : \fBstring\fP) : \fBint\fP
-.TP
-\fBrindex\fP(\fIs\fP : \fBstring\fP, \fIt\fP : \fBstring\fP) : \fBint\fP
 returns the index of the character in string \fIs\fP where the leftmost
-(rightmost) copy of string \fIt\fP can be found, or \-1 if \fIt\fP is not a 
+copy of string \fIt\fP can be found, or \-1 if \fIt\fP is not a 
 substring of \fIs\fP.
 .TP
 \fBmatch\fP(\fIs\fP : \fBstring\fP, \fIp\fP : \fBstring\fP) : \fBint\fP
@@ -739,25 +701,17 @@ returns the sine of \fId\fP.
 .TP
 \fBatan2\fP(\fIy\fP : \fBdouble\fP, \fIx\fP : \fBdouble\fP) : \fBdouble\fP
 returns the arctangent of \fIy/x\fP in the range \-pi to pi.
-.TP
-\fBMIN\fP(\fIy\fP : \fBdouble\fP, \fIx\fP : \fBdouble\fP) : \fBdouble\fP
-returns the minimum of \fIy\fP and \fIx\fP.
-.TP
-\fBMAX\fP(\fIy\fP : \fBdouble\fP, \fIx\fP : \fBdouble\fP) : \fBdouble\fP
-returns the maximum of \fIy\fP and \fIx\fP.
 .SS "Miscellaneous"
+.TP
+\fBexit\fP() : \fBvoid\fP
 .TP
 \fBexit\fP(\fIv\fP : \fBint\fP) : \fBvoid\fP
 causes
 .B gvpr
 to exit with the exit code
 .IR v .
-.TP
-\fBsystem\fP(\fIcmd\fP : \fBstring\fP) : \fBint\fP
-provides the standard C function
-.IR system (3).
-It executes \fIcmd\fP if the user's shell environment, and
-returns the exit status of the shell.
+.I v
+defaults to 0 if omitted.
 .TP
 \fBrand\fP() : \fBdouble\fP
 returns a pseudo\(hyrandom double between 0 and 1.
@@ -813,15 +767,11 @@ graph (cf. \fB$tvtype\fP below).
 The default value is \fBNULL\fP for each input graph.
 .TP
 \fB$tvtype\fP : \fBtvtype_t\fP
-indicates how \fBgvpr\fP traverses a graph. It can only take
-one of the constant values with the previx "TV_" described below.
+indicates how \fBgvpr\fP traverses a graph. At present, it can only take
+one of six values: \fBTV_flat\fP, \fBTV_dfs\fP, \fBTV_fwd\fP,
+\fBTV_ref\fP, \fBTV_bfs\fP, \fBTV_ne\fP, and \fBTV_en\fP. 
 \fBTV_flat\fP is the default.
-.IP
-In the underlying graph library
-.IR cgraph (3),
-edges in undirected graphs are given an arbitrary direction. This is
-used for traversals, such as \fBTV_fwd\fR, requiring directed edges.
-.
+The meaning of these values is discussed below.
 .TP
 \fBARGC\fP : \fBint\fP
 denotes the number of arguments specified by the 
@@ -852,10 +802,6 @@ a traversal which first visits all of the edges, then all
 of the nodes.
 .TP
 \fBTV_dfs\fR : \fItvtype_t\fR
-.TQ
-\fBTV_postdfs\fR : \fItvtype_t\fR
-.TQ
-\fBTV_prepostdfs\fR : \fItvtype_t\fR
 a traversal of the graph using a depth\(hyfirst search on the
 underlying undirected graph. 
 To do the traversal, \fBgvpr\fP will check the value of
@@ -866,47 +812,27 @@ component. On the other hand, if \fB$tvroot\fP has changed, its connected
 component will be toured, assuming it has not been previously visited or,
 if \fB$tvroot\fP is \fBNULL\fP, the traversal will stop. Note that using
 \fBTV_dfs\fP and \fB$tvroot\fP, it is possible to create an infinite loop.
-.
-.IP
-By default, the traversal is done in pre-order. That is, a node is
-visited before all of its unvisited edges. For \fBTV_postdfs\fR,
-all of a node's unvisited edges are visited before the node. For
-\fBTV_prepostdfs\fR, a node is visited twice, before and after all of
-its unvisited edges.
-.
 .TP
 \fBTV_fwd\fR : \fItvtype_t\fR
-.TQ
-\fBTV_postfwd\fR : \fItvtype_t\fR
-.TQ
-\fBTV_prepostfwd\fR : \fItvtype_t\fR
-A traversal of the graph using a depth\(hyfirst search on the
-graph following only forward arcs.
-The choice of roots for the traversal is the
-same as described for \fBTV_dfs\fR above.
-The different order of visitation specified by \fBTV_fwd\fR,
-\fBTV_postfwd\fR and \fBTV_prepostfwd\fR are the same as those
-specified by the analogous traversals \fBTV_dfs\fR,
-\fBTV_postdfs\fR and \fBTV_prepostdfs\fR.
-.TP
-\fBTV_rev\fR : \fItvtype_t\fR
-.TQ
-\fBTV_postrev\fR : \fItvtype_t\fR
-.TQ
-\fBTV_prepostrev\fR : \fItvtype_t\fR
-A traversal of the graph using a depth\(hyfirst search on the
-graph following only reverse arcs.
-The choice of roots for the traversal is the
-same as described for \fBTV_dfs\fR above.
-The different order of visitation specified by \fBTV_rev\fR,
-\fBTV_postrev\fR and \fBTV_prepostrev\fR are the same as those
-specified by the analogous traversals \fBTV_dfs\fR,
-\fBTV_postdfs\fR and \fBTV_prepostdfs\fR.
+a traversal of the graph using a depth\(hyfirst search on the
+graph following only forward arcs. In
 .TP
 \fBTV_bfs\fR : \fItvtype_t\fR
-A traversal of the graph using a bread\(hyfirst search on the
+a traversal of the graph using a bread\(hyfirst search on the
 graph ignoring edge directions. See the item on \fBTV_dfs\fR above
 for the role of \fB$tvroot\fP.
+.IR libagraph (3),
+edges in undirected graphs are given an arbitrary direction, which is
+used for this traversal. The choice of roots for the traversal is the
+same as described for \fBTV_dfs\fR above.
+.TP
+\fBTV_rev\fR : \fItvtype_t\fR
+a traversal of the graph using a depth\(hyfirst search on the
+graph following only reverse arcs. In
+.IR libagraph (3),
+edges in undirected graphs are given an arbitrary direction, which is
+used for this traversal. The choice of roots for the traversal is the
+same as described for \fBTV_dfs\fR above.
 .SH EXAMPLES
 .PP
 .ta \w'\f(CWdelete array[expression]'u
@@ -1038,4 +964,4 @@ and the confusion between '=' and '=='.
 Emden R. Gansner <erg@research.att.com>
 .SH "SEE ALSO"
 .PP
-awk(1), gc(1), dot(1), nop(1), libexpr(3), libcgraph(3)
+awk(1), gc(1), dot(1), nop(1), libexpr(3), libagraph(3)

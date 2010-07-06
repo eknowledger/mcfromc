@@ -1,0 +1,18 @@
+digraph Alf {
+rankdir="BT" edge[labelfontsize="8" fontsize="8" labeldistance="1.0" arrowsize="0.9" labelangle="-30"] nodesep="0.2" node[width="0" height="0" fontsize="10"]
+size = "20,20";
+CTbmObject [ shape = box ];
+CTbmPhysicalObject [ shape = box ]; 
+CTbmSimulationEvent [shape = box];
+CTbmCollisionSetsEventBase [shape = box color=purple ];
+CTbmActivateCollisionSetsEvent [shape = box color=purple ];
+CTbmDeactivateCollisionSetsEvent [shape = box color=purple ];
+
+
+CTbmSimulationEvent  -> CTbmObject;
+CTbmPhysicalObject -> CTbmObject;
+CTbmCollisionSetsEventBase -> CTbmSimulationEvent;
+CTbmActivateCollisionSetsEvent -> CTbmCollisionSetsEventBase;
+CTbmDeactivateCollisionSetsEvent -> CTbmCollisionSetsEventBase;
+CTbmCollisionSetsEventBase -> CTbmPhysicalObject [style = dotted arrowsize="0.5" color=purple label="m_CollisionSets" headlabel="n" taillabel="1"]
+}
