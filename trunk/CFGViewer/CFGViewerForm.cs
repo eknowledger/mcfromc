@@ -9,11 +9,23 @@ using System.Windows.Forms;
 using System.IO;
 using ParserDotNetBridge;
 using System.Threading;
+using System.Runtime.InteropServices;
+
 
 namespace CFGViewer
 {
+
     public partial class CFGViewerForm : Form
     {
+        [DllImport("kernel32.dll")]
+        public static extern IntPtr LoadLibrary(string lpFileName);
+
+        [DllImport("kernel32.dll")]
+        public static extern IntPtr FreeLibrary(IntPtr library);
+
+        [DllImport("kernel32.dll")]
+        public static extern IntPtr GetModuleHandle(string lpFileName);
+
         public CFGViewerForm()
         {
             InitializeComponent();
@@ -183,6 +195,13 @@ namespace CFGViewer
             }
             CFGProgressBar.Value += 10;
             CFGProgressBar.Hide();
+            string err = CFGParser.GetLastError();
+            if (err != "")
+            {
+                MessageBox.Show(this, err, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                FreeLibrary(GetModuleHandle("SyntaxParserDLL.dll"));
+                LoadLibrary("SyntaxParserDLL.dll");
+            }
         }
     }
 }

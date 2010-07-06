@@ -8,12 +8,14 @@
 #include "CFG.h"
 #include "CFGInterface.h"
 
+std::string lastError;
+
 std::vector<FlowPointVisualData> generateCFG(std::string cfilename, std::ostream& ostr)
 {	
+	lastError = "";
 	std::vector<FlowPointVisualData> fpData;
 	NodeData* root = NULL;
-	parseSyntax((char*)cfilename.c_str(), &root);
-	if (root) {
+	if (parseSyntax((char*)cfilename.c_str(), &root)==0 && root) {
 		SNode* sroot = SyntaxNodeFactory::the().createNode(root);
 		CFG cfg;
 		Syntax2CFG(sroot, cfg).execute();
@@ -35,8 +37,13 @@ std::vector<FlowPointVisualData> generateCFG(std::string cfilename, std::ostream
 		delete sroot;
 	}
 	else {
-		std::cout << "parsing failed !\n";
+		lastError = "Code parsing failed. Check syntax.\n";
 	}
 
 	return fpData;
+}
+
+std::string getLastError()
+{
+	return lastError;
 }
