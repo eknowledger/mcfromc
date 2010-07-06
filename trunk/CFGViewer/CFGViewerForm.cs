@@ -9,7 +9,6 @@ using System.Windows.Forms;
 using System.IO;
 using ParserDotNetBridge;
 using System.Threading;
-using System.Runtime.InteropServices;
 
 
 namespace CFGViewer
@@ -17,21 +16,12 @@ namespace CFGViewer
 
     public partial class CFGViewerForm : Form
     {
-        [DllImport("kernel32.dll")]
-        public static extern IntPtr LoadLibrary(string lpFileName);
-
-        [DllImport("kernel32.dll")]
-        public static extern IntPtr FreeLibrary(IntPtr library);
-
-        [DllImport("kernel32.dll")]
-        public static extern IntPtr GetModuleHandle(string lpFileName);
-
         public CFGViewerForm()
         {
             InitializeComponent();
             codeTextBox.BackColor = Color.White;
             codeTextBox.ForeColor = codeTextBox.ReadOnly ? Color.Gray : Color.Black;
-            m_app = new CFGViewerApp(SetMessage);
+            m_app = new CFGViewerApp(SetMessage, LoadImageFromFile, OnError);
         }
 
         private void GraphPictureBox_MouseClick(object sender, MouseEventArgs e)
@@ -97,6 +87,26 @@ namespace CFGViewer
                 Brushes.Black, 
                 new PointF(CFGProgressBar.Width / 8 - 10, CFGProgressBar.Height / 2 - 7));
         }
+
+        private void UpdateImageSize()
+        {
+            GraphPictureBox.Size = new Size(m_app.ImageWidth, m_app.ImageHeight);
+            GraphPictureBox.Refresh();
+        }
+
+        private void LoadImageFromFile()
+        {
+            GraphPictureBox.Load(m_app.DOT_IMAGE_FILE);
+            GraphPictureBox.Size = new Size(m_app.ImageWidth, m_app.ImageHeight);
+            GraphPictureBox.Refresh();
+            //GraphPictureBox.Image = Image.FromFile(m_app.DOT_IMAGE_FILE);
+        }
+
+        private void OnError(string err)
+        {
+            MessageBox.Show(this, err, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        }
+
         private void OpenFileButton_Click(object sender, EventArgs e)
         {
             OpenFileDialog dlg = new OpenFileDialog();
@@ -122,86 +132,37 @@ namespace CFGViewer
             codeTextBox.ForeColor = codeTextBox.ReadOnly ? Color.Gray : Color.Black;
         }
 
+
+
         private void GenerateCFGButton_Click(object sender, EventArgs e)
         {
-            try
-            {
-                Directory.SetCurrentDirectory(Application.StartupPath);
-                string[] files = Directory.GetFiles(Application.StartupPath + "\\Temp");
-                foreach(string f in files)
-                {
-                    File.Delete(f);
-                }
-            }
-            catch
-            {
-            }
-
-            try
-            {
-                Directory.CreateDirectory("Temp");
-            }
-            catch
-            {
-            }
-
-            bool fileRead = false;
+  
             if (GraphPictureBox.Image != null) {
                 GraphPictureBox.Image = null;
             }
-            CFGProgressBar.Show();
             CFGProgressBar.Value = 0;
-            Guid id = Guid.NewGuid();
-            string codeFileName =  m_app.CODE_FILE +  "_" + id.ToString();
-            SetMessage("Writing temporary code file '" + codeFileName + "'");
-            try
-            {
+            CFGProgressBar.Show();
 
-                FileStream fstr = File.OpenWrite(codeFileName);
-                using (StreamWriter writer = new StreamWriter(fstr))
-                {
-                    writer.AutoFlush = true;
-                    writer.Write(codeTextBox.Text);
-                    writer.Flush();
-                    writer.Close();
-                    writer.Dispose();
-                }
-                fstr.Close();
-                fstr.Dispose();
-
-                SetMessage("Generating flow points");
-                m_app.readFlowPoints(codeFileName);
-                fileRead = true;
-                SetMessage("loading CFG image");
-                GraphPictureBox.Load(m_app.DOT_IMAGE_FILE);
-                //GraphPictureBox.Image = Image.FromFile(m_app.DOT_IMAGE_FILE);
-                m_app.readDotSpec(m_app.DOT_LAYOUT_FILE);
-                GraphPictureBox.Size = new Size(m_app.ImageWidth, m_app.ImageHeight);
-                GraphPictureBox.Refresh();
-                SetMessage("Cleaning up");
-               
-                File.Delete(m_app.DIGRAPH_FILE);
-                //File.Delete(m_app.CODE_FILE);
-                File.Delete(m_app.DOT_LAYOUT_FILE);
-                
-                SetMessage("");
-            }
-            catch (System.Exception ex)
-            {
-                if (!fileRead)
-                {
-                }
-            	
-            }
+            m_app.GenerateCFG(codeTextBox.Text);
+            
             CFGProgressBar.Value += 10;
             CFGProgressBar.Hide();
-            string err = CFGParser.GetLastError();
-            if (err != "")
-            {
-                MessageBox.Show(this, err, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                FreeLibrary(GetModuleHandle("SyntaxParserDLL.dll"));
-                LoadLibrary("SyntaxParserDLL.dll");
-            }
+        }
+
+        private void ButtonZoomIn_Click(object sender, EventArgs e)
+        {
+            Size size = new Size();
+            size.Width = (int)(((float)GraphPictureBox.Size.Width) * 1.3);
+            size.Height = (int)(((float)GraphPictureBox.Size.Height) * 1.3);
+            GraphPictureBox.Size = size;
+        }
+
+        private void ButtonZoomOut_Click(object sender, EventArgs e)
+        {
+            Size size = new Size();
+            size.Width = (int)(((float)GraphPictureBox.Size.Width) / 1.3);
+            size.Height = (int)(((float)GraphPictureBox.Size.Height) / 1.3);
+            GraphPictureBox.Size = size;
         }
     }
 }
