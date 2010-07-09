@@ -1,10 +1,23 @@
 #summary BNF of the C grammar subset which is handled by the algorithm
 
-= Introduction =
+== Introduction ==
 
 This page describes the subset of the C language grammar which is handled by the algorithm. The grammar is described in Backus-Naur Form.
 
-= The Grammar in BNF =
+== Which syntactic structures are handled ? ==
+
+Basically any structure legal in the C language except, mainly, the following elements:
+  # Pointers.
+  # *goto*, *break*, *continue* and *return* commands.
+  # Bitwise operators ( ^, ~, >>, <<, &, | ) and bitwise assignment operators ( <<=, >>=, ~=, &=, ^=, |= ).
+  # Modulo operator (*%*).
+  # Enumerators (*enum*).
+
+In addition, the following applies:
+  # Only one function definition is allowed per translation unit (enforced by the BNF structure).
+  # All variables are considered as integers (maybe later we will decide to limit variable declaration to int or unsigned int).
+
+== The Grammar in BNF ==
 
 *translation_unit* 
         ::= external_declaration
@@ -106,7 +119,7 @@ This page describes the subset of the C language grammar which is handled by the
 	::= declaration_specifiers ';'
 	| declaration_specifiers init_declarator_list ';'
 
-declaration_specifiers	
+* declaration_specifiers *	
 	::= type_specifier
 
 * init_declarator_list *
@@ -182,7 +195,7 @@ declaration_specifiers
 	::= statement
 	| statement_list statement
 	
-expression_statement
+* expression_statement *
 	::= ';' 
 	| expression ';'
 
