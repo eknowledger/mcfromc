@@ -38,8 +38,8 @@ NodeData* root_node;
 %token CASE DEFAULT IF ELSE SWITCH WHILE DO FOR GOTO CONTINUE BREAK RETURN
 
 %type <node> postfix_expression and_expression equality_expression relational_expression shift_expression exclusive_or_expression inclusive_or_expression unary_operator multiplicative_expression additive_expression logical_and_expression statement_list statement compound_statement selection_statement conditional_expression expression expression_statement assignment_expression unary_expression logical_or_expression
-%type <node> primary_expression constant_expression initializer initializer_list
-%type <node> iteration_statement function_definition translation_unit external_declaration parameter_type_list declaration_list parameter_declaration parameter_list type_specifier init_declarator init_declarator_list declaration declaration_specifiers specifier_qualifier_list declarator direct_declarator
+%type <node> primary_expression initializer initializer_list
+%type <node> iteration_statement function_definition translation_unit external_declaration parameter_type_list declaration_list parameter_declaration parameter_list type_specifier init_declarator init_declarator_list declaration declaration_specifiers declarator direct_declarator
 
 %start translation_unit
 %%
@@ -139,13 +139,6 @@ multiplicative_expression
 	| multiplicative_expression '/' unary_expression
 	{
 		NodeData* p = createNode(DIV_EXPR);
-		appendChild(p, $1);
-		appendChild(p, $3);	
-		$$ = p;
-	}
-	| multiplicative_expression '%' unary_expression
-	{
-		NodeData* p = createNode(MOD_EXPR);
 		appendChild(p, $1);
 		appendChild(p, $3);	
 		$$ = p;
@@ -325,14 +318,8 @@ assignment_operator
 	: '='
 	| MUL_ASSIGN
 	| DIV_ASSIGN
-	| MOD_ASSIGN
 	| ADD_ASSIGN
 	| SUB_ASSIGN
-	| LEFT_ASSIGN
-	| RIGHT_ASSIGN
-	| AND_ASSIGN
-	| XOR_ASSIGN
-	| OR_ASSIGN
 	;
 
 expression
@@ -346,13 +333,6 @@ expression
 		appendChild(p, $1);
 		appendChild(p, $3);
 		$$ = p;
-	}
-	;
-
-constant_expression
-	: conditional_expression
-	{
-		$$ = $1;
 	}
 	;
 
@@ -403,14 +383,6 @@ init_declarator
 		appendChild(p, $3);
 		$$ = p;				
 	}
-	;
-
-storage_class_specifier
-	: TYPEDEF
-	| EXTERN
-	| STATIC
-	| AUTO
-	| REGISTER
 	;
 
 type_specifier
@@ -470,35 +442,6 @@ type_specifier
 	}		
 	;
 
-specifier_qualifier_list
-	: type_specifier
-	{
-		$$ = $1;
-	}
-	;
-
-enum_specifier
-	: ENUM '{' enumerator_list '}'
-	| ENUM IDENTIFIER '{' enumerator_list '}'
-	| ENUM IDENTIFIER
-	;
-
-enumerator_list
-	: enumerator
-	| enumerator_list ',' enumerator
-	;
-
-enumerator
-	: IDENTIFIER
-	{
-		WRITE_TO_LOG_1(lDebug,"enumerator named:%s",$1);
-	}
-	| IDENTIFIER '=' constant_expression
-	{
-		WRITE_TO_LOG_1(lDebug,"enumerator %s = ",$1);
-	}
-	;
-
 declarator
 	: direct_declarator
 	{
@@ -518,19 +461,6 @@ direct_declarator
 	{
 		$$ = $2;
 		WRITE_TO_LOG(lDebug,"Ignored");
-	}
-	| direct_declarator '[' constant_expression ']'
-	{
-		$$ = createNode(NONE);
-		/*Fixed Array */
-		WRITE_TO_LOG(lDebug,"Got Fixed Array");
-	}
-	
-	| direct_declarator '[' ']'
-	{
-		$$ = createNode(NONE);
-		/*Variable Array */
-		WRITE_TO_LOG(lDebug,"Got variable array");
 	}
 	/*Function Decleration with just types*/
 	| direct_declarator '(' parameter_type_list ')'
@@ -555,11 +485,6 @@ parameter_type_list
 	{
 		$$ = $1;
 	}
-	| parameter_list ',' ELLIPSIS
-	{
-		$$ = $1;
-	}
-	;
 
 parameter_list
 	: parameter_declaration
@@ -631,11 +556,7 @@ initializer_list
 	;
 
 statement
-	: labeled_statement
-	{
-		$$ = createNode(NONE);
-	}
-	| compound_statement
+	: compound_statement
 	{
 		NodeData* t = createNode(STATEMENT);
 		appendChild(t,$1);
@@ -660,19 +581,6 @@ statement
 	{
 		$$ = $1;
 	}
-	| jump_statement
-	{
-		$$ = createNode(NONE);
-	}
-	;
-
-labeled_statement
-	: IDENTIFIER ':' statement
-	{
-		WRITE_TO_LOG_1(lDebug,"Got Label %s",$1);
-	}
-	| CASE constant_expression ':' statement
-	| DEFAULT ':' statement
 	;
 
 compound_statement
@@ -758,10 +666,6 @@ selection_statement
 		$$ = p;
 		WRITE_TO_LOG(lDebug,"If else");
 	}
-	| SWITCH '(' expression ')' statement
-	{
-		$$ = createNode(NOP);
-	}
 	;
 
 iteration_statement
@@ -779,14 +683,6 @@ iteration_statement
 		appendChild(p, $5);
 		$$ = p;
 	}
-	| FOR '(' expression_statement expression_statement ')' statement
-	{
-		NodeData* p = createNode(FOR_LOOP);
-		appendChild(p, $3);
-		appendChild(p, $4);
-		appendChild(p, $6);
-		$$ = p;
-	}
 	| FOR '(' expression_statement expression_statement expression ')' statement
 	{
 		NodeData* p = createNode(FOR_LOOP);
@@ -796,14 +692,6 @@ iteration_statement
 		appendChild(p, $7);
 		$$ = p;
 	}
-	;
-
-jump_statement
-	: GOTO IDENTIFIER ';'
-	| CONTINUE ';'
-	| BREAK ';'
-	| RETURN ';'
-	| RETURN expression ';'
 	;
 
 translation_unit	/* We begin here the tree */
