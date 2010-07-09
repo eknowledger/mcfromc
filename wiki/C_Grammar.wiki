@@ -9,6 +9,7 @@ This page describes the subset of the C language grammar which is handled by the
 Basically any structure legal in the C language except, mainly, the following elements:
   # Pointers.
   # *goto*, *break*, *continue* and *return* commands.
+  # *switch* statement.
   # Bitwise operators ( ^, ~, >>, <<, &, | ) and bitwise assignment operators ( <<=, >>=, ~=, &=, ^=, |= ).
   # Modulo operator (*%*).
   # Enumerators (*enum*).
