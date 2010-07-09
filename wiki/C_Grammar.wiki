@@ -102,9 +102,6 @@ This page describes the subset of the C language grammar which is handled by the
 	::= assignment_expression
 	| expression ',' assignment_expression
 
-* constant_expression *
-	::= conditional_expression
-
 * declaration *
 	::= declaration_specifiers ';'
 	| declaration_specifiers init_declarator_list ';'
@@ -130,9 +127,6 @@ declaration_specifiers
 	| DOUBLE
 	| SIGNED
 	| UNSIGNED
-
-* specifier_qualifier_list *
-	::= type_specifier
 
 * declarator *
 	::= direct_declarator
