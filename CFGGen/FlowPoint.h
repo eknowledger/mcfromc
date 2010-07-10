@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include "CommonGraphDefs.h"
 
 class SNode;
 
@@ -39,11 +40,16 @@ public:
 		return m_index;
 	}
 
+	FP_CFG_ID cfgID() const {
+		return m_cfgID;
+	}
+
 	SNode* syntaxNode() {
 		return m_node;
 	}
 private:
 	int m_index;
+	FP_CFG_ID m_cfgID;
 	SNode* m_node;
 	std::string m_name;
 };

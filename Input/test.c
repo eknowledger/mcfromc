@@ -1,8 +1,3 @@
-int foo()
-{
-	return 174;
-}
-
 int main()
 {
 	int i=0, z=5, k=3;

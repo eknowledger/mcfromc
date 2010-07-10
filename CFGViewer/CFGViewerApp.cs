@@ -173,7 +173,7 @@ namespace CFGViewer
         private void RunDot()
         {
             OnMessage("Running dot tool - generating layout");
-            ProcessStartInfo startInfo = new ProcessStartInfo("../ThirdParty/Graphviz/bin/dot.exe");
+            ProcessStartInfo startInfo = new ProcessStartInfo(Application.StartupPath + "/../ThirdParty/Graphviz/bin/dot.exe");
             startInfo.WindowStyle = ProcessWindowStyle.Hidden;
             startInfo.Arguments = "-Tdot " + DIGRAPH_FILE + " -o " + DOT_LAYOUT_FILE;
             Process p1 = Process.Start(startInfo);
