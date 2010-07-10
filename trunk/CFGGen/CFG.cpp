@@ -8,20 +8,6 @@ CFG::CFG(void)
 {
 }
 
-
-
-CFG::~CFG(void)
-{
-	//struct VertexDelete
-	//{
-	//	void operator()(Vertex& v) {
-	//		delete v.first;
-	//	}
-	//};
-
-	//std::for_each(m_AdjList.begin(), m_AdjList.end(), VertexDelete());
-}
-
 FlowPoint* CFG::AddFlowPoint(SNode* node, std::string name)
 {
 	FlowPoint* fp = AddFlowPoint(new FlowPoint(node, name));
@@ -71,11 +57,9 @@ void CFG::RemoveFlowPoint(FlowPoint* fp)
 
 void CFG::AddEdge(FlowPoint* f,FlowPoint* g)
 {
-	if (!isEdge(f,g)) {
-		CFGBase::vertex_descriptor u = m_fpToV[f];
-		CFGBase::vertex_descriptor v = m_fpToV[g];
-		boost::add_edge(u,v,*this);
-	}
+	CFGBase::vertex_descriptor u = m_fpToV[f];
+	CFGBase::vertex_descriptor v = m_fpToV[g];
+	boost::add_edge(u,v,*this);
 }
 
 void CFG::RemoveEdge(FlowPoint* f,FlowPoint* g)
@@ -86,39 +70,8 @@ void CFG::RemoveEdge(FlowPoint* f,FlowPoint* g)
 	boost::remove_edge(u,v,*this);
 }
 
-std::list<CFG::Vertex>::iterator CFG::findFlowPoint( FlowPoint* fp )
-{
-	struct IsSameFlowPoint {
-		IsSameFlowPoint(const FlowPoint* _fp) : m_fp(_fp) {		
-		}
-
-		bool operator()(const FlowPointAndNeighbors& fpn) const {
-			return m_fp == fpn.first;
-		}
-
-		const FlowPoint* m_fp;
-	};
-
-	std::list<CFG::Vertex>::iterator it = std::find_if(m_AdjList.begin(), m_AdjList.end(), IsSameFlowPoint(fp));
-	return it;
-
-}
-
-FlowPointIterator CFG::findFlowPoint(const std::list<CFG::Vertex>::iterator& it, const FlowPoint* fp)
-{
-	FlowPointList& fpList = (*it).second;
-	FlowPointIterator fpIt = std::find(fpList.begin(), fpList.end(), fp);
-
-	return fpIt;
-}
-
 FlowPointList CFG::neighbors(FlowPoint* fp)
 {
-	//std::list<Vertex>::iterator fpIt = findFlowPoint(fp);
-	//if (fpIt != m_AdjList.end())
-	//	return (*fpIt).second;
-	//else
-	//	return FlowPointList();
 	FlowPointList retNeighbors;
 	CFGBase::vertex_descriptor fpV = m_fpToV[fp];
 	CFGBase::adjacency_iterator adjItr,adjEnd;

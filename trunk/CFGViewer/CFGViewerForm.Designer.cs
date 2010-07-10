@@ -31,12 +31,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CFGViewerForm));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.codeTextBox = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.CFGProgressBar = new System.Windows.Forms.ProgressBar();
-            this.GraphPanel = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.ButtonZoomIn = new System.Windows.Forms.ToolStripButton();
             this.ButtonZoomOut = new System.Windows.Forms.ToolStripButton();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.CFGProgressBar = new System.Windows.Forms.ProgressBar();
+            this.GraphPanel = new System.Windows.Forms.Panel();
             this.GraphPictureBox = new System.Windows.Forms.PictureBox();
             this.upperToolStrip = new System.Windows.Forms.ToolStrip();
             this.OpenFileButton = new System.Windows.Forms.ToolStripButton();
@@ -45,9 +45,9 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.GraphPanel.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GraphPictureBox)).BeginInit();
             this.upperToolStrip.SuspendLayout();
             this.SuspendLayout();
@@ -86,40 +86,6 @@
             this.codeTextBox.TabIndex = 0;
             this.codeTextBox.WordWrap = false;
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.CFGProgressBar);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 331);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(271, 23);
-            this.panel1.TabIndex = 2;
-            // 
-            // CFGProgressBar
-            // 
-            this.CFGProgressBar.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.CFGProgressBar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.CFGProgressBar.ForeColor = System.Drawing.Color.Chartreuse;
-            this.CFGProgressBar.Location = new System.Drawing.Point(0, 2);
-            this.CFGProgressBar.Name = "CFGProgressBar";
-            this.CFGProgressBar.Size = new System.Drawing.Size(271, 21);
-            this.CFGProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.CFGProgressBar.TabIndex = 5;
-            this.CFGProgressBar.Visible = false;
-            // 
-            // GraphPanel
-            // 
-            this.GraphPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.GraphPanel.AutoScroll = true;
-            this.GraphPanel.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.GraphPanel.Controls.Add(this.GraphPictureBox);
-            this.GraphPanel.Location = new System.Drawing.Point(0, 26);
-            this.GraphPanel.Name = "GraphPanel";
-            this.GraphPanel.Size = new System.Drawing.Size(271, 301);
-            this.GraphPanel.TabIndex = 0;
-            // 
             // toolStrip1
             // 
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -154,8 +120,43 @@
             this.ButtonZoomOut.ToolTipText = "Zoom Out";
             this.ButtonZoomOut.Click += new System.EventHandler(this.ButtonZoomOut_Click);
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.CFGProgressBar);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 331);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(271, 23);
+            this.panel1.TabIndex = 2;
+            // 
+            // CFGProgressBar
+            // 
+            this.CFGProgressBar.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.CFGProgressBar.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.CFGProgressBar.ForeColor = System.Drawing.Color.Chartreuse;
+            this.CFGProgressBar.Location = new System.Drawing.Point(0, 2);
+            this.CFGProgressBar.Name = "CFGProgressBar";
+            this.CFGProgressBar.Size = new System.Drawing.Size(271, 21);
+            this.CFGProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.CFGProgressBar.TabIndex = 5;
+            this.CFGProgressBar.Visible = false;
+            // 
+            // GraphPanel
+            // 
+            this.GraphPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.GraphPanel.AutoScroll = true;
+            this.GraphPanel.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.GraphPanel.Controls.Add(this.GraphPictureBox);
+            this.GraphPanel.Location = new System.Drawing.Point(0, 26);
+            this.GraphPanel.Name = "GraphPanel";
+            this.GraphPanel.Size = new System.Drawing.Size(271, 301);
+            this.GraphPanel.TabIndex = 0;
+            // 
             // GraphPictureBox
             // 
+            this.GraphPictureBox.BackColor = System.Drawing.Color.White;
             this.GraphPictureBox.Location = new System.Drawing.Point(3, 4);
             this.GraphPictureBox.Name = "GraphPictureBox";
             this.GraphPictureBox.Size = new System.Drawing.Size(262, 295);
@@ -183,7 +184,7 @@
             this.OpenFileButton.Image = ((System.Drawing.Image)(resources.GetObject("OpenFileButton.Image")));
             this.OpenFileButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.OpenFileButton.Name = "OpenFileButton";
-            this.OpenFileButton.Size = new System.Drawing.Size(86, 24);
+            this.OpenFileButton.Size = new System.Drawing.Size(92, 24);
             this.OpenFileButton.Text = "Open C File";
             this.OpenFileButton.Click += new System.EventHandler(this.OpenFileButton_Click);
             // 
@@ -193,7 +194,7 @@
             this.editCodeButton.Image = ((System.Drawing.Image)(resources.GetObject("editCodeButton.Image")));
             this.editCodeButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.editCodeButton.Name = "editCodeButton";
-            this.editCodeButton.Size = new System.Drawing.Size(77, 24);
+            this.editCodeButton.Size = new System.Drawing.Size(82, 24);
             this.editCodeButton.Text = "Edit Code";
             this.editCodeButton.ToolTipText = "Enable editing of C Code on left pane";
             this.editCodeButton.Click += new System.EventHandler(this.EditCodeButton_Click);
@@ -203,7 +204,7 @@
             this.GenerateCFGButton.Image = ((System.Drawing.Image)(resources.GetObject("GenerateCFGButton.Image")));
             this.GenerateCFGButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.GenerateCFGButton.Name = "GenerateCFGButton";
-            this.GenerateCFGButton.Size = new System.Drawing.Size(99, 24);
+            this.GenerateCFGButton.Size = new System.Drawing.Size(103, 24);
             this.GenerateCFGButton.Text = "Generate CFG";
             this.GenerateCFGButton.Click += new System.EventHandler(this.GenerateCFGButton_Click);
             // 
@@ -222,10 +223,10 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
             this.splitContainer1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.GraphPanel.ResumeLayout(false);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.GraphPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GraphPictureBox)).EndInit();
             this.upperToolStrip.ResumeLayout(false);
             this.upperToolStrip.PerformLayout();

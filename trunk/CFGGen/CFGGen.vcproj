@@ -338,6 +338,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\CommonGraphDefs.h"
+					>
+				</File>
+				<File
 					RelativePath=".\CompoundBlock.h"
 					>
 				</File>
@@ -347,6 +351,10 @@
 				</File>
 				<File
 					RelativePath=".\FlowPoint.h"
+					>
+				</File>
+				<File
+					RelativePath=".\MCGraph.h"
 					>
 				</File>
 				<File
@@ -375,6 +383,10 @@
 				</File>
 				<File
 					RelativePath=".\FlowPoint.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\MCGraph.cpp"
 					>
 				</File>
 				<File
