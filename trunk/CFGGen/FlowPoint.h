@@ -40,8 +40,12 @@ public:
 		return m_index;
 	}
 
-	FP_CFG_ID cfgID() const {
+	inline FP_CFG_ID cfgID() const {
 		return m_cfgID;
+	}
+
+	inline void setCfgID(FP_CFG_ID newID){
+		m_cfgID = newID;
 	}
 
 	SNode* syntaxNode() {
