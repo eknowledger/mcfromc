@@ -267,6 +267,42 @@ namespace CFGViewer
             }
         }
 
+        public void TranslateGraphClickToCodeRange(Point click,
+                                                   Size originalImageSize, 
+                                                   Size sizeOnScreen, 
+                                                   out int start, out int count)
+        {
+            start = 0;
+            count = 0;
+            int minDistance = 10000000;
+            Point closestPoint = new Point(-1, -1);
+
+            int xClick = click.X;
+            int yClick = sizeOnScreen.Height - click.Y;
+            foreach (Point p in Locations)
+            {
+                int diffX = p.X-xClick; 
+                int diffY = p.Y-yClick;
+                int dist =  diffX*diffX + diffY*diffY;
+                if (dist < minDistance)
+                {
+                    minDistance = dist;
+                    closestPoint = p;
+                }
+            }
+
+            if (closestPoint != null)
+            {
+                if (FlowPoint.ContainsKey(FlowPointName[closestPoint]))
+                {
+                    VisualFlowPoint fp = FlowPoint[FlowPointName[closestPoint]];
+                    if (fp != null)
+                    {
+                        start = fp.Row;
+                    }
+                }
+            }
+        }
 
         public Dictionary<Point, string> FlowPointName;
         public Dictionary<string, VisualFlowPoint> FlowPoint;
