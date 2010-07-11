@@ -3,6 +3,7 @@
 #include "SNode.h"
 #include "Block.h"
 #include "boost\graph\graphviz.hpp"
+#include "GeneralMacros.h"
 
 CFG::CFG(void)
 {
@@ -11,7 +12,7 @@ CFG::CFG(void)
 FlowPoint* CFG::AddFlowPoint(SNode* node, std::string name)
 {
 	FlowPoint* fp = AddFlowPoint(new FlowPoint(node, name));
-	boost::put(boost::vertex_name,*this,m_fpToV[fp],name);
+	boost::put(boost::vertex_name,*this,fp->cfgID(),name);
 	return fp;
 }
 
@@ -20,7 +21,7 @@ FlowPoint* CFG::AddFlowPoint(FlowPoint* fp)
 	FPSharedPtr spFP(fp);
 	m_knownFPs.insert(spFP);
 	CFGBase::vertex_descriptor v = boost::add_vertex(*this);
-	m_fpToV[spFP.get()] = v;
+	spFP->setCfgID(v);
 	boost::put(boost::vertex_attachedFP,*this,v,FPointWeakPtr(spFP));
 	return spFP.get();
 }
@@ -29,51 +30,45 @@ FlowPoint* CFG::AddFlowPoint(FlowPoint* fp)
 
 void CFG::RemoveFlowPoint(FlowPoint* fp)
 {
-	CFGBase::vertex_descriptor v = m_fpToV[fp];
+	CFGBase::vertex_descriptor v = fp->cfgID();
 	boost::clear_vertex(v,*this);
 	boost::remove_vertex(v,*this);
-	FPSet::iterator itr = m_knownFPs.begin();
-	while (itr != m_knownFPs.end()) {
-		if ((*itr).get() == fp) {
-			m_knownFPs.erase(itr);
-			break;
-		}
-		++itr;
-	}
-	FPToVertex::iterator itr2 = m_fpToV.find(fp);
-	if(itr2 != m_fpToV.end())
-		m_fpToV.erase(itr2);
 
-	
+	//remove gets the FP from the set
+	FPSet::iterator fpItr = m_knownFPs.find(FPSharedPtr(fp));
+	if(fpItr != m_knownFPs.end())
+		m_knownFPs.erase(fpItr);
+
 	//repopulate flow point to vertex descriptor map.
 	CFGBase::vertex_iterator adjItr,adjEnd;
 	for(boost::tie(adjItr,adjEnd) = boost::vertices(*this); adjItr != adjEnd; ++adjItr){
-		CFGBase::vertex_descriptor desc = (*adjItr);
+		CFGBase::vertex_descriptor fpV = (*adjItr);
 		FPointWeakPtr attachedFP = boost::get(boost::vertex_attachedFP,*this,*adjItr);
 		FPSharedPtr adjFP(attachedFP.lock());
-		m_fpToV[adjFP.get()] = desc;
+		ASSERT_LOOP_CONTINUE(adjFP != NULL);
+		adjFP->setCfgID(fpV);
 	}
 }
 
 void CFG::AddEdge(FlowPoint* f,FlowPoint* g)
 {
-	CFGBase::vertex_descriptor u = m_fpToV[f];
-	CFGBase::vertex_descriptor v = m_fpToV[g];
+	CFGBase::vertex_descriptor u = f->cfgID();
+	CFGBase::vertex_descriptor v = g->cfgID();
 	boost::add_edge(u,v,*this);
 }
 
 void CFG::RemoveEdge(FlowPoint* f,FlowPoint* g)
 {
 
-	CFGBase::vertex_descriptor u = m_fpToV[f];
-	CFGBase::vertex_descriptor v = m_fpToV[g];
+	CFGBase::vertex_descriptor u = f->cfgID();
+	CFGBase::vertex_descriptor v = g->cfgID();
 	boost::remove_edge(u,v,*this);
 }
 
 FlowPointList CFG::neighbors(FlowPoint* fp)
 {
 	FlowPointList retNeighbors;
-	CFGBase::vertex_descriptor fpV = m_fpToV[fp];
+	CFGBase::vertex_descriptor fpV = fp->cfgID();
 	CFGBase::adjacency_iterator adjItr,adjEnd;
 	for(boost::tie(adjItr,adjEnd) = boost::adjacent_vertices(fpV,*this); adjItr != adjEnd; ++adjItr){
 		FPointWeakPtr attachedFP = boost::get(boost::vertex_attachedFP,*this,*adjItr);
@@ -99,8 +94,8 @@ std::vector<FlowPoint*> CFG::flowPoints()
 
 bool CFG::isEdge(FlowPoint* f,FlowPoint *g)
 {
-	CFGBase::vertex_descriptor u = m_fpToV[f];
-	CFGBase::vertex_descriptor v = m_fpToV[g];
+	CFGBase::vertex_descriptor u = f->cfgID();
+	CFGBase::vertex_descriptor v = g->cfgID();
 	
 	//pair <descriptor,exists>
 	return boost::edge(u,v,*this).second;
@@ -136,7 +131,7 @@ FlowPoint* CFG::AddHiddenFlowPoint( SNode* node, std::string name )
 
 std::string CFG::getName( FlowPoint* fp )
 {
-	CFGBase::vertex_descriptor fpV = m_fpToV[fp];
+	CFGBase::vertex_descriptor fpV = fp->cfgID();
 	std::ostringstream ostr;
 	ostr << fpV;
 

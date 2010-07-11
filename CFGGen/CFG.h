@@ -44,6 +44,4 @@ public:
 private:
 	FPSet m_knownFPs;
 	FPSet m_hiddenFPs;
-	typedef std::map<FlowPoint*,CFGBase::vertex_descriptor> FPToVertex;
-	FPToVertex m_fpToV;
 };
