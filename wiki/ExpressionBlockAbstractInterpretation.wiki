@@ -1,3 +1,5 @@
+<wiki:toc max_depth="3" />
+
 #summary Algorithm for Generating MC from Expression blocks
 = Details =
 
