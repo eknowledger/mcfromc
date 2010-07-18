@@ -1,6 +1,6 @@
+#summary Algorithm for Generating MC from Expression blocks
 <wiki:toc max_depth="3" />
 
-#summary Algorithm for Generating MC from Expression blocks
 = Details =
 
 Below you can find the algorithm for converting the C.F.G flow points along with the Syntax Tree to A.C.F.G (Annotated Control Flow Graph, this is a C.F.G that on its edges you can find MCs)
