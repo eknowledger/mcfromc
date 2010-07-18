@@ -1,5 +1,7 @@
 #summary How expressions are interpreted ?
 
+<wiki:toc max_depth="3" />
+
 = Which expressions are handled ? =
 Handled expressions include:
  # Consecutive command blocks containing commands of the following types:
@@ -59,4 +61,3 @@ In the second assignment command, x will assume the expression U1+5 :
 = Limitations =
  * Handled order conditions must contain variables only. It may be possible to expand to constants, if they can be represented and interpreted in the MC graph.
  * Expressions with side effects (e.g pre/post increment/decrement within the expression) are not handled (need to think how to enforce this by the syntax parser or evaluate relevant variables  to 'Top').
-
