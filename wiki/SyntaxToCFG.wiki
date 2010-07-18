@@ -1,0 +1,33 @@
+#summary Converting program AST to CFG
+
+= Introduction =
+
+This page describes the algorithm used for converting the Abstract Syntax Tree(AST), as received by the Syntax Parser, into a Control Flow Graph(CFG).
+
+= Algorithm Details =
+ * _Input_: *AST* - an Abstract Syntax Tree.
+ * _Output_: *CFG* - a Control Flow Graph, containing Flow Points and directed edges between them.
+
+ # For each handled node in the AST (mainly expressions and control flow constructs), create a Flow Point in the CFG.
+ # Merge consecutive commands Flow Points into a compound block - a block of commands which are consecutive in the program code. This block does not appear in the CFG.
+ # Merge consecutive expressions Flow Points into a single Flow Point in the CFG(representing an expression block)
+ # Recursively traverse the AST:
+   # Connect each node Flow Point to it's sub-nodes Flow Points.
+   # If current node is a loop node, connect all end-nodes Flow Points to it's Flow Point.
+   # If current node's Flow Point is part of a compound block, connect it's end points (might be the node's Flow Point itself) to the next Flow Point inside the compound block.
+   # Return current end points to the calling level.
+ # If there are consecutive expression blocks, merge them into a single block.
+
+= Remarks =
+A For loop of the following form:
+{{{
+  for ({Initialization}; {Condition}; {Increment})
+  {
+    {Body}
+  }
+}}}
+is interpreted into the following graph:
+ * Initialization --> Condition
+ * Condition --> Body
+ * Body --> Increment
+ * Increment --> Condition 
