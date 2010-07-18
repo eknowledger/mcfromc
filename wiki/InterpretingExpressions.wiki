@@ -1,0 +1,62 @@
+#summary How expressions are interpreted ?
+
+= Which expressions are handled ? =
+Handled expressions include:
+ # Consecutive command blocks containing commands of the following types:
+    # Assignment commands.
+    # Simple pre/post increment/decrement commands.
+
+ # Branch conditions(while/for/if):
+    # Order conditions (e.g x < y, y >= z)
+    # Logical conjunction of order conditions (x < y && y >= z && z >= x).
+
+= Assignment Commands Expressions =
+Each expression is broken down to a binary tree containing Atom Expressions (AtomExpr) in its leafs and Binary Operator Expressions (BinExpr) in its non-leaf nodes. For example, the following expression:
+{{{
+3*x+5*y-7
+}}}
+
+Is interpreted into the following expression:
+{{{
+BinExpr(ADD)
+  |
+  |--BinExpr(MUL)
+  |    |
+  |    |--AtomExpr(3)
+  |    |--AtomExpr(x)
+  |
+  |--BinExpr(SUB)
+       |
+       |--BinExpr(MUL)
+       |    |
+       |    |--AtomExpr(5)
+       |    |--AtomExpr(y)
+       |
+       |--AtomExpr(7)
+}}}
+= Expression Evaluation =
+ * When expression is evaluated, each variable is substituted with it's value:
+  # If all variable values are known(and numeric), then the expression is evaluated to the computation result.
+  # If some variable's value is Undefined, then an Undefined value will substitute the the variable within the expression. This undefined value is unique and is distinguishable from other undefined values. This enables performing the following analysis. In the following example, assume that the variable 'y' is undefined (has unknown value):
+{{{
+   x = y;
+   x = x + 5; 
+}}}
+Since 'y' is undefined, it has an undefined value of U1.
+In the first assignment command, x will assume the undefined value U1 ( AtomExpr(U1) ).
+In the second assignment command, x will assume the expression U1+5 :
+{{{
+   BinExpr(ADD)
+     |
+     |--AtomExpr(U1)
+     |--AtomExpr(5)
+}}}
+
+ * We can deduce the relation (<= <, =, >=, >) between two simple BinExpr with only 2 atom expressions below. In this case, since (U1+5) - U1 = 5, we can deduce that x's value increased by 5 during the second assignment command.
+ * There are other cases where the order between 2 expressions can be determined. This issue is still TBD.
+ * When substituting a variable with a composite expression (not an AtomExpr), it is possible in some case to simplify and reduce the expression into a simpler form which might be easier to check for size change. This issue is also still TBD.
+ 
+= Limitations =
+ * Handled order conditions must contain variables only. It may be possible to expand to constants, if they can be represented and interpreted in the MC graph.
+ * Expressions with side effects (e.g pre/post increment/decrement within the expression) are not handled (need to think how to enforce this by the syntax parser or evaluate relevant variables  to 'Top').
+
