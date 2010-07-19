@@ -50,18 +50,11 @@ namespace CFGViewer
                 new PointF(CFGProgressBar.Width / 8 - 10, CFGProgressBar.Height / 2 - 7));
         }
 
-        private void UpdateImageSize()
-        {
-            GraphPictureBox.Size = new Size(m_app.ImageWidth, m_app.ImageHeight);
-            GraphPictureBox.Refresh();
-        }
-
         private void LoadImageFromFile()
         {
-            GraphPictureBox.Load(m_app.DOT_IMAGE_FILE);
+            GraphPictureBox.Image = new Bitmap(m_app.DOT_IMAGE_FILE);
             GraphPictureBox.Size = new Size(m_app.ImageWidth, m_app.ImageHeight);
             GraphPictureBox.Refresh();
-            //GraphPictureBox.Image = Image.FromFile(m_app.DOT_IMAGE_FILE);
         }
 
         private void OnError(string err)
