@@ -2,6 +2,7 @@
 
 #include <string>
 #include "CommonGraphDefs.h"
+#include "expr.h"
 
 class SNode;
 
@@ -14,7 +15,8 @@ public:
 	enum FlowPointType {
 		FLOW_POINT,
 		EXPRESSION_BLOCK,
-		COMPOUND_BLOCK
+		COMPOUND_BLOCK,
+		FOR_LOOP_FLOW_POINT
 	};
 	FlowPoint(void);
 	FlowPoint(SNode* _node, const std::string& _name): 
@@ -51,6 +53,7 @@ public:
 	SNode* syntaxNode() {
 		return m_node;
 	}
+
 private:
 	int m_index;
 	FP_CFG_ID m_cfgID;

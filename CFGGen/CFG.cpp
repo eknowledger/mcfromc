@@ -5,7 +5,7 @@
 #include "boost\graph\graphviz.hpp"
 #include "GeneralMacros.h"
 
-CFG::CFG(void)
+CFG::CFG(void): m_startFP(NULL)
 {
 }
 
@@ -35,9 +35,14 @@ void CFG::RemoveFlowPoint(FlowPoint* fp)
 	boost::remove_vertex(v,*this);
 
 	//remove gets the FP from the set
-	FPSet::iterator fpItr = m_knownFPs.find(FPSharedPtr(fp));
-	if(fpItr != m_knownFPs.end())
-		m_knownFPs.erase(fpItr);
+	for(FPSet::iterator fpItr = m_knownFPs.begin(); fpItr != m_knownFPs.end(); ++fpItr)
+	{
+		if ((*fpItr).get() == fp)
+		{
+			m_knownFPs.erase(fpItr);
+			break;
+		}
+	}
 
 	//repopulate flow point to vertex descriptor map.
 	CFGBase::vertex_iterator adjItr,adjEnd;
@@ -68,7 +73,7 @@ void CFG::RemoveEdge(FlowPoint* f,FlowPoint* g)
 FlowPointList CFG::neighbors(FlowPoint* fp)
 {
 	FlowPointList retNeighbors;
-	CFGBase::vertex_descriptor fpV = fp->cfgID();
+	FP_CFG_ID fpV = fp->cfgID();
 	CFGBase::adjacency_iterator adjItr,adjEnd;
 	for(boost::tie(adjItr,adjEnd) = boost::adjacent_vertices(fpV,*this); adjItr != adjEnd; ++adjItr){
 		FPointWeakPtr attachedFP = boost::get(boost::vertex_attachedFP,*this,*adjItr);
@@ -99,6 +104,24 @@ bool CFG::isEdge(FlowPoint* f,FlowPoint *g)
 	
 	//pair <descriptor,exists>
 	return boost::edge(u,v,*this).second;
+}
+
+/// Returns all Flow Points s.t. there is an edge from them to fp.
+FlowPointList CFG::ancestors(FlowPoint* fp)
+{
+	FlowPointList preds;
+	FP_CFG_ID fpV = fp->cfgID();
+	CFGBase::in_edge_iterator e, e_end;
+	for (tie(e, e_end) =  boost::in_edges(fpV, *this); e != e_end; ++e)
+	{
+		FPointWeakPtr attachedFP = boost::get(boost::vertex_attachedFP,
+											  *this,
+											  boost::source(*e,*this));
+		FPSharedPtr adjFP(attachedFP.lock());
+		preds.push_back(adjFP.get());
+	}
+
+	return preds;
 }
 
 void CFG::printForDot()
@@ -136,4 +159,14 @@ std::string CFG::getName( FlowPoint* fp )
 	ostr << fpV;
 
 	return ostr.str();
+}
+
+void CFG::SetStart( FlowPoint* startFP )
+{
+	m_startFP = startFP;
+}
+
+FlowPoint* CFG::Start() const
+{
+	return m_startFP;
 }

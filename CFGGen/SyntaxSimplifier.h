@@ -12,6 +12,8 @@ public:
 
 private:
 	void reduceChildren(SNode* node);
+	void expandForLoops(SNode* node);
+
 
 	SNode* m_root;
 };

@@ -34,14 +34,17 @@ public:
 	void RemoveEdge(FlowPoint* f,FlowPoint* g);
 	bool isEdge(FlowPoint* f,FlowPoint* g);
 	FlowPointList neighbors(FlowPoint* fp);
+	FlowPointList ancestors(FlowPoint* fp);
 	std::vector<FlowPoint*> flowPoints();
 	//prints graph edges in GraphViz Dot format to std::cout
 	void printForDot();
 	//prints graph edges in GraphViz Dot format to given output stream
 	void printForDot(std::ostream& ostr);
 	std::string getName(FlowPoint* fp);
-
+	FlowPoint* Start() const;
+	void SetStart(FlowPoint* startFP);
 private:
 	FPSet m_knownFPs;
 	FPSet m_hiddenFPs;
+	FlowPoint* m_startFP;
 };

@@ -7,6 +7,7 @@
 #include "ExpressionBlock.h"
 #include "SyntaxUtils.h"
 #include <iostream>
+#include "forloopflowpoint.h"
 
 namespace{
 	void addTransition(FlowPoint* f,FlowPoint* g,CFG& cfg){
@@ -39,6 +40,9 @@ bool Syntax2CFG::execute()
 		reduceExpressionBlocks();
 		std::vector<FlowPoint*> endFPs;
 		connectFlowPoints(fp, endFPs);
+		mergeConsecutiveExpressionBlocks();
+		if (m_compoundBlocks.size() > 0)
+			m_cfg.SetStart(((Block*)m_compoundBlocks[0])->flowPoints()[0]);
 		rc = true;
 	}
 
@@ -82,10 +86,21 @@ FlowPoint* Syntax2CFG::connectFlowPoints(FlowPoint* root,
 				if (root->syntaxNode()) {					
 					//check for loop FP
 					if (root->syntaxNode()->ShouldCreateEdgeFromChildren()) {
-						//loop flow point - connect leaves to it
-						for (size_t j = 0; j < currEndFPs.size(); ++j) {
-							addTransition(currEndFPs[j],root,m_cfg);
+						
+						FlowPoint* nodeToConnect = root;
+						if (root->Type() == FlowPoint::FOR_LOOP_FLOW_POINT)
+						{
+							//Connect increment expression to for loop node.
+							//Later all end points will be connected to the increment expression.
+							nodeToConnect = ((ForLoopFlowPoint*)root)->getIncrementExpression();
+							addTransition(nodeToConnect, root, m_cfg);
 						}
+
+						// loop flow point - connect leaves to it
+						for (size_t j = 0; j < currEndFPs.size(); ++j) {
+							addTransition(currEndFPs[j],nodeToConnect,m_cfg);
+						}
+
 						//make sure that loop FP is connected to next&prev FP by
 						//adding the loop FP to the end vector and setting the
 						//start FP to it.
@@ -219,8 +234,11 @@ FlowPoint* Syntax2CFG::generateStatementNodeFlowPoints(SNode* root, FlowPoint* p
 	if (SyntaxUtils::isExpressionsOnlyStatement(root)) {
 		b = newExpressionBlock(root, parent);
 	}
-	else if (root->children().size() > 1) {
-		//only generate compound block if there is more than one child.
+	else if (root->children().size() > 1 || 
+		     (root->children().size() == 1 && 
+		      root->children().front()->Type() == FOR_LOOP) ) {
+		//only generate compound block if there is more than one child,
+	    //or if single child is a for loop node.
 		b = newCompoundBlock(root, parent);
 	}
 
@@ -251,8 +269,15 @@ FlowPoint* Syntax2CFG::generateLoopNodeFlowPoints(SNode* root, FlowPoint* parent
 {
 	FlowPoint* fp = NULL;
 	if (SyntaxUtils::isForLoop(root)) {
-		fp = m_cfg.AddFlowPoint(root, "For_Loop");
-		generateFlowPoints(root->children()[3], fp);
+		FlowPoint* assignExpr = generateFlowPoints(root->children()[0], parent);
+		((Block*)parent)->Add(assignExpr);
+		FlowPoint* loopIncr = generateFlowPoints(root->children()[2]);
+		Block* b = newExpressionBlock(NULL, NULL);
+		b->Add(loopIncr);
+		ForLoopFlowPoint* forLoop = new ForLoopFlowPoint(root, "For_Loop", b);
+		generateFlowPoints(root->children()[3], forLoop);
+		m_cfg.AddFlowPoint(forLoop);
+		fp = forLoop;
 	}
 	else if (SyntaxUtils::isWhileLoop(root)) {
 		fp = m_cfg.AddFlowPoint(root, "While_Loop");
@@ -345,4 +370,46 @@ void Syntax2CFG::clearCompoundBlocks()
 		delete m_compoundBlocks[i];
 	}
 	m_compoundBlocks.clear();
+}
+
+/// Merges expression blocks which are consecutive in the CFG - 
+/// e.g. there is an edge from Expr. Block A to Expr. Block B, and there are
+/// no other in edges to Expr. Block B. In this case, Expr. Block B can be merged 
+/// into Expr. Block A.
+void Syntax2CFG::mergeConsecutiveExpressionBlocks()
+{
+	std::vector<FlowPoint*> fps = m_cfg.flowPoints();
+	for (size_t i = 0; i < fps.size(); ++i)
+	{
+		if (fps[i]->Type() == FlowPoint::EXPRESSION_BLOCK)
+		{
+
+			FlowPointList ancestors = m_cfg.ancestors(fps[i]);
+			//If there is exactly one ancestor, and it is also an expression block
+			if (ancestors.size() == 1 &&
+				ancestors.front()->Type() == FlowPoint::EXPRESSION_BLOCK) 
+			{
+				Block* first = (Block*)ancestors.front();
+				Block* second = (Block*)fps[i];
+				//copy all expressions from second block to first block
+				const std::vector<FlowPoint*>& secondExprBlockFps = second->flowPoints();
+				for (size_t j = 0; j < secondExprBlockFps.size(); ++j)
+				{
+					first->Add(secondExprBlockFps[j]);
+				}
+				//remove edge between 2 blocks
+				m_cfg.RemoveEdge(first,second);
+				//add edge from first block to all neighbors of second block
+				FlowPointList predecessors = m_cfg.neighbors(second);
+				;
+				for (FlowPointList::iterator it = predecessors.begin(); it != predecessors.end(); ++it)
+				{
+					m_cfg.RemoveEdge(second, *it);
+					m_cfg.AddEdge(first, *it);
+				}
+				//finally, remove second block from CFG.
+				m_cfg.RemoveFlowPoint(second);				
+			}
+		}
+	}
 }

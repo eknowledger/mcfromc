@@ -41,6 +41,7 @@ private:
 	Block* newExpressionBlock(SNode* statement = NULL, FlowPoint* parent = NULL);	
 	void concatVecs(std::vector<FlowPoint*>& a, const std::vector<FlowPoint*>& b);
 	void clearCompoundBlocks();
+	void mergeConsecutiveExpressionBlocks();
 	
 	stdext::hash_map<FlowPoint*, std::vector<FlowPoint*>> ChildrenOf;
 	std::vector<FlowPoint*> m_compoundBlocks;

@@ -9,6 +9,7 @@
 #include "SConstantNode.h"
 #include "SIfElseNode.h"
 #include "SReducibleNode.h"
+#include "sorderconditionnode.h"
 
 SyntaxNodeFactory::SyntaxNodeFactory(void)
 {
@@ -55,6 +56,13 @@ SNode* SyntaxNodeFactory::createNode(NodeData* n)
 			case CONDITION_IF:
 			case CONDITION_IF_ELSE:
 				ret = new SIfElseNode(*n);
+				break;
+			case LESS_THAN_EXPR:
+			case LESS_EQ_THAN_EXPR:
+			case EQUAL_EXPR:
+			case GREATER_EQ_THAN_EXPR:
+			case GREATER_THAN_EXPR:
+				ret = new SOrderConditionNode(*n);
 				break;
 			case STATEMENT_LIST:
 			case STATEMENT:
