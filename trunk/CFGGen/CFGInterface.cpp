@@ -7,6 +7,7 @@
 #include "Syntax2CFG.h"
 #include "CFG.h"
 #include "CFGInterface.h"
+#include "cfgexprevaluator.h"
 
 std::string lastError;
 
@@ -19,6 +20,7 @@ std::vector<FlowPointVisualData> generateCFG(std::string cfilename, std::ostream
 		SNode* sroot = SyntaxNodeFactory::the().createNode(root);
 		CFG cfg;
 		Syntax2CFG(sroot, cfg).execute();
+		CFGExprEvaluator(cfg).Evaluate();
 		cfg.printForDot();
 		std::vector<FlowPoint*> fps = cfg.flowPoints();
 		for (size_t i = 0; i < fps.size(); ++i) {

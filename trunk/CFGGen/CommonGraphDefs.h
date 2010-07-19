@@ -56,7 +56,8 @@ typedef boost::shared_ptr<FlowPoint> FPSharedPtr;
 typedef boost::weak_ptr<FlowPoint> FPointWeakPtr;
 
 typedef boost::property<boost::vertex_name_t,std::string,
-						boost::property<boost::vertex_attachedFP_t,FPointWeakPtr> >
+						boost::property<boost::vertex_attachedFP_t,FPointWeakPtr,
+						boost::property<boost::vertex_color_t, boost::default_color_type > > >
 	CFGVertexProp;
 
 typedef boost::property<boost::edge_sizeChange_t,MCWeakPtr					//Size change property on the edges is the weak pointer to the MC
@@ -161,4 +162,3 @@ inline std::wostream& operator <<(std::wostream& out, const Invariant& inv)
 		out << *itr;
 	return out;
 }
-

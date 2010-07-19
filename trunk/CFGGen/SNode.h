@@ -52,6 +52,10 @@ public:
 		return m_column;
 	}
 
+	virtual bool IsOrderCondition() const {
+		return false;
+	}
+
 protected:
 	friend std::ostream& operator<<(std::ostream& os,const SNode& node);
 	

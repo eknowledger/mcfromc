@@ -186,6 +186,14 @@
 				RelativePath=".\CFGInterface.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\ForLoopFlowPoint.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\SOrderConditionNode.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -194,6 +202,10 @@
 			>
 			<File
 				RelativePath="..\Include\CFGInterface.h"
+				>
+			</File>
+			<File
+				RelativePath=".\SOrderConditionNode.h"
 				>
 			</File>
 			<File
@@ -338,6 +350,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\CFGExprEvaluator.h"
+					>
+				</File>
+				<File
 					RelativePath=".\CommonGraphDefs.h"
 					>
 				</File>
@@ -351,6 +367,10 @@
 				</File>
 				<File
 					RelativePath=".\FlowPoint.h"
+					>
+				</File>
+				<File
+					RelativePath=".\ForLoopFlowPoint.h"
 					>
 				</File>
 				<File
@@ -374,6 +394,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\CFGExprEvaluator.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\CompoundBlock.cpp"
 					>
 				</File>
@@ -394,6 +418,50 @@
 					>
 				</File>
 			</Filter>
+		</Filter>
+		<Filter
+			Name="Expressions"
+			>
+			<File
+				RelativePath=".\AtomExpr.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\AtomExpr.h"
+				>
+			</File>
+			<File
+				RelativePath=".\BinExpr.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\BinExpr.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Expr.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Expr.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ExprMgr.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ExprMgr.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ExprSimplifier.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ExprSimplifier.h"
+				>
+			</File>
 		</Filter>
 	</Files>
 	<Globals>
