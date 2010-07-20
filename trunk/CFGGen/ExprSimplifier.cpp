@@ -52,6 +52,10 @@ bool ExprSimplifier::isMatch( SPExpr expr, const E& pat, std::map<int,SPExpr>& l
 		{
 			AtomExpr* ae = (AtomExpr*)expr.get();
 			rc = ae->AType() == pat.t || pat.t == A_ANY;
+			if (rc && linked.find(pat.id) != linked.end()) 
+			{
+				rc = (*(linked[pat.id]) == *ae);
+			}
 		}
 	}
 
@@ -316,6 +320,176 @@ void ExprSimplifier::initializeCommonPatterns()
 					E(3,A_CONST)),
 				E(2,A_ANY));
 
+	//c1*$2+c3-(c4*$2+c5) ==> (c1-c4)*$2 + (c3-c5)
+	E x17 = E(OP_SUB,
+					E(OP_ADD,
+						E(OP_MUL,
+							E(1,A_CONST),
+							E(2,A_ANY)),
+						E(3,A_CONST)),
+					E(OP_ADD,
+						E(OP_MUL,
+							E(4,A_CONST),
+							E(2,A_ANY)),
+						E(5,A_CONST)));
+
+	E y17 = E(OP_ADD,
+					E(OP_MUL,
+						E(OP_SUB,
+							E(1,A_CONST),
+							E(4,A_CONST)),
+						E(2,A_ANY)),
+					E(OP_SUB,
+						E(3,A_CONST),
+						E(5,A_CONST)));
+
+	//c1*$2-c3*$2 ==> (c1-c3)*$2
+	E x18 = E(OP_SUB,
+					E(OP_MUL,
+						E(1,A_CONST),
+						E(2,A_ANY)),
+					E(OP_MUL,
+						E(3,A_CONST),
+						E(2,A_ANY)));
+
+	E y18 = E(OP_MUL,
+					E(OP_SUB,
+						E(1,A_CONST),
+						E(3,A_CONST)),
+					E(2,A_ANY));
+
+	//(c1*$2+c4)-c3*$2 ==> (c1-c3)*$2+c4
+	E x19 = E(OP_SUB,
+					E(OP_ADD,
+						E(OP_MUL,
+							E(1,A_CONST),
+							E(2,A_ANY)),
+						E(4,A_CONST)),
+					E(OP_MUL,
+						E(3,A_CONST),
+						E(2,A_ANY)));
+
+	E y19 = E(OP_ADD,
+					E(OP_MUL,
+						E(OP_SUB,
+							E(1,A_CONST),
+							E(3,A_CONST)),
+						E(2,A_ANY)),
+					E(4,A_CONST));
+
+	//(c1*$2)-(c3*$2+c4) ==> (c1-c3)*$2-c4
+	E x20 = E(OP_SUB,
+					E(OP_MUL,
+						E(1,A_CONST),
+						E(2,A_ANY)),				
+					E(OP_ADD,
+						E(OP_MUL,
+							E(3,A_CONST),
+							E(2,A_ANY)),
+						E(4,A_CONST)));
+
+	E y20 = E(OP_SUB,
+					E(OP_MUL,
+						E(OP_SUB,
+							E(1,A_CONST),
+							E(3,A_CONST)),
+						E(2,A_ANY)),
+					E(4,A_CONST));
+
+	//(c1*$2)-(c3*$2-c4) ==> (c1-c3)*$2+c4
+	E x21 = E(OP_SUB,
+					E(OP_MUL,
+						E(1,A_CONST),
+						E(2,A_ANY)),				
+					E(OP_SUB,
+						E(OP_MUL,
+							E(3,A_CONST),
+							E(2,A_ANY)),
+						E(4,A_CONST)));
+
+	E y21 = E(OP_ADD,
+					E(OP_MUL,
+						E(OP_SUB,
+							E(1,A_CONST),
+							E(3,A_CONST)),
+						E(2,A_ANY)),
+					E(4,A_CONST));
+
+	//(c1*$2-c4)-c3*$2 ==> (c1-c3)*$2-c4
+	E x22 = E(OP_SUB,
+					E(OP_SUB,
+						E(OP_MUL,
+							E(1,A_CONST),
+							E(2,A_ANY)),
+						E(4,A_CONST)),
+					E(OP_MUL,
+						E(3,A_CONST),
+						E(2,A_ANY)));
+
+	E y22 = E(OP_SUB,
+					E(OP_MUL,
+						E(OP_SUB,
+							E(1,A_CONST),
+							E(3,A_CONST)),
+						E(2,A_ANY)),
+					E(4,A_CONST));
+	
+	// ($1+c2)-($1+c3) ==> c2-c3
+	E x23 = E(OP_SUB,
+					E(OP_ADD,
+						E(1,A_ANY),
+						E(2,A_CONST)),
+					E(OP_ADD,
+						E(1,A_ANY),
+						E(3,A_CONST)));
+
+	E y23 = E(OP_SUB,
+				E(2,A_CONST),
+				E(3,A_CONST));
+
+	// ($1+c2)-($1-c3) ==> c2+c3
+	E x24 = E(OP_SUB,
+					E(OP_ADD,
+						E(1,A_ANY),
+						E(2,A_CONST)),
+					E(OP_SUB,
+						E(1,A_ANY),
+						E(3,A_CONST)));
+
+	E y24 = E(OP_ADD,
+				E(2,A_CONST),
+				E(3,A_CONST));
+
+	// ($1-c2)-($1+c3) ==> (c2-c2)-(c2+c3)
+	E x25 = E(OP_SUB,
+					E(OP_SUB,
+						E(1,A_ANY),
+						E(2,A_CONST)),
+					E(OP_ADD,
+						E(1,A_ANY),
+						E(3,A_CONST)));
+
+	E y25 = E(OP_SUB,
+				E(OP_SUB,
+					E(2,A_CONST),
+					E(2,A_CONST)),
+				E(OP_ADD,
+					E(2,A_CONST),
+					E(3,A_CONST)));
+
+	// ($1-c2)-($1-c3) ==> c3-c2
+	E x26 = E(OP_SUB,
+					E(OP_SUB,
+						E(1,A_ANY),
+						E(2,A_CONST)),
+					E(OP_SUB,
+						E(1,A_ANY),
+						E(3,A_CONST)));
+
+	E y26 = E(OP_SUB,
+				E(3,A_CONST),
+				E(2,A_CONST));
+
 	AddPattern(x1,y1);
 	AddPattern(x2,y2);
 	AddPattern(x3,y3);
@@ -332,9 +506,19 @@ void ExprSimplifier::initializeCommonPatterns()
 	AddPattern(x14,y14);
 	AddPattern(x15,y15);
 	AddPattern(x16,y16);
+	AddPattern(x17,y17);
+	AddPattern(x18,y18);
+	AddPattern(x19,y19);
+	AddPattern(x20,y20);
+	AddPattern(x21,y21);
+	AddPattern(x22,y22);
+	AddPattern(x23,y23);
+	AddPattern(x24,y24);
+	AddPattern(x25,y25);
+	AddPattern(x26,y26);
 }
 
-E::E( size_t _id, AtomType _t ) :
+E::E( size_t _id, AtomType _t) :
 	id((int)_id), t(_t), o(OP_NOP), l(NULL), r(NULL), et(E_ATOM)
 {
 }

@@ -95,7 +95,22 @@ SPExpr BinExpr::operator-( const Expr& rhs ) const
 
 SPExpr BinExpr::operator*( const Expr& rhs ) const
 {
-	return SPExpr(new BinExpr(OP_MUL, Clone(), rhs.Clone()));
+	SPExpr res;
+	if (rhs.HasValue()) 
+	{
+		//if rhs expression is the constant zero - the expression
+		//evaluates to zero.
+		const AtomExpr& atom = (const AtomExpr&)rhs;
+		if (atom.Value() == 0)
+			res = SPExpr(new AtomExpr(0));
+	}
+
+	if (!res.get())
+	{
+		res = SPExpr(new BinExpr(OP_MUL, Clone(), rhs.Clone()));
+	}
+
+	return res;
 }
 
 bool BinExpr::IsCondition() const
