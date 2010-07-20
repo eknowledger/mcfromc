@@ -54,9 +54,26 @@ public:
 		return m_node;
 	}
 
+	//VarToValue& InValue() {
+	//	return m_inValue;
+	//}
+
+	//VarToValue& OutValue() {
+	//	return m_outValue;
+	//}
+
+	//Invariant& SizeChange() {
+	//	return m_sizeChangeInv;
+	//}
+
 private:
 	int m_index;
 	FP_CFG_ID m_cfgID;
 	SNode* m_node;
 	std::string m_name;
+
+	//The following members are for test purposes and thus are commented out:
+	//VarToValue m_inValue;
+	//VarToValue m_outValue;
+	//Invariant m_sizeChangeInv;
 };

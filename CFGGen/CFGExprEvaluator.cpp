@@ -62,12 +62,15 @@ void CFGExprEvaluator::ExprEvalVisitor::discover_vertex( Vertex u, const Graph &
 		//fp->OutValue() = fp->InValue();
 		if (fp->Type() == FlowPoint::EXPRESSION_BLOCK)
 		{
+
 			//serially evaluate expressions, updating the out values map.
 			const std::vector<FlowPoint*>& exprsFPs = ((Block*)fp)->flowPoints(); 
 			for (size_t i = 0; i < exprsFPs.size(); ++i)
 			{
 				evaluateExprFlowPoint(fp, exprsFPs[i]);
 			}
+			//fp->SizeChange() = ComputeExprBlockInvariants(fp->InValue(), fp->OutValue());
+
 		}
 		else {
 			evaluateBranchInvariants(fp);
@@ -202,4 +205,30 @@ Order CFGExprEvaluator::ExprEvalVisitor::order( OperatorType opType ) const
 	}
 
 	return o;
+}
+
+Invariant CFGExprEvaluator::ExprEvalVisitor::ComputeExprBlockInvariants( 
+														 VarToValue& inValue, 
+														 VarToValue& outValue ) const
+{
+	Invariant inv;
+	//for all variable values at block end
+	for (VarToValueIt outIt = outValue.begin(); outIt != outValue.end(); ++outIt)
+	{
+		//and for all variable values at block begin
+		for (VarToValueIt inIt = inValue.begin(); inIt != inValue.end(); ++inIt)
+		{
+			ParamName var1 =(*inIt).first;
+			ParamName var2 =(*outIt).first;
+			//find order between 2 variable values
+			Order o = ExprMgr::the().ComputeOrder(outValue[var2], inValue[var1], outValue);
+			if (o != END_ORDER)
+			{
+				//order found, add invariant
+				inv.insert(InvariantMember(StringToWString(var1), o, StringToWString(var2)));
+			}
+		}
+	}
+
+	return inv;
 }

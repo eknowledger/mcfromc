@@ -124,3 +124,22 @@ ExprSimplifier& ExprMgr::Simplifier()
 {
 	return m_simplifier;
 }
+
+Order ExprMgr::ComputeOrder(const SPExpr& a, const SPExpr& b, const VarToValue& v2v) const
+{
+	Order o = END_ORDER;
+	SPExpr diff = *a - *b;
+	SPExpr res = diff->Evaluate(v2v);
+	if (res->HasValue())
+	{
+		ValType val = ((AtomExpr*)res.get())->Value();
+		if (val > 0)
+			o = GREATER;
+		else if (val <0)
+			o = LESS;
+		else
+			o = EQ;
+	}
+
+	return o;
+}

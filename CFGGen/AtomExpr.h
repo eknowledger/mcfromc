@@ -12,7 +12,7 @@ public:
 
 	AtomExpr& operator=(const AtomExpr& rhs);
 	bool operator==(const AtomExpr& rhs) const;
-	
+	virtual bool operator==(const Expr& rhs) const;
 	virtual SPExpr operator*(const Expr& rhs) const;
 	virtual SPExpr operator+(const Expr& rhs) const;
 	virtual SPExpr operator-(const Expr& rhs) const;

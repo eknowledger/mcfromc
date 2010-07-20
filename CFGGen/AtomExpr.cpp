@@ -7,22 +7,34 @@ SPExpr AtomExpr::operator*( const Expr& _rhs ) const
 {
 	SPExpr res;
 	
-	if (_rhs.HasValue())
+
+	if ((m_hasValue && Value() == 0) || 
+		(_rhs.HasValue() && ((const AtomExpr&)_rhs).Value() == 0))
 	{
-		const AtomExpr& rhs = (const AtomExpr&)_rhs;
-		if (m_hasValue) 
+		//if one of the sides is 0
+		res = SPExpr(new AtomExpr(0));
+	}
+	else if  (m_hasValue)
+	{
+		if (_rhs.HasValue())
 		{
+			//if both sides has a numeric value - compute it.
+			const AtomExpr& rhs = (const AtomExpr&)_rhs;
 			res = SPExpr(new AtomExpr(m_value * rhs.Value())); 
 		}
 		else
 		{
-			res = SPExpr(new BinExpr(OP_MUL, rhs.Clone(), Clone()));	
+			//only left side has a numeric value - put is on the left side
+			//of the multiplication (normal form - constant on the left).
+			res = SPExpr(new BinExpr(OP_MUL, Clone(), _rhs.Clone()));	
 		}
 	}
-
+	
 	if (!res.get()) 
 	{
-		res = SPExpr(new BinExpr(OP_MUL, Clone(), _rhs.Clone()));
+		//either only the right side has numeric value of both doesn't.
+		//Flip sides (normal form - constant on the left).
+		res = SPExpr(new BinExpr(OP_MUL, _rhs.Clone(), Clone()));
 	}
 
 	return res;
@@ -39,6 +51,15 @@ bool AtomExpr::operator==( const AtomExpr& rhs ) const
 	}
 
 	return res;
+}
+
+bool AtomExpr::operator==( const Expr& rhs ) const
+{
+	bool rc = false;
+	if (rhs.Type() == E_ATOM)
+		rc = ((*this) == (const AtomExpr&)rhs);
+
+	return rc;
 }
 
 AtomExpr& AtomExpr::operator=( const AtomExpr& rhs )
@@ -126,7 +147,7 @@ SPExpr AtomExpr::operator+( const Expr& _rhs ) const
 		const AtomExpr& rhs = (const AtomExpr&)_rhs;
 		if (m_hasValue) 
 		{
-			res = SPExpr(new AtomExpr(m_value + rhs.m_hasValue));
+			res = SPExpr(new AtomExpr(m_value + rhs.Value()));
 		}
 		else
 		{
