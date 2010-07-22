@@ -13,7 +13,7 @@ using System.Runtime.InteropServices;
 namespace CFGViewer
 {
     public delegate void MessageDelegate(string message);
-    public delegate void ImageUpdateDelegate();
+    public delegate void ImageUpdateDelegate(string imageFile);
     public delegate void ErrorDelegate(string err);
 
     class CFGViewerApp
@@ -41,8 +41,9 @@ namespace CFGViewer
         }
 
  
-        private void ReadFlowPoints(string filename)
+        private bool ReadFlowPoints(string filename, Guid id)
         {
+            bool rc = true;
             ArrayList arr = null;
             FlowPoint = new Dictionary<string, VisualFlowPoint>();
             string graphText = null;
@@ -59,8 +60,10 @@ namespace CFGViewer
             if (graphText != null)
             {
                 WriteGraphToFile(graphText);
-                RunDot();
+                rc = RunDot(id);
             }
+
+            return rc;
         }
 
         public void readDotSpec(string filename)
@@ -98,8 +101,13 @@ namespace CFGViewer
                         startInd = endInd+1;
                         endInd = line.IndexOf('\"', startInd);
                         string heightStr = line.Substring(startInd, endInd-startInd);
-                        int.TryParse(widthStr, out m_Width);
-                        int.TryParse(heightStr, out m_Height);
+                        int w, h;
+                        if (int.TryParse(widthStr, out w) &&
+                            int.TryParse(heightStr, out h))
+                        {
+                            m_ImageSize = new Size(w, h);
+                        }
+
                     }
                 }
             }
@@ -107,16 +115,11 @@ namespace CFGViewer
             reader.Dispose();
         }
 
-        public int ImageHeight
+        public Size ImageSize
         {
-            get{
-                return m_Height;
-            }
-        }
-        public int ImageWidth
-        {
-            get {
-                return m_Width;
+            get
+            {
+                return m_ImageSize;
             }
         }
 
@@ -170,25 +173,40 @@ namespace CFGViewer
             fstr.Dispose();
         }
 
-        private void RunDot()
+        private bool RunDot(Guid id)
         {
+            bool rc = true;
             OnMessage("Running dot tool - generating layout");
             ProcessStartInfo startInfo = new ProcessStartInfo(Application.StartupPath + "/../ThirdParty/Graphviz/bin/dot.exe");
             startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-            startInfo.Arguments = "-Tdot " + DIGRAPH_FILE + " -o " + DOT_LAYOUT_FILE;
+            startInfo.Arguments = "-Tdot " + DIGRAPH_FILE + " -o " + DOT_LAYOUT_FILE + "_" + id.ToString();
             Process p1 = Process.Start(startInfo);
-            OnMessage("Running dot tool - generating bitmap");
-            startInfo.Arguments = "-Tgif " + DIGRAPH_FILE + " -o " + DOT_IMAGE_FILE;
-            Process p2 = Process.Start(startInfo);
-
             p1.WaitForExit();
-            p2.WaitForExit();
+            rc = (p1.ExitCode == 0);
+            if (rc) 
+            {
+                OnMessage("Running dot tool - generating bitmap");
+                startInfo.Arguments = "-Tgif " + DIGRAPH_FILE + " -o " + DOT_IMAGE_FILE + "_" + id.ToString();
+                Process p2 = Process.Start(startInfo);
+                p2.WaitForExit();
+                rc = (p2.ExitCode == 0);
+                if (!rc)
+                    OnError("dot: graph image file creation failed.");
+            }
+            else
+            {
+                OnError("dot: layout file creation failed.");
+            }
+
+          
+
+            return rc;
         }
 
         public void GenerateCFG(string code)
         {
             CleanTempDir();
-
+            bool rc = true;
             bool fileRead = false;
             Guid id = Guid.NewGuid();
             string codeFileName = CODE_FILE + "_" + id.ToString();
@@ -198,14 +216,16 @@ namespace CFGViewer
             {
                 WriteTextFile(codeFileName, code);
                 OnMessage("Generating flow points");
-                ReadFlowPoints(codeFileName);
-                fileRead = true;
-                OnMessage("loading CFG image");
-                readDotSpec(DOT_LAYOUT_FILE);
-                OnImageUpdate();
-                OnMessage("Cleaning up");
-
-                File.Delete(DIGRAPH_FILE);
+                rc = ReadFlowPoints(codeFileName, id);
+                if (rc)
+                {
+                    fileRead = true;
+                    OnMessage("loading CFG image");
+                    readDotSpec(DOT_LAYOUT_FILE + "_" + id.ToString());
+                    OnImageUpdate(DOT_IMAGE_FILE + "_" + id.ToString());
+                    OnMessage("Cleaning up");
+                }
+                 File.Delete(DIGRAPH_FILE);
                 //File.Delete(m_app.CODE_FILE);
                 File.Delete(DOT_LAYOUT_FILE);
 
@@ -267,18 +287,18 @@ namespace CFGViewer
             }
         }
 
-        public void TranslateGraphClickToCodeRange(Point click,
-                                                   Size originalImageSize, 
-                                                   Size sizeOnScreen, 
-                                                   out int start, out int count)
+        public VisualFlowPoint FindClosestFlowPoint(Point click, 
+                                                    Size originalImageSize, 
+                                                    Size sizeOnScreen)
         {
-            start = 0;
-            count = 0;
+            VisualFlowPoint fp = null;
             int minDistance = 10000000;
             Point closestPoint = new Point(-1, -1);
 
-            int xClick = click.X;
-            int yClick = sizeOnScreen.Height - click.Y;
+            float ratioX = ((float)originalImageSize.Width) / ((float)sizeOnScreen.Width);
+            float ratioY = ((float)originalImageSize.Height) /((float)sizeOnScreen.Height);
+            int xClick = (int)(ratioX * (float)click.X);
+            int yClick = (int)(ratioY * (float)(sizeOnScreen.Height - click.Y));
             foreach (Point p in Locations)
             {
                 int diffX = p.X-xClick; 
@@ -295,20 +315,32 @@ namespace CFGViewer
             {
                 if (FlowPoint.ContainsKey(FlowPointName[closestPoint]))
                 {
-                    VisualFlowPoint fp = FlowPoint[FlowPointName[closestPoint]];
-                    if (fp != null)
-                    {
-                        start = fp.Row;
-                    }
+                    fp = FlowPoint[FlowPointName[closestPoint]];
                 }
+            }
+
+            return fp;
+        }
+
+        public void TranslateGraphClickToCodeRange(Point click,
+                                                   Size originalImageSize, 
+                                                   Size sizeOnScreen, 
+                                                   out int start, out int count)
+        {
+            start = 0;
+            count = 0;
+
+            VisualFlowPoint fp = FindClosestFlowPoint(click, originalImageSize, sizeOnScreen);
+            if (fp != null)
+            {
+                start = fp.Row;
             }
         }
 
         public Dictionary<Point, string> FlowPointName;
         public Dictionary<string, VisualFlowPoint> FlowPoint;
-        private int m_Height;
-        private int m_Width;
-        public string CodeText;
+        private Size m_ImageSize;
+         public string CodeText;
 
         const string OUT_FILE = "temp_cfg";
         public readonly string DIGRAPH_FILE = Application.StartupPath + "\\Temp\\" + OUT_FILE + ".g";

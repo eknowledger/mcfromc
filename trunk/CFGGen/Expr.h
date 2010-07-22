@@ -1,7 +1,6 @@
 #ifndef EXPRESSION_H
 #define EXPRESSION_H
-
-
+#include <ostream>
 #include <vector>
 #include <map>
 #include <string>
@@ -60,7 +59,7 @@ public:
 	virtual SPExpr Evaluate(const VarToValue& value) const = 0;
 	virtual ExprType Type() const = 0; 
 	virtual SPExpr Clone() const = 0;
-	virtual void print() const = 0;
+	virtual void print(std::ostream& ostr) const = 0;
 
 	virtual bool HasValue() const
 	{

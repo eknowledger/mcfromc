@@ -34,7 +34,7 @@ public:
 	{
 		return !m_hasValue && !m_isUndefined;
 	}
-	virtual void print() const;
+	virtual void print(std::ostream& ostr) const;
 private:
 	AtomType m_atomType;
 	ParamName m_name;

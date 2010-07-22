@@ -26,16 +26,16 @@ namespace CFGViewer
 
         private void GraphPictureBox_MouseClick(object sender, MouseEventArgs e)
         {
-            int start, count;
-            m_app.TranslateGraphClickToCodeRange(e.Location,
-                                GraphPictureBox.Image.Size,
-                                GraphPictureBox.Size,
-                                out start, out count);
+            //int start, count;
+            //m_app.TranslateGraphClickToCodeRange(e.Location,
+            //                    GraphPictureBox.Image.Size,
+            //                    GraphPictureBox.Size,
+            //                    out start, out count);
 
-            //codeTextBox.Lines = lines;
-            //int index = m_app.findOpeningParentheses(codeTextBox.Text, charStart);
-            codeTextBox.SelectionStart = start;
-            codeTextBox.SelectionLength = count;
+            ////codeTextBox.Lines = lines;
+            ////int index = m_app.findOpeningParentheses(codeTextBox.Text, charStart);
+            //codeTextBox.SelectionStart = start;
+            //codeTextBox.SelectionLength = count;
           }
 
         private CFGViewerApp m_app;
@@ -43,17 +43,25 @@ namespace CFGViewer
         private void SetMessage(string text)
         {
             CFGProgressBar.Value += 10;
-            CFGProgressBar.CreateGraphics().DrawString(
-                text, 
-                new Font("Arial", (float)8.25, FontStyle.Regular), 
-                Brushes.Black, 
+            SetMessageWithNoProgress(text, false);
+        }
+
+        private void SetMessageWithNoProgress(string text, bool clearBgd)
+        {
+            Graphics g = CFGProgressBar.CreateGraphics(); 
+            if (clearBgd)
+                g.Clear(Color.White);
+            g.DrawString(
+                text,
+                new Font("Arial", (float)8.25, FontStyle.Regular),
+                Brushes.Black,
                 new PointF(CFGProgressBar.Width / 8 - 10, CFGProgressBar.Height / 2 - 7));
         }
 
-        private void LoadImageFromFile()
+        private void LoadImageFromFile(string imageFile)
         {
-            GraphPictureBox.Image = new Bitmap(m_app.DOT_IMAGE_FILE);
-            GraphPictureBox.Size = new Size(m_app.ImageWidth, m_app.ImageHeight);
+            GraphPictureBox.Image = new Bitmap(imageFile);
+            GraphPictureBox.Size = m_app.ImageSize;
             GraphPictureBox.Refresh();
         }
 
@@ -100,8 +108,7 @@ namespace CFGViewer
 
             m_app.GenerateCFG(codeTextBox.Text);
             
-            CFGProgressBar.Value += 10;
-            CFGProgressBar.Hide();
+            CFGProgressBar.Value = 0;
         }
 
         private void ButtonZoomIn_Click(object sender, EventArgs e)
@@ -118,6 +125,21 @@ namespace CFGViewer
             size.Width = (int)(((float)GraphPictureBox.Size.Width) / 1.3);
             size.Height = (int)(((float)GraphPictureBox.Size.Height) / 1.3);
             GraphPictureBox.Size = size;
+        }
+
+        private void GraphPictureBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (GraphPictureBox.Image != null)
+            {
+                //Point p = GraphPictureBox.PointToClient(e.Location);
+                VisualFlowPoint fp = m_app.FindClosestFlowPoint(e.Location,
+                                    m_app.ImageSize,
+                                    GraphPictureBox.Size);
+                if (fp != null)
+                {
+                    SetMessageWithNoProgress(fp.Text,true);
+                }
+            }
         }
     }
 }

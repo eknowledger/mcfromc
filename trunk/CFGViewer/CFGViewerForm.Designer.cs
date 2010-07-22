@@ -164,6 +164,7 @@
             this.GraphPictureBox.TabIndex = 0;
             this.GraphPictureBox.TabStop = false;
             this.GraphPictureBox.WaitOnLoad = true;
+            this.GraphPictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GraphPictureBox_MouseMove);
             this.GraphPictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.GraphPictureBox_MouseClick);
             // 
             // upperToolStrip

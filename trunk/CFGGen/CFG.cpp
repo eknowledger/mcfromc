@@ -90,10 +90,6 @@ std::vector<FlowPoint*> CFG::flowPoints()
 		fps.push_back((*fpItr).get());
 	}
 
-	for(FPSet::iterator fpItr = m_hiddenFPs.begin();fpItr != m_hiddenFPs.end(); ++fpItr){
-		fps.push_back((*fpItr).get());
-	}
-
 	return fps;
 }
 
