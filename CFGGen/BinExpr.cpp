@@ -1,4 +1,4 @@
-
+#include <ostream>
 #include "BinExpr.h"
 #include "atomexpr.h"
 #include "exprmgr.h"
@@ -120,32 +120,32 @@ bool BinExpr::IsCondition() const
 		   m_OpType == OP_GREATER;
 }
 
-void BinExpr::print() const
+void BinExpr::print(std::ostream& ostr) const
 {
 	std::string op;
 	if (m_OpType == OP_ADD)
-		op = "ADD";
+		op = "+";
 	else if (m_OpType == OP_SUB)
-		op = "SUB";
+		op = "-";
 	else if (m_OpType == OP_MUL)
-		op = "MUL";
+		op = "*";
 	else if (m_OpType == OP_DIV)
-		op = "DIV";
+		op = "/";
 	else if (m_OpType == OP_MOD)
-		op = "MOD";
+		op = "%";
 	else if (m_OpType == OP_LESS)
-		op = "LESS";
+		op = "<";
 	else if (m_OpType == OP_LEQ)
-		op = "LEQ";
+		op = "<=";
 	else if (m_OpType == OP_EQ)
-		op = "EQ";
+		op = "==";
 	else if (m_OpType == OP_GEQ)
-		op = "GEQ";
+		op = ">=";
 	else if (m_OpType == OP_GREATER)
-		op = "GREATER";
-	std::cout <<  op << "(";
-	m_left->print();
-	std::cout << ", ";
-	m_right->print();
-	std::cout << ")";
+		op = ">";
+	ostr << "(";
+	m_left->print(ostr);
+	ostr << op;
+	m_right->print(ostr);
+	ostr << ")";
 }

@@ -56,6 +56,8 @@ public:
 		return false;
 	}
 
+	std::string Text() const;
+
 protected:
 	friend std::ostream& operator<<(std::ostream& os,const SNode& node);
 	

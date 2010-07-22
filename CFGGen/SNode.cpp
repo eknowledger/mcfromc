@@ -1,7 +1,8 @@
 #include "SNode.h"
 #include "SyntaxNodeFactory.h"
 #include <algorithm>
-
+#include <sstream>
+#include "exprmgr.h"
 SNode::SNode(nodeType type) : 
 	m_Type(type), 
 	m_Parent(NULL)
@@ -170,4 +171,103 @@ void SNode::printType(std::ostream& ostr) const
 		ostr << "?? what ?? ";
 		break;
 	}
+}
+
+std::string SNode::Text() const
+{
+	std::string res;
+	std::ostringstream ostr;
+
+	switch (m_Type)
+	{
+	case CONDITION_IF:
+		res = "if (" + m_children[0]->Text() + ") {...}";
+		break;
+	case CONDITION_IF_ELSE: 
+		res = "if (" + m_children[0]->Text() + ") {...} else {...}";
+		break;
+	case ASSIGNMENT_EXPR:
+		res = m_children[0]->Text() + " = " + m_children[1]->Text();
+		break;
+	case NOT_EQUAL_EXPR:
+		res = m_children[0]->Text() + " != " + m_children[1]->Text();
+		break;
+	case LOGICAL_OR_EXPR:
+		res = m_children[0]->Text() + "||" + m_children[1]->Text();
+		break;
+	case LOGICAL_AND_EXPR:
+		res = m_children[0]->Text() + "&&" + m_children[1]->Text();
+		break;
+	case EQUAL_EXPR:
+		res = m_children[0]->Text() + "==" + m_children[1]->Text();
+		break;
+	case LESS_THAN_EXPR:
+		res = m_children[0]->Text() + "<" + m_children[1]->Text();
+		break;
+	case GREATER_THAN_EXPR:
+		res = m_children[0]->Text() + ">" + m_children[1]->Text();
+		break;
+	case LESS_EQ_THAN_EXPR:
+		res = m_children[0]->Text() + "<=" + m_children[1]->Text();
+		break;
+	case GREATER_EQ_THAN_EXPR:
+		res = m_children[0]->Text() + ">=" + m_children[1]->Text();
+		break;
+	case AND_EXPR:
+		break;
+	case ADD_EXPR:
+		res = "(" + m_children[0]->Text() + "+" + m_children[1]->Text() + ")";
+		break;
+	case SUB_EXPR:
+		res = "(" + m_children[0]->Text() + "-" + m_children[1]->Text() + ")";
+		break;
+	case MULT_EXPR:
+		res = "(" + m_children[0]->Text() + "*" + m_children[1]->Text() + ")";
+		break;
+	case DIV_EXPR:
+		res = "(" + m_children[0]->Text() + "/" + m_children[1]->Text() + ")";
+		break;
+	case MOD_EXPR:
+		res = "(" + m_children[0]->Text() + "%" + m_children[1]->Text() + ")";
+		break;
+	case PRE_INCREMENT_UNARY_EXPR:
+		res = "++" + m_children[0]->Text();
+		break;
+	case PRE_DECREMENT_UNARY_EXPR:
+		res = "--" + m_children[0]->Text();
+		break;
+	case POST_INCREMENT_EXPR:
+		res = m_children[0]->Text() + "++";
+		break;
+	case POST_DECREMENT_EXPR:
+		res = m_children[0]->Text() + "--";
+		break;
+	case PREFIX_PLUS:
+		res = "+" + m_children[0]->Text();
+		break;
+	case PREFIX_MINUS:
+		res = "-" + m_children[0]->Text();
+		break;
+	case PREFIX_NOT:
+		res = "!" + m_children[0]->Text();
+		break;
+	case ID:
+	case TYPE_SPECIFIER:
+	case CONST_TYPE:
+		printInfo(ostr);
+		res = ostr.str();
+		break;
+	case WHILE_LOOP:
+		res = "while (" + m_children[0]->Text() + ") {...}";
+		break;
+	case DO_WHILE_LOOP:
+		res = "do {...} while (" + m_children[1]->Text() + ");";
+		break;
+	case FOR_LOOP:
+		res = "for (" + m_children[0]->Text() + "; " + m_children[1]->Text() + "; " +
+			m_children[2]->Text() + ") {...}";
+		break;
+	}
+
+	return res;
 }

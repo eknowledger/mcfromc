@@ -46,7 +46,7 @@ public:
 	}
 	virtual SPExpr Clone() const;
 	virtual bool IsCondition() const;
-	virtual void print() const;
+	virtual void print(std::ostream& ostr) const;
 
 private:
 	OperatorType m_OpType;

@@ -1,4 +1,4 @@
-
+#include <ostream>
 #include "AtomExpr.h"
 #include "binexpr.h"
 #include "exprmgr.h"
@@ -222,20 +222,14 @@ bool AtomExpr::IsUndefined() const
 	return false;
 }
 
-void AtomExpr::print() const
+void AtomExpr::print(std::ostream& ostr) const
 {
-	char tc = 'C';
 	if (AType() == A_CONST)
 	{
-		tc = 'C';
+		ostr << m_value;
 	}
-	else if (AType() == A_VAR)
+	else if (AType() == A_VAR|| AType() == A_UNDEF)
 	{
-		tc = 'V';
+		ostr << m_name;
 	}
-	else if (AType() == A_UNDEF)
-	{
-		tc = 'U';
-	}
-	std::cout << "Atom(" << tc << ")";
 }
