@@ -752,23 +752,26 @@ extern char yytext[];
 extern int column;
 extern int row;
 int errorFlag;
+char* errorLogFile = 0;
 
 yyerror(s)
 char *s;
 {
     errorFlag = 1;
-	fflush(stdout);
 	printf("\n%*s\n%*s\n", column, "^", column, s);
+	fflush(stdout);
 }
 
-int parseSyntax(char* filename, NodeData** root) {
+int parseSyntax(char* filename, NodeData** root, char* errorLogFileName) {
+	FILE* f = fopen(filename,"r");
     row = 0;
     column = 0;
     errorFlag = 0;
-
+    errorLogFile = errorLogFileName;
 	InitLogger("parseLog.log",lDebug);
-	freopen(filename,"r", stdin);
+	freopen(errorLogFile,"w",stdout);
 	WRITE_TO_LOG(lDebug,"Started");
+	yyrestart(f);
 	yyparse();
 	WRITE_TO_LOG(lDebug,"End");
 	TerminateLog();

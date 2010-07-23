@@ -1,6 +1,7 @@
 #include "SyntaxParserInterface.h"
 #include "SNode.h"
 #include <iostream>
+#include <fstream>
 #include <conio.h>
 #include "SyntaxNodeFactory.h"
 #include "SyntaxSimplifier.h"
@@ -46,12 +47,14 @@ void ComputFlowPointVisualData(CFG& cfg, std::vector<FlowPointVisualData>& fpDat
 }
 
 
-void generateCFG(std::string cfilename, std::vector<FlowPointVisualData>& fpData, std::ostream& ostr)
+bool generateCFG(std::string cfilename, std::vector<FlowPointVisualData>& fpData, std::ostream& ostr)
 {	
+	bool rc = true;
 	lastError = "";
 	fpData.clear();
 	NodeData* root = NULL;
-	if (parseSyntax((char*)cfilename.c_str(), &root)==0 && root) {
+	std::string logFileName = cfilename + ".log";
+	if (parseSyntax((char*)cfilename.c_str(), &root, (char*)logFileName.c_str())==0 && root) {
 		SNode* sroot = SyntaxNodeFactory::the().createNode(root);
 		CFG cfg;
 		Syntax2CFG(sroot, cfg).execute();
@@ -63,8 +66,22 @@ void generateCFG(std::string cfilename, std::vector<FlowPointVisualData>& fpData
 		delete sroot;
 	}
 	else {
-		lastError = "Code parsing failed. Check syntax.\n";
+		rc = false;
+		std::string errorMessage;
+		std::ifstream fileStream(logFileName.c_str());
+		char buf[256];
+		while (!fileStream.eof())
+		{
+			fileStream.getline(buf,256);
+			if (strlen(buf) > 0)
+			{
+				errorMessage += std::string(buf) + "\n"; 
+			}
+		}
+		lastError = std::string(errorMessage);
 	}
+
+	return rc;
 }
 
 std::string getLastError()

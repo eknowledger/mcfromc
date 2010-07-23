@@ -32,16 +32,24 @@ namespace ParserDotNetBridge {
 				return m_row;
 			}
 		}
+
+		property  String^ Text {
+			String^ get() {
+				return m_Text;
+			}
+		}
 	internal:
 		VisualFlowPoint(FlowPointVisualData creationData)
 		{
 			m_Name = gcnew String(creationData.name.c_str());
+			m_Text = gcnew String(creationData.text.c_str());
 			m_row = creationData.row;
 			m_col = creationData.col;
 		}
 
 	private:
 		String^ m_Name;
+		String^ m_Text;
 		int m_row;
 		int m_col;
 

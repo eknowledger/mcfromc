@@ -64,6 +64,6 @@ typedef struct tagNode{
 #ifdef __cplusplus 
 	extern "C"
 	{
-		int parseSyntax(char* filename, NodeData** root);
+		int parseSyntax(char* filename, NodeData** root, char* errorLogFileName);
 	}
 #endif
