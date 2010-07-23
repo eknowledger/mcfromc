@@ -14,7 +14,7 @@ namespace CFGViewer
 {
     public delegate void MessageDelegate(string message);
     public delegate void ImageUpdateDelegate(string imageFile);
-    public delegate void ErrorDelegate(string err);
+    public delegate void ErrorDelegate(string heading, string err);
 
     class CFGViewerApp
     {
@@ -49,15 +49,20 @@ namespace CFGViewer
             string graphText = null;
             arr = CFGParser.GenerateCFG(filename, out graphText);
 
-            if (arr != null)
+            string err = CFGParser.GetLastError();
+            if (arr != null && err == "")
             {
                 foreach (VisualFlowPoint fp in arr)
                 {
                     FlowPoint[fp.Name] = fp;
                 }
             }
+            else {
+                rc = false;
+            }
+            
 
-            if (graphText != null)
+            if (rc && graphText != null)
             {
                 WriteGraphToFile(graphText);
                 rc = RunDot(id);
@@ -191,11 +196,11 @@ namespace CFGViewer
                 p2.WaitForExit();
                 rc = (p2.ExitCode == 0);
                 if (!rc)
-                    OnError("dot: graph image file creation failed.");
+                    OnError("dot: graph image file creation failed.", null);
             }
             else
             {
-                OnError("dot: layout file creation failed.");
+                OnError("dot: layout file creation failed.", null);
             }
 
           
@@ -241,11 +246,8 @@ namespace CFGViewer
             string err = CFGParser.GetLastError();
             if (err != "")
             {
-                OnError(err);
-                FreeLibrary(GetModuleHandle("SyntaxParserDLL.dll"));
-                LoadLibrary("SyntaxParserDLL.dll");
+                OnError("Code parsing failed. Check syntax:", err);
             }
-
         }
 
         private void WriteTextFile(string filename, string text)

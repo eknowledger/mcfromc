@@ -65,9 +65,17 @@ namespace CFGViewer
             GraphPictureBox.Refresh();
         }
 
-        private void OnError(string err)
+        private void OnError(string heading, string err)
         {
-            MessageBox.Show(this, err, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            if (err != null)
+            {
+                ErrorMessageDialog dlg = new ErrorMessageDialog("Code Parsing Failed", heading, err);
+                dlg.ShowDialog(this);
+            }
+            else
+            {
+                MessageBox.Show(this, heading, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void OpenFileButton_Click(object sender, EventArgs e)

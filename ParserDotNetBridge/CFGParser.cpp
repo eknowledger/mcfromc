@@ -30,11 +30,13 @@ namespace ParserDotNetBridge {
 		std::string fname;
 		To_string(cfilename, fname);
 		std::ostringstream ostr;
-		std::vector<FlowPointVisualData> fpData = generateCFG(fname, ostr);
-		std::string graphTextStr = ostr.str();
-		graphText = gcnew String(graphTextStr.c_str());
-		for (size_t i = 0; i < fpData.size(); ++i) {
-			arr->Add(gcnew VisualFlowPoint(fpData[i]));
+		std::vector<FlowPointVisualData> fpData;
+		if (generateCFG(fname, fpData, ostr)) {
+			std::string graphTextStr = ostr.str();
+			graphText = gcnew String(graphTextStr.c_str());
+			for (size_t i = 0; i < fpData.size(); ++i) {
+				arr->Add(gcnew VisualFlowPoint(fpData[i]));
+			}
 		}
 
 		return arr;
