@@ -33,5 +33,14 @@ Below you can find the algorithm for converting the C.F.G flow points along with
   }}}
   then if we got from the if block (x = 100) we know that z > x but if we got from else 
   block then z < x.
- # if the value of some variable (y) is unknown then assign the recent equation of (y) and simplify the equation. and assign the equation to x.
- # maybe deal only with unsigned int where negative values are considered as underflow. 
+ # If the value of some variable (y) is unknown then assign the recent equation of (y) and simplify the equation. Then, assign the equation to x.
+ # Maybe deal only with unsigned int where negative values are considered as underflow. 
+ # We need to think what to do about back edges. For example, in the following program:
+ {{{
+     y = 5
+     x = 5;
+     while (x > 0)
+         x--;
+     y = x+1;
+ }}}
+   If we would not consider the back-edge from '*x--*' FP to the '*while*' FP, it would seem that the value of y has grown after the command '*y = x+5*', where in fact its value is smaller. Since there is a back edge which changes the value of '*x*', the value of '*x*' must be "reset" to "*Undefined*". Since the DFS/BFS edges order is not predetermined we can't guarantee that the loop edge will be examined before the edge going "out" of the loop (from the '*while*' FP to the '*y = x+1*' command FP).
