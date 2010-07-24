@@ -72,6 +72,23 @@ FlowPoint* Syntax2CFG::connectFlowPoints(FlowPoint* root,
 		}
 		else {
 			std::vector<FlowPoint*>& children = ChildrenOf[root];
+			if (children.size() == 0) { //if no children
+				startFP = root;
+				endFPs.push_back(root);
+				if (root->syntaxNode() && root->syntaxNode()->ShouldCreateEdgeFromChildren()) {
+					if (root->Type() == FlowPoint::FOR_LOOP_FLOW_POINT)
+					{
+						//Connect increment expression to for loop node.
+						//Later all end points will be connected to the increment expression.
+						FlowPoint* incrFP = ((ForLoopFlowPoint*)root)->getIncrementExpression();
+						addTransition(incrFP, root, m_cfg);
+						addTransition(root, incrFP, m_cfg);
+					}
+					else {
+						addTransition(root,root,m_cfg);
+					}
+				}
+			}
 			for (size_t i = 0; i < children.size(); ++i) {
 				FlowPoint* currStartFP = NULL;
 				std::vector<FlowPoint*> currEndFPs;
@@ -207,7 +224,7 @@ FlowPoint* Syntax2CFG::connectFlowPointsInCompoundBlock(CompoundBlock* block,
 FlowPoint* Syntax2CFG::generateFlowPoints(SNode* root, FlowPoint* parent)
 {	
 	FlowPoint* ret = NULL;
-	if (SyntaxUtils::isStatement(root)) {
+	if (SyntaxUtils::isStatement(root) || root->Type() == EXPRESSION) {
 		ret = generateStatementNodeFlowPoints(root, parent);
 	}
 	else if (SyntaxUtils::isExpression(root)) {
@@ -272,8 +289,14 @@ FlowPoint* Syntax2CFG::generateLoopNodeFlowPoints(SNode* root, FlowPoint* parent
 		FlowPoint* assignExpr = generateFlowPoints(root->children()[0], parent);
 		((Block*)parent)->Add(assignExpr);
 		FlowPoint* loopIncr = generateFlowPoints(root->children()[2]);
-		Block* b = newExpressionBlock(NULL, NULL);
-		b->Add(loopIncr);
+		Block* b = NULL;
+		if (loopIncr->Type() != FlowPoint::EXPRESSION_BLOCK) {
+			b = newExpressionBlock(NULL, NULL);
+			b->Add(loopIncr);
+		}
+		else {
+			b = (Block*)loopIncr;
+		}
 		ForLoopFlowPoint* forLoop = new ForLoopFlowPoint(root, "For_Loop", b);
 		generateFlowPoints(root->children()[3], forLoop);
 		m_cfg.AddFlowPoint(forLoop);
