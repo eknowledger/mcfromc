@@ -190,10 +190,6 @@
 				RelativePath=".\ForLoopFlowPoint.cpp"
 				>
 			</File>
-			<File
-				RelativePath=".\SOrderConditionNode.cpp"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -202,10 +198,6 @@
 			>
 			<File
 				RelativePath="..\Include\CFGInterface.h"
-				>
-			</File>
-			<File
-				RelativePath=".\SOrderConditionNode.h"
 				>
 			</File>
 			<File
@@ -255,6 +247,10 @@
 				</File>
 				<File
 					RelativePath=".\SNode.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\SOrderConditionNode.cpp"
 					>
 				</File>
 				<File
@@ -311,6 +307,10 @@
 				</File>
 				<File
 					RelativePath=".\SNode.h"
+					>
+				</File>
+				<File
+					RelativePath=".\SOrderConditionNode.h"
 					>
 				</File>
 				<File
