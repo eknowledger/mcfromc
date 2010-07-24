@@ -5,6 +5,7 @@
 #include "boost/shared_ptr.hpp"
 #include "boost/graph/adjacency_list.hpp"
 #include "CommonGraphDefs.h"
+#include "MCGraph.h"
 #include <list>
 #include <vector>
 #include <ostream>
@@ -30,7 +31,7 @@ public:
 	FlowPoint* AddFlowPoint(FlowPoint* fp);
 	FlowPoint* AddHiddenFlowPoint(SNode* node, std::string name);
 	void RemoveFlowPoint(FlowPoint* fp);
-	void AddEdge(FlowPoint* f,FlowPoint* g);
+	MCSharedPtr AddEdge(FlowPoint* f,FlowPoint* g);
 	void RemoveEdge(FlowPoint* f,FlowPoint* g);
 	bool isEdge(FlowPoint* f,FlowPoint* g);
 	FlowPointList neighbors(FlowPoint* fp);
@@ -47,4 +48,7 @@ private:
 	FPSet m_knownFPs;
 	FPSet m_hiddenFPs;
 	FlowPoint* m_startFP;
+	//MCs on the graph
+	typedef std::set<MCSharedPtr> MCSet;
+	MCSet m_knwonMCs;
 };

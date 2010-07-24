@@ -4,6 +4,7 @@
 #include "Block.h"
 #include "boost\graph\graphviz.hpp"
 #include "GeneralMacros.h"
+#include "boost/make_shared.hpp"
 
 CFG::CFG(void): m_startFP(NULL)
 {
@@ -55,11 +56,35 @@ void CFG::RemoveFlowPoint(FlowPoint* fp)
 	}
 }
 
-void CFG::AddEdge(FlowPoint* f,FlowPoint* g)
+namespace{
+	//this should be removed because we need to move to FPSharedPTR in all 
+	//places
+	FPSharedPtr findKnownShared(FPSet& fps,FlowPoint* f)
+	{
+		for(FPSet::iterator fItr = fps.begin(); fItr != fps.end(); ++fItr){
+			if(fItr->get() == f)
+				return *fItr;
+		}
+		return FPSharedPtr();
+	}
+}
+
+MCSharedPtr CFG::AddEdge(FlowPoint* f,FlowPoint* g)
 {
 	CFGBase::vertex_descriptor u = f->cfgID();
 	CFGBase::vertex_descriptor v = g->cfgID();
-	boost::add_edge(u,v,*this);
+	CFGBase::edge_descriptor e = boost::add_edge(u,v,*this).first;
+
+	//creates the MC that is attached to the C.F.G
+	MCSharedPtr spMC(new MCGraph());
+	FPSharedPtr spF = findKnownShared(m_knownFPs,f);
+	FPSharedPtr spG = findKnownShared(m_knownFPs,g);
+	ASSERT_RETURN(spF != NULL && spG != NULL,MCSharedPtr());
+	spMC->setFlowPoints(spF,spG);
+	boost::put(boost::edge_sizeChange,*this,e,MCWeakPtr(spMC));
+	m_knwonMCs.insert(spMC);
+
+	return spMC;
 }
 
 void CFG::RemoveEdge(FlowPoint* f,FlowPoint* g)
@@ -67,6 +92,15 @@ void CFG::RemoveEdge(FlowPoint* f,FlowPoint* g)
 
 	CFGBase::vertex_descriptor u = f->cfgID();
 	CFGBase::vertex_descriptor v = g->cfgID();
+	
+	//removes the mc from the known MCs
+	CFGBase::edge_descriptor e = boost::edge(u,v,*this).first;
+	MCWeakPtr attachedMC = boost::get(boost::edge_sizeChange,*this,e);
+	MCSharedPtr spMC = attachedMC.lock();
+	MCSet::iterator mcItr = m_knwonMCs.find(spMC);
+	if(mcItr != m_knwonMCs.end())
+		m_knwonMCs.erase(mcItr);
+
 	boost::remove_edge(u,v,*this);
 }
 
