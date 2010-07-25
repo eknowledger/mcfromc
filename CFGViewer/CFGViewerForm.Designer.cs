@@ -216,8 +216,8 @@
             this.ClientSize = new System.Drawing.Size(571, 418);
             this.Controls.Add(this.upperToolStrip);
             this.Controls.Add(this.splitContainer1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CFGViewerForm";
-            this.ShowIcon = false;
             this.Text = "Control Flow Graph Viewer";
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();

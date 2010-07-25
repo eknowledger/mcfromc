@@ -143,11 +143,14 @@ namespace CFGViewer
                 VisualFlowPoint fp = m_app.FindClosestFlowPoint(e.Location,
                                     m_app.ImageSize,
                                     GraphPictureBox.Size);
-                if (fp != null)
+                if (fp != null && fp != m_oldFP)
                 {
                     SetMessageWithNoProgress(fp.Text,true);
+                    m_oldFP = fp;
                 }
             }
         }
+
+        private VisualFlowPoint m_oldFP = null;
     }
 }
