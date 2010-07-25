@@ -97,7 +97,7 @@ const ParamName& AtomExpr::Name() const
 	return m_name;
 }
 
-SPExpr AtomExpr::Evaluate( const VarToValue& value ) const
+SPExpr AtomExpr::Evaluate(VarToValue& value ) const
 {
 	SPExpr res;
 	if (IsUndefined() || HasValue())
@@ -109,12 +109,14 @@ SPExpr AtomExpr::Evaluate( const VarToValue& value ) const
 		if (it != value.end()) {
 			res = (*it).second->Clone();
 		}
+		else{
+			//this is a variable that does not have value.
+			//lets create for him undefined value.
+			res = ExprMgr::the().createUndefined();
+			value[m_name] = res;
+		}
 	}
-
-	if (!res.get()) {
-		res = ExprMgr::the().createUndefined();
-	}
-
+	
 	return res;
 }
 

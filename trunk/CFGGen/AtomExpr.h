@@ -22,7 +22,7 @@ public:
 	const ParamName& Name() const;
 	ValType Value() const;
 
-	virtual SPExpr Evaluate(const VarToValue& value) const;
+	virtual SPExpr Evaluate(VarToValue& value) const;
 	virtual ExprType Type() const;
 	AtomType AType() const {
 		return m_atomType;
