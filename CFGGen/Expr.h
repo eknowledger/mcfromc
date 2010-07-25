@@ -56,7 +56,7 @@ public:
 	{
 	}
 
-	virtual SPExpr Evaluate(const VarToValue& value) const = 0;
+	virtual SPExpr Evaluate(VarToValue& value) const = 0;
 	virtual ExprType Type() const = 0; 
 	virtual SPExpr Clone() const = 0;
 	virtual void print(std::ostream& ostr) const = 0;

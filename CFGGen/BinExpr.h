@@ -38,7 +38,7 @@ public:
 		return m_right;
 	}
 
-	virtual SPExpr Evaluate(const VarToValue& value) const;
+	virtual SPExpr Evaluate(VarToValue& value) const;
 
 	virtual ExprType Type() const 
 	{

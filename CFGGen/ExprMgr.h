@@ -18,7 +18,7 @@ public:
 	SPExpr createUndefined();
 	SPExpr createVar(const ParamName& varName, ValType addedValue = 0);
 	ExprSimplifier& Simplifier();
-	Order ComputeOrder(const SPExpr& a, const SPExpr& b, const VarToValue& v2v) const;
+	Order ComputeOrder(const SPExpr& a, const SPExpr& b,VarToValue& v2v) const;
 private:
 	OperatorType OpType(SNode* node);
 

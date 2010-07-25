@@ -3,7 +3,7 @@
 #include "atomexpr.h"
 #include "exprmgr.h"
 
-SPExpr BinExpr::Evaluate( const VarToValue& value ) const
+SPExpr BinExpr::Evaluate(VarToValue& value ) const
 {
 	SPExpr res;
 

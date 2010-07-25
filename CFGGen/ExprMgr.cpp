@@ -125,7 +125,7 @@ ExprSimplifier& ExprMgr::Simplifier()
 	return m_simplifier;
 }
 
-Order ExprMgr::ComputeOrder(const SPExpr& a, const SPExpr& b, const VarToValue& v2v) const
+Order ExprMgr::ComputeOrder(const SPExpr& a, const SPExpr& b, VarToValue& v2v) const
 {
 	Order o = END_ORDER;
 	SPExpr diff = *a - *b;
