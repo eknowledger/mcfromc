@@ -77,7 +77,10 @@ bool generateCFG(std::string cfilename, std::vector<FlowPointVisualData>& fpData
 			{
 				errorMessage += std::string(buf) + "\n"; 
 			}
+			if (fileStream.gcount() == 0)
+				break;
 		}
+		fileStream.close();
 		lastError = std::string(errorMessage);
 	}
 

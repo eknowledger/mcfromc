@@ -22,10 +22,13 @@ namespace CFGViewer
             {
                 richTextBoxCode.Text = code;
                 int startIndex = richTextBoxCode.Text.LastIndexOf('^');
-                int lastIndex = richTextBoxCode.Text.Length-1;
-                richTextBoxCode.Select(startIndex, lastIndex - startIndex + 1);
-                richTextBoxCode.SelectionColor = Color.Red;
-                richTextBoxCode.Select(0, 0);
+                if (startIndex > 0)
+                {
+                    int lastIndex = richTextBoxCode.Text.Length - 1;
+                    richTextBoxCode.Select(startIndex, lastIndex - startIndex + 1);
+                    richTextBoxCode.SelectionColor = Color.Red;
+                    richTextBoxCode.Select(0, 0);
+                }
                 ApplyKeywordsColoring();
                 richTextBoxCode.BackColor = Color.White;
             }
