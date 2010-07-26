@@ -44,3 +44,20 @@ Below you can find the algorithm for converting the C.F.G flow points along with
      y = x+1;
  }}}
    If we would not consider the back-edge from '*x--*' FP to the '*while*' FP, it would seem that the value of y has grown after the command '*y = x+5*', where in fact its value is smaller. Since there is a back edge which changes the value of '*x*', the value of '*x*' must be "reset" to "*Undefined*". Since the DFS/BFS edges order is not predetermined we can't guarantee that the loop edge will be examined before the edge going "out" of the loop (from the '*while*' FP to the '*y = x+1*' command FP).
+ # Idea for algorithm(work in progress):
+    Denote: inVal(*e*) = map of edge *e* entrance variable values.  
+            outVal(*e*) = map of edge *e* exit variable values.  
+    ## Run DFS on graph:
+       # When encountering any edge, mark it as "Dirty".
+       # When encountering a back-edge *e* (an edge closing a loop in the CFG):
+         # Mark edge as "back-edge".
+    # While there are edges marked as "Dirty":
+      # Run DFS on graph, evaluating size-change on all edges, as described in the basic algorithm above:
+        # Evaluate size-change on edges marked as "Dirty". After doing so, mark them as "Clean".
+        # If a FP *f* has an in-edge which is marked "Dirty", mark all it's out-edges as "Dirty"
+        # When encountering a FP *f* with an in-edge *b* which is marked as "back-edge":
+          # For each variable *x* which participates in outVal(*b*) :
+            # For each out-edge *e* of *f*:
+              # if inVal(*e*) contains *x*, Then: 
+                # Remove *x* from inVal(*e*).
+                # Mark *e* as "Dirty".
