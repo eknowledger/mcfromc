@@ -11,7 +11,7 @@ Basically any structure legal in the C language except, mainly, the following el
   # Arrays.
   # *goto*, *break*, *continue* and *return* commands.
   # *switch* statement.
-  # Bitwise operators ( ^, ~, >>, <<, &, | ) and bitwise assignment operators ( <<=, >>=, ~=, &=, ^=, |= ).
+  # Bitwise operators ( `^`, ~, >>, <<, &, | ) and bitwise assignment operators ( <<=, >>=, ~=, &=, `^`=, |= ).
   # Modulo operator (*%*).
   # Enumerators (*enum*).
 
@@ -57,7 +57,7 @@ In addition, the following applies:
 
 * multiplicative_expression *
 	::= unary_expression
-	| multiplicative_expression '*' unary_expression
+	| multiplicative_expression '`*`' unary_expression
 	| multiplicative_expression '/' unary_expression
 
 * additive_expression *
