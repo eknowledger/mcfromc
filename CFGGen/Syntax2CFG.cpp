@@ -8,6 +8,7 @@
 #include "SyntaxUtils.h"
 #include <iostream>
 #include "forloopflowpoint.h"
+#include "SIdentifierNode.h"
 
 namespace{
 	void addTransition(FlowPoint* f,FlowPoint* g,CFG& cfg){
@@ -35,6 +36,7 @@ bool Syntax2CFG::execute()
 	clearCompoundBlocks();
 	ChildrenOf.clear();
 	SyntaxSimplifier(m_root).execute();
+	collectVariableNames(m_root);
 	FlowPoint* fp = generateFlowPoints(m_root);
 	if (fp) {
 		reduceExpressionBlocks();
@@ -433,6 +435,22 @@ void Syntax2CFG::mergeConsecutiveExpressionBlocks()
 				//finally, remove second block from CFG.
 				m_cfg.RemoveFlowPoint(second);				
 			}
+		}
+	}
+}
+
+void Syntax2CFG::collectVariableNames( SNode* root )
+{
+	if (root)
+	{
+		if (root->Type() == ID) 
+		{
+			m_cfg.AddVariable(((SIdentifierNode*)root)->name());
+		}
+
+		for (size_t i = 0; i < root->children().size(); ++i)
+		{
+			collectVariableNames(root->children()[i]);
 		}
 	}
 }

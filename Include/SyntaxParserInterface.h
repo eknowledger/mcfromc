@@ -11,6 +11,12 @@ typedef enum {
 	EXPRESSION,
 	CONDITIONAL_EXPRESSION,
 	ASSIGNMENT_EXPR,
+	EQ_ASSIGNMENT_EXPR,
+	MUL_ASSIGNMENT_EXPR,
+	DIV_ASSIGNMENT_EXPR,
+	ADD_ASSIGNMENT_EXPR,
+	SUB_ASSIGNMENT_EXPR,
+	MOD_ASSIGNMENT_EXPR,
 	LOGICAL_OR_EXPR,
 	LOGICAL_AND_EXPR,
 	EQUAL_EXPR,
@@ -52,6 +58,7 @@ typedef enum {
 
 typedef struct tagNode{
 	nodeType m_type;
+	nodeType m_subType;
 	unsigned int m_childCount;
 	unsigned int m_size;
 	char* m_name;

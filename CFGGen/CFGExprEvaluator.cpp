@@ -6,6 +6,7 @@
 #include "SIdentifierNode.h"
 #include "Block.h"
 #include "boost\graph\depth_first_search.hpp"
+#include "SAssignmentNode.h"
 
 
 void CFGExprEvaluator::Evaluate()
@@ -78,6 +79,35 @@ void CFGExprEvaluator::ExprEvalVisitor::discover_vertex( Vertex u, const Graph &
 	}
 }
 
+SPExpr CFGExprEvaluator::ExprEvalVisitor::evaluateAssignmentExpr(SNode* expr) const
+{
+	SPExpr val;
+	SPExpr varEx = ExprMgr::the().create(expr->children()[0]);
+	if (expr->children().size() > 2)
+		val = ExprMgr::the().create(expr->children()[2]);
+	else
+		val = ExprMgr::the().create(expr->children()[1]);
+
+	SAssignmentNode* assignment = (SAssignmentNode*)expr;
+	if (assignment->subType() == ADD_ASSIGNMENT_EXPR) {
+		val = (*varEx + *val);
+	}
+	else if (assignment->subType() == SUB_ASSIGNMENT_EXPR) {
+		val = (*varEx - *val);
+	}
+	else if (assignment->subType() == MUL_ASSIGNMENT_EXPR) {
+		val = (*varEx * *val);
+	}
+	else if (assignment->subType() == DIV_ASSIGNMENT_EXPR) {
+		val = (*varEx / *val);
+	}
+	else if (assignment->subType() == MOD_ASSIGNMENT_EXPR) {
+		val = (*varEx % *val);
+	}
+
+	return val;
+}
+
 void CFGExprEvaluator::ExprEvalVisitor::evaluateExprFlowPoint(FlowPoint* expressionBlock, FlowPoint* fp) const
 {
 	SNode* expr = fp->syntaxNode();
@@ -91,7 +121,7 @@ void CFGExprEvaluator::ExprEvalVisitor::evaluateExprFlowPoint(FlowPoint* express
 			var = ((SIdentifierNode*)expr->children()[0])->name();
 			if (expr->Type() == ASSIGNMENT_EXPR)
 			{
-				val = ExprMgr::the().create(expr->children()[1]);
+				val = evaluateAssignmentExpr(expr);
 			}
 			else if (expr->Type() == POST_INCREMENT_EXPR ||
 				expr->Type() == PRE_INCREMENT_UNARY_EXPR)

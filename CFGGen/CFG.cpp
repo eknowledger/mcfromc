@@ -200,3 +200,13 @@ FlowPoint* CFG::Start() const
 {
 	return m_startFP;
 }
+
+const ParamNameSet& CFG::Variables() const
+{
+	return m_knownVariables;
+}
+
+void CFG::AddVariable( const ParamName& varName )
+{
+	m_knownVariables.insert(varName);
+}

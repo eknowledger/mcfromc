@@ -8,5 +8,9 @@ public:
 	{
 	}
 
+	nodeType subType() {
+		return children()[1]->Type();
+	}
+
 	virtual ~SAssignmentNode(void);
 };

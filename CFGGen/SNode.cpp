@@ -187,7 +187,28 @@ std::string SNode::Text() const
 		res = "if (" + m_children[0]->Text() + ") {...} else {...}";
 		break;
 	case ASSIGNMENT_EXPR:
-		res = m_children[0]->Text() + " = " + m_children[1]->Text();
+		if (m_children.size() > 2)
+			res = m_children[0]->Text() + m_children[1]->Text() + m_children[2]->Text();
+		else
+			res = m_children[0]->Text() + " = " + m_children[1]->Text();		
+		break;
+	case EQ_ASSIGNMENT_EXPR:
+		res = " = ";
+		break;
+	case MUL_ASSIGNMENT_EXPR:
+		res = " *= ";
+		break;
+	case DIV_ASSIGNMENT_EXPR:
+		res = " /= ";
+		break;
+	case ADD_ASSIGNMENT_EXPR:
+		res = " += ";
+		break;
+	case SUB_ASSIGNMENT_EXPR:
+		res = " -= ";
+		break;
+	case MOD_ASSIGNMENT_EXPR:
+		res = " %= ";
 		break;
 	case NOT_EQUAL_EXPR:
 		res = m_children[0]->Text() + " != " + m_children[1]->Text();

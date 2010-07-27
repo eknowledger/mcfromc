@@ -36,6 +36,7 @@ private:
 		}
 
 	private:
+		SPExpr evaluateAssignmentExpr(SNode* expr) const;
 		void evaluateExprFlowPoint(FlowPoint* expressionBlock, FlowPoint* fp) const;
 		void evaluateBranchInvariants(FlowPoint* fp) const;
 		void findRelevantSubConditions(SNode* node, 

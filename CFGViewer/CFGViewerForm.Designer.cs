@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CFGViewerForm));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.codeTextBox = new System.Windows.Forms.TextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.ButtonZoomIn = new System.Windows.Forms.ToolStripButton();
             this.ButtonZoomOut = new System.Windows.Forms.ToolStripButton();
@@ -42,6 +42,8 @@
             this.OpenFileButton = new System.Windows.Forms.ToolStripButton();
             this.editCodeButton = new System.Windows.Forms.ToolStripButton();
             this.GenerateCFGButton = new System.Windows.Forms.ToolStripButton();
+            this.graphToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.codeTextBox = new System.Windows.Forms.RichTextBox();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -72,19 +74,6 @@
             this.splitContainer1.Size = new System.Drawing.Size(547, 354);
             this.splitContainer1.SplitterDistance = 272;
             this.splitContainer1.TabIndex = 1;
-            // 
-            // codeTextBox
-            // 
-            this.codeTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.codeTextBox.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.codeTextBox.Location = new System.Drawing.Point(0, 0);
-            this.codeTextBox.Multiline = true;
-            this.codeTextBox.Name = "codeTextBox";
-            this.codeTextBox.ReadOnly = true;
-            this.codeTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.codeTextBox.Size = new System.Drawing.Size(272, 354);
-            this.codeTextBox.TabIndex = 0;
-            this.codeTextBox.WordWrap = false;
             // 
             // toolStrip1
             // 
@@ -209,6 +198,19 @@
             this.GenerateCFGButton.Text = "Generate CFG";
             this.GenerateCFGButton.Click += new System.EventHandler(this.GenerateCFGButton_Click);
             // 
+            // codeTextBox
+            // 
+            this.codeTextBox.AcceptsTab = true;
+            this.codeTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.codeTextBox.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.codeTextBox.Location = new System.Drawing.Point(0, 0);
+            this.codeTextBox.Name = "codeTextBox";
+            this.codeTextBox.ReadOnly = true;
+            this.codeTextBox.Size = new System.Drawing.Size(272, 354);
+            this.codeTextBox.TabIndex = 0;
+            this.codeTextBox.Text = "";
+            this.codeTextBox.WordWrap = false;
+            // 
             // CFGViewerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -220,7 +222,6 @@
             this.Name = "CFGViewerForm";
             this.Text = "Control Flow Graph Viewer";
             this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
             this.splitContainer1.ResumeLayout(false);
@@ -239,7 +240,6 @@
         #endregion
 
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.TextBox codeTextBox;
         private System.Windows.Forms.Panel GraphPanel;
         private System.Windows.Forms.PictureBox GraphPictureBox;
         private System.Windows.Forms.ToolStrip upperToolStrip;
@@ -251,6 +251,8 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton ButtonZoomIn;
         private System.Windows.Forms.ToolStripButton ButtonZoomOut;
+        private System.Windows.Forms.ToolTip graphToolTip;
+        private System.Windows.Forms.RichTextBox codeTextBox;
     }
 }
 

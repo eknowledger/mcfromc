@@ -16,7 +16,7 @@ namespace CFGViewer
     public delegate void ImageUpdateDelegate(string imageFile);
     public delegate void ErrorDelegate(string heading, string err);
 
-    class CFGViewerApp
+    public class CFGViewerApp
     {
         [DllImport("kernel32.dll")]
         public static extern IntPtr LoadLibrary(string lpFileName);
@@ -337,6 +337,41 @@ namespace CFGViewer
             {
                 start = fp.Row;
             }
+        }
+
+        public void ApplyCodeColoring(RichTextBox rtbox, string word, Color color)
+        {
+             int index = -1;
+            do
+            {
+                index = rtbox.Text.IndexOf(word, index + 1);
+                if (index >= 0)
+                {
+                    rtbox.Select(index, word.Length);
+                    rtbox.SelectionColor = color;
+                }
+            }
+            while (index >= 0);
+        }
+
+        public void ApplyKeywordsColoring(RichTextBox rtbox)
+        {
+            int loc = rtbox.SelectionStart;
+            int len = rtbox.SelectionLength;
+            List<string> words = new List<string>();
+            words.Add("int");
+            words.Add("bool");
+            words.Add("if");
+            words.Add("else");
+            words.Add("for");
+            words.Add("while");
+            words.Add("do");
+            foreach (string word in words)
+            {
+                ApplyCodeColoring(rtbox, word, Color.Blue);
+            }
+            rtbox.SelectionStart = loc;
+            rtbox.SelectionLength = len;
         }
 
         public Dictionary<Point, string> FlowPointName;
