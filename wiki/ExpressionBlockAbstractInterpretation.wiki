@@ -7,8 +7,8 @@ Below you can find the algorithm for converting the C.F.G flow points along with
 
 == Assumptions ==
  * We handle expression of the following format x = ay +b (a,b constants, x and y are variables)
-== Algorithm == 
-<u>Denote</u>:
+ 
+== Notations ==
  # val(*f*) 
    A mapping, : *v* -> *value*, from variable names to their values, which is "attached" to flow point *f*.
  # *current*
@@ -45,7 +45,7 @@ Below you can find the algorithm for converting the C.F.G flow points along with
             # *target*(*x*) <-- *UNIQUE_UNDEFINED_VALUE*()
       # END
  
-<u>The Algorithm</u>:
+== Algorithm ==
  # Add empty MCs to all C.F.G edges.
  # For each flow point *h* in the CFG:
      # val(*h*) <-- {}  (initialize to empty map)
