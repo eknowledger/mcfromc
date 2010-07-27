@@ -204,7 +204,7 @@ In addition, the following applies:
 
 * selection_statement *
 	::= 'if' '(' expression ')' statement
-	| 'if' '(' expression ')' statement ELSE statement
+	| 'if' '(' expression ')' statement 'else' statement
 
 * iteration_statement *
 	::= 'while' '(' expression ')' statement
