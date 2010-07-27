@@ -66,7 +66,7 @@ SPExpr ExprMgr::createUndefined()
 	static size_t undefinedExprCounter = 0;
 	std::ostringstream ostr;
 	ostr << "'U_" << undefinedExprCounter;
-	return SPExpr(new AtomExpr(ostr.str()));
+	return SPExpr(new AtomExpr(ostr.str(),true));
 }
 
 OperatorType ExprMgr::OpType( SNode* node )
