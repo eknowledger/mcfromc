@@ -22,11 +22,19 @@ Below you can find the algorithm for converting the C.F.G flow points along with
    A mapping from Flow Points to {*clean*,*dirty*}.
  # *UNIQUE_UNDEFINED_VALUE*()
    A function returning a uniquely identified undefined value. Each call to it returns a new never used before identifier which can be recognized as "Undefined". an "Undefined" value for a variable means that the variable has a value, but the value is either not-known or can't be deterministically computed. This can happen, for example, when variables are used without being initialized. 
- # *EVALUATE(ex)*
+ # *EVALUATE(ex, val)*
    A function which evaluates an expression *ex* and returns an expression which can be either:
     # A constant value.
     # An undefined uniquely identified value.
-    # A simplified expression containing constant values and/or undefined values at it's leafs.
+    # A simplified expression containing constant values and/or undefined values at it's leafs. The *val* parameter is a mapping *v* -> *value*, between variable names and their values.
+   The function does the following:
+   # *EVALUATE(ex, val)*
+     # For each variable *x* in *ex*:
+        # if *val* does not contain a value for *x* Then: *val*(*x*) <-- *UNIQUE_UNDEFINED_VALUE*()
+        # *ex*(*x*) <-- *val*(*x*)
+     # *ex2* <-- Simplify and evaluate *ex*
+     # Return *ex2*
+     # END
  # *MERGE(target, source)*
    The *target* and *source* parameters are mappings *v -> value*, like *current*. The MERGE function merges *source* into *target*. The function does the following:
    # *MERGE(target, source)*
@@ -35,7 +43,7 @@ Below you can find the algorithm for converting the C.F.G flow points along with
             # *target*(*x*) <-- *source*(*x*)
          # Else If *target*(*x*) is not identical to *source*(*x*) Then:
             # *target*(*x*) <-- *UNIQUE_UNDEFINED_VALUE*()
-     END
+      # END
  
 <u>The Algorithm</u>:
  # Add empty MCs to all C.F.G edges.
@@ -52,7 +60,7 @@ Below you can find the algorithm for converting the C.F.G flow points along with
            ## For each variable *x* in *ex*:  
               # If *current* does not contain *x* Then: *current(x)* <-- *UNIQUE_UNDEFINED_VALUE*()
               # *ex(x)* <-- *current(x)* 
-           ## *current(y)* <-- *EVALUATE(ex)*
+           ## *current(y)* <-- *EVALUATE(ex, current)*
         # tag(*f*) <-- *clean*
         # For each Flow Point *g'* s.t. the edge *(f,g')* is in the CFG, Do:
            # tag(*g'*) <-- *dirty*
@@ -61,6 +69,7 @@ Below you can find the algorithm for converting the C.F.G flow points along with
      ## Else if *e* is a *Forward*, *Cross* or *Back* edge then:
         # *MERGE*(val(*g*), *current*)
         # tag(*g*) <-- *dirty*
+ # END
 
 == Remarks on Algorithm ==
  # DFS *Forward*, *Cross*, *Back* and *Tree* edges are defined as in the following image:
