@@ -20,6 +20,8 @@ Below you can find the algorithm for converting the C.F.G flow points along with
    i.e. *ex(x)* <-- *5* , is equivalent to replacing all occurrences of *x* in *ex* with the value *5*.
  # tag(*f*)
    A mapping from Flow Points to {*clean*,*dirty*}.
+
+== Sub Functions/Procedures ==
  # *UNIQUE_UNDEFINED_VALUE*()
    A function returning a uniquely identified undefined value. Each call to it returns a new never used before identifier which can be recognized as "Undefined". an "Undefined" value for a variable means that the variable has a value, but the value is either not-known or can't be deterministically computed. This can happen, for example, when variables are used without being initialized. 
  # *EVALUATE(ex, val)*
@@ -36,7 +38,7 @@ Below you can find the algorithm for converting the C.F.G flow points along with
      # Return *ex2*
      # END
  # *MERGE(target, source)*
-   The *target* and *source* parameters are mappings *v -> value*, like *current*. The MERGE function merges *source* into *target*. The function does the following:
+   The *target* and *source* parameters are mappings *v -> value*, like *current*. The MERGE function merges *source* into *target*. The procedure does the following:
    * *MERGE(target, source)*
       # For each variable *x* which has a value in *source*, Do:
          # If *target* does not contain a value for *x* Then:
