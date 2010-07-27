@@ -42,6 +42,7 @@ private:
 	void concatVecs(std::vector<FlowPoint*>& a, const std::vector<FlowPoint*>& b);
 	void clearCompoundBlocks();
 	void mergeConsecutiveExpressionBlocks();
+	void collectVariableNames(SNode* root);
 	
 	stdext::hash_map<FlowPoint*, std::vector<FlowPoint*>> ChildrenOf;
 	std::vector<FlowPoint*> m_compoundBlocks;

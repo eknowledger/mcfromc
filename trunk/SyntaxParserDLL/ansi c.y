@@ -38,7 +38,7 @@ NodeData* root_node;
 %token CASE DEFAULT IF ELSE SWITCH WHILE DO FOR GOTO CONTINUE BREAK RETURN
 
 %type <node> postfix_expression and_expression equality_expression relational_expression shift_expression exclusive_or_expression inclusive_or_expression unary_operator multiplicative_expression additive_expression logical_and_expression statement_list statement compound_statement selection_statement conditional_expression expression expression_statement assignment_expression unary_expression logical_or_expression
-%type <node> primary_expression initializer initializer_list
+%type <node> primary_expression initializer initializer_list assignment_operator
 %type <node> iteration_statement function_definition translation_unit external_declaration parameter_type_list declaration_list parameter_declaration parameter_list type_specifier init_declarator init_declarator_list declaration declaration_specifiers declarator direct_declarator
 
 %start translation_unit
@@ -139,6 +139,13 @@ multiplicative_expression
 	| multiplicative_expression '/' unary_expression
 	{
 		NodeData* p = createNode(DIV_EXPR);
+		appendChild(p, $1);
+		appendChild(p, $3);	
+		$$ = p;
+	}
+	| multiplicative_expression '%' unary_expression
+	{
+		NodeData* p = createNode(MOD_EXPR);
 		appendChild(p, $1);
 		appendChild(p, $3);	
 		$$ = p;
@@ -309,6 +316,7 @@ assignment_expression
 	{		
 		NodeData* p = createNode(ASSIGNMENT_EXPR);
 		appendChild(p, $1);
+		appendChild(p, $2);
 		appendChild(p, $3);
 		$$ = p;
 	}
@@ -316,10 +324,29 @@ assignment_expression
 
 assignment_operator
 	: '='
+	{
+		$$ = createNode(EQ_ASSIGNMENT_EXPR);
+	}
 	| MUL_ASSIGN
+	{
+		$$ = createNode(MUL_ASSIGNMENT_EXPR);
+	}
 	| DIV_ASSIGN
+	{
+		$$ = createNode(DIV_ASSIGNMENT_EXPR);
+	}
 	| ADD_ASSIGN
+	{
+		$$ = createNode(ADD_ASSIGNMENT_EXPR);
+	}
 	| SUB_ASSIGN
+	{
+		$$ = createNode(SUB_ASSIGNMENT_EXPR);
+	}
+	| MOD_ASSIGN
+	{
+		$$ = createNode(MOD_ASSIGNMENT_EXPR);
+	}
 	;
 
 expression

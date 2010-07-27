@@ -69,7 +69,7 @@ namespace CFGViewer
         {
             if (err != null)
             {
-                ErrorMessageDialog dlg = new ErrorMessageDialog("Code Parsing Failed", heading, err);
+                ErrorMessageDialog dlg = new ErrorMessageDialog("Code Parsing Failed", heading, err, m_app);
                 dlg.ShowDialog(this);
             }
             else
@@ -139,13 +139,13 @@ namespace CFGViewer
         {
             if (GraphPictureBox.Image != null)
             {
-                //Point p = GraphPictureBox.PointToClient(e.Location);
-                VisualFlowPoint fp = m_app.FindClosestFlowPoint(e.Location,
+                 VisualFlowPoint fp = m_app.FindClosestFlowPoint(e.Location,
                                     m_app.ImageSize,
                                     GraphPictureBox.Size);
                 if (fp != null && fp != m_oldFP)
                 {
-                    SetMessageWithNoProgress(fp.Text,true);
+                    graphToolTip.SetToolTip(GraphPictureBox, fp.Text);
+                    //SetMessageWithNoProgress(fp.Text,true);
                     m_oldFP = fp;
                 }
             }

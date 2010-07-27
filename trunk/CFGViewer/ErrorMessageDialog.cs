@@ -11,9 +11,10 @@ namespace CFGViewer
 {
     public partial class ErrorMessageDialog : Form
     {
-        public ErrorMessageDialog(string caption, string heading, string code)
+        public ErrorMessageDialog(string caption, string heading, string code, CFGViewerApp app)
         {
             InitializeComponent();
+            m_app = app;
             if (caption != null)
                 this.Text = caption;
             if (heading != null)
@@ -29,7 +30,7 @@ namespace CFGViewer
                     richTextBoxCode.SelectionColor = Color.Red;
                     richTextBoxCode.Select(0, 0);
                 }
-                ApplyKeywordsColoring();
+                m_app.ApplyKeywordsColoring(richTextBoxCode);
                 richTextBoxCode.BackColor = Color.White;
             }
         }
@@ -39,36 +40,6 @@ namespace CFGViewer
             this.Close();
         }
 
-        private void ApplyCodeColoring(string word, Color color)
-        {
-            int index = -1;
-            do 
-            {
-                index = richTextBoxCode.Text.IndexOf(word, index+1);
-                if (index >= 0)
-                {
-                    richTextBoxCode.Select(index, word.Length);
-                    richTextBoxCode.SelectionColor = color;
-                }
-            } 
-            while (index >= 0);
-        }
-
-        private void ApplyKeywordsColoring()
-        {
-            List<string> words = new List<string>();
-            words.Add("int");
-            words.Add("bool");
-            words.Add("if");
-            words.Add("else");
-            words.Add("for");
-            words.Add("while");
-            words.Add("do");
-            foreach (string word in words)
-            {
-                ApplyCodeColoring(word, Color.Blue);
-            }
-            richTextBoxCode.Select(0, 0);
-        }
-    }
+        private CFGViewerApp m_app;
+     }
 }
