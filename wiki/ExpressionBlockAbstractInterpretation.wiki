@@ -17,7 +17,7 @@ Below you can find the algorithm for converting the C.F.G flow points along with
    The value of *x* in the *current* map.
  # *ex(x)*
    Reference to all occurrences of the variable *x* in the expression *ex*.
-   i.e. *ex(x) <-- 5* , is equivalent to replacing all occurrences of *x* in *ex* with the value *5*.
+   i.e. *ex(x)* <-- *5* , is equivalent to replacing all occurrences of *x* in *ex* with the value *5*.
  # tag(*f*)
    A mapping from Flow Points to {*clean*,*dirty*}.
  # *UNIQUE_UNDEFINED_VALUE*()
@@ -39,9 +39,9 @@ Below you can find the algorithm for converting the C.F.G flow points along with
  
 <u>The Algorithm</u>:
  # Add empty MCs to all C.F.G edges.
- # For each flow point *f* in the CFG:
-     # val(*f*) <-- {}  (initialize to empty map)
-     # tag(*f*) <-- *dirty*
+ # For each flow point *h* in the CFG:
+     # val(*h*) <-- {}  (initialize to empty map)
+     # tag(*h*) <-- *dirty*
  # While there exists a Flow Point *h* s.t. tag(*h*) = *dirty* , Do:
    # Perform D.F.S and for each discovered edge *e*:
      ## *f* <-- source(*e*)
@@ -54,15 +54,17 @@ Below you can find the algorithm for converting the C.F.G flow points along with
               # *ex(x)* <-- *current(x)* 
            ## *current(y)* <-- *EVALUATE(ex)*
         # tag(*f*) <-- *clean*
-        # For each Flow Point *g'* s.t. the edge (f,g') is in the CFG, Do:
-           # tag(*g'*) <-- dirty
-     ## If the number of in edges of *g* = 1, Then:
+        # For each Flow Point *g'* s.t. the edge *(f,g')* is in the CFG, Do:
+           # tag(*g'*) <-- *dirty*
+     ## If *e* is a *Tree* edge Then:
         # val(*g*) <-- *current*
-     ## Else:
+     ## Else if *e* is a *Forward*, *Cross* or *Back* edge then:
         # *MERGE*(val(*g*), *current*)
         # tag(*g*) <-- *dirty*
 
 == Remarks on Algorithm ==
+ # Forward, Cross, Back and Tree edges are defined as in the following image:
+   [http://upload.wikimedia.org/wikipedia/en/thumb/5/57/Tree_edges.svg/412px-Tree_edges.svg.png DFS Edge Classification]
  # The line "While there exists a Flow Point *h* s.t. tag(*h*) = *dirty* , Do:" can be implemented by doing exactly 2 runs of the DFS.
 
 == Ideas == 
