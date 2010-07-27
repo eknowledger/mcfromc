@@ -63,8 +63,8 @@ Below you can find the algorithm for converting the C.F.G flow points along with
         # tag(*g*) <-- *dirty*
 
 == Remarks on Algorithm ==
- # Forward, Cross, Back and Tree edges are defined as in the following image:
-   [http://upload.wikimedia.org/wikipedia/en/thumb/5/57/Tree_edges.svg/412px-Tree_edges.svg.png DFS Edge Classification]
+ # DFS *Forward*, *Cross*, *Back* and *Tree* edges are defined as in the following image:
+   http://upload.wikimedia.org/wikipedia/en/thumb/5/57/Tree_edges.svg/412px-Tree_edges.svg.png
  # The line "While there exists a Flow Point *h* s.t. tag(*h*) = *dirty* , Do:" can be implemented by doing exactly 2 runs of the DFS.
 
 == Ideas == 
