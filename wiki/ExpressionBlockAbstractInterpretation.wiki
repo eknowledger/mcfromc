@@ -28,7 +28,7 @@ Below you can find the algorithm for converting the C.F.G flow points along with
     # An undefined uniquely identified value.
     # A simplified expression containing constant values and/or undefined values at it's leafs. The *val* parameter is a mapping *v* -> *value*, between variable names and their values.
    The function does the following:
-   # *EVALUATE(ex, val)*
+   * *EVALUATE(ex, val)*
      # For each variable *x* in *ex*:
         # if *val* does not contain a value for *x* Then: *val*(*x*) <-- *UNIQUE_UNDEFINED_VALUE*()
         # *ex*(*x*) <-- *val*(*x*)
@@ -37,7 +37,7 @@ Below you can find the algorithm for converting the C.F.G flow points along with
      # END
  # *MERGE(target, source)*
    The *target* and *source* parameters are mappings *v -> value*, like *current*. The MERGE function merges *source* into *target*. The function does the following:
-   # *MERGE(target, source)*
+   * *MERGE(target, source)*
       # For each variable *x* which has a value in *source*, Do:
          # If *target* does not contain a value for *x* Then:
             # *target*(*x*) <-- *source*(*x*)
