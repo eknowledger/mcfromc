@@ -8,17 +8,62 @@ Below you can find the algorithm for converting the C.F.G flow points along with
 == Assumptions ==
  * We handle expression of the following format x = ay +b (a,b constants, x and y are variables)
 == Algorithm == 
- # Initialize map with all known variables to UNKNOWN (maybe INFINITE)
+<u>Denote</u>:
+ # val(*f*) 
+   A mapping, : *v* -> *value*, from variable names to their values, which is "attached" to flow point *f*.
+ # *current*
+   A "temporary" mapping, : *v* -> *value* between variable names to their values.
+ # *current(x)*
+   The value of *x* in the *current* map.
+ # *ex(x)*
+   Reference to all occurrences of the variable *x* in the expression *ex*.
+   i.e. *ex(x) <-- 5* , is equivalent to replacing all occurrences of *x* in *ex* with the value *5*.
+ # tag(*f*)
+   A mapping from Flow Points to {*clean*,*dirty*}.
+ # *UNIQUE_UNDEFINED_VALUE*()
+   A function returning a uniquely identified undefined value. Each call to it returns a new never used before identifier which can be recognized as "Undefined". an "Undefined" value for a variable means that the variable has a value, but the value is either not-known or can't be deterministically computed. This can happen, for example, when variables are used without being initialized. 
+ # *EVALUATE(ex)*
+   A function which evaluates an expression *ex* and returns an expression which can be either:
+    # A constant value.
+    # An undefined uniquely identified value.
+    # A simplified expression containing constant values and/or undefined values at it's leafs.
+ # *MERGE(target, source)*
+   The *target* and *source* parameters are mappings *v -> value*, like *current*. The MERGE function merges *source* into *target*. The function does the following:
+   # *MERGE(target, source)*
+      # For each variable *x* which has a value in *source*, Do:
+         # If *target* does not contain a value for *x* Then:
+            # *target*(*x*) <-- *source*(*x*)
+         # Else If *target*(*x*) is not identical to *source*(*x*) Then:
+            # *target*(*x*) <-- *UNIQUE_UNDEFINED_VALUE*()
+     END
+ 
+<u>The Algorithm</u>:
  # Add empty MCs to all C.F.G edges.
- # Perform D.F.S and while examining edges do the following:
-     ## f <- source(e)
-     ## g <- target(e)
-     ## current <- map of f
-     ## for each expression in the expression block of f do
-           ## replace the variables with their values according to the current map.
-           ## evaluate the expression
-           ## set the new value in the map.
-     ## if the number of in edges of g = 1 then copy the map of variable values from current to g.
+ # For each flow point *f* in the CFG:
+     # val(*f*) <-- {}  (initialize to empty map)
+     # tag(*f*) <-- *dirty*
+ # While there exists a Flow Point *h* s.t. tag(*h*) = *dirty* , Do:
+   # Perform D.F.S and for each discovered edge *e*:
+     ## *f* <-- source(*e*)
+     ## *g* <-- target(*e*)
+     ## *current* <-- val(*f*)
+     ## If tag(*f*) = *dirty*  and *f* is an expression block Then:
+        # For each expression *ex*, which changes variable *y*, in the expression block of *f* Do:
+           ## For each variable *x* in *ex*:  
+              # If *current* does not contain *x* Then: *current(x)* <-- *UNIQUE_UNDEFINED_VALUE*()
+              # *ex(x)* <-- *current(x)* 
+           ## *current(y)* <-- *EVALUATE(ex)*
+        # tag(*f*) <-- *clean*
+        # For each Flow Point *g'* s.t. the edge (f,g') is in the CFG, Do:
+           # tag(*g'*) <-- dirty
+     ## If the number of in edges of *g* = 1, Then:
+        # val(*g*) <-- *current*
+     ## Else:
+        # *MERGE*(val(*g*), *current*)
+        # tag(*g*) <-- *dirty*
+
+== Remarks on Algorithm ==
+ # The line "While there exists a Flow Point *h* s.t. tag(*h*) = *dirty* , Do:" can be implemented by doing exactly 2 runs of the DFS.
 
 == Ideas == 
 
@@ -34,7 +79,6 @@ Below you can find the algorithm for converting the C.F.G flow points along with
   then if we got from the if block (x = 100) we know that z > x but if we got from else 
   block then z < x.
  # If the value of some variable (y) is unknown then assign the recent equation of (y) and simplify the equation. Then, assign the equation to x.
- # Maybe deal only with unsigned int where negative values are considered as underflow. 
  # We need to think what to do about back edges. For example, in the following program:
  {{{
      y = 5
@@ -44,20 +88,3 @@ Below you can find the algorithm for converting the C.F.G flow points along with
      y = x+1;
  }}}
    If we would not consider the back-edge from '*x--*' FP to the '*while*' FP, it would seem that the value of y has grown after the command '*y = x+5*', where in fact its value is smaller. Since there is a back edge which changes the value of '*x*', the value of '*x*' must be "reset" to "*Undefined*". Since the DFS/BFS edges order is not predetermined we can't guarantee that the loop edge will be examined before the edge going "out" of the loop (from the '*while*' FP to the '*y = x+1*' command FP).
- # Idea for algorithm(work in progress):
-    Denote: inVal(*e*) = map of edge *e* entrance variable values.  
-            outVal(*e*) = map of edge *e* exit variable values.  
-    ## Run DFS on graph:
-       # When encountering any edge, mark it as "Dirty".
-       # When encountering a back-edge *e* (an edge closing a loop in the CFG):
-         # Mark edge as "back-edge".
-    # While there are edges marked as "Dirty":
-      # Run DFS on graph, evaluating size-change on all edges, as described in the basic algorithm above:
-        # Evaluate size-change on edges marked as "Dirty". After doing so, mark them as "Clean".
-        # If a FP *f* has an in-edge which is marked "Dirty", mark all it's out-edges as "Dirty"
-        # When encountering a FP *f* with an in-edge *b* which is marked as "back-edge":
-          # For each variable *x* which participates in outVal(*b*) :
-            # For each out-edge *e* of *f*:
-              # if inVal(*e*) contains *x*, Then: 
-                # Remove *x* from inVal(*e*).
-                # Mark *e* as "Dirty".
