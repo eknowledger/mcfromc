@@ -221,7 +221,7 @@ SPExpr AtomExpr::operator/( const Expr& rhs ) const
 
 bool AtomExpr::IsUndefined() const
 {
-	return false;
+	return m_isUndefined;
 }
 
 void AtomExpr::print(std::ostream& ostr) const
