@@ -222,3 +222,8 @@ void CFG::AddVariable( const ParamName& varName )
 {
 	m_knownVariables.insert(varName);
 }
+
+const MCSet& CFG::KnownMCs() const
+{
+	return m_knwonMCs;
+}

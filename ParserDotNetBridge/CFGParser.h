@@ -20,7 +20,10 @@ namespace ParserDotNetBridge {
 		static bool To_string( String^ source, std::string &target);
 
 	public:
-		static ArrayList^ GenerateCFG(String^ cfilename, [Out] String^% graphText);
+		static ArrayList^ GenerateCFG(String^ cfilename, 
+									  [Out] String^% graphText,
+									  [Out] ArrayList^% mcGraphNames,
+									  [Out] ArrayList^% mcGraphTexts);
 		static String^ GetLastError();
 	};
 }

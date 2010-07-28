@@ -18,15 +18,6 @@ namespace CFGViewer
 
     public class CFGViewerApp
     {
-        [DllImport("kernel32.dll")]
-        public static extern IntPtr LoadLibrary(string lpFileName);
-
-        [DllImport("kernel32.dll")]
-        public static extern IntPtr FreeLibrary(IntPtr library);
-
-        [DllImport("kernel32.dll")]
-        public static extern IntPtr GetModuleHandle(string lpFileName);
-
         public event MessageDelegate OnMessage;
         public event ImageUpdateDelegate OnImageUpdate;
         public event ErrorDelegate OnError;
@@ -45,9 +36,10 @@ namespace CFGViewer
         {
             bool rc = true;
             ArrayList arr = null;
+            ArrayList mcNames, mcTexts;
             FlowPoint = new Dictionary<string, VisualFlowPoint>();
-            string graphText = null;
-            arr = CFGParser.GenerateCFG(filename, out graphText);
+            string graphText;
+            arr = CFGParser.GenerateCFG(filename, out graphText, out mcNames, out mcTexts);
 
             string err = CFGParser.GetLastError();
             if (arr != null && err == "")
@@ -60,12 +52,22 @@ namespace CFGViewer
             else {
                 rc = false;
             }
-            
+
 
             if (rc && graphText != null)
             {
-                WriteGraphToFile(graphText);
+                OnMessage("Writing graph to file");
+                WriteGraphToFile(DIGRAPH_FILE, graphText);
                 rc = RunDot(id);
+            }
+
+            if (rc)
+            {
+                OnMessage("Writing MC graphs to file");
+                for (int i = 0; i < mcNames.Count; ++i)
+                {
+                    WriteGraphToFile(DIGRAPH_FILE + ".MC_" + (mcNames[i] as string), mcTexts[i] as string);
+                }
             }
 
             return rc;
@@ -192,10 +194,9 @@ namespace CFGViewer
             return closingIndex;
         }
 
-        private void WriteGraphToFile(string graphText)
+        public void WriteGraphToFile(string filename, string graphText)
         {
-            OnMessage("Writing graph to file");
-            FileStream fstr = File.OpenWrite(DIGRAPH_FILE);
+            FileStream fstr = File.OpenWrite(filename);
             using (StreamWriter writer = new StreamWriter(fstr))
             {
                 writer.AutoFlush = true;
@@ -220,13 +221,7 @@ namespace CFGViewer
             rc = (p1.ExitCode == 0);
             if (rc) 
             {
-                OnMessage("Running dot tool - generating bitmap");
-                startInfo.Arguments = "-Tgif " + DIGRAPH_FILE + " -o " + DOT_IMAGE_FILE + "_" + id.ToString();
-                Process p2 = Process.Start(startInfo);
-                p2.WaitForExit();
-                rc = (p2.ExitCode == 0);
-                if (!rc)
-                    OnError("dot: graph image file creation failed.", null);
+                rc = GenerateDotBitmap(DIGRAPH_FILE, DOT_IMAGE_FILE + "_" + id.ToString());
             }
             else
             {
@@ -234,6 +229,24 @@ namespace CFGViewer
             }
 
           
+
+            return rc;
+        }
+
+        public bool GenerateDotBitmap(string inputFileName, string outputFileName)
+        {
+            bool rc = true;
+            OnMessage("Running dot tool - generating bitmap");
+            ProcessStartInfo startInfo = new ProcessStartInfo(Application.StartupPath + "/../ThirdParty/Graphviz/bin/dot.exe");
+            startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            startInfo.Arguments = "-Tgif " + inputFileName + " -o " + outputFileName;
+            Process proc = Process.Start(startInfo);
+            proc.WaitForExit();
+            if (proc.ExitCode != 0)
+            {
+                rc = false;
+                OnError("dot: graph image file creation failed.", null);
+            }
 
             return rc;
         }
@@ -408,10 +421,20 @@ namespace CFGViewer
             rtbox.SelectionLength = len;
         }
 
+        public string GraphFileName
+        {
+            get
+            {
+                return m_graphFileName;
+            }
+        }
+
         public Dictionary<Point, string> FlowPointName;
         public Dictionary<string, VisualFlowPoint> FlowPoint;
         private Size m_ImageSize;
          public string CodeText;
+        private string m_graphFileName = null;
+
 
         const string OUT_FILE = "temp_cfg";
         public readonly string DIGRAPH_FILE = Application.StartupPath + "\\Temp\\" + OUT_FILE + ".g";

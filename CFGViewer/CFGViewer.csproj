@@ -76,6 +76,12 @@
     <Compile Include="ErrorMessageDialog.Designer.cs">
       <DependentUpon>ErrorMessageDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="MCGraphViewerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MCGraphViewerForm.Designer.cs">
+      <DependentUpon>MCGraphViewerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CFGViewerForm.resx">
@@ -84,6 +90,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ErrorMessageDialog.resx">
       <DependentUpon>ErrorMessageDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MCGraphViewerForm.resx">
+      <DependentUpon>MCGraphViewerForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

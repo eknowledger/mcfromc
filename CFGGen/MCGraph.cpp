@@ -14,7 +14,8 @@ namespace{
 		{}
 
 		void operator()(std::ostream& out) const {
-			out << "label=" << m_g->getFriendlyName() << ";\n";
+			out << "label=" << 
+				   m_g->getFriendlyName() << ";\n rankdir=LR;\n";
 		}
 		const MCGraph * const m_g;
 	};
@@ -41,12 +42,35 @@ MCConstrainEdge MCGraph::addEdgeFromInvariant(const InvariantMember& inv){
 	MCGraph::ParamNameToVertex::const_iterator x = m_nameToVertex.find(inv.get<0>());
 	MCGraph::ParamNameToVertex::const_iterator y = m_nameToVertex.find(inv.get<2>());
 	MCBaseGraph::edge_descriptor invEdge;
-	ASSERT_RETURN(x != m_nameToVertex.end() && y != m_nameToVertex.end(),invEdge);
+
+	MCGraph::vertex_descriptor u, v;
+	if (x != m_nameToVertex.end())
+	{
+		u = x->second;
+	}
+	else 
+	{
+		u = boost::add_vertex( *this);
+		boost::put(boost::vertex_name,*this,u,inv.get<0>());
+		m_nameToVertex[inv.get<0>()] = u;
+	}
+	
+	if (y != m_nameToVertex.end())
+	{
+		v = y->second;
+	}
+	else 
+	{
+		v = boost::add_vertex(*this);
+		boost::put(boost::vertex_name,*this,v,inv.get<2>());
+		m_nameToVertex[inv.get<2>()] = v;
+	}
+
 	//Gets the order.
 	Order o = inv.get<1>();
 	ASSERT_RETURN(o != END_ORDER,invEdge);
 	//we do y -> to x since x < y means there is an edge from y to x
-	invEdge = addOrUpdateEdge(y->second,x->second,o);
+	invEdge = addOrUpdateEdge(u, v, o);
 	return invEdge;
 }
 
@@ -138,6 +162,27 @@ namespace{
 
 		const Graph& m_g;
 	};
+
+	template<typename Graph>
+	struct MCVertexWriter
+	{
+		MCVertexWriter(const Graph& g)
+			: m_g(g)
+		{}
+
+		template <typename Vertex>
+		void operator()(std::ostream& out, const Vertex& v) const
+		{
+			std::wstring name = boost::get(boost::vertex_name,m_g,v);
+
+			std::string str;
+			str.assign(name.begin(), name.end());
+			out << "[label=\"" << str << "\" fontsize=13 shape=plaintext]";
+		}
+
+		const Graph& m_g;
+	};
+
 }
 
 std::wostream& operator <<(std::wostream& out,const MCGraph& mc)
@@ -145,7 +190,7 @@ std::wostream& operator <<(std::wostream& out,const MCGraph& mc)
 	out << std::endl;
 	std::stringstream sMC;
 	boost::property_map<MCBaseGraph,boost::vertex_name_t>::const_type vNameProp = get(boost::vertex_name,mc);
-	boost::write_graphviz(sMC,mc,GraphWriters::make_label_writer_w(vNameProp),MCEdgeWriter<MCGraph>(mc),MCGraphWriter(&mc));
+	boost::write_graphviz(sMC,mc,MCVertexWriter<MCGraph>(mc),MCEdgeWriter<MCGraph>(mc),MCGraphWriter(&mc));
 	out << sMC.str().c_str();
 	out << std::endl;
 	return out;

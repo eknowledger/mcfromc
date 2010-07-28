@@ -24,18 +24,29 @@ namespace ParserDotNetBridge {
 	}
 
 	///returns an ArrayList of VisualFlowPoints read and parsed from the C file.
-	ArrayList^ CFGParser::GenerateCFG(String^ cfilename, [Out] String^% graphText)
+	ArrayList^ CFGParser::GenerateCFG(String^ cfilename, 
+									[Out] String^% graphText, 
+									[Out] ArrayList^% mcGraphNames,
+									[Out] ArrayList^% mcGraphTexts)
 	{
 		ArrayList^ arr = gcnew ArrayList();
 		std::string fname;
 		To_string(cfilename, fname);
 		std::ostringstream ostr;
+		StrPairVector mcStrs;
 		std::vector<FlowPointVisualData> fpData;
-		if (generateCFG(fname, fpData, ostr)) {
+		mcGraphTexts = gcnew ArrayList();
+		mcGraphNames = gcnew ArrayList();
+		if (generateCFG(fname, fpData, ostr, mcStrs)) {
 			std::string graphTextStr = ostr.str();
 			graphText = gcnew String(graphTextStr.c_str());
 			for (size_t i = 0; i < fpData.size(); ++i) {
 				arr->Add(gcnew VisualFlowPoint(fpData[i]));
+			}
+
+			for (size_t i = 0; i < mcStrs.size(); ++i) {
+				mcGraphNames->Add(gcnew String(mcStrs[i].first.c_str()));
+				mcGraphTexts->Add(gcnew String(mcStrs[i].second.c_str()));
 			}
 		}
 
