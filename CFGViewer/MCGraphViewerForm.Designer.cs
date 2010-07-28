@@ -53,7 +53,7 @@
             // 
             // MCGraphPictureBox
             // 
-            this.MCGraphPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("MCGraphPictureBox.Image")));
+            this.MCGraphPictureBox.InitialImage = null;
             this.MCGraphPictureBox.Location = new System.Drawing.Point(3, 3);
             this.MCGraphPictureBox.Name = "MCGraphPictureBox";
             this.MCGraphPictureBox.Size = new System.Drawing.Size(945, 878);
@@ -64,6 +64,7 @@
             // buttonClose
             // 
             this.buttonClose.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.buttonClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonClose.Location = new System.Drawing.Point(104, 313);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(75, 23);
