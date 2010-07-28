@@ -170,9 +170,21 @@ struct VertexFlowPointPropertyWriter {
 	CFG &g;
 };
 
+struct EdgeMCPropertyWriter {
+	EdgeMCPropertyWriter(CFG &g_) : g(g_) {}
+	template <class MyEdge>
+	void operator() (std::ostream &out, MyEdge e) {
+		MCWeakPtr attachedMC = boost::get(boost::edge_sizeChange,g,e);
+		MCSharedPtr spMC = attachedMC.lock();		
+		std::string name = spMC->getFriendlyName();
+		out << "[label=" << name << "]";
+	}
+
+	CFG &g;
+};
 void CFG::printForDot(std::ostream& ostr)
 {
-	boost::write_graphviz(ostr,*this, VertexFlowPointPropertyWriter(*this));
+	boost::write_graphviz(ostr,*this, VertexFlowPointPropertyWriter(*this),EdgeMCPropertyWriter(*this));
 }
 
 FlowPoint* CFG::AddHiddenFlowPoint( SNode* node, std::string name )
