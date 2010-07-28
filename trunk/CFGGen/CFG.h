@@ -18,6 +18,7 @@ typedef std::list<FlowPoint*>::iterator FlowPointIterator;
 
 typedef std::set<FPSharedPtr> FPSet;
 typedef std::set<ParamName> ParamNameSet;
+typedef std::set<MCSharedPtr> MCSet;
 
 //////////////////////////////////////////////////////////////////////////
 // Control Flow Graph class. Represents an adjacency list of Flow Points.
@@ -47,13 +48,13 @@ public:
 	void SetStart(FlowPoint* startFP);
 	void AddVariable(const ParamName& varName);
 	const ParamNameSet& Variables() const;
+	const MCSet& KnownMCs() const;
 
 private:
 	FPSet m_knownFPs;
 	FPSet m_hiddenFPs;
 	FlowPoint* m_startFP;
 	//MCs on the graph
-	typedef std::set<MCSharedPtr> MCSet;
 	MCSet m_knwonMCs;
 	ParamNameSet m_knownVariables;
 };

@@ -39,12 +39,19 @@ namespace ParserDotNetBridge {
 			}
 		}
 
+		property bool IsMC {
+			bool get() {
+				return m_isMC;
+			}
+		}
+
 		VisualFlowPoint(String^ name, String^ text)
 		{
 			m_Name = name;
 			m_Text = text;
 			m_row = 0;
 			m_col = 0;
+			m_isMC = true;
 		}
 
 
@@ -55,6 +62,7 @@ namespace ParserDotNetBridge {
 			m_Text = gcnew String(creationData.text.c_str());
 			m_row = creationData.row;
 			m_col = creationData.col;
+			m_isMC = false;
 		}
 
 	private:
@@ -62,6 +70,7 @@ namespace ParserDotNetBridge {
 		String^ m_Text;
 		int m_row;
 		int m_col;
+		bool m_isMC;
 
 	};
 }

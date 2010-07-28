@@ -4,6 +4,9 @@
 #include <vector>
 #include <ostream>
 
+typedef std::pair<std::string,std::string> StrPair;
+typedef std::vector<StrPair> StrPairVector;
+
 struct FlowPointVisualData
 {
 	int row;
@@ -21,6 +24,7 @@ struct FlowPointVisualData
 
 bool generateCFG(std::string cfilename, 
 				 std::vector<FlowPointVisualData>& fpData, 
-				 std::ostream& ostr);
+				 std::ostream& ostr,
+				 StrPairVector& mcStrs);
 
 std::string getLastError();

@@ -155,5 +155,21 @@ namespace CFGViewer
         }
 
         private VisualFlowPoint m_oldFP = null;
+
+        private void GraphPictureBox_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (GraphPictureBox.Image != null)
+            {
+                VisualFlowPoint fp = m_app.FindClosestFlowPoint(e.Location,
+                                   m_app.ImageSize,
+                                   GraphPictureBox.Size);
+                if (fp != null && fp.IsMC)
+                {
+                    MCGraphViewerForm mcViewer = new MCGraphViewerForm(fp.Text, m_app);
+                    CFGProgressBar.Value = 0;
+                    mcViewer.Show(this);
+                }
+            }
+        }
     }
 }

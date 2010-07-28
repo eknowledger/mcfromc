@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CFGViewerForm));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.codeTextBox = new System.Windows.Forms.RichTextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.ButtonZoomIn = new System.Windows.Forms.ToolStripButton();
             this.ButtonZoomOut = new System.Windows.Forms.ToolStripButton();
@@ -43,7 +44,6 @@
             this.editCodeButton = new System.Windows.Forms.ToolStripButton();
             this.GenerateCFGButton = new System.Windows.Forms.ToolStripButton();
             this.graphToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.codeTextBox = new System.Windows.Forms.RichTextBox();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -71,9 +71,22 @@
             this.splitContainer1.Panel2.Controls.Add(this.toolStrip1);
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Panel2.Controls.Add(this.GraphPanel);
-            this.splitContainer1.Size = new System.Drawing.Size(547, 354);
-            this.splitContainer1.SplitterDistance = 272;
+            this.splitContainer1.Size = new System.Drawing.Size(768, 509);
+            this.splitContainer1.SplitterDistance = 381;
             this.splitContainer1.TabIndex = 1;
+            // 
+            // codeTextBox
+            // 
+            this.codeTextBox.AcceptsTab = true;
+            this.codeTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.codeTextBox.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.codeTextBox.Location = new System.Drawing.Point(0, 0);
+            this.codeTextBox.Name = "codeTextBox";
+            this.codeTextBox.ReadOnly = true;
+            this.codeTextBox.Size = new System.Drawing.Size(381, 509);
+            this.codeTextBox.TabIndex = 0;
+            this.codeTextBox.Text = "";
+            this.codeTextBox.WordWrap = false;
             // 
             // toolStrip1
             // 
@@ -83,7 +96,7 @@
             this.ButtonZoomOut});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(271, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(383, 27);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -113,9 +126,9 @@
             // 
             this.panel1.Controls.Add(this.CFGProgressBar);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 331);
+            this.panel1.Location = new System.Drawing.Point(0, 486);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(271, 23);
+            this.panel1.Size = new System.Drawing.Size(383, 23);
             this.panel1.TabIndex = 2;
             // 
             // CFGProgressBar
@@ -125,7 +138,7 @@
             this.CFGProgressBar.ForeColor = System.Drawing.Color.Chartreuse;
             this.CFGProgressBar.Location = new System.Drawing.Point(0, 2);
             this.CFGProgressBar.Name = "CFGProgressBar";
-            this.CFGProgressBar.Size = new System.Drawing.Size(271, 21);
+            this.CFGProgressBar.Size = new System.Drawing.Size(383, 21);
             this.CFGProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.CFGProgressBar.TabIndex = 5;
             this.CFGProgressBar.Visible = false;
@@ -140,7 +153,7 @@
             this.GraphPanel.Controls.Add(this.GraphPictureBox);
             this.GraphPanel.Location = new System.Drawing.Point(0, 26);
             this.GraphPanel.Name = "GraphPanel";
-            this.GraphPanel.Size = new System.Drawing.Size(271, 301);
+            this.GraphPanel.Size = new System.Drawing.Size(383, 456);
             this.GraphPanel.TabIndex = 0;
             // 
             // GraphPictureBox
@@ -154,6 +167,7 @@
             this.GraphPictureBox.TabStop = false;
             this.GraphPictureBox.WaitOnLoad = true;
             this.GraphPictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GraphPictureBox_MouseMove);
+            this.GraphPictureBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.GraphPictureBox_MouseDoubleClick);
             this.GraphPictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.GraphPictureBox_MouseClick);
             // 
             // upperToolStrip
@@ -165,7 +179,7 @@
             this.GenerateCFGButton});
             this.upperToolStrip.Location = new System.Drawing.Point(0, 0);
             this.upperToolStrip.Name = "upperToolStrip";
-            this.upperToolStrip.Size = new System.Drawing.Size(571, 27);
+            this.upperToolStrip.Size = new System.Drawing.Size(792, 27);
             this.upperToolStrip.TabIndex = 2;
             this.upperToolStrip.Text = "Upper Tool Strip";
             // 
@@ -198,24 +212,11 @@
             this.GenerateCFGButton.Text = "Generate CFG";
             this.GenerateCFGButton.Click += new System.EventHandler(this.GenerateCFGButton_Click);
             // 
-            // codeTextBox
-            // 
-            this.codeTextBox.AcceptsTab = true;
-            this.codeTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.codeTextBox.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.codeTextBox.Location = new System.Drawing.Point(0, 0);
-            this.codeTextBox.Name = "codeTextBox";
-            this.codeTextBox.ReadOnly = true;
-            this.codeTextBox.Size = new System.Drawing.Size(272, 354);
-            this.codeTextBox.TabIndex = 0;
-            this.codeTextBox.Text = "";
-            this.codeTextBox.WordWrap = false;
-            // 
             // CFGViewerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(571, 418);
+            this.ClientSize = new System.Drawing.Size(792, 573);
             this.Controls.Add(this.upperToolStrip);
             this.Controls.Add(this.splitContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

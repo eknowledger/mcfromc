@@ -47,7 +47,8 @@ void ComputFlowPointVisualData(CFG& cfg, std::vector<FlowPointVisualData>& fpDat
 }
 
 
-bool generateCFG(std::string cfilename, std::vector<FlowPointVisualData>& fpData, std::ostream& ostr)
+bool generateCFG(std::string cfilename, std::vector<FlowPointVisualData>& fpData, 
+				 std::ostream& ostr, StrPairVector& mcStrs)
 {	
 	bool rc = true;
 	lastError = "";
@@ -62,6 +63,20 @@ bool generateCFG(std::string cfilename, std::vector<FlowPointVisualData>& fpData
 
 		ComputFlowPointVisualData(cfg, fpData);
 		cfg.printForDot(ostr);
+		for (MCSet::const_iterator it = cfg.KnownMCs().begin();
+			 it != cfg.KnownMCs().end(); ++it)
+		{
+			MCSharedPtr spMC = *it;
+			std::wostringstream ostr;
+			ostr << *spMC;
+			std::wstring wstr = ostr.str();
+			if (wstr.size() > 0)
+			{
+				std::string str;			
+				str.assign(wstr.begin(), wstr.end());
+				mcStrs.push_back(StrPair((*it)->getFriendlyName(), str));
+			}
+		}
 
 		delete sroot;
 	}
