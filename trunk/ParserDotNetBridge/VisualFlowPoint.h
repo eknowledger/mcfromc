@@ -38,6 +38,16 @@ namespace ParserDotNetBridge {
 				return m_Text;
 			}
 		}
+
+		VisualFlowPoint(String^ name, String^ text)
+		{
+			m_Name = name;
+			m_Text = text;
+			m_row = 0;
+			m_col = 0;
+		}
+
+
 	internal:
 		VisualFlowPoint(FlowPointVisualData creationData)
 		{

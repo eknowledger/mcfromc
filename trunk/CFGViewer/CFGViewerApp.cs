@@ -78,6 +78,7 @@ namespace CFGViewer
             while (!reader.EndOfStream)
             {
                 string line = reader.ReadLine();
+                //if not edge
                 if (line.IndexOf("->") < 0)
                 {
                     int posInd = line.IndexOf("pos");
@@ -113,6 +114,35 @@ namespace CFGViewer
                             m_ImageSize = new Size(w, h);
                         }
 
+                    }
+                }
+                else //if edge
+                {
+                    int posInd = line.IndexOf("lp=");
+                    if (posInd >= 0)
+                    {
+                        posInd += 4;
+                        int nextInd = line.IndexOf(',', posInd);
+                        string numStr = line.Substring(posInd, nextInd - posInd);
+                        int x = -1, y = -1;
+                        int.TryParse(numStr, out x);
+                        posInd = nextInd + 1;
+                        nextInd = line.IndexOf('\"', posInd);
+                        numStr = line.Substring(posInd, nextInd - posInd);
+                        int.TryParse(numStr, out y);
+                        if (x >= 0 && y >= 0)
+                        {
+                            int labelStartIndex = line.IndexOf("label=");
+                            if (labelStartIndex >= 0)
+                            {
+                                labelStartIndex += 5;
+                                int labelEndIndex = line.IndexOf(",", labelStartIndex);
+                                
+                                line = line.Trim(" \t".ToCharArray());
+                                string fpName = line.Substring(labelStartIndex, labelEndIndex - labelStartIndex - 1) ;
+                                FlowPointName.Add(new Point(x, y), fpName);
+                            }
+                        }
                     }
                 }
             }
@@ -318,6 +348,10 @@ namespace CFGViewer
                 if (FlowPoint.ContainsKey(FlowPointName[closestPoint]))
                 {
                     fp = FlowPoint[FlowPointName[closestPoint]];
+                }
+                else
+                {
+                    fp = new VisualFlowPoint(FlowPointName[closestPoint], FlowPointName[closestPoint]);
                 }
             }
 
