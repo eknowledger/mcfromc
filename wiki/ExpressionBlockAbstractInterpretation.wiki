@@ -20,6 +20,8 @@ Below you can find the algorithm for converting the C.F.G flow points along with
    i.e. *ex(x)* <-- *5* , is equivalent to replacing all occurrences of *x* in *ex* with the value *5*.
  # tag(*f*)
    A mapping from Flow Points to {*clean*,*dirty*}.
+ # *MC(e)*
+   The Monotonicity Constraints graph associated with an edge *e* of the CFG.
 
 == Sub Functions/Procedures ==
  # *UNIQUE_UNDEFINED_VALUE*()
@@ -46,7 +48,9 @@ Below you can find the algorithm for converting the C.F.G flow points along with
          # Else If *target*(*x*) is not identical to *source*(*x*) Then:
             # *target*(*x*) <-- *UNIQUE_UNDEFINED_VALUE*()
       # END
- 
+ # *COMPUTE_MC_GRAPH(e)*
+   Computes the MC graph of a CFG edge *e*. *TBD*.
+
 == Algorithm ==
  # Add empty MCs to all C.F.G edges.
  # For each flow point *h* in the CFG:
@@ -71,6 +75,8 @@ Below you can find the algorithm for converting the C.F.G flow points along with
      ## Else if *e* is a *Forward*, *Cross* or *Back* edge then:
         # *MERGE*(val(*g*), *current*)
         # tag(*g*) <-- *dirty*
+ # For each edge *e* of the CFG:
+    # *MC(e)* <-- *COMPUTE_MC_GRAPH*(*e*)
  # END
 
 == Remarks on Algorithm ==
