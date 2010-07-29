@@ -67,6 +67,9 @@ AtomExpr& AtomExpr::operator=( const AtomExpr& rhs )
 	m_name = rhs.m_name;
 	m_hasValue = rhs.m_hasValue;
 	m_value = rhs.m_value;
+	m_isUndefined = rhs.m_isUndefined;
+	m_atomType = rhs.m_atomType;
+
 	return *this;
 }
 
