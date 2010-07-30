@@ -48,8 +48,10 @@ typedef MCBaseGraph::edge_descriptor MCConstrainEdge;
 namespace boost{
 	enum edge_sizeChange_t{edge_sizeChange};
 	enum vertex_attachedFP_t{vertex_attachedFP};
+	enum edge_invariantTrue_t{edge_invariantTrue};
 	BOOST_INSTALL_PROPERTY(vertex,attachedFP);
 	BOOST_INSTALL_PROPERTY(edge,sizeChange);
+	BOOST_INSTALL_PROPERTY(edge,invariantTrue);
 }
 
 typedef boost::shared_ptr<FlowPoint> FPSharedPtr;
@@ -61,7 +63,8 @@ typedef boost::property<boost::vertex_name_t,std::string,
 	CFGVertexProp;
 
 typedef boost::property<boost::edge_sizeChange_t,MCWeakPtr					//Size change property on the edges is the weak pointer to the MC
-					   ,boost::property<boost::edge_name_t,std::string> >	//Holds the name of the MC that holds the transition.
+					   ,boost::property<boost::edge_name_t,std::string,
+						boost::property<boost::edge_invariantTrue_t,bool> > >	//Holds the name of the MC that holds the transition.
 	CFGEdgeProp;
 
 typedef boost::adjacency_list<boost::listS				//container class of the edges.

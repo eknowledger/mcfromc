@@ -1,7 +1,7 @@
 #include "ExpressionBlock.h"
 
 ExpressionBlock::ExpressionBlock(SNode* statement, FlowPoint* _parent) :
-Block(statement, "Expression_Block", _parent)
+Block(statement, "Expression Block", _parent)
 {
 }
 
