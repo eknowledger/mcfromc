@@ -104,6 +104,17 @@ void CFG::RemoveEdge(FlowPoint* f,FlowPoint* g)
 	boost::remove_edge(u,v,*this);
 }
 
+void CFG::MarkEdgeAsInvariantTrue(FlowPoint* f,FlowPoint* g, bool truthValue)
+{
+
+	CFGBase::vertex_descriptor u = f->cfgID();
+	CFGBase::vertex_descriptor v = g->cfgID();
+
+	//removes the mc from the known MCs
+	CFGBase::edge_descriptor e = boost::edge(u,v,*this).first;
+	boost::put(boost::edge_invariantTrue,*this,e,truthValue);
+}
+
 FlowPointList CFG::neighbors(FlowPoint* fp)
 {
 	FlowPointList retNeighbors;
@@ -164,27 +175,36 @@ struct VertexFlowPointPropertyWriter {
 	template <class MyVertex>
 	void operator() (std::ostream &out, MyVertex u) {
 		std::string name = boost::get(boost::vertex_attachedFP,g,u).lock().get()->name();
-		out << "[label=" << name << "]";
+		out << "[label=\"" << name << "\", fontsize=18]";
 	}
 
 	CFG &g;
 };
 
-struct EdgeMCPropertyWriter {
-	EdgeMCPropertyWriter(CFG &g_) : g(g_) {}
+struct EdgePropertiesWriter {
+	EdgePropertiesWriter(CFG &g_) : g(g_) {}
 	template <class MyEdge>
 	void operator() (std::ostream &out, MyEdge e) {
 		MCWeakPtr attachedMC = boost::get(boost::edge_sizeChange,g,e);
 		MCSharedPtr spMC = attachedMC.lock();		
 		std::string name = spMC->getFriendlyName();
-		out << "[label=" << name << "]";
+		out << "[label=" << name;
+
+		if (boost::get(boost::edge_invariantTrue,g,e))
+		{
+			out << " ,taillabel=T";
+		}
+
+		out << ", labelfontcolor=\"blue\", fontsize=18, "
+			<< "labelfontname=\"Times-Roman\", fontname=Helvetiva, "
+			<< "labelfontsize=16, fontcolor=\"red\"]";
 	}
 
 	CFG &g;
 };
 void CFG::printForDot(std::ostream& ostr)
 {
-	boost::write_graphviz(ostr,*this, VertexFlowPointPropertyWriter(*this),EdgeMCPropertyWriter(*this));
+	boost::write_graphviz(ostr,*this, VertexFlowPointPropertyWriter(*this),EdgePropertiesWriter(*this));
 }
 
 FlowPoint* CFG::AddHiddenFlowPoint( SNode* node, std::string name )

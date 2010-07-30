@@ -35,6 +35,7 @@ public:
 	void RemoveFlowPoint(FlowPoint* fp);
 	MCSharedPtr AddEdge(FlowPoint* f,FlowPoint* g);
 	void RemoveEdge(FlowPoint* f,FlowPoint* g);
+	void MarkEdgeAsInvariantTrue(FlowPoint* f,FlowPoint* g, bool truthValue);
 	bool isEdge(FlowPoint* f,FlowPoint* g);
 	FlowPointList neighbors(FlowPoint* fp);
 	FlowPointList ancestors(FlowPoint* fp);

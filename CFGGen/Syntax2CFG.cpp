@@ -11,9 +11,10 @@
 #include "SIdentifierNode.h"
 
 namespace{
-	void addTransition(FlowPoint* f,FlowPoint* g,CFG& cfg){
+	void addTransition(FlowPoint* f,FlowPoint* g,CFG& cfg, bool isInvariantTrue = false){
 		if(!cfg.isEdge(f,g)){
 			cfg.AddEdge(f,g);
+			cfg.MarkEdgeAsInvariantTrue(f,g, isInvariantTrue);
 		}
 	}
 }
@@ -96,8 +97,13 @@ FlowPoint* Syntax2CFG::connectFlowPoints(FlowPoint* root,
 				std::vector<FlowPoint*> currEndFPs;
 				currStartFP = connectFlowPoints(children[i], currEndFPs);
 				if (currStartFP) {
+					bool markTransitionAsInvariantTrue = root->syntaxNode() &&
+						( SyntaxUtils::isLoop(root->syntaxNode())          ||
+						  SyntaxUtils::isIfBranch(root->syntaxNode())      ||
+						  ( SyntaxUtils::isIfElseBranch(root->syntaxNode()) && i == 0)
+						 );
 					//add downstream edge
-					addTransition(root,currStartFP,m_cfg);
+					addTransition(root,currStartFP,m_cfg, markTransitionAsInvariantTrue);
 				}
 
 				bool concatEndFPs = true;
@@ -120,13 +126,25 @@ FlowPoint* Syntax2CFG::connectFlowPoints(FlowPoint* root,
 							addTransition(currEndFPs[j],nodeToConnect,m_cfg);
 						}
 
-						//make sure that loop FP is connected to next&prev FP by
-						//adding the loop FP to the end vector and setting the
-						//start FP to it.
-						//In this case, any FPs inside the loop statement
-						//should not be passed to the parent scope.
-						endFPs.push_back(root);
-						startFP = root;
+						if (SyntaxUtils::isDoWhileLoop(root->syntaxNode()) &&
+							currStartFP)
+						{
+							//Do while loop - connect loop FP to 1st FP in
+							//its inner block and return the 1st FP to the upper level.
+							startFP = currStartFP;
+							endFPs.push_back(root);
+							//addTransition(root, startFP, m_cfg, true);
+						}
+						else
+						{
+							//make sure that loop FP is connected to next&prev FP by
+							//adding the loop FP to the end vector and setting the
+							//start FP to it.
+							//In this case, any FPs inside the loop statement
+							//should not be passed to the parent scope.
+							endFPs.push_back(root);
+							startFP = root;
+						}
 						concatEndFPs = false;
 					}
 					else if (SyntaxUtils::isBranch(root->syntaxNode())) {
@@ -181,8 +199,9 @@ FlowPoint* Syntax2CFG::connectFlowPointsInCompoundBlock(CompoundBlock* block,
 		//for each ending flow point of the previous flow point sub-tree 
 		for (size_t j = 0; j < prevEndFPs.size(); ++j) {
 			//if current flow point is a simple FP or an expression block
-			if (fps[i]->Type() == FlowPoint::FLOW_POINT ||
-				fps[i]->Type() == FlowPoint::EXPRESSION_BLOCK) {
+			if ((fps[i]->Type() == FlowPoint::FLOW_POINT ||
+				fps[i]->Type() == FlowPoint::EXPRESSION_BLOCK) &&
+				!SyntaxUtils::isDoWhileLoop(fps[i]->syntaxNode())) {
 				//if next node is a FP or Expression Block, connect directly to it,
 				addTransition(prevEndFPs[j],fps[i],m_cfg);
 			}
@@ -299,17 +318,17 @@ FlowPoint* Syntax2CFG::generateLoopNodeFlowPoints(SNode* root, FlowPoint* parent
 		else {
 			b = (Block*)loopIncr;
 		}
-		ForLoopFlowPoint* forLoop = new ForLoopFlowPoint(root, "For_Loop", b);
+		ForLoopFlowPoint* forLoop = new ForLoopFlowPoint(root, "For Loop", b);
 		generateFlowPoints(root->children()[3], forLoop);
 		m_cfg.AddFlowPoint(forLoop);
 		fp = forLoop;
 	}
 	else if (SyntaxUtils::isWhileLoop(root)) {
-		fp = m_cfg.AddFlowPoint(root, "While_Loop");
+		fp = m_cfg.AddFlowPoint(root, "While Loop");
 		generateFlowPoints(root->children()[1], fp);
 	}
 	else if (SyntaxUtils::isDoWhileLoop(root)) {
-		fp = m_cfg.AddFlowPoint(root, "Do_While_Loop");
+		fp = m_cfg.AddFlowPoint(root, "Do While Loop");
 		generateFlowPoints(root->children()[0], fp);
 	}
 
@@ -320,11 +339,11 @@ FlowPoint* Syntax2CFG::generateBranchNodeFlowPoints( SNode* root, FlowPoint* par
 {
 	FlowPoint* fp = NULL;
 	if (SyntaxUtils::isIfBranch(root)) {
-		fp = m_cfg.AddFlowPoint(root, "If_Branch");
+		fp = m_cfg.AddFlowPoint(root, "If Branch");
 		generateFlowPoints(root->children()[1], fp);
 	}
 	else if (SyntaxUtils::isIfElseBranch(root)) {
-		fp = m_cfg.AddFlowPoint(root, "If_Else_Branch");
+		fp = m_cfg.AddFlowPoint(root, "If Else Branch");
 		generateFlowPoints(root->children()[1], fp);
 		generateFlowPoints(root->children()[2], fp);
 	}
