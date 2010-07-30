@@ -61,8 +61,6 @@ void MCGraph::removeEdgeFromInvariant(const InvariantMember& inv)
 
 }
 
-unsigned int MCGraph::McNum = 0;
-
 Invariant MCGraph::computeInvariant(const FlowPoint& f)
 {
 	Invariant resFPInv;
@@ -149,6 +147,50 @@ std::wostream& operator <<(std::wostream& out,const MCGraph& mc)
 	out << sMC.str().c_str();
 	out << std::endl;
 	return out;
+}
+
+void MCGraph::writeParamsInArielFormat(std::wostream& out)
+{
+	MCGraph::vertex_iterator vBegin,vEnd, vIt;
+	boost::tie(vBegin,vEnd) = boost::vertices(*this);
+	vIt = vBegin;
+	while (vIt != vEnd)
+	{
+		if (vIt != vBegin)
+		{
+			out << L",";
+		}
+		out << m_paramVertexToName[*vIt];
+		++vIt;
+	}
+}
+
+void MCGraph::writeInArielFormat(std::wostream& out)
+{
+	std::wstring fromFP = StringToWString(m_fromFlowPoint.lock()->getFriendlyName());
+	std::wstring toFP = StringToWString(m_toFlowPoint.lock()->getFriendlyName());
+
+	out << fromFP << L"(";
+	writeParamsInArielFormat(out);
+	out << L") :- [";
+	MCGraph::edge_iterator eIt, eEnd, eBegin;
+	boost::tie(eBegin, eEnd) = boost::edges(*this);
+	eIt = eBegin;
+	while (eIt != eEnd)
+	{
+		std::wstring src = m_paramVertexToName[boost::source(*eIt, *this)];
+		std::wstring tgt = m_paramVertexToName[boost::target(*eIt, *this)];
+		Order o = (Order)boost::get(boost::edge_weight,*this,*eIt);
+		if (eIt != eBegin)
+		{
+			out << L",";
+		}
+		out << boost::make_tuple(src, o, tgt);
+		++eIt;
+	}
+	out << L"] ; " << toFP << L"(";
+	writeParamsInArielFormat(out);
+	out << _T(")\n");
 }
 
 MCGraph::edge_descriptor MCGraph::addOrUpdateEdge(vertex_descriptor u,vertex_descriptor v,Order o)
@@ -265,3 +307,4 @@ const MCGraph& MCGraph::operator =(const MCGraph& other)
 	copyFrom(other);
 	return *this;
 }
+

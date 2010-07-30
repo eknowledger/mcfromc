@@ -43,7 +43,6 @@ private:
 									   std::vector<SNode*>& subConditions) const;
 		InvariantMember computeExprInvariant(const BinExpr& expr) const;
 		Order order(OperatorType opType) const;
-		std::wstring StringToWString(const std::string& s) const;
 		Invariant ComputeExprBlockInvariants(VarToValue& inValue, VarToValue& outValue) const;
 	};
 

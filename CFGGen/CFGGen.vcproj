@@ -190,6 +190,10 @@
 				RelativePath=".\ForLoopFlowPoint.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\UniqueObjectIdMgr.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -202,6 +206,10 @@
 			</File>
 			<File
 				RelativePath="..\Include\SyntaxParserInterface.h"
+				>
+			</File>
+			<File
+				RelativePath=".\UniqueObjectIdMgr.h"
 				>
 			</File>
 		</Filter>

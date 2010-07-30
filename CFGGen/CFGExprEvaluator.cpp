@@ -24,16 +24,6 @@ void CFGExprEvaluator::Evaluate()
 	}
 }
 
-std::wstring CFGExprEvaluator::ExprEvalVisitor::StringToWString(const std::string& s) const
-{
-	std::wstring temp(s.length(),L' ');
-	std::copy(s.begin(), s.end(), temp.begin());
-	return temp; 
-}
-
-
-
-
 template <typename Edge, typename Graph>
 void CFGExprEvaluator::ExprEvalVisitor::examine_edge( Edge u, const Graph& g )
 {
