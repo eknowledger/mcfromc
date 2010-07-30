@@ -15,12 +15,14 @@ namespace CFGViewer
     public delegate void MessageDelegate(string message);
     public delegate void ImageUpdateDelegate(string imageFile);
     public delegate void ErrorDelegate(string heading, string err);
+    public delegate void MCTextUpdateDelegate(string mcText);
 
     public class CFGViewerApp
     {
         public event MessageDelegate OnMessage;
         public event ImageUpdateDelegate OnImageUpdate;
         public event ErrorDelegate OnError;
+        public event MCTextUpdateDelegate OnMCTextUpdated;
 
         public CFGViewerApp(MessageDelegate msgDelegator,
                             ImageUpdateDelegate imgDelegator,
@@ -36,10 +38,11 @@ namespace CFGViewer
         {
             bool rc = true;
             ArrayList arr = null;
-            ArrayList mcNames, mcTexts;
+            ArrayList mcNames, mcGraphTexts;
             FlowPoint = new Dictionary<string, VisualFlowPoint>();
             string graphText;
-            arr = CFGParser.GenerateCFG(filename, out graphText, out mcNames, out mcTexts);
+            string mcText;
+            arr = CFGParser.GenerateCFG(filename, out graphText, out mcNames, out mcGraphTexts, out mcText);
 
             string err = CFGParser.GetLastError();
             if (arr != null && err == "")
@@ -66,9 +69,11 @@ namespace CFGViewer
                 OnMessage("Writing MC graphs to file");
                 for (int i = 0; i < mcNames.Count; ++i)
                 {
-                    WriteGraphToFile(DIGRAPH_FILE + ".MC_" + (mcNames[i] as string), mcTexts[i] as string);
+                    WriteGraphToFile(DIGRAPH_FILE + ".MC_" + (mcNames[i] as string), mcGraphTexts[i] as string);
                 }
-            }
+
+                OnMCTextUpdated(mcText);
+             }
 
             return rc;
         }

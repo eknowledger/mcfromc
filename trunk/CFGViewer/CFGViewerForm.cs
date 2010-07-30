@@ -22,6 +22,12 @@ namespace CFGViewer
             codeTextBox.BackColor = Color.White;
             codeTextBox.ForeColor = codeTextBox.ReadOnly ? Color.Gray : Color.Black;
             m_app = new CFGViewerApp(SetMessage, LoadImageFromFile, OnError);
+            m_app.OnMCTextUpdated += UpdateMCText;
+        }
+
+        private void UpdateMCText(string mcText)
+        {
+            textBoxMCOutput.Text = mcText;
         }
 
         private void GraphPictureBox_MouseClick(object sender, MouseEventArgs e)
@@ -170,6 +176,21 @@ namespace CFGViewer
                     mcViewer.Show(this);
                 }
             }
+        }
+
+        private void toolStripButtonSave_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.Filter = ".mc file|*.mc|Any file|*.*";
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                m_app.WriteGraphToFile(dlg.FileName, textBoxMCOutput.Text);
+            }
+        }
+
+        private void textBoxMCOutput_TextChanged(object sender, EventArgs e)
+        {
+            toolStripButtonSave.Enabled = textBoxMCOutput.TextLength > 0;
         }
     }
 }

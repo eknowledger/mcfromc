@@ -24,7 +24,8 @@ struct FlowPointVisualData
 
 bool generateCFG(std::string cfilename, 
 				 std::vector<FlowPointVisualData>& fpData, 
-				 std::ostream& ostr,
+				 std::ostream& gvOstr, 
+				 std::wostream& mcOstr, 
 				 StrPairVector& mcStrs);
 
 std::string getLastError();

@@ -9,6 +9,7 @@
 #include "CFG.h"
 #include "CFGInterface.h"
 #include "cfgexprevaluator.h"
+#include "UniqueObjectIdMgr.h"
 
 std::string lastError;
 
@@ -46,13 +47,31 @@ void ComputFlowPointVisualData(CFG& cfg, std::vector<FlowPointVisualData>& fpDat
 	}
 }
 
-
+/// Method:    generateCFG
+/// FullName:  generateCFG
+/// Access:    public 
+/// Returns:   bool
+/// Description: Generates the CFG and MCs.
+/// Parameter: std::string cfilename
+///					The input C file name.
+/// Parameter: std::vector<FlowPointVisualData> & fpData
+///					Generated CFG flow points visual data vector
+///					The visual data includes text of the relevant code and FP name.
+/// Parameter: std::ostream & gvOstr
+///					graphViz output stream for generation of the CFG bitmap.
+/// Parameter: std::wostream & mcOstr
+///					Montonicity Constraints graph output stream (Ariel's format).
+/// Parameter: StrPairVector & mcStrs
+///					A vector of string pairs. Each pair is a matching between
+///					a MC name and the graphViz text input for generating the MC
+///					graph bitmap.
 bool generateCFG(std::string cfilename, std::vector<FlowPointVisualData>& fpData, 
-				 std::ostream& ostr, StrPairVector& mcStrs)
+				 std::ostream& gvOstr, std::wostream& mcOstr, StrPairVector& mcStrs)
 {	
 	bool rc = true;
 	lastError = "";
 	fpData.clear();
+	UniqueObjectIdMgr::Reset();
 	NodeData* root = NULL;
 	std::string logFileName = cfilename + ".log";
 	if (parseSyntax((char*)cfilename.c_str(), &root, (char*)logFileName.c_str())==0 && root) {
@@ -62,7 +81,7 @@ bool generateCFG(std::string cfilename, std::vector<FlowPointVisualData>& fpData
 		CFGExprEvaluator(cfg).Evaluate();
 
 		ComputFlowPointVisualData(cfg, fpData);
-		cfg.printForDot(ostr);
+		cfg.printForDot(gvOstr);
 		for (MCSet::const_iterator it = cfg.KnownMCs().begin();
 			 it != cfg.KnownMCs().end(); ++it)
 		{
@@ -76,6 +95,7 @@ bool generateCFG(std::string cfilename, std::vector<FlowPointVisualData>& fpData
 				str.assign(wstr.begin(), wstr.end());
 				mcStrs.push_back(StrPair((*it)->getFriendlyName(), str));
 			}
+			spMC->writeInArielFormat(mcOstr);
 		}
 
 		delete sroot;
@@ -102,6 +122,11 @@ bool generateCFG(std::string cfilename, std::vector<FlowPointVisualData>& fpData
 	return rc;
 }
 
+// Method:    getLastError
+// FullName:  getLastError
+// Access:    public 
+// Returns:   std::string
+// Description: Gets the last error string from the Syntax Parser.
 std::string getLastError()
 {
 	return lastError;

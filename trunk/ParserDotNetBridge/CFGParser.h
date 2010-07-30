@@ -23,7 +23,8 @@ namespace ParserDotNetBridge {
 		static ArrayList^ GenerateCFG(String^ cfilename, 
 									  [Out] String^% graphText,
 									  [Out] ArrayList^% mcGraphNames,
-									  [Out] ArrayList^% mcGraphTexts);
+									  [Out] ArrayList^% mcGraphTexts,
+									  [Out] String^% mcsText);
 		static String^ GetLastError();
 	};
 }

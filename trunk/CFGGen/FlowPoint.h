@@ -19,14 +19,7 @@ public:
 		FOR_LOOP_FLOW_POINT
 	};
 	FlowPoint(void);
-	FlowPoint(SNode* _node, const std::string& _name): 
-		m_name(_name),
-		m_node(_node)
-	{
-		static int globalIndex = 0;
-		m_index = globalIndex;
-		globalIndex++;
-	}
+	FlowPoint(SNode* _node, const std::string& _name);
 
 	virtual FlowPointType Type() {
 		return FLOW_POINT;
@@ -52,6 +45,13 @@ public:
 
 	SNode* syntaxNode() {
 		return m_node;
+	}
+
+	std::string getFriendlyName() const
+	{
+		std::ostringstream ostr;
+		ostr << "f" << m_index;
+		return ostr.str();
 	}
 
 	//VarToValue& InValue() {

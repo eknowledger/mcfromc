@@ -120,6 +120,15 @@ inline std::wostream& operator <<(std::wostream& out,Order o)
 	case LEQ:
 		out << L"<=";
 		break;
+	case EQ:
+		out << L"=";
+		break;
+	case GEQ:
+		out << L">=";
+		break;
+	case GREATER:
+		out << L">";
+		break;
 	case END_ORDER:
 		out << L"NA";
 		break;
