@@ -187,10 +187,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\ForLoopFlowPoint.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\UniqueObjectIdMgr.cpp"
 				>
 			</File>
@@ -419,6 +415,10 @@
 				</File>
 				<File
 					RelativePath=".\FlowPoint.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ForLoopFlowPoint.cpp"
 					>
 				</File>
 				<File
