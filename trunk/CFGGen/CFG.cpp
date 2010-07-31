@@ -223,27 +223,10 @@ std::string CFG::getName( FlowPoint* fp )
 	return ostr.str();
 }
 
-void CFG::SetStart( FlowPoint* startFP )
+void CFG::UpdateTransitionsWithVars()
 {
-	m_startFP = startFP;
-}
-
-FlowPoint* CFG::Start() const
-{
-	return m_startFP;
-}
-
-const ParamNameSet& CFG::Variables() const
-{
-	return m_knownVariables;
-}
-
-void CFG::AddVariable( const ParamName& varName )
-{
-	m_knownVariables.insert(varName);
-}
-
-const MCSet& CFG::KnownMCs() const
-{
-	return m_knwonMCs;
+	for(MCSet::iterator mcItr = m_knwonMCs.begin(); mcItr != m_knwonMCs.end(); ++mcItr){
+		(*mcItr)->addVariables(m_knownVariables);
+	}
+	
 }

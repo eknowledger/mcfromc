@@ -29,13 +29,17 @@ public:
 		copyFrom(other);
 	}
 
-	friend std::wostream& operator <<(std::wostream& out,const MCGraph& mc);
+	friend std::ostream& operator <<(std::ostream& out,const MCGraph& mc);
 
 	void setFlowPoints(FPSharedPtr from,FPSharedPtr to)
 	{
 		m_fromFlowPoint = from;
 		m_toFlowPoint = to;
 	}
+
+	void addVar(const ParamName& var);
+	void addVariables(const ParamNameSet& vars);
+
 
 	Invariant computeInvariant(const FlowPoint& f);
 	std::string getFriendlyName() const{
@@ -47,20 +51,19 @@ public:
 	edge_descriptor addOrUpdateEdge(vertex_descriptor u,vertex_descriptor v,Order o);
 	MCConstrainEdge addEdgeFromInvariant(const InvariantMember& inv);
 	void removeEdgeFromInvariant(const InvariantMember& inv);
-	void writeInArielFormat(std::wostream& out);
+	void writeInArielFormat(std::ostream& out);
 
 	//operators
 	const MCGraph& operator=(const MCGraph& other);
 
 protected:
-	typedef std::map<vertex_descriptor,std::wstring> VertexToParamName;
-	typedef std::map<std::wstring,vertex_descriptor> ParamNameToVertex;
+	typedef std::map<std::string,vertex_descriptor> ParamNameToVertex;
 	typedef std::set<vertex_descriptor> FlowPointParams;
 
 	Invariant computeFlowPointInvariant(const FlowPointParams& fParams);
 	void addInvariantFromFlowPoint(FPointWeakPtr fID);
+	MCGraph::vertex_descriptor addVertexForVar(const ParamName& varName);
 	
-	VertexToParamName m_paramVertexToName;
 	ParamNameToVertex m_nameToVertex;
 	FlowPointParams m_fromParams;
 	FlowPointParams m_toParams;
@@ -71,15 +74,15 @@ protected:
 private:
 	//clones everything besides the name.
 	void copyFrom(const MCGraph& other);
-	void writeParamsInArielFormat(std::wostream& out);
+	void writeParamsInArielFormat(std::ostream& out,const FlowPointParams &fpParams);
 };
 
 typedef boost::shared_ptr<MCGraph> MCSharedPtr;
 
 inline
-std::wstring StringToWString(const std::string& s)
+std::string StringToWString(const std::string& s)
 {
-	std::wstring temp(s.length(),L' ');
+	std::string temp(s.length(),L' ');
 	std::copy(s.begin(), s.end(), temp.begin());
 	return temp; 
 }
