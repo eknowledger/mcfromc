@@ -143,7 +143,7 @@ std::ostream& operator <<(std::ostream& out,const MCGraph& mc)
 	out << std::endl;
 	std::stringstream sMC;
 	boost::property_map<MCBaseGraph,boost::vertex_name_t>::const_type vNameProp = get(boost::vertex_name,mc);
-	boost::write_graphviz(sMC,mc,GraphWriters::make_label_writer_w(vNameProp),MCEdgeWriter<MCGraph>(mc),MCGraphWriter(&mc));
+	boost::write_graphviz(sMC,mc,boost::make_label_writer(vNameProp),MCEdgeWriter<MCGraph>(mc),MCGraphWriter(&mc));
 	out << sMC.str().c_str();
 	out << std::endl;
 	return out;
