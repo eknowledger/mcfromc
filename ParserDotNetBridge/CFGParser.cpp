@@ -49,14 +49,14 @@ namespace ParserDotNetBridge {
 		std::string fname;
 		To_string(cfilename, fname);
 		std::ostringstream gvOstr;
-		std::wostringstream mcOstr;
+		std::ostringstream mcOstr;
 		StrPairVector mcStrs;
 		std::vector<FlowPointVisualData> fpData;
 		mcGraphTexts = gcnew ArrayList();
 		mcGraphNames = gcnew ArrayList();
 		if (generateCFG(fname, fpData, gvOstr, mcOstr, mcStrs)) {
 			std::string graphTextStr = gvOstr.str();
-			std::wstring mcTextStr = mcOstr.str();
+			std::string mcTextStr = mcOstr.str().c_str();
 			graphText = gcnew String(graphTextStr.c_str());
 			mcsText = gcnew String(mcTextStr.c_str());
 			for (size_t i = 0; i < fpData.size(); ++i) {

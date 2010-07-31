@@ -205,6 +205,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\CommonDefs.h"
+				>
+			</File>
+			<File
 				RelativePath="..\Include\SyntaxParserInterface.h"
 				>
 			</File>

@@ -27,7 +27,7 @@ InvariantMember make_invariant(const MCBaseGraph::edge_descriptor& e,const MCGra
 	u = boost::source(e,g);
 	v = boost::target(e,g);
 	//Gets the invariant parameters
-	std::wstring x1Name,x2Name;
+	std::string x1Name,x2Name;
 	Order o = END_ORDER;
 	x1Name = boost::get(boost::vertex_name,g,u);
 	x2Name = boost::get(boost::vertex_name,g,v);
@@ -98,7 +98,7 @@ Invariant MCGraph::computeFlowPointInvariant(const FlowPointParams& fParams)
 		flowPointParamItr = fParams.find(target(*edge,*this));
 		if(flowPointParamItr == fParams.end())
 			continue;	//This is not invariant edge.
-		std::wstring srcName,trgName;
+		std::string srcName,trgName;
 		//Gets the name of the parameterts and order to make Invariant Member.
 
 		resInvariant.insert(make_invariant(*edge,*this));
@@ -138,7 +138,7 @@ namespace{
 	};
 }
 
-std::wostream& operator <<(std::wostream& out,const MCGraph& mc)
+std::ostream& operator <<(std::ostream& out,const MCGraph& mc)
 {
 	out << std::endl;
 	std::stringstream sMC;
@@ -149,48 +149,41 @@ std::wostream& operator <<(std::wostream& out,const MCGraph& mc)
 	return out;
 }
 
-void MCGraph::writeParamsInArielFormat(std::wostream& out)
+void MCGraph::writeParamsInArielFormat(std::ostream& out,const FlowPointParams& fpParams)
 {
-	MCGraph::vertex_iterator vBegin,vEnd, vIt;
-	boost::tie(vBegin,vEnd) = boost::vertices(*this);
-	vIt = vBegin;
-	while (vIt != vEnd)
-	{
-		if (vIt != vBegin)
-		{
-			out << L",";
-		}
-		out << m_paramVertexToName[*vIt];
-		++vIt;
+	for(FlowPointParams::const_iterator paramItr = fpParams.begin(); paramItr != fpParams.end(); ++paramItr){
+		if (paramItr != fpParams.end())
+			out << ",";
+		out << boost::get(boost::vertex_name,*this,*paramItr);
 	}
 }
 
-void MCGraph::writeInArielFormat(std::wostream& out)
+void MCGraph::writeInArielFormat(std::ostream& out)
 {
-	std::wstring fromFP = StringToWString(m_fromFlowPoint.lock()->getFriendlyName());
-	std::wstring toFP = StringToWString(m_toFlowPoint.lock()->getFriendlyName());
+	std::string fromFP = m_fromFlowPoint.lock()->getFriendlyName();
+	std::string toFP = m_toFlowPoint.lock()->getFriendlyName();
 
-	out << fromFP << L"(";
-	writeParamsInArielFormat(out);
-	out << L") :- [";
+	out << fromFP << "(";
+	writeParamsInArielFormat(out,m_fromParams);
+	out << ") :- [";
 	MCGraph::edge_iterator eIt, eEnd, eBegin;
 	boost::tie(eBegin, eEnd) = boost::edges(*this);
 	eIt = eBegin;
 	while (eIt != eEnd)
 	{
-		std::wstring src = m_paramVertexToName[boost::source(*eIt, *this)];
-		std::wstring tgt = m_paramVertexToName[boost::target(*eIt, *this)];
+		std::string src = boost::get(boost::vertex_name,*this,boost::source(*eIt, *this));
+		std::string tgt = boost::get(boost::vertex_name,*this,boost::target(*eIt, *this));
 		Order o = (Order)boost::get(boost::edge_weight,*this,*eIt);
 		if (eIt != eBegin)
 		{
-			out << L",";
+			out << ",";
 		}
 		out << boost::make_tuple(src, o, tgt);
 		++eIt;
 	}
-	out << L"] ; " << toFP << L"(";
-	writeParamsInArielFormat(out);
-	out << _T(")\n");
+	out << "] ; " << toFP << "(";
+	writeParamsInArielFormat(out,m_toParams);
+	out << ")\n";
 }
 
 MCGraph::edge_descriptor MCGraph::addOrUpdateEdge(vertex_descriptor u,vertex_descriptor v,Order o)
@@ -293,12 +286,41 @@ void MCGraph::addInvariantFromFlowPoint(FPointWeakPtr fWeak)
 void MCGraph::copyFrom(const MCGraph& other)
 {
 	*((MCBaseGraph*)this) = (MCBaseGraph) other;
-	m_paramVertexToName = other.m_paramVertexToName;
 	m_nameToVertex = other.m_nameToVertex;
 	m_fromParams = other.m_fromParams;
 	m_toParams = other.m_toParams;
 	m_fromFlowPoint = other.m_fromFlowPoint;
 	m_toFlowPoint = other.m_toFlowPoint;
+}
+
+MCGraph::vertex_descriptor MCGraph::addVertexForVar(const ParamName& varName)
+{
+	//make sure the same var is not already in graph.
+	ParamNameToVertex::const_iterator alreadyInItr = m_nameToVertex.find(varName);
+	ASSERT_RETURN(alreadyInItr == m_nameToVertex.end(),MCGraph::vertex_descriptor());
+	MCGraph::vertex_descriptor v = boost::add_vertex(*this);
+	boost::put(boost::vertex_name,*this,v,varName);
+	m_nameToVertex[varName] = v;
+
+	return v;
+}
+
+void MCGraph::addVar(const ParamName& var)
+{
+	ParamName vTgtName = var + "'";
+	//adds the vertices to graph
+	MCGraph::vertex_descriptor srcVar = addVertexForVar(var);
+	MCGraph::vertex_descriptor tgtVar = addVertexForVar(vTgtName);
+	//update the data structures
+	m_fromParams.insert(srcVar);
+	m_toParams.insert(tgtVar);
+}
+
+void MCGraph::addVariables(const ParamNameSet& vars)
+{
+	for(ParamNameSet::const_iterator varItr = vars.begin(); varItr != vars.end(); ++varItr){
+		addVar(*varItr);
+	}
 }
 
 //operators

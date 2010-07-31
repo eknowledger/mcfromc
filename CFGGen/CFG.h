@@ -17,7 +17,6 @@ typedef std::list<FlowPoint*>::iterator FlowPointIterator;
 
 
 typedef std::set<FPSharedPtr> FPSet;
-typedef std::set<ParamName> ParamNameSet;
 typedef std::set<MCSharedPtr> MCSet;
 
 //////////////////////////////////////////////////////////////////////////
@@ -45,11 +44,28 @@ public:
 	//prints graph edges in GraphViz Dot format to given output stream
 	void printForDot(std::ostream& ostr);
 	std::string getName(FlowPoint* fp);
-	FlowPoint* Start() const;
-	void SetStart(FlowPoint* startFP);
-	void AddVariable(const ParamName& varName);
-	const ParamNameSet& Variables() const;
-	const MCSet& KnownMCs() const;
+
+	inline FlowPoint* Start() const
+	{
+		return m_startFP;
+	}
+	inline void SetStart(FlowPoint* startFP)
+	{
+		m_startFP = startFP;
+	}
+	inline void AddVariable(const ParamName& varName)
+	{
+		m_knownVariables.insert(varName);
+	}
+	inline const ParamNameSet& Variables() const
+	{
+		return m_knownVariables;
+	}
+	inline const MCSet& KnownMCs() const
+	{
+		return m_knwonMCs;
+	}
+	void UpdateTransitionsWithVars();
 
 private:
 	FPSet m_knownFPs;

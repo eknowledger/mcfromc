@@ -59,14 +59,14 @@ void ComputFlowPointVisualData(CFG& cfg, std::vector<FlowPointVisualData>& fpDat
 ///					The visual data includes text of the relevant code and FP name.
 /// Parameter: std::ostream & gvOstr
 ///					graphViz output stream for generation of the CFG bitmap.
-/// Parameter: std::wostream & mcOstr
+/// Parameter: std::ostream & mcOstr
 ///					Montonicity Constraints graph output stream (Ariel's format).
 /// Parameter: StrPairVector & mcStrs
 ///					A vector of string pairs. Each pair is a matching between
 ///					a MC name and the graphViz text input for generating the MC
 ///					graph bitmap.
 bool generateCFG(std::string cfilename, std::vector<FlowPointVisualData>& fpData, 
-				 std::ostream& gvOstr, std::wostream& mcOstr, StrPairVector& mcStrs)
+				 std::ostream& gvOstr, std::ostream& mcOstr, StrPairVector& mcStrs)
 {	
 	bool rc = true;
 	lastError = "";
@@ -86,9 +86,9 @@ bool generateCFG(std::string cfilename, std::vector<FlowPointVisualData>& fpData
 			 it != cfg.KnownMCs().end(); ++it)
 		{
 			MCSharedPtr spMC = *it;
-			std::wostringstream ostr;
+			std::ostringstream ostr;
 			ostr << *spMC;
-			std::wstring wstr = ostr.str();
+			std::string wstr = ostr.str();
 			if (wstr.size() > 0)
 			{
 				std::string str;			

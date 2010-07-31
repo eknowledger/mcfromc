@@ -5,12 +5,12 @@
 #include <map>
 #include <string>
 #include "boost\smart_ptr\shared_ptr.hpp"
+#include "CommonDefs.h"
 
 //forward declaration 
 class ExpressionInterface;
 class Expr;
 
-typedef std::string ParamName;
 typedef int ValType;
 typedef boost::shared_ptr<Expr> SPExpr;
 typedef std::map<ParamName,SPExpr> VarToValue;
