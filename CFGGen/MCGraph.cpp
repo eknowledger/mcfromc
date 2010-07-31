@@ -63,6 +63,14 @@ namespace{
 				   m_g.getFriendlyName() << ";\nrankdir=LR;\nfont=Helvetica;\nfontsize=20;\nfontcolor=\"red\";\n";
 			writeFlowPointParams(m_g.fromParams(),out);
 			writeFlowPointParams(m_g.toParams(),out);
+			if (m_g.fromParams().size() > 0 && m_g.fromParams().size() == m_g.toParams().size())
+			{
+				for (size_t i = 0; i < m_g.fromParams().size(); ++i)
+				{
+					//create invisible edges for layouting purposes
+					out << i << "->" << i+1 << " [style=invis]\n";
+				}
+			}
 		}
 
 		void writeFlowPointParams(const FlowPointParams& params, std::ostream& out) const
