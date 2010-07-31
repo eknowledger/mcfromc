@@ -8,15 +8,97 @@
 #include "boost/graph/graphviz.hpp"
 
 namespace{
+	template<typename Graph>
+	struct MCEdgeWriter
+	{
+		MCEdgeWriter(const Graph& g)
+			: m_g(g)
+		{}
+
+		template <typename Edge>
+		void operator()(std::ostream& out, const Edge& e) const
+		{
+			Order o = END_ORDER;
+			std::string color;
+			o = (Order) boost::get(boost::edge_weight,m_g,e);
+			switch(o)
+			{
+			case LEQ: 
+				color = "black";
+				break;
+			case LESS:
+				color = "red";
+				break;
+			default:
+				_ASSERT(!"Arc with unknown weight");
+			}
+			out << "[color=\"" << color << "\"]";
+		}
+
+		const Graph& m_g;
+	};
+
+	struct MCVertexWriter
+	{
+		MCVertexWriter(const MCGraph& g)
+			: m_g(g)
+		{}
+
+		template <typename Vertex>
+		void operator()(std::ostream& out, const Vertex& v) const
+		{
+			std::string name = boost::get(boost::vertex_name,m_g,v);
+			out << "[label=\"" << name << "\", width=.2, height=.2, fontsize=16, font=Helvetica, shape=plaintext]";
+		}
+
+		const MCGraph& m_g;
+	};
 	struct MCGraphWriter {
-		MCGraphWriter(const MCGraph * const g)
+		MCGraphWriter(const MCGraph& g)
 			:m_g(g)
 		{}
 
 		void operator()(std::ostream& out) const {
-			out << "label=" << m_g->getFriendlyName() << ";\n";
+			out << "label=" << 
+				   m_g.getFriendlyName() << ";\nrankdir=LR;\nfont=Helvetica;\nfontsize=20;\nfontcolor=\"red\";\n";
+			writeFlowPointParams(m_g.fromParams(),out);
+			writeFlowPointParams(m_g.toParams(),out);
 		}
-		const MCGraph * const m_g;
+
+		void writeFlowPointParams(const FlowPointParams& params, std::ostream& out) const
+		{
+			out << "{rank=same; ";
+			for (FlowPointParams::const_iterator it = params.begin();
+				it != params.end(); ++it) 
+			{
+				if (it != params.begin())
+				{
+					out << "; ";
+				}
+				out << *it;
+			}
+
+			out << "\n";
+
+			MCGraph::edge_iterator eIt, eEnd;
+			boost::tie(eIt, eEnd) = boost::edges(m_g);
+			MCEdgeWriter<MCGraph> edgeWriter(m_g);
+			for (; eIt != eEnd; ++eIt)
+			{
+				MCGraph::vertex_descriptor src = boost::source(*eIt, m_g);
+				MCGraph::vertex_descriptor tgt = boost::target(*eIt, m_g);
+
+				if (params.find(src) != params.end() && params.find(tgt) != params.end())
+				{
+					out << src << "->" << tgt << " ";
+					edgeWriter(out, *eIt);
+					out << std::endl;
+				}
+			}
+			out << "}\n";
+		}
+
+		const MCGraph& m_g;
 	};
 }
 
@@ -106,44 +188,12 @@ Invariant MCGraph::computeFlowPointInvariant(const FlowPointParams& fParams)
 	return resInvariant;
 }
 
-namespace{
-	template<typename Graph>
-	struct MCEdgeWriter
-	{
-		MCEdgeWriter(const Graph& g)
-			: m_g(g)
-		{}
-
-		template <typename Edge>
-		void operator()(std::ostream& out, const Edge& e) const
-		{
-			Order o = END_ORDER;
-			std::string color;
-			o = (Order) boost::get(boost::edge_weight,m_g,e);
-			switch(o)
-			{
-			case LEQ: 
-				color = "black";
-				break;
-			case LESS:
-				color = "red";
-				break;
-			default:
-				_ASSERT(!"Arc with unknown weight");
-			}
-			out << "[color=\"" << color << "\"]";
-		}
-
-		const Graph& m_g;
-	};
-}
-
 std::ostream& operator <<(std::ostream& out,const MCGraph& mc)
 {
 	out << std::endl;
 	std::stringstream sMC;
 	boost::property_map<MCBaseGraph,boost::vertex_name_t>::const_type vNameProp = get(boost::vertex_name,mc);
-	boost::write_graphviz(sMC,mc,boost::make_label_writer(vNameProp),MCEdgeWriter<MCGraph>(mc),MCGraphWriter(&mc));
+	boost::write_graphviz(sMC,mc,MCVertexWriter(mc),MCEdgeWriter<MCGraph>(mc),MCGraphWriter(mc));
 	out << sMC.str().c_str();
 	out << std::endl;
 	return out;
@@ -219,7 +269,7 @@ MCGraph::edge_descriptor MCGraph::addOrUpdateEdge(vertex_descriptor u,vertex_des
 		return e;
 	}
 	else
-		return add_edge(u,v,o,*this).first;
+		return add_edge(source,target,o,*this).first;
 }
 
 /*Algorithm:

@@ -9,6 +9,8 @@
 #include "CommonGraphDefs.h"
 #include "UniqueObjectIdMgr.h"
 
+typedef std::set<MCBaseGraph::vertex_descriptor> FlowPointParams;
+
 class MCGraph
 	: public MCBaseGraph
 {
@@ -53,12 +55,18 @@ public:
 	void removeEdgeFromInvariant(const InvariantMember& inv);
 	void writeInArielFormat(std::ostream& out);
 
+	const FlowPointParams& fromParams() const{
+		return m_fromParams;
+	}
+
+	const FlowPointParams& toParams() const{
+		return m_toParams;
+	}
 	//operators
 	const MCGraph& operator=(const MCGraph& other);
 
 protected:
 	typedef std::map<std::string,vertex_descriptor> ParamNameToVertex;
-	typedef std::set<vertex_descriptor> FlowPointParams;
 
 	Invariant computeFlowPointInvariant(const FlowPointParams& fParams);
 	void addInvariantFromFlowPoint(FPointWeakPtr fID);

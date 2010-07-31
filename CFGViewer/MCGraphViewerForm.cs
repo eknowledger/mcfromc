@@ -23,6 +23,8 @@ namespace CFGViewer
             if (m_app.GenerateDotBitmap(fname, fname + id.ToString() + ".gif"))
             {
                 MCGraphPictureBox.Image = new Bitmap(fname + id.ToString() + ".gif");
+                Size imgSize = MCGraphPictureBox.Image.Size;
+                this.Size = new Size(imgSize.Width + 37, imgSize.Height + 116);
             }
         }
 
