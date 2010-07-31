@@ -48,7 +48,7 @@ namespace{
 		void operator()(std::ostream& out, const Vertex& v) const
 		{
 			std::string name = boost::get(boost::vertex_name,m_g,v);
-			out << "[label=\"" << name << "\", width=.2, height=.2, fontsize=16, font=Helvetica, shape=plaintext]";
+			out << "[label=\"" << name << "\", weight=1000, width=.2, height=.2, fontsize=16, font=Helvetica, shape=plaintext]";
 		}
 
 		const MCGraph& m_g;
@@ -67,8 +67,19 @@ namespace{
 			{
 				for (size_t i = 0; i < m_g.fromParams().size(); ++i)
 				{
-					//create invisible edges for layouting purposes
-					out << i << "->" << i+1 << " [style=invis]\n";
+					MCGraph::edge_descriptor e;
+					bool exists;
+					boost::tie(e,exists) = boost::edge(i*2, i*2+1, m_g);
+					if (!exists)
+					{
+						boost::tie(e,exists) = boost::edge(i*2+1, i*2, m_g);
+					}
+
+					if (!exists)
+					{
+						//create invisible edges for layouting purposes
+						out << i*2 << "->" << i*2+1 << " [style=invis, weight=1]\n";
+					}
 				}
 			}
 		}
