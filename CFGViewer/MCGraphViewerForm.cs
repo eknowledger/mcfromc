@@ -20,9 +20,9 @@ namespace CFGViewer
             else labelGraphName.Text = "";
             string fname = m_app.DIGRAPH_FILE + ".MC_" + graphName;
             Guid id = Guid.NewGuid();
-            if (m_app.GenerateDotBitmap(fname, fname + id.ToString() + ".gif"))
+            if (m_app.GenerateDotBitmap(fname, fname + id.ToString() + ".png"))
             {
-                MCGraphPictureBox.Image = new Bitmap(fname + id.ToString() + ".gif");
+                MCGraphPictureBox.Image = new Bitmap(fname + id.ToString() + ".png");
                 Size imgSize = MCGraphPictureBox.Image.Size;
                 this.Size = new Size(imgSize.Width + 37, imgSize.Height + 116);
             }
