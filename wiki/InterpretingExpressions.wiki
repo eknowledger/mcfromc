@@ -60,4 +60,4 @@ In the second assignment command, x will assume the expression U1+5 :
  
 = Limitations =
  * Handled order conditions must contain variables only. It may be possible to expand to constants, if they can be represented and interpreted in the MC graph.
- * Expressions with side effects (e.g pre/post increment/decrement within the expression) are not handled (need to think how to enforce this by the syntax parser or evaluate relevant variables  to 'Top').
+ * Assignment or Conditional expressions with side effects (e.g pre/post increment/decrement within the expression) are not handled - a parsing error is issued if such expressions appear in code.
