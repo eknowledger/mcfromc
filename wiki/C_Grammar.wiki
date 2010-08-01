@@ -20,7 +20,6 @@ In addition, the following applies:
 
 == TODO List == 
  # When the algorithms are finished, we need to go over the BNF and remove any structure which is not supported by our algorithms (for example, need to remove types which are <u>not</u> *int*.
- # We need to think if it is possible, through changes of the BNF structure, to detect prefix & postfix increment/decrement which are part of a r-value expression as a syntax error. 
 == The Grammar in BNF ==
 
 *translation_unit* 
