@@ -201,6 +201,9 @@ namespace CFGViewer
 
         public void WriteGraphToFile(string filename, string graphText)
         {
+            if (File.Exists(filename)) {
+                File.Delete(filename);
+            }
             FileStream fstr = File.OpenWrite(filename);
             using (StreamWriter writer = new StreamWriter(fstr))
             {

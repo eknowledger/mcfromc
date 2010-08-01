@@ -32,38 +32,38 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CFGViewerForm));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.codeTextBox = new System.Windows.Forms.RichTextBox();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.ButtonZoomIn = new System.Windows.Forms.ToolStripButton();
-            this.ButtonZoomOut = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.CFGProgressBar = new System.Windows.Forms.ProgressBar();
             this.GraphPanel = new System.Windows.Forms.Panel();
+            this.GraphTabControl = new System.Windows.Forms.TabControl();
+            this.tabPageCFG = new System.Windows.Forms.TabPage();
+            this.panelCFGGraph = new System.Windows.Forms.Panel();
             this.GraphPictureBox = new System.Windows.Forms.PictureBox();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.ButtonZoomIn = new System.Windows.Forms.ToolStripButton();
+            this.ButtonZoomOut = new System.Windows.Forms.ToolStripButton();
+            this.tabPageMCText = new System.Windows.Forms.TabPage();
+            this.panelMCText = new System.Windows.Forms.Panel();
+            this.textBoxMCOutput = new System.Windows.Forms.RichTextBox();
             this.upperToolStrip = new System.Windows.Forms.ToolStrip();
             this.OpenFileButton = new System.Windows.Forms.ToolStripButton();
             this.editCodeButton = new System.Windows.Forms.ToolStripButton();
             this.GenerateCFGButton = new System.Windows.Forms.ToolStripButton();
-            this.graphToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.GraphTabControl = new System.Windows.Forms.TabControl();
-            this.tabPageCFG = new System.Windows.Forms.TabPage();
-            this.tabPageMCText = new System.Windows.Forms.TabPage();
-            this.panelCFGGraph = new System.Windows.Forms.Panel();
-            this.panelMCText = new System.Windows.Forms.Panel();
-            this.textBoxMCOutput = new System.Windows.Forms.RichTextBox();
             this.toolStripButtonSave = new System.Windows.Forms.ToolStripButton();
+            this.graphToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.GraphPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.GraphPictureBox)).BeginInit();
-            this.upperToolStrip.SuspendLayout();
             this.GraphTabControl.SuspendLayout();
             this.tabPageCFG.SuspendLayout();
-            this.tabPageMCText.SuspendLayout();
             this.panelCFGGraph.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GraphPictureBox)).BeginInit();
+            this.toolStrip1.SuspendLayout();
+            this.tabPageMCText.SuspendLayout();
             this.panelMCText.SuspendLayout();
+            this.upperToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -91,6 +91,7 @@
             this.codeTextBox.AcceptsTab = true;
             this.codeTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.codeTextBox.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.codeTextBox.ForeColor = System.Drawing.Color.Black;
             this.codeTextBox.Location = new System.Drawing.Point(0, 0);
             this.codeTextBox.Name = "codeTextBox";
             this.codeTextBox.ReadOnly = true;
@@ -98,40 +99,6 @@
             this.codeTextBox.TabIndex = 0;
             this.codeTextBox.Text = "";
             this.codeTextBox.WordWrap = false;
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ButtonZoomIn,
-            this.ButtonZoomOut});
-            this.toolStrip1.Location = new System.Drawing.Point(3, 3);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(369, 27);
-            this.toolStrip1.TabIndex = 1;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // ButtonZoomIn
-            // 
-            this.ButtonZoomIn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.ButtonZoomIn.Image = ((System.Drawing.Image)(resources.GetObject("ButtonZoomIn.Image")));
-            this.ButtonZoomIn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ButtonZoomIn.Name = "ButtonZoomIn";
-            this.ButtonZoomIn.Size = new System.Drawing.Size(24, 24);
-            this.ButtonZoomIn.Text = "Zoom In";
-            this.ButtonZoomIn.ToolTipText = "Zoom In";
-            this.ButtonZoomIn.Click += new System.EventHandler(this.ButtonZoomIn_Click);
-            // 
-            // ButtonZoomOut
-            // 
-            this.ButtonZoomOut.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.ButtonZoomOut.Image = ((System.Drawing.Image)(resources.GetObject("ButtonZoomOut.Image")));
-            this.ButtonZoomOut.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ButtonZoomOut.Name = "ButtonZoomOut";
-            this.ButtonZoomOut.Size = new System.Drawing.Size(24, 24);
-            this.ButtonZoomOut.Text = "Zoom Out";
-            this.ButtonZoomOut.ToolTipText = "Zoom Out";
-            this.ButtonZoomOut.Click += new System.EventHandler(this.ButtonZoomOut_Click);
             // 
             // panel1
             // 
@@ -167,6 +134,43 @@
             this.GraphPanel.Size = new System.Drawing.Size(383, 482);
             this.GraphPanel.TabIndex = 0;
             // 
+            // GraphTabControl
+            // 
+            this.GraphTabControl.Controls.Add(this.tabPageCFG);
+            this.GraphTabControl.Controls.Add(this.tabPageMCText);
+            this.GraphTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GraphTabControl.ItemSize = new System.Drawing.Size(100, 18);
+            this.GraphTabControl.Location = new System.Drawing.Point(0, 0);
+            this.GraphTabControl.Name = "GraphTabControl";
+            this.GraphTabControl.SelectedIndex = 0;
+            this.GraphTabControl.Size = new System.Drawing.Size(383, 482);
+            this.GraphTabControl.TabIndex = 1;
+            // 
+            // tabPageCFG
+            // 
+            this.tabPageCFG.AutoScroll = true;
+            this.tabPageCFG.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.tabPageCFG.Controls.Add(this.panelCFGGraph);
+            this.tabPageCFG.Controls.Add(this.toolStrip1);
+            this.tabPageCFG.Location = new System.Drawing.Point(4, 22);
+            this.tabPageCFG.Name = "tabPageCFG";
+            this.tabPageCFG.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageCFG.Size = new System.Drawing.Size(375, 456);
+            this.tabPageCFG.TabIndex = 0;
+            this.tabPageCFG.Text = "CFG";
+            this.tabPageCFG.UseVisualStyleBackColor = true;
+            // 
+            // panelCFGGraph
+            // 
+            this.panelCFGGraph.AutoScroll = true;
+            this.panelCFGGraph.BackColor = System.Drawing.Color.White;
+            this.panelCFGGraph.Controls.Add(this.GraphPictureBox);
+            this.panelCFGGraph.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelCFGGraph.Location = new System.Drawing.Point(3, 30);
+            this.panelCFGGraph.Name = "panelCFGGraph";
+            this.panelCFGGraph.Size = new System.Drawing.Size(369, 423);
+            this.panelCFGGraph.TabIndex = 2;
+            // 
             // GraphPictureBox
             // 
             this.GraphPictureBox.BackColor = System.Drawing.Color.White;
@@ -180,6 +184,76 @@
             this.GraphPictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GraphPictureBox_MouseMove);
             this.GraphPictureBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.GraphPictureBox_MouseDoubleClick);
             this.GraphPictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.GraphPictureBox_MouseClick);
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ButtonZoomIn,
+            this.ButtonZoomOut});
+            this.toolStrip1.Location = new System.Drawing.Point(3, 3);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(369, 27);
+            this.toolStrip1.TabIndex = 1;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // ButtonZoomIn
+            // 
+            this.ButtonZoomIn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ButtonZoomIn.Image = ((System.Drawing.Image)(resources.GetObject("ButtonZoomIn.Image")));
+            this.ButtonZoomIn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ButtonZoomIn.Name = "ButtonZoomIn";
+            this.ButtonZoomIn.Size = new System.Drawing.Size(24, 24);
+            this.ButtonZoomIn.Text = "Zoom In";
+            this.ButtonZoomIn.ToolTipText = "Zoom In";
+            this.ButtonZoomIn.Click += new System.EventHandler(this.ButtonZoomIn_Click);
+            // 
+            // ButtonZoomOut
+            // 
+            this.ButtonZoomOut.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ButtonZoomOut.Image = ((System.Drawing.Image)(resources.GetObject("ButtonZoomOut.Image")));
+            this.ButtonZoomOut.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ButtonZoomOut.Name = "ButtonZoomOut";
+            this.ButtonZoomOut.Size = new System.Drawing.Size(24, 24);
+            this.ButtonZoomOut.Text = "Zoom Out";
+            this.ButtonZoomOut.ToolTipText = "Zoom Out";
+            this.ButtonZoomOut.Click += new System.EventHandler(this.ButtonZoomOut_Click);
+            // 
+            // tabPageMCText
+            // 
+            this.tabPageMCText.AutoScroll = true;
+            this.tabPageMCText.Controls.Add(this.panelMCText);
+            this.tabPageMCText.Location = new System.Drawing.Point(4, 22);
+            this.tabPageMCText.Name = "tabPageMCText";
+            this.tabPageMCText.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageMCText.Size = new System.Drawing.Size(375, 456);
+            this.tabPageMCText.TabIndex = 1;
+            this.tabPageMCText.Text = "MC Output Text";
+            this.tabPageMCText.UseVisualStyleBackColor = true;
+            // 
+            // panelMCText
+            // 
+            this.panelMCText.AutoScroll = true;
+            this.panelMCText.Controls.Add(this.textBoxMCOutput);
+            this.panelMCText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelMCText.Location = new System.Drawing.Point(3, 3);
+            this.panelMCText.Name = "panelMCText";
+            this.panelMCText.Size = new System.Drawing.Size(369, 450);
+            this.panelMCText.TabIndex = 1;
+            // 
+            // textBoxMCOutput
+            // 
+            this.textBoxMCOutput.BackColor = System.Drawing.Color.White;
+            this.textBoxMCOutput.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxMCOutput.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.textBoxMCOutput.ForeColor = System.Drawing.Color.Blue;
+            this.textBoxMCOutput.Location = new System.Drawing.Point(0, 0);
+            this.textBoxMCOutput.Name = "textBoxMCOutput";
+            this.textBoxMCOutput.ReadOnly = true;
+            this.textBoxMCOutput.Size = new System.Drawing.Size(369, 450);
+            this.textBoxMCOutput.TabIndex = 0;
+            this.textBoxMCOutput.Text = "";
+            this.textBoxMCOutput.TextChanged += new System.EventHandler(this.textBoxMCOutput_TextChanged);
             // 
             // upperToolStrip
             // 
@@ -224,76 +298,6 @@
             this.GenerateCFGButton.Text = "Generate CFG";
             this.GenerateCFGButton.Click += new System.EventHandler(this.GenerateCFGButton_Click);
             // 
-            // GraphTabControl
-            // 
-            this.GraphTabControl.Controls.Add(this.tabPageCFG);
-            this.GraphTabControl.Controls.Add(this.tabPageMCText);
-            this.GraphTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GraphTabControl.ItemSize = new System.Drawing.Size(100, 18);
-            this.GraphTabControl.Location = new System.Drawing.Point(0, 0);
-            this.GraphTabControl.Name = "GraphTabControl";
-            this.GraphTabControl.SelectedIndex = 0;
-            this.GraphTabControl.Size = new System.Drawing.Size(383, 482);
-            this.GraphTabControl.TabIndex = 1;
-            // 
-            // tabPageCFG
-            // 
-            this.tabPageCFG.AutoScroll = true;
-            this.tabPageCFG.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.tabPageCFG.Controls.Add(this.panelCFGGraph);
-            this.tabPageCFG.Controls.Add(this.toolStrip1);
-            this.tabPageCFG.Location = new System.Drawing.Point(4, 22);
-            this.tabPageCFG.Name = "tabPageCFG";
-            this.tabPageCFG.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageCFG.Size = new System.Drawing.Size(375, 456);
-            this.tabPageCFG.TabIndex = 0;
-            this.tabPageCFG.Text = "CFG";
-            this.tabPageCFG.UseVisualStyleBackColor = true;
-            // 
-            // tabPageMCText
-            // 
-            this.tabPageMCText.AutoScroll = true;
-            this.tabPageMCText.Controls.Add(this.panelMCText);
-            this.tabPageMCText.Location = new System.Drawing.Point(4, 22);
-            this.tabPageMCText.Name = "tabPageMCText";
-            this.tabPageMCText.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageMCText.Size = new System.Drawing.Size(375, 456);
-            this.tabPageMCText.TabIndex = 1;
-            this.tabPageMCText.Text = "MC Output Text";
-            this.tabPageMCText.UseVisualStyleBackColor = true;
-            // 
-            // panelCFGGraph
-            // 
-            this.panelCFGGraph.AutoScroll = true;
-            this.panelCFGGraph.Controls.Add(this.GraphPictureBox);
-            this.panelCFGGraph.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelCFGGraph.Location = new System.Drawing.Point(3, 30);
-            this.panelCFGGraph.Name = "panelCFGGraph";
-            this.panelCFGGraph.Size = new System.Drawing.Size(369, 423);
-            this.panelCFGGraph.TabIndex = 2;
-            // 
-            // panelMCText
-            // 
-            this.panelMCText.AutoScroll = true;
-            this.panelMCText.Controls.Add(this.textBoxMCOutput);
-            this.panelMCText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMCText.Location = new System.Drawing.Point(3, 3);
-            this.panelMCText.Name = "panelMCText";
-            this.panelMCText.Size = new System.Drawing.Size(369, 450);
-            this.panelMCText.TabIndex = 1;
-            // 
-            // textBoxMCOutput
-            // 
-            this.textBoxMCOutput.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.textBoxMCOutput.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxMCOutput.Location = new System.Drawing.Point(0, 0);
-            this.textBoxMCOutput.Name = "textBoxMCOutput";
-            this.textBoxMCOutput.ReadOnly = true;
-            this.textBoxMCOutput.Size = new System.Drawing.Size(369, 450);
-            this.textBoxMCOutput.TabIndex = 0;
-            this.textBoxMCOutput.Text = "";
-            this.textBoxMCOutput.TextChanged += new System.EventHandler(this.textBoxMCOutput_TextChanged);
-            // 
             // toolStripButtonSave
             // 
             this.toolStripButtonSave.Enabled = false;
@@ -318,19 +322,19 @@
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.GraphPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.GraphPictureBox)).EndInit();
-            this.upperToolStrip.ResumeLayout(false);
-            this.upperToolStrip.PerformLayout();
             this.GraphTabControl.ResumeLayout(false);
             this.tabPageCFG.ResumeLayout(false);
             this.tabPageCFG.PerformLayout();
-            this.tabPageMCText.ResumeLayout(false);
             this.panelCFGGraph.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.GraphPictureBox)).EndInit();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
+            this.tabPageMCText.ResumeLayout(false);
             this.panelMCText.ResumeLayout(false);
+            this.upperToolStrip.ResumeLayout(false);
+            this.upperToolStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
