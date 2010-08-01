@@ -58,6 +58,10 @@ public:
 
 	std::string Text() const;
 
+	virtual bool IsValidExpression() {
+		return true;
+	}
+
 protected:
 	friend std::ostream& operator<<(std::ostream& os,const SNode& node);
 	

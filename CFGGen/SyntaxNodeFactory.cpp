@@ -11,6 +11,8 @@
 #include "SReducibleNode.h"
 #include "sorderconditionnode.h"
 
+extern std::string lastError;
+
 SyntaxNodeFactory::SyntaxNodeFactory(void)
 {
 }
@@ -82,5 +84,15 @@ SNode* SyntaxNodeFactory::createNode(NodeData* n)
 		}
 	}
 
+	if (!ret->IsValidExpression()) {
+		IssueInvalidExpressionError(ret);
+	}
+
+
 	return ret;
+}
+
+void SyntaxNodeFactory::IssueInvalidExpressionError( SNode* node )
+{
+	lastError += "Assignment or conditional expression with pre/post increment/decrement is disallowed: \"" + node->Text() + "\"\n";
 }
