@@ -174,8 +174,10 @@ struct VertexFlowPointPropertyWriter {
 	VertexFlowPointPropertyWriter(CFG &g_) : g(g_) {}
 	template <class MyVertex>
 	void operator() (std::ostream &out, MyVertex u) {
-		std::string name = boost::get(boost::vertex_attachedFP,g,u).lock().get()->name();
-		out << "[label=\"" << name << "\", fontsize=18]";
+		FPSharedPtr spFP = boost::get(boost::vertex_attachedFP,g,u).lock();
+		std::string name = spFP->name();
+		std::string id = spFP->getFriendlyName();
+		out << "[label=\"" << name << "(" << id << ")\", fontsize=18]";
 	}
 
 	CFG &g;
