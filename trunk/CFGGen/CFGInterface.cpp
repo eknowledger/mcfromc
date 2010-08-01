@@ -76,26 +76,30 @@ bool generateCFG(std::string cfilename, std::vector<FlowPointVisualData>& fpData
 	std::string logFileName = cfilename + ".log";
 	if (parseSyntax((char*)cfilename.c_str(), &root, (char*)logFileName.c_str())==0 && root) {
 		SNode* sroot = SyntaxNodeFactory::the().createNode(root);
-		CFG cfg;
-		Syntax2CFG(sroot, cfg).execute();
-		CFGExprEvaluator(cfg).Evaluate();
+		rc = (lastError.size() == 0);
+		if (rc)
+		{		
+			CFG cfg;
+			Syntax2CFG(sroot, cfg).execute();
+			CFGExprEvaluator(cfg).Evaluate();
 
-		ComputFlowPointVisualData(cfg, fpData);
-		cfg.printForDot(gvOstr);
-		for (MCSet::const_iterator it = cfg.KnownMCs().begin();
-			 it != cfg.KnownMCs().end(); ++it)
-		{
-			MCSharedPtr spMC = *it;
-			std::ostringstream ostr;
-			ostr << *spMC;
-			std::string wstr = ostr.str();
-			if (wstr.size() > 0)
+			ComputFlowPointVisualData(cfg, fpData);
+			cfg.printForDot(gvOstr);
+			for (MCSet::const_iterator it = cfg.KnownMCs().begin();
+				 it != cfg.KnownMCs().end(); ++it)
 			{
-				std::string str;			
-				str.assign(wstr.begin(), wstr.end());
-				mcStrs.push_back(StrPair((*it)->getFriendlyName(), str));
+				MCSharedPtr spMC = *it;
+				std::ostringstream ostr;
+				ostr << *spMC;
+				std::string wstr = ostr.str();
+				if (wstr.size() > 0)
+				{
+					std::string str;			
+					str.assign(wstr.begin(), wstr.end());
+					mcStrs.push_back(StrPair((*it)->getFriendlyName(), str));
+				}
+				spMC->writeInArielFormat(mcOstr);
 			}
-			spMC->writeInArielFormat(mcOstr);
 		}
 
 		delete sroot;

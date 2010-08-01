@@ -21,5 +21,6 @@ private:
 	SyntaxNodeFactory(void);
 	SyntaxNodeFactory(const SyntaxNodeFactory& other);
 	SyntaxNodeFactory& operator=(const SyntaxNodeFactory& other);
-	
+	void IssueInvalidExpressionError( SNode* node );
+
 };

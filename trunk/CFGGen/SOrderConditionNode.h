@@ -14,4 +14,11 @@ public:
 	virtual bool IsOrderCondition() const {
 		return true;
 	}
+
+	virtual bool IsValidExpression() {
+		return isValidExpression(this);
+	}
+
+private:
+	bool isValidExpression(SNode* subNode );
 };
