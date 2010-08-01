@@ -48,7 +48,7 @@ namespace{
 		void operator()(std::ostream& out, const Vertex& v) const
 		{
 			std::string name = boost::get(boost::vertex_name,m_g,v);
-			out << "[label=\"" << name << "\", weight=1000, width=.2, height=.2, fontsize=16, font=Helvetica, shape=plaintext]";
+			out << "[label=\"" << name << "\", width=.2, height=.2, fontsize=16, font=Helvetica, shape=plaintext]";
 		}
 
 		const MCGraph& m_g;
@@ -73,12 +73,11 @@ namespace{
 					if (!exists)
 					{
 						boost::tie(e,exists) = boost::edge(i*2+1, i*2, m_g);
-					}
-
-					if (!exists)
-					{
-						//create invisible edges for layouting purposes
-						out << i*2 << "->" << i*2+1 << " [style=invis, weight=1]\n";
+						if (!exists)
+						{
+							//create invisible edges for layouting purposes
+							out << i*2 << "->" << i*2+1 << " [style=invis];\n";
+						}
 					}
 				}
 			}
@@ -97,24 +96,7 @@ namespace{
 				out << *it;
 			}
 
-			out << "\n";
-
-			MCGraph::edge_iterator eIt, eEnd;
-			boost::tie(eIt, eEnd) = boost::edges(m_g);
-			MCEdgeWriter<MCGraph> edgeWriter(m_g);
-			for (; eIt != eEnd; ++eIt)
-			{
-				MCGraph::vertex_descriptor src = boost::source(*eIt, m_g);
-				MCGraph::vertex_descriptor tgt = boost::target(*eIt, m_g);
-
-				if (params.find(src) != params.end() && params.find(tgt) != params.end())
-				{
-					out << src << "->" << tgt << " ";
-					edgeWriter(out, *eIt);
-					out << std::endl;
-				}
-			}
-			out << "}\n";
+			out << "\n}\n";
 		}
 
 		const MCGraph& m_g;
