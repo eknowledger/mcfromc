@@ -95,11 +95,14 @@ namespace CFGViewer
                         int nextInd = line.IndexOf(',', posInd);
                         string numStr = line.Substring(posInd, nextInd - posInd);
                         int x = -1, y = -1;
-                        int.TryParse(numStr, out x);
+                        float fX = -1, fY = -1;
+                        float.TryParse(numStr, out fX);
+                        x = (int)fX;
                         posInd = nextInd + 1;
                         nextInd = line.IndexOf('\"', posInd);
                         numStr = line.Substring(posInd, nextInd - posInd);
-                        int.TryParse(numStr, out y);
+                        float.TryParse(numStr, out fY);
+                        y = (int)fY;
                         if (x >= 0 && y >= 0)
                         {
                             line = line.Trim(" \t".ToCharArray());
@@ -126,28 +129,42 @@ namespace CFGViewer
                 else //if edge
                 {
                     int posInd = line.IndexOf("lp=");
+                    string orgLine = line;
+                    if (posInd < 0)
+                    {
+                        if (line[line.Length-1] == '\\')
+                        {
+                            line = reader.ReadLine();
+                            posInd = line.IndexOf("lp=");
+                        }
+                    }
                     if (posInd >= 0)
                     {
                         posInd += 4;
                         int nextInd = line.IndexOf(',', posInd);
                         string numStr = line.Substring(posInd, nextInd - posInd);
                         int x = -1, y = -1;
-                        int.TryParse(numStr, out x);
+                        float fX = -1, fY = -1;
+                        float.TryParse(numStr, out fX);
+                        x = (int)fX;
                         posInd = nextInd + 1;
                         nextInd = line.IndexOf('\"', posInd);
                         numStr = line.Substring(posInd, nextInd - posInd);
-                        int.TryParse(numStr, out y);
+                        float.TryParse(numStr, out fY);
+                        y = (int)fY;
                         if (x >= 0 && y >= 0)
                         {
-                            int labelStartIndex = line.IndexOf("label=");
+                            int labelStartIndex = orgLine.IndexOf("label=");
                             if (labelStartIndex >= 0)
                             {
                                 labelStartIndex += 5;
-                                int labelEndIndex = line.IndexOf(",", labelStartIndex);
-                                
-                                line = line.Trim(" \t".ToCharArray());
-                                string fpName = line.Substring(labelStartIndex, labelEndIndex - labelStartIndex - 1) ;
-                                FlowPointName.Add(new Point(x, y), fpName);
+                                int labelEndIndex = orgLine.IndexOf(",", labelStartIndex);
+
+                                orgLine = orgLine.Trim(" \t".ToCharArray());
+                                string fpName = orgLine.Substring(labelStartIndex, labelEndIndex - labelStartIndex - 1);
+                                Point key = new Point(x, y);
+                                if (!FlowPointName.ContainsKey(key))
+                                    FlowPointName.Add(key, fpName);
                             }
                         }
                     }
@@ -224,6 +241,7 @@ namespace CFGViewer
             ProcessStartInfo startInfo = new ProcessStartInfo(Application.StartupPath + "/../ThirdParty/Graphviz/bin/dot.exe");
             startInfo.WindowStyle = ProcessWindowStyle.Hidden;
             startInfo.Arguments = "-Tdot " + DIGRAPH_FILE + " -o " + DOT_LAYOUT_FILE + "_" + id.ToString();
+            startInfo.UseShellExecute = false;
             Process p1 = Process.Start(startInfo);
             p1.WaitForExit();
             rc = (p1.ExitCode == 0);
