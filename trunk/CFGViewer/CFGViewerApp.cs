@@ -117,11 +117,11 @@ namespace CFGViewer
                         startInd = endInd+1;
                         endInd = line.IndexOf('\"', startInd);
                         string heightStr = line.Substring(startInd, endInd-startInd);
-                        int w, h;
-                        if (int.TryParse(widthStr, out w) &&
-                            int.TryParse(heightStr, out h))
+                        float w, h;
+                        if (float.TryParse(widthStr, out w) &&
+                            float.TryParse(heightStr, out h))
                         {
-                            m_ImageSize = new Size(w, h);
+                            m_ImageSize = new Size((int)w, (int)h);
                         }
 
                     }
@@ -241,13 +241,12 @@ namespace CFGViewer
             ProcessStartInfo startInfo = new ProcessStartInfo(Application.StartupPath + "/../ThirdParty/Graphviz/bin/dot.exe");
             startInfo.WindowStyle = ProcessWindowStyle.Hidden;
             startInfo.Arguments = "-Tdot " + DIGRAPH_FILE + " -o " + DOT_LAYOUT_FILE + "_" + id.ToString();
-            startInfo.UseShellExecute = false;
             Process p1 = Process.Start(startInfo);
             p1.WaitForExit();
             rc = (p1.ExitCode == 0);
             if (rc) 
             {
-                rc = GenerateDotBitmap(DIGRAPH_FILE, DOT_IMAGE_FILE + "_" + id.ToString());
+                rc = GenerateDotBitmap(DIGRAPH_FILE, DOT_IMAGE_FILE + "_" + id.ToString() + ".png");
             }
             else
             {
@@ -265,7 +264,7 @@ namespace CFGViewer
             OnMessage("Running dot tool - generating bitmap");
             ProcessStartInfo startInfo = new ProcessStartInfo(Application.StartupPath + "/../ThirdParty/Graphviz/bin/dot.exe");
             startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-            startInfo.Arguments = "-Tgif " + inputFileName + " -o " + outputFileName;
+            startInfo.Arguments = "-Tpng " + inputFileName + " -o " + outputFileName;
             Process proc = Process.Start(startInfo);
             proc.WaitForExit();
             if (proc.ExitCode != 0)
@@ -296,7 +295,7 @@ namespace CFGViewer
                     fileRead = true;
                     OnMessage("loading CFG image");
                     readDotSpec(DOT_LAYOUT_FILE + "_" + id.ToString());
-                    OnImageUpdate(DOT_IMAGE_FILE + "_" + id.ToString());
+                    OnImageUpdate(DOT_IMAGE_FILE + "_" + id.ToString() + ".png");
                     OnMessage("Cleaning up");
                 }
                  File.Delete(DIGRAPH_FILE);
@@ -465,7 +464,7 @@ namespace CFGViewer
         const string OUT_FILE = "temp_cfg";
         public readonly string DIGRAPH_FILE = Application.StartupPath + "\\Temp\\" + OUT_FILE + ".g";
         public readonly string DOT_LAYOUT_FILE = Application.StartupPath + "\\Temp\\" + OUT_FILE + ".dot";
-        public readonly string DOT_IMAGE_FILE = Application.StartupPath + "\\Temp\\" + OUT_FILE + ".gif";
+        public readonly string DOT_IMAGE_FILE = Application.StartupPath + "\\Temp\\" + OUT_FILE;
         public readonly string CODE_FILE = Application.StartupPath + "\\Temp\\" + OUT_FILE + ".c";
     }
 }
