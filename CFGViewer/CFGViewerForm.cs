@@ -120,7 +120,10 @@ namespace CFGViewer
             CFGProgressBar.Value = 0;
             CFGProgressBar.Show();
 
-            m_app.GenerateCFG(codeTextBox.Text);
+            if (m_app.GenerateCFG(codeTextBox.Text))
+            {
+                toolStripButtonSave.Enabled = true;
+            }
             
             CFGProgressBar.Value = 0;
         }
@@ -186,11 +189,6 @@ namespace CFGViewer
             {
                 m_app.WriteGraphToFile(dlg.FileName, textBoxMCOutput.Text);
             }
-        }
-
-        private void textBoxMCOutput_TextChanged(object sender, EventArgs e)
-        {
-            toolStripButtonSave.Enabled = textBoxMCOutput.TextLength > 0;
         }
 
         private void toolStripButtonHelp_Click(object sender, EventArgs e)
