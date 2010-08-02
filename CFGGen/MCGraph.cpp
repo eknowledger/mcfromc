@@ -200,22 +200,39 @@ std::ostream& operator <<(std::ostream& out,const MCGraph& mc)
 	return out;
 }
 
-void MCGraph::writeParamsInArielFormat(std::ostream& out,const FlowPointParams& fpParams)
+//************************************
+// Method:    writeParamsInCLSFormat
+// FullName:  MCGraph::writeParamsInCSLFormat
+// Access:    public 
+// Returns:   void
+// Parameter: std::ostream & out
+// Parameter: const FlowPointParams & fpParams
+//************************************
+void MCGraph::writeParamsInCSLFormat(std::ostream& out,const FlowPointParams& fpParams)
 {
 	for(FlowPointParams::const_iterator paramItr = fpParams.begin(); paramItr != fpParams.end(); ++paramItr){
-		if (paramItr != fpParams.end())
+		if (paramItr != fpParams.begin())
+		{
 			out << ",";
+		}
 		out << boost::get(boost::vertex_name,*this,*paramItr);
 	}
 }
 
-void MCGraph::writeInArielFormat(std::ostream& out)
+///************************************
+/// Method:    writeInCSLFormat
+/// Access:    public 
+/// Returns:   void
+/// Description: Writes MC to output stream in Chin Sun-Lee's MC format.
+/// Parameter: std::ostream & out
+///************************************
+void MCGraph::writeInCSLFormat(std::ostream& out)
 {
 	std::string fromFP = m_fromFlowPoint.lock()->getFriendlyName();
 	std::string toFP = m_toFlowPoint.lock()->getFriendlyName();
 
 	out << fromFP << "(";
-	writeParamsInArielFormat(out,m_fromParams);
+	writeParamsInCSLFormat(out,m_fromParams);
 	out << ") :- [";
 	MCGraph::edge_iterator eIt, eEnd, eBegin;
 	boost::tie(eBegin, eEnd) = boost::edges(*this);
@@ -233,7 +250,7 @@ void MCGraph::writeInArielFormat(std::ostream& out)
 		++eIt;
 	}
 	out << "] ; " << toFP << "(";
-	writeParamsInArielFormat(out,m_toParams);
+	writeParamsInCSLFormat(out,m_toParams);
 	out << ")\n";
 }
 

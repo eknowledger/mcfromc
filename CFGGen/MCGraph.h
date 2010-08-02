@@ -53,7 +53,7 @@ public:
 	edge_descriptor addOrUpdateEdge(vertex_descriptor u,vertex_descriptor v,Order o);
 	MCConstrainEdge addEdgeFromInvariant(const InvariantMember& inv);
 	void removeEdgeFromInvariant(const InvariantMember& inv);
-	void writeInArielFormat(std::ostream& out);
+	void writeInCSLFormat(std::ostream& out);
 
 	const FlowPointParams& fromParams() const{
 		return m_fromParams;
@@ -82,7 +82,7 @@ protected:
 private:
 	//clones everything besides the name.
 	void copyFrom(const MCGraph& other);
-	void writeParamsInArielFormat(std::ostream& out,const FlowPointParams &fpParams);
+	void writeParamsInCSLFormat(std::ostream& out,const FlowPointParams &fpParams);
 };
 
 typedef boost::shared_ptr<MCGraph> MCSharedPtr;
