@@ -232,3 +232,13 @@ void CFG::UpdateTransitionsWithVars()
 	}
 	
 }
+
+void CFG::AssignFlowPointIDs()
+{
+	for (FPSet::iterator it = m_knownFPs.begin(); it != m_knownFPs.end(); ++it)
+	{
+		if ((*it)->ShouldBeAssignedId()) {
+			(*it)->AssignUniqueId();
+		}
+	}
+}

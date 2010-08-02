@@ -35,6 +35,10 @@ public:
 		return m_index;
 	}
 
+	void AssignUniqueId();
+
+	bool ShouldBeAssignedId();
+
 	inline FP_CFG_ID cfgID() const {
 		return m_cfgID;
 	}
