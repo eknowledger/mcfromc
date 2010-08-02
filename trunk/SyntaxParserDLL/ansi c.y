@@ -104,6 +104,7 @@ unary_expression
 	| unary_operator unary_expression
 	{
 		NodeData* p = createNode(PREFIX_OP_UNARY_EXPR);
+		appendChild(p, $1);
 		appendChild(p, $2);
 		$$ = p;
 	}
@@ -117,10 +118,6 @@ unary_operator
 	| '-'
 	{
 		$$ = createNode(PREFIX_MINUS);
-	}
-	| '!'
-	{
-		$$ = createNode(PREFIX_NOT);
 	}
 	;
 
@@ -241,13 +238,6 @@ and_expression
 	{
 		$$ = $1;
 	}
-	| and_expression '&' equality_expression
-	{
-		NodeData* p = createNode(AND_EXPR);
-		appendChild(p, $1);
-		appendChild(p, $3);	
-		$$ = p;				
-	}
 	;
 
 exclusive_or_expression
@@ -296,14 +286,6 @@ conditional_expression
 	: logical_or_expression
 	{
 		$$ = $1;
-	}
-	| logical_or_expression '?' expression ':' conditional_expression
-	{
-		NodeData* p = createNode(CONDITIONAL_EXPRESSION);
-		appendChild(p, $1);
-		appendChild(p, $3);
-		appendChild(p, $5);
-		$$ = p
 	}
 	;
 
@@ -413,60 +395,12 @@ init_declarator
 	;
 
 type_specifier
-	: VOID
-	{
-		NodeData* p = createNode(TYPE_SPECIFIER); 
-		p->m_name = strdup("void");
-		$$ = p;		
-	}
-	| CHAR
-	{
-		NodeData* p = createNode(TYPE_SPECIFIER); 
-		p->m_name = strdup("char");
-		$$ = p;	
-	}	
-	| SHORT
-	{
-		NodeData* p = createNode(TYPE_SPECIFIER); 
-		p->m_name = strdup("short");
-		$$ = p;	
-	}	
-	| INT
+	: INT
 	{
 		NodeData* p = createNode(TYPE_SPECIFIER); 
 		p->m_name = strdup("int");
 		$$ = p;	
 	}	
-	| LONG
-	{
-		NodeData* p = createNode(TYPE_SPECIFIER); 
-		p->m_name = strdup("long");
-		$$ = p;	
-	}	
-	| FLOAT
-	{
-		NodeData* p = createNode(TYPE_SPECIFIER); 
-		p->m_name = strdup("float");
-		$$ = p;	
-	}	
-	| DOUBLE
-	{
-		NodeData* p = createNode(TYPE_SPECIFIER); 
-		p->m_name = strdup("double");
-		$$ = p;	
-	}	
-	| SIGNED
-	{
-		NodeData* p = createNode(TYPE_SPECIFIER); 
-		p->m_name = strdup("signed");
-		$$ = p;	
-	}	
-	| UNSIGNED
-	{
-		NodeData* p = createNode(TYPE_SPECIFIER); 
-		p->m_name = strdup("unsigned");
-		$$ = p;	
-	}		
 	;
 
 declarator

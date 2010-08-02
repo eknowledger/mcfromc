@@ -220,21 +220,19 @@ std::string SNode::Text() const
 		res = m_children[0]->Text() + "&&" + m_children[1]->Text();
 		break;
 	case EQUAL_EXPR:
-		res = m_children[0]->Text() + "==" + m_children[1]->Text();
+		res = "(" + m_children[0]->Text() + "==" + m_children[1]->Text() + ")";
 		break;
 	case LESS_THAN_EXPR:
-		res = m_children[0]->Text() + "<" + m_children[1]->Text();
+		res = "(" + m_children[0]->Text() + "<" + m_children[1]->Text() + ")";
 		break;
 	case GREATER_THAN_EXPR:
-		res = m_children[0]->Text() + ">" + m_children[1]->Text();
+		res = "(" + m_children[0]->Text() + ">" + m_children[1]->Text() + ")";
 		break;
 	case LESS_EQ_THAN_EXPR:
-		res = m_children[0]->Text() + "<=" + m_children[1]->Text();
+		res = "(" + m_children[0]->Text() + "<=" + m_children[1]->Text() + ")";
 		break;
 	case GREATER_EQ_THAN_EXPR:
-		res = m_children[0]->Text() + ">=" + m_children[1]->Text();
-		break;
-	case AND_EXPR:
+		res = "(" + m_children[0]->Text() + ">=" + m_children[1]->Text() + ")";
 		break;
 	case ADD_EXPR:
 		res = "(" + m_children[0]->Text() + "+" + m_children[1]->Text() + ")";
@@ -263,14 +261,17 @@ std::string SNode::Text() const
 	case POST_DECREMENT_EXPR:
 		res = m_children[0]->Text() + "--";
 		break;
+	case PREFIX_OP_UNARY_EXPR:
+		res = m_children[0]->Text() + m_children[1]->Text();
+		break;
 	case PREFIX_PLUS:
-		res = "+" + m_children[0]->Text();
+		res = "+";
 		break;
 	case PREFIX_MINUS:
-		res = "-" + m_children[0]->Text();
+		res = "-";
 		break;
 	case PREFIX_NOT:
-		res = "!" + m_children[0]->Text();
+		res = "!";
 		break;
 	case ID:
 	case TYPE_SPECIFIER:

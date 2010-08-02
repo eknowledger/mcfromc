@@ -28,9 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ErrorMessageDialog));
             this.buttonOk = new System.Windows.Forms.Button();
             this.labelHeading = new System.Windows.Forms.Label();
             this.richTextBoxCode = new System.Windows.Forms.RichTextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonOk
@@ -48,7 +51,7 @@
             // labelHeading
             // 
             this.labelHeading.AutoSize = true;
-            this.labelHeading.Location = new System.Drawing.Point(25, 13);
+            this.labelHeading.Location = new System.Drawing.Point(67, 9);
             this.labelHeading.Name = "labelHeading";
             this.labelHeading.Size = new System.Drawing.Size(35, 13);
             this.labelHeading.TabIndex = 1;
@@ -68,6 +71,16 @@
             this.richTextBoxCode.TabIndex = 3;
             this.richTextBoxCode.Text = "";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(28, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(33, 32);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            // 
             // ErrorMessageDialog
             // 
             this.AcceptButton = this.buttonOk;
@@ -78,13 +91,15 @@
             this.Controls.Add(this.richTextBoxCode);
             this.Controls.Add(this.labelHeading);
             this.Controls.Add(this.buttonOk);
+            this.Controls.Add(this.pictureBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(507, 300);
             this.Name = "ErrorMessageDialog";
-            this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.TopMost = true;
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -95,5 +110,6 @@
         private System.Windows.Forms.Button buttonOk;
         private System.Windows.Forms.Label labelHeading;
         private System.Windows.Forms.RichTextBox richTextBoxCode;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

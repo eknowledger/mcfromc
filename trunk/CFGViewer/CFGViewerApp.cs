@@ -276,10 +276,10 @@ namespace CFGViewer
             return rc;
         }
 
-        public void GenerateCFG(string code)
+        public bool GenerateCFG(string code)
         {
-            CleanTempDir();
             bool rc = true;
+            CleanTempDir();
             bool fileRead = false;
             Guid id = Guid.NewGuid();
             string codeFileName = CODE_FILE + "_" + id.ToString();
@@ -314,8 +314,11 @@ namespace CFGViewer
             string err = CFGParser.GetLastError();
             if (err != "")
             {
+                rc = false;
                 OnError("Code parsing failed. Check syntax:", err);
             }
+
+            return rc;
         }
 
         private void WriteTextFile(string filename, string text)

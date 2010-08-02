@@ -41,6 +41,39 @@ SPExpr ExprMgr::create( SNode* expressionNode )
 		case ID:
 			res = SPExpr(new AtomExpr(((SIdentifierNode*)expressionNode)->name()));
 			break;
+		case PREFIX_OP_UNARY_EXPR:
+			{
+				SPExpr right = create(expressionNode->children()[1]);
+				switch (expressionNode->children()[0]->Type())
+				{
+				case PREFIX_PLUS:
+					res = right;
+					break;
+				case PREFIX_MINUS:
+					{
+						SPExpr left = SPExpr(new AtomExpr(0));
+						res = SPExpr(new BinExpr(OP_SUB, left, right));
+					}
+					break;
+				case PREFIX_NOT:
+					{
+						if (right->HasValue())
+						{
+							ValType val = ((AtomExpr*)right.get())->Value() != 0 ? 0 : 1;
+							res = SPExpr(new AtomExpr(val));
+						}
+						else {
+							res = createUndefined();
+						}
+					}
+					break;
+				default:
+					res = createUndefined();
+					break;
+				}
+
+			}
+			break;
 		default:
 			res = createUndefined();
 			break;
