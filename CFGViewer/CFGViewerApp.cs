@@ -240,7 +240,7 @@ namespace CFGViewer
             OnMessage("Running dot tool - generating layout");
             ProcessStartInfo startInfo = new ProcessStartInfo(Application.StartupPath + "/../ThirdParty/Graphviz/bin/dot.exe");
             startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-            startInfo.Arguments = "-Tdot " + DIGRAPH_FILE + " -o " + DOT_LAYOUT_FILE + "_" + id.ToString();
+            startInfo.Arguments = "-Tdot " + "\"" + DIGRAPH_FILE + "\"" + " -o " + "\"" + DOT_LAYOUT_FILE + "_" + id.ToString() + "\"";
             Process p1 = Process.Start(startInfo);
             p1.WaitForExit();
             rc = (p1.ExitCode == 0);
@@ -264,7 +264,7 @@ namespace CFGViewer
             OnMessage("Running dot tool - generating bitmap");
             ProcessStartInfo startInfo = new ProcessStartInfo(Application.StartupPath + "/../ThirdParty/Graphviz/bin/dot.exe");
             startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-            startInfo.Arguments = "-Tpng " + inputFileName + " -o " + outputFileName;
+            startInfo.Arguments = "-Tpng " + "\"" + inputFileName + "\"" + " -o " + "\"" + outputFileName + "\"";
             Process proc = Process.Start(startInfo);
             proc.WaitForExit();
             if (proc.ExitCode != 0)
