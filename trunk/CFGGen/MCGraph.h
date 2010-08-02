@@ -41,6 +41,9 @@ public:
 
 	void addVar(const ParamName& var);
 	void addVariables(const ParamNameSet& vars);
+	MCConstrainEdge addEdgeFromInvariant(FPSharedPtr invFP,const InvariantMember& inv);
+	void removeEdgeFromInvariant(FPSharedPtr invFP,const InvariantMember& inv);
+	MCConstrainEdge addTrnasitionVariant(const TransitionVariant& t_var);
 
 
 	Invariant computeInvariant(const FlowPoint& f);
@@ -50,9 +53,6 @@ public:
 		return friendlyName.str();
 	}
 	bool logicalClosure();
-	edge_descriptor addOrUpdateEdge(vertex_descriptor u,vertex_descriptor v,Order o);
-	MCConstrainEdge addEdgeFromInvariant(const InvariantMember& inv);
-	void removeEdgeFromInvariant(const InvariantMember& inv);
 	void writeInCSLFormat(std::ostream& out);
 
 	const FlowPointParams& fromParams() const{
@@ -71,6 +71,7 @@ protected:
 	Invariant computeFlowPointInvariant(const FlowPointParams& fParams);
 	void addInvariantFromFlowPoint(FPointWeakPtr fID);
 	MCGraph::vertex_descriptor addVertexForVar(const ParamName& varName);
+	edge_descriptor addOrUpdateEdge(vertex_descriptor u,vertex_descriptor v,Order o);
 	
 	ParamNameToVertex m_nameToVertex;
 	FlowPointParams m_fromParams;
