@@ -46,6 +46,7 @@ bool Syntax2CFG::execute()
 		mergeConsecutiveExpressionBlocks();
 		if (m_compoundBlocks.size() > 0)
 			m_cfg.SetStart(((Block*)m_compoundBlocks[0])->flowPoints()[0]);
+		m_cfg.AssignFlowPointIDs();
 		rc = true;
 	}
 

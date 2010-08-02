@@ -23,10 +23,10 @@ namespace{
 			o = (Order) boost::get(boost::edge_weight,m_g,e);
 			switch(o)
 			{
-			case LEQ: 
+			case GEQ: 
 				color = "black";
 				break;
-			case LESS:
+			case GREATER:
 				color = "red";
 				break;
 			default:
@@ -129,7 +129,7 @@ MCConstrainEdge MCGraph::addEdgeFromInvariant(const InvariantMember& inv){
 	Order o = inv.get<1>();
 	ASSERT_RETURN(o != END_ORDER,invEdge);
 	//we do y -> to x since x < y means there is an edge from y to x
-	invEdge = addOrUpdateEdge(y->second,x->second,o);
+	invEdge = addOrUpdateEdge(x->second,y->second,o);
 	return invEdge;
 }
 
@@ -244,19 +244,19 @@ MCGraph::edge_descriptor MCGraph::addOrUpdateEdge(vertex_descriptor u,vertex_des
 	
 	//gets the real source and target of edge.
 	switch(o){
-		case LESS:
-		case LEQ:
+		case GREATER:
+		case GEQ:
 			break;
 		//stays the same
-		case GREATER:
+		case LESS:
 			source = v;
 			target = u;
-			o = LESS;
+			o = GREATER;
 			break;
-		case GEQ:
+		case LEQ:
 			source = v;
 			target = u;
-			o = LEQ;
+			o = GEQ;
 			break;			
 	}
 
@@ -269,8 +269,13 @@ MCGraph::edge_descriptor MCGraph::addOrUpdateEdge(vertex_descriptor u,vertex_des
 			boost::put(boost::edge_weight,*this,e,o);
 		return e;
 	}
-	else
+	else if (o != EQ) {
 		return add_edge(source,target,o,*this).first;
+	}
+	else {
+		add_edge(target,source,GEQ,*this);
+		return add_edge(source,target,GEQ,*this).first;
+	}
 }
 
 /*Algorithm:

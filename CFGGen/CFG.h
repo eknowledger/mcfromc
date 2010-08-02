@@ -66,6 +66,7 @@ public:
 		return m_knwonMCs;
 	}
 	void UpdateTransitionsWithVars();
+	void AssignFlowPointIDs();
 
 private:
 	FPSet m_knownFPs;
