@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{BB3E1891-E88C-48A3-885E-3AAA4A642DC0}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -76,6 +76,12 @@
     <Compile Include="ErrorMessageDialog.Designer.cs">
       <DependentUpon>ErrorMessageDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="HelpForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HelpForm.Designer.cs">
+      <DependentUpon>HelpForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MCGraphViewerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +97,9 @@
     <EmbeddedResource Include="ErrorMessageDialog.resx">
       <DependentUpon>ErrorMessageDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HelpForm.resx">
+      <DependentUpon>HelpForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MCGraphViewerForm.resx">
       <DependentUpon>MCGraphViewerForm.cs</DependentUpon>

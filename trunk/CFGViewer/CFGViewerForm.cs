@@ -192,5 +192,11 @@ namespace CFGViewer
         {
             toolStripButtonSave.Enabled = textBoxMCOutput.TextLength > 0;
         }
+
+        private void toolStripButtonHelp_Click(object sender, EventArgs e)
+        {
+            HelpForm dlg = new HelpForm();
+            dlg.ShowDialog();
+        }
     }
 }

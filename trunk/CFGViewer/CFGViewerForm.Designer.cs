@@ -51,6 +51,7 @@
             this.GenerateCFGButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonSave = new System.Windows.Forms.ToolStripButton();
             this.graphToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.toolStripButtonHelp = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -176,7 +177,7 @@
             this.GraphPictureBox.BackColor = System.Drawing.Color.White;
             this.GraphPictureBox.Location = new System.Drawing.Point(3, 3);
             this.GraphPictureBox.Name = "GraphPictureBox";
-            this.GraphPictureBox.Size = new System.Drawing.Size(262, 295);
+            this.GraphPictureBox.Size = new System.Drawing.Size(344, 295);
             this.GraphPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.GraphPictureBox.TabIndex = 0;
             this.GraphPictureBox.TabStop = false;
@@ -190,7 +191,8 @@
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ButtonZoomIn,
-            this.ButtonZoomOut});
+            this.ButtonZoomOut,
+            this.toolStripButtonHelp});
             this.toolStrip1.Location = new System.Drawing.Point(3, 3);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(369, 27);
@@ -309,6 +311,16 @@
             this.toolStripButtonSave.ToolTipText = "Save generated MCs to file";
             this.toolStripButtonSave.Click += new System.EventHandler(this.toolStripButtonSave_Click);
             // 
+            // toolStripButtonHelp
+            // 
+            this.toolStripButtonHelp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonHelp.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonHelp.Image")));
+            this.toolStripButtonHelp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonHelp.Name = "toolStripButtonHelp";
+            this.toolStripButtonHelp.Size = new System.Drawing.Size(24, 24);
+            this.toolStripButtonHelp.Text = "Help";
+            this.toolStripButtonHelp.Click += new System.EventHandler(this.toolStripButtonHelp_Click);
+            // 
             // CFGViewerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -363,6 +375,7 @@
         private System.Windows.Forms.Panel panelMCText;
         private System.Windows.Forms.RichTextBox textBoxMCOutput;
         private System.Windows.Forms.ToolStripButton toolStripButtonSave;
+        private System.Windows.Forms.ToolStripButton toolStripButtonHelp;
     }
 }
 
