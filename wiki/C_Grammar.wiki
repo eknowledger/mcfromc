@@ -6,7 +6,7 @@ This page describes the subset of the C language grammar which is handled by the
 
 == Which syntactic structures are handled ? ==
 
-Basically any structure legal in the C language except, mainly, the following elements:
+Basically any structure legal in the C language <u>*except*</u>, mainly, the following elements:
   # Pointers.
   # Arrays.
   # *goto*, *break*, *continue* and *return* commands.
@@ -16,10 +16,12 @@ Basically any structure legal in the C language except, mainly, the following el
 
 In addition, the following applies:
   # Only one function definition is allowed per translation unit (enforced by the BNF structure).
-  # All variables are considered as integers (maybe later we will decide to limit variable declaration to int or unsigned int).
+  # All variables are considered as integers (only int variable declaration is allowed).
+  # Prefix/Postfix decrement/increment expressions (--/++) are not supported within assignment expressions or conditional expressions. This is not enforced by the BNF structure, but later on checked for validity).
 
 == TODO List == 
  # When the algorithms are finished, we need to go over the BNF and remove any structure which is not supported by our algorithms (for example, need to remove types which are <u>not</u> *int*.
+
 == The Grammar in BNF ==
 
 *translation_unit* 
@@ -136,15 +138,7 @@ In addition, the following applies:
 	| declarator '=' initializer
 	
 * type_specifier *
-	::= VOID
-	| CHAR
-	| SHORT
-	| INT
-	| LONG
-	| FLOAT
-	| DOUBLE
-	| SIGNED
-	| UNSIGNED
+	::= 'int'
 
 * declarator *
 	::= direct_declarator
