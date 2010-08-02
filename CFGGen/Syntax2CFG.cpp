@@ -9,6 +9,7 @@
 #include <iostream>
 #include "forloopflowpoint.h"
 #include "SIdentifierNode.h"
+#include "SConstantNode.h"
 
 namespace{
 	void addTransition(FlowPoint* f,FlowPoint* g,CFG& cfg, bool isInvariantTrue = false){
@@ -37,7 +38,7 @@ bool Syntax2CFG::execute()
 	clearCompoundBlocks();
 	ChildrenOf.clear();
 	SyntaxSimplifier(m_root).execute();
-	collectVariableNames(m_root);
+	collectVariableAndConstantNames(m_root);
 	FlowPoint* fp = generateFlowPoints(m_root);
 	if (fp) {
 		reduceExpressionBlocks();
@@ -459,7 +460,7 @@ void Syntax2CFG::mergeConsecutiveExpressionBlocks()
 	}
 }
 
-void Syntax2CFG::collectVariableNames( SNode* root )
+void Syntax2CFG::collectVariableAndConstantNames( SNode* root )
 {
 	if (root)
 	{
@@ -467,10 +468,16 @@ void Syntax2CFG::collectVariableNames( SNode* root )
 		{
 			m_cfg.AddVariable(((SIdentifierNode*)root)->name());
 		}
-
-		for (size_t i = 0; i < root->children().size(); ++i)
+		else if (root->Type() == CONST_TYPE)
 		{
-			collectVariableNames(root->children()[i]);
+			m_cfg.AddConstant(((SConstantNode*)root)->value());
+		}
+		else 
+		{
+			for (size_t i = 0; i < root->children().size(); ++i)
+			{
+				collectVariableAndConstantNames(root->children()[i]);
+			}
 		}
 	}
 }

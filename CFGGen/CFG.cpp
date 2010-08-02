@@ -5,6 +5,8 @@
 #include "boost\graph\graphviz.hpp"
 #include "GeneralMacros.h"
 #include "boost/make_shared.hpp"
+#include "ExprMgr.h"
+#include <sstream>
 
 CFG::CFG(void): m_startFP(NULL)
 {
@@ -241,4 +243,11 @@ void CFG::AssignFlowPointIDs()
 			(*it)->AssignUniqueId();
 		}
 	}
+}
+
+void CFG::AddConstant( ValType value )
+{
+	std::ostringstream ostr;
+	ostr << value;
+	m_knownConstants[ostr.str()] = ExprMgr::the().createConst(value);
 }

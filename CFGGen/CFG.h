@@ -53,14 +53,24 @@ public:
 	{
 		m_startFP = startFP;
 	}
+
 	inline void AddVariable(const ParamName& varName)
 	{
 		m_knownVariables.insert(varName);
 	}
+
 	inline const ParamNameSet& Variables() const
 	{
 		return m_knownVariables;
 	}
+
+	void AddConstant(ValType value);
+
+	inline const VarToValue& Constants() const
+	{
+		return m_knownConstants;
+	}
+
 	inline const MCSet& KnownMCs() const
 	{
 		return m_knwonMCs;
@@ -75,4 +85,5 @@ private:
 	//MCs on the graph
 	MCSet m_knwonMCs;
 	ParamNameSet m_knownVariables;
+	VarToValue m_knownConstants; 
 };
