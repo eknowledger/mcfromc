@@ -80,6 +80,8 @@ typedef CFGBase::vertex_descriptor FP_CFG_ID;
 
 //Invariants
 typedef boost::tuple<std::string,Order,std::string> InvariantMember;
+typedef boost::tuple<std::string,Order,std::string> TransitionVariant;
+typedef std::set<TransitionVariant> TransitionVariantSet;
 typedef std::set<InvariantMember> Invariant;
 typedef std::vector<InvariantMember> InvariantDiff;
 

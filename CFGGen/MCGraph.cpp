@@ -119,10 +119,20 @@ InvariantMember make_invariant(const MCBaseGraph::edge_descriptor& e,const MCGra
 	return boost::make_tuple(x2Name,o,x1Name);
 }
 
-MCConstrainEdge MCGraph::addEdgeFromInvariant(const InvariantMember& inv){
+MCConstrainEdge MCGraph::addEdgeFromInvariant(FPSharedPtr invFP,const InvariantMember& inv){
+	ASSERT_RETURN(invFP != NULL,MCConstrainEdge());
 	//Gets the vertex that are associated with the param names
-	MCGraph::ParamNameToVertex::const_iterator x = m_nameToVertex.find(inv.get<0>());
-	MCGraph::ParamNameToVertex::const_iterator y = m_nameToVertex.find(inv.get<2>());
+	MCGraph::ParamNameToVertex::const_iterator x; 
+	MCGraph::ParamNameToVertex::const_iterator y;
+	//update the parameter names to have ' suffix if this is that target FP.
+	if(invFP == m_fromFlowPoint.lock()){
+		x = m_nameToVertex.find(inv.get<0>());
+		y = m_nameToVertex.find(inv.get<2>());
+	}
+	else{
+		x = m_nameToVertex.find(inv.get<0>() + "'");
+		y = m_nameToVertex.find(inv.get<2>() + "'");
+	}
 	MCBaseGraph::edge_descriptor invEdge;
 	ASSERT_RETURN(x != m_nameToVertex.end() && y != m_nameToVertex.end(),invEdge);
 	//Gets the order.
@@ -133,11 +143,36 @@ MCConstrainEdge MCGraph::addEdgeFromInvariant(const InvariantMember& inv){
 	return invEdge;
 }
 
-void MCGraph::removeEdgeFromInvariant(const InvariantMember& inv)
+MCConstrainEdge MCGraph::addTrnasitionVariant(const TransitionVariant& t_var)
 {
+	ParamName tgtParam = t_var.get<2>() + "'";
+	MCGraph::ParamNameToVertex::const_iterator x = m_nameToVertex.find(t_var.get<0>());
+	MCGraph::ParamNameToVertex::const_iterator y = m_nameToVertex.find(tgtParam);
+	MCConstrainEdge tVarEdge;
+	ASSERT_RETURN(x != m_nameToVertex.end() && y != m_nameToVertex.end(),tVarEdge);
+	//Gets the order.
+	Order o = t_var.get<1>();
+	ASSERT_RETURN(o != END_ORDER,tVarEdge);
+	//we do y -> to x since x < y means there is an edge from y to x
+	tVarEdge = addOrUpdateEdge(y->second,x->second,o);
+	return tVarEdge;
+}
+
+void MCGraph::removeEdgeFromInvariant(FPSharedPtr invFP,const InvariantMember& inv)
+{
+	ASSERT_RETURN_VOID(invFP != NULL);
 	//Gets the vertex that are associated with the param names
-	MCGraph::ParamNameToVertex::const_iterator x = m_nameToVertex.find(inv.get<0>());
-	MCGraph::ParamNameToVertex::const_iterator y = m_nameToVertex.find(inv.get<2>());
+	MCGraph::ParamNameToVertex::const_iterator x;
+	MCGraph::ParamNameToVertex::const_iterator y;
+	//update the parameter names to have ' suffix if this is that target FP.
+	if(invFP == m_fromFlowPoint.lock()){
+		x = m_nameToVertex.find(inv.get<0>());
+		y = m_nameToVertex.find(inv.get<2>());
+	}
+	else{
+		x = m_nameToVertex.find(inv.get<0>() + "'");
+		y = m_nameToVertex.find(inv.get<2>() + "'");
+	}
 	ASSERT_RETURN_VOID(x != m_nameToVertex.end() && y != m_nameToVertex.end());
 	//remove the edge from the graph.
 	boost::remove_edge(y->second,x->second,*this);
@@ -352,7 +387,7 @@ void MCGraph::addInvariantFromFlowPoint(FPointWeakPtr fWeak)
 	//Invariant& inv = f->getInvariant();
 	Invariant inv;
 	for(Invariant::iterator invItr = inv.begin(); invItr != inv.end(); ++invItr)
-		addEdgeFromInvariant(*invItr);
+		addEdgeFromInvariant(fWeak.lock(),*invItr);
 	
 }
 
