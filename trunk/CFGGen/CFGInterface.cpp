@@ -15,44 +15,6 @@
 
 std::string lastError;
 
-/// Test function for generating random edges on all MCs of CFG
-void testGenerateMCEdges(CFG& cfg)
-{
-	for (MCSet::const_iterator it = cfg.KnownMCs().begin();
-		it != cfg.KnownMCs().end(); ++it)
-	{
-		MCSharedPtr spMC = *it;
-
-		size_t numVars = cfg.Variables().size();
-		size_t numEdges = rand() % numVars;
-		for (size_t i = 0; i < numEdges; ++i)
-		{
-			size_t varA = rand() % numVars;
-			size_t varB = rand() % numVars;
-			if (varA != varB)
-			{
-				std::string nameA;
-				std::string nameB;
-				size_t index = 0;
-				for (ParamNameSet::const_iterator vit = cfg.Variables().begin();
-					vit != cfg.Variables().end(); ++vit, ++index)
-				{
-					if (index == varA)
-						nameA = *vit;
-					if (index == varB)
-						nameB = *vit;
-
-				}
-				if (rand() % 2)
-					nameA += "'";
-				if (rand() % 2)
-					nameB += "'";
-				spMC->addEdgeFromInvariant(InvariantMember( nameA, (Order) (rand()%5-1), nameB));
-			}
-
-		}
-	}
-}
 void ComputFlowPointVisualData(CFG& cfg, std::vector<FlowPointVisualData>& fpData)
 {
 	std::vector<FlowPoint*> fps = cfg.flowPoints();
@@ -125,10 +87,7 @@ bool generateCFG(std::string cfilename, std::vector<FlowPointVisualData>& fpData
 
 			ComputFlowPointVisualData(cfg, fpData);
 			cfg.printForDot(gvOstr);
-			//////////////////////////////////////////////////////////////////////////
-			//**** Test - uncomment next line to test MCs output ***
-			//testGenerateMCEdges(cfg);
-			//////////////////////////////////////////////////////////////////////////
+
 			for (MCSet::const_iterator it = cfg.KnownMCs().begin();
 				 it != cfg.KnownMCs().end(); ++it)
 			{
