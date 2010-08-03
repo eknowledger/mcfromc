@@ -51,7 +51,9 @@ namespace{
 				//Gets the attached MC to update its invariants.
 				MCWeakPtr mcWeak = boost::get(boost::edge_sizeChange,g,e);
 				MCSharedPtr mc =  mcWeak.lock();
-				evaluateBranchInvariants(srcFP,mc);
+				//
+				bool isCondHoldEdge = boost::get(boost::edge_invariantTrue,g,e);
+				evaluateBranchInvariants(srcFP,mc,isCondHoldEdge);
 			}
 			bool changed = mergeStateInFPVar(tgtFP,state);
 			//remove ourself from the workset.
@@ -152,7 +154,7 @@ namespace{
 			return val;
 		}
 
-		void evaluateBranchInvariants(FPSharedPtr fp,MCSharedPtr attachedMC) const
+		void evaluateBranchInvariants(FPSharedPtr fp,MCSharedPtr attachedMC,bool isCondHoldEdge) const
 		{
 			ASSERT_RETURN_VOID(fp != NULL);
 			ASSERT_RETURN_VOID(attachedMC != NULL);
@@ -179,6 +181,24 @@ namespace{
 			ASSERT_RETURN_VOID(condition != NULL);
 			std::vector<SNode*> subConditions;
 			findRelevantSubConditions(condition, subConditions);
+			//currently on the edge where the condition does not hold, we only handle
+			//a case where there is only one expression since !cond may be complex and result
+			// && to become || and this we do not handle
+			if(!isCondHoldEdge){
+				if(subConditions.size() != 1)
+					return;
+				
+				SPExpr orderCond = ExprMgr::the().create(subConditions[0]);
+				ASSERT_RETURN_VOID(orderCond != NULL);
+				InvariantMember inv = computeExprInvariant((const BinExpr&)*orderCond);
+				Invariant notInv = InvariantNotOp(inv);
+				for(Invariant::iterator invItr = notInv.begin(); invItr != notInv.end(); ++invItr)
+				{
+					attachedMC->addEdgeFromInvariant(fp,*invItr);
+				}
+				return;
+			}
+
 			for (size_t i = 0; i < subConditions.size(); ++i)
 			{
 				SPExpr orderCond = ExprMgr::the().create(subConditions[i]);

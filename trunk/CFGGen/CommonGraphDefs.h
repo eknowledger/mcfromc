@@ -177,3 +177,32 @@ inline std::ostream& operator <<(std::ostream& out, const Invariant& inv)
 		out << *itr;
 	return out;
 }
+
+inline Invariant InvariantNotOp(const InvariantMember& inv)
+{
+	Order newOrd = END_ORDER;
+	Invariant res;
+	switch(inv.get<1>())
+	{
+	case LESS: 
+		newOrd = GEQ;
+		break;
+	case LEQ:
+		newOrd = GREATER;
+		break;
+	case EQ:
+		//the result is an || expression so for now we do not handle it.
+		return res;
+		break;
+	case GEQ:
+		newOrd = LESS;
+		break;
+	case GREATER:
+		newOrd = LEQ;
+		break;
+	default:
+		ASSERT_RETURN(!"Unhandled order type",res);
+	}
+	res.insert(boost::make_tuple(inv.get<0>(),newOrd,inv.get<2>()));
+	return res;
+}
