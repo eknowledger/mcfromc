@@ -2,7 +2,7 @@
 #include "UniqueObjectIdMgr.h"
 
 UniqueObjectIdMgr::UniqueObjectIdMgr(void) :
-	m_flowPointIdCounter(0), m_MCIdCounter(0)
+	m_flowPointIdCounter(0), m_MCIdCounter(0), m_UndefinedValueCounter(0)
 {
 }
 
@@ -26,4 +26,10 @@ void UniqueObjectIdMgr::resetInternal()
 {
 	m_flowPointIdCounter = 0;
 	m_MCIdCounter = 0;
+	m_UndefinedValueCounter = 0;
+}
+
+size_t UniqueObjectIdMgr::newUndefinedValueIdInternal()
+{
+	return ++m_UndefinedValueCounter;
 }

@@ -4,6 +4,7 @@
 #include "SConstantNode.h"
 #include "SIdentifierNode.h"
 #include <sstream>
+#include "UniqueObjectIdMgr.h"
 
 ExprMgr::ExprMgr(void)
 {
@@ -96,9 +97,8 @@ SPExpr ExprMgr::createConst( ValType constValue )
 
 SPExpr ExprMgr::createUndefined()
 {
-	static size_t undefinedExprCounter = 0;
 	std::ostringstream ostr;
-	ostr << "'U_" << undefinedExprCounter;
+	ostr << "'U_" << UniqueObjectIdMgr::NewUndefinedValueId();
 	return SPExpr(new AtomExpr(ostr.str(),true));
 }
 
