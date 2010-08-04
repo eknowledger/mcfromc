@@ -90,7 +90,17 @@ SPExpr BinExpr::operator+( const Expr& rhs ) const
 
 SPExpr BinExpr::operator-( const Expr& rhs ) const
 {
-	return SPExpr(new BinExpr(OP_SUB, Clone(), rhs.Clone()));
+	SPExpr res;
+	if (*this == rhs)
+	{
+		res = SPExpr(new AtomExpr(0));
+	}
+	else
+	{
+		res = SPExpr(new BinExpr(OP_SUB, Clone(), rhs.Clone()));
+	}
+
+	return res;
 }
 
 SPExpr BinExpr::operator*( const Expr& rhs ) const

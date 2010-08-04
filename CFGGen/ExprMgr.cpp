@@ -162,6 +162,7 @@ Order ExprMgr::ComputeOrder(const SPExpr& a, const SPExpr& b, VarToValue& v2v) c
 {
 	Order o = END_ORDER;
 	SPExpr diff = *a - *b;
+	ASSERT_RETURN(diff.get(), o);
 	SPExpr res = diff->Evaluate(v2v);
 	if (res->HasValue())
 	{
