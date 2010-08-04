@@ -470,7 +470,8 @@ void Syntax2CFG::collectVariableAndConstantNames( SNode* root )
 		}
 		else if (root->Type() == CONST_TYPE)
 		{
-			m_cfg.AddConstant(((SConstantNode*)root)->value());
+			if (root->parent()->IsOrderCondition())
+				m_cfg.AddConstant(((SConstantNode*)root)->value());
 		}
 		else 
 		{
