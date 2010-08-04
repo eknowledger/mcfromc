@@ -174,7 +174,10 @@ SPExpr AtomExpr::operator-( const Expr& _rhs ) const
 {
 	SPExpr res;
 
-	if (_rhs.HasValue()) 
+	if(*this == _rhs){
+		res = SPExpr(new AtomExpr(0));		
+	}
+	else if (_rhs.HasValue()) 
 	{
 		const AtomExpr& rhs = (const AtomExpr&)_rhs;
 		if (m_hasValue)
