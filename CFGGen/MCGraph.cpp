@@ -42,16 +42,18 @@ namespace{
 		{
 			MCGraph::vertex_descriptor s = boost::source(e,m_g);
 			MCGraph::vertex_descriptor t = boost::target(e,m_g);
-			if (m_HandledEdges.find(boost::edge(t,s,m_g).first) != m_HandledEdges.end())
+			//if there is an edge also from target to source
+			if (boost::edge(t,s,m_g).second)
 			{
-				if (boost::edge(t,s,m_g).second)
+				//if the other edge was not handled yet
+				if (m_HandledEdges.find(boost::edge(t,s,m_g).first) == m_HandledEdges.end())
 				{
 					res = ", dir=both, weight=1";
 				}
-			}
-			else
-			{
-				res = ", style=invis, constraint=false, weight=0";
+				else
+				{
+					res = ", style=invis, constraint=false, weight=0";
+				}
 			}
 		}
 
