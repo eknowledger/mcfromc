@@ -6,6 +6,7 @@
 #include "boost/graph/depth_first_search.hpp"
 #include "boost/multi_array.hpp"
 #include "boost/graph/graphviz.hpp"
+#include "boost/graph/detail/adjacency_list.hpp"
 
 namespace{
 	template<typename Graph>
@@ -428,6 +429,13 @@ void MCGraph::addVariables(const ParamNameSet& vars)
 {
 	for(ParamNameSet::const_iterator varItr = vars.begin(); varItr != vars.end(); ++varItr){
 		addVar(*varItr);
+	}
+}
+
+void MCGraph::addConstants(const VarToValue& consts)
+{
+	for(VarToValueIt it = consts.begin(); it != consts.end(); ++it){
+		addVar((*it).first);
 	}
 }
 

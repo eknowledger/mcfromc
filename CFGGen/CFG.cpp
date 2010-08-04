@@ -231,6 +231,7 @@ void CFG::UpdateTransitionsWithVars()
 {
 	for(MCSet::iterator mcItr = m_knwonMCs.begin(); mcItr != m_knwonMCs.end(); ++mcItr){
 		(*mcItr)->addVariables(m_knownVariables);
+		(*mcItr)->addConstants(m_knownConstants);
 	}
 	
 }

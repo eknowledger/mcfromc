@@ -26,8 +26,7 @@ namespace{
 		{
 			const CFG* cfg = dynamic_cast<const CFG *>(&g);
 			ASSERT_RETURN_VOID(cfg != NULL);
-			const ParamNameSet& knownVars = cfg->Variables();
-			initVarStates(m_varStateAtFP[s],knownVars);
+			initVarStates(m_varStateAtFP[s],cfg->Variables(),cfg->Constants());
 		}
 
 		template <typename Edge, typename Graph>
@@ -236,10 +235,30 @@ namespace{
 			{
 				SPExpr left = expr.Left();
 				SPExpr right = expr.Right();
-				if (left->IsVariable() && right->IsVariable())
+				std::string wsLeft, wsRight;
+				if (left->IsVariable())
 				{
-					std::string wsLeft = ((AtomExpr*)left.get())->Name();
-					std::string wsRight = ((AtomExpr*)right.get())->Name();
+					wsLeft = ((AtomExpr*)left.get())->Name();
+				}
+				else if (left->HasValue())
+				{
+					std::ostringstream ostr;
+					ostr << ((AtomExpr*)left.get())->Value();
+					wsLeft = ostr.str();
+				}
+				if (right->IsVariable())
+				{
+					wsRight = ((AtomExpr*)right.get())->Name();
+				}
+				else if (right->HasValue())
+				{
+					std::ostringstream ostr;
+					ostr << ((AtomExpr*)right.get())->Value();
+					wsRight = ostr.str();
+				}
+
+				if (wsLeft.size() > 0 && wsRight.size() > 0)
+				{
 					return InvariantMember(wsLeft, order(expr.OpType()), wsRight);	
 				}
 			}
@@ -298,10 +317,11 @@ namespace{
 			return changed;
 		}
 
-		void initVarStates(VarToValue& state,const ParamNameSet& knownVars){
+		void initVarStates(VarToValue& state,const ParamNameSet& knownVars,const VarToValue& constants){
 			for(ParamNameSet::const_iterator varItr = knownVars.begin(); varItr != knownVars.end(); ++varItr){
 				state[*varItr] = ExprMgr::the().createUndefined();
 			}
+			state.insert(constants.begin(),constants.end());
 		}
 
 

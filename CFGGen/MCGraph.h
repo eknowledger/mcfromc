@@ -41,6 +41,7 @@ public:
 
 	void addVar(const ParamName& var);
 	void addVariables(const ParamNameSet& vars);
+	void addConstants(const VarToValue& consts);
 	MCConstrainEdge addEdgeFromInvariant(FPSharedPtr invFP,const InvariantMember& inv);
 	void removeEdgeFromInvariant(FPSharedPtr invFP,const InvariantMember& inv);
 	MCConstrainEdge addTrnasitionVariant(const TransitionVariant& t_var);
