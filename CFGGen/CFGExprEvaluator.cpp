@@ -21,6 +21,15 @@ namespace{
 		{
 		}
 
+		template<typename Vertex,typename Graph>
+		void start_vertex(Vertex s,const Graph& g)
+		{
+			const CFG* cfg = dynamic_cast<const CFG *>(&g);
+			ASSERT_RETURN_VOID(cfg != NULL);
+			const ParamNameSet& knownVars = cfg->Variables();
+			initVarStates(m_varStateAtFP[s],knownVars);
+		}
+
 		template <typename Edge, typename Graph>
 		void examine_edge(Edge e, const Graph& g)
 		{
@@ -281,13 +290,20 @@ namespace{
 				{
 					//the variable value does not agree with the given state , we do not
 					//know what is the correct value than we remove it to get a new unkown value on next use.
-					fpSavedState.erase(varAtFPItr);
+					varAtFPItr->second = ExprMgr::the().createUndefined();
 					changed = true;
 				}
 			}
 
 			return changed;
 		}
+
+		void initVarStates(VarToValue& state,const ParamNameSet& knownVars){
+			for(ParamNameSet::const_iterator varItr = knownVars.begin(); varItr != knownVars.end(); ++varItr){
+				state[*varItr] = ExprMgr::the().createUndefined();
+			}
+		}
+
 
 		//should be replaced by exterior property map.
 		FPIDToVarState& m_varStateAtFP;
