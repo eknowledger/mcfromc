@@ -9,23 +9,25 @@
 #include "boost/graph/detail/adjacency_list.hpp"
 
 namespace{
-	template<typename Graph>
+	template<typename Graph, typename Edge>
 	struct MCEdgeWriter
 	{
 		MCEdgeWriter(const Graph& g)
 			: m_g(g)
 		{}
 
-		template <typename Edge>
 		void operator()(std::ostream& out, const Edge& e) const
 		{
 			Order o = END_ORDER;
 			std::string color;
+			std::string backArrow;
 			o = (Order) boost::get(boost::edge_weight,m_g,e);
 			switch(o)
 			{
 			case GEQ: 
 				color = "black";
+				handleEqualEdge(e, backArrow);
+				m_HandledEdges.insert(e);
 				break;
 			case GREATER:
 				color = "red";
@@ -33,9 +35,27 @@ namespace{
 			default:
 				_ASSERT(!"Arc with unknown weight");
 			}
-			out << "[color=\"" << color << "\"]";
+			out << "[color=\"" << color << "\"" << backArrow << "]";
 		}
 
+		void handleEqualEdge(Edge e, std::string& res) const
+		{
+			MCGraph::vertex_descriptor s = boost::source(e,m_g);
+			MCGraph::vertex_descriptor t = boost::target(e,m_g);
+			if (m_HandledEdges.find(boost::edge(t,s,m_g).first) != m_HandledEdges.end())
+			{
+				if (boost::edge(t,s,m_g).second)
+				{
+					res = ", dir=both, weight=1";
+				}
+			}
+			else
+			{
+				res = ", style=invis, constraint=false, weight=0";
+			}
+		}
+
+		mutable std::set<Edge> m_HandledEdges; 
 		const Graph& m_g;
 	};
 
@@ -61,7 +81,7 @@ namespace{
 
 		void operator()(std::ostream& out) const {
 			out << "label=" << 
-				   m_g.getFriendlyName() << ";\nrankdir=LR;\nfont=Helvetica;\nfontsize=20;\nfontcolor=\"red\";\n";
+				   m_g.getFriendlyName() << ";\nranksep=1.5;\nrankdir=LR;\nfont=Helvetica;\nfontsize=20;\nfontcolor=\"red\";\n";
 			writeFlowPointParams(m_g.fromParams(),out);
 			writeFlowPointParams(m_g.toParams(),out);
 			if (m_g.fromParams().size() > 0 && m_g.fromParams().size() == m_g.toParams().size())
@@ -230,7 +250,7 @@ std::ostream& operator <<(std::ostream& out,const MCGraph& mc)
 	out << std::endl;
 	std::stringstream sMC;
 	boost::property_map<MCBaseGraph,boost::vertex_name_t>::const_type vNameProp = get(boost::vertex_name,mc);
-	boost::write_graphviz(sMC,mc,MCVertexWriter(mc),MCEdgeWriter<MCGraph>(mc),MCGraphWriter(mc));
+	boost::write_graphviz(sMC,mc,MCVertexWriter(mc),MCEdgeWriter<MCGraph,MCGraph::edge_descriptor>(mc),MCGraphWriter(mc));
 	out << sMC.str().c_str();
 	out << std::endl;
 	return out;
