@@ -76,7 +76,7 @@ namespace{
 
 			//adds all the out flowpoints from the source flowpoint to the workset.
 			Graph::out_edge_iterator out_i,out_end;
-			for(boost::tie(out_i,out_end) = boost::out_edges(s,g); out_i != out_end; ++out_i){
+			for(boost::tie(out_i,out_end) = boost::out_edges(t,g); out_i != out_end; ++out_i){
 				if(boost::out_degree(boost::target(*out_i,g),g) > 0)
 					m_fpWorkset.insert(boost::target(*out_i,g));
 			}
@@ -304,13 +304,16 @@ namespace{
 			bool changed = false;
 			for(VarToValue::const_iterator varItr = transitionState.begin(); varItr != transitionState.end(); ++varItr){
 				VarToValue::iterator varAtFPItr = fpSavedState.find(varItr->first);
-				if((varAtFPItr != fpSavedState.end()) &&
-					(varAtFPItr->second != varItr->second))
+				if(varAtFPItr != fpSavedState.end())
 				{
-					//the variable value does not agree with the given state , we do not
-					//know what is the correct value than we remove it to get a new unkown value on next use.
-					varAtFPItr->second = ExprMgr::the().createUndefined();
-					changed = true;
+					//check if the value is in equal.
+					Order o = ExprMgr::the().ComputeOrder(varAtFPItr->second,varItr->second,fpSavedState);
+					if(o != EQ){
+						//the variable value does not agree with the given state , we do not
+						//know what is the correct value than we remove it to get a new unkown value on next use.
+						varAtFPItr->second = ExprMgr::the().createUndefined();
+						changed = true;
+					}
 				}
 			}
 
@@ -348,7 +351,7 @@ void CFGExprEvaluator::Evaluate()
 	FPIDToVarState fpStatesResult;
 	ExprEvalVisitor vis(unprocessedFPs,fpStatesResult);
 
-//	do{
+	do{
 		//process the C.F.G in DFS and try to evaluate expressions.
 		if (m_cfg.Start())
 		{
@@ -360,9 +363,9 @@ void CFGExprEvaluator::Evaluate()
 			//no starting point set - do regular dfs
 			boost::depth_first_search(m_cfg, boost::visitor(vis));
 		}
-	//}
+	}
 	//this is an iterative algorithm until we reached l.f.p (where there is no more unprocessed flowpoint)
-	//while(!unprocessedFPs.empty());
+	while(!unprocessedFPs.empty());
 
 	//generate the MCs, something like
 	updateMCsWithTransitionsVariants(fpStatesResult);
