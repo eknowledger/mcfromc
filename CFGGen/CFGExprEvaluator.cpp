@@ -7,6 +7,7 @@
 #include "boost\graph\depth_first_search.hpp"
 #include "SAssignmentNode.h"
 #include "MCGraph.h"
+#include "boost/make_shared.hpp"
 #include <set>
 #include <vector>
 
@@ -16,19 +17,28 @@ namespace{
 	{
 		friend class CFGExprEvaluator;
 	public:
-		ExprEvalVisitor(FPWorkSet& fp_ws,FPIDToVarState& fpStates)
+		ExprEvalVisitor(FPWorkSet& fp_ws,
+						FPIDToVarState& fpStates,
+						bool& firstTime,
+						bool& conclusionChanged)
 			: m_fpWorkset(fp_ws)
 			, m_varStateAtFP(fpStates)
-			, m_firstRun(true)
+			, m_firstRun(firstTime)
+			, m_conclusionChanged(conclusionChanged)
 		{
 		}
 
 		template<typename Vertex,typename Graph>
 		void start_vertex(Vertex s,const Graph& g)
 		{
+			const CFG* cfg = dynamic_cast<const CFG *>(&g);
+			ASSERT_RETURN_VOID(cfg != NULL);
+			m_conclusionChanged = false;
+			//creates a new empty mc.
+			m_emptyMC = boost::make_shared<MCGraph>();
+			m_emptyMC->addVariables(cfg->Variables());
+			m_emptyMC->addConstants(cfg->Constants());
 			if(m_firstRun){
-				const CFG* cfg = dynamic_cast<const CFG *>(&g);
-				ASSERT_RETURN_VOID(cfg != NULL);
 				initVarStates(m_varStateAtFP[s],cfg->Variables(),cfg->Constants());
 			}
 		}
@@ -48,43 +58,52 @@ namespace{
 
 			//we init the state if the state of source FP.
 			VarToValue state = m_varStateAtFP[srcFP->cfgID()];
+			MCSharedPtr newMC = boost::make_shared<MCGraph>();
+			*newMC = *m_emptyMC;
+			newMC->setFlowPoints(srcFP,tgtFP);
 			//currently we only generate try to evaluate on f->g where f is expression block since this is 
 			//the only relevant transition for MCs
 			if(srcFP->Type() == FlowPoint::EXPRESSION_BLOCK){
 				//checks if we need to process the current expression flowpoint if not lets move on
 				FPWorkSet::iterator srcItr = m_fpWorkset.find(s);
-				if(srcItr != m_fpWorkset.end()){
+				/*if(srcItr != m_fpWorkset.end()){*/
 					const std::vector<FlowPoint*>& exprsFPs = (static_cast<Block*>(srcFP.get()))->flowPoints(); 
 					for (size_t i = 0; i < exprsFPs.size(); ++i)
 						evaluateExprFlowPoint(exprsFPs[i],state);
-				}
+				//}
 			}
 			else{
-				//Gets the attached MC to update its invariants.
-				MCWeakPtr mcWeak = boost::get(boost::edge_sizeChange,g,e);
-				MCSharedPtr mc =  mcWeak.lock();
-				//
+				//update the new MC with its invariants.
+
 				bool isCondHoldEdge = boost::get(boost::edge_invariantTrue,g,e);
-				evaluateBranchInvariants(srcFP,mc,isCondHoldEdge);
+				evaluateBranchInvariants(srcFP, newMC, isCondHoldEdge);
 			}
 			//compute the MC's size change for this edge.
 			TransitionVariantSet changes = ComputeExprBlockVariants(m_varStateAtFP[s],state);
-			MCWeakPtr mcWeak = boost::get(boost::edge_sizeChange,g,e);
-			MCSharedPtr mc = mcWeak.lock();
-			ASSERT_RETURN_VOID(mc != NULL);
 			for(TransitionVariantSet::iterator transItr = changes.begin(); transItr != changes.end(); ++transItr)
-				mc->addTrnasitionVariant(*transItr);
+				newMC->addTrnasitionVariant(*transItr);
 
-			bool changed = mergeStateInFPVar(tgtFP,state);
+			//gets our current MC, checks if this has changed update it
+			//and mark it as changed.
+			MCWeakPtr mcWeak = boost::get(boost::edge_sizeChange,g,e);
+			MCSharedPtr attachedMC = mcWeak.lock();
+			ASSERT_RETURN_VOID(attachedMC != NULL);
+			if(*newMC != *attachedMC){
+				//our transition variant conclusion has changed
+				*attachedMC = *newMC;
+				m_conclusionChanged = true;
+			}
+			
+			mergeStateInFPVar(tgtFP,state);
 			//remove ourself from the workset.
 			FPWorkSet::iterator srcItr = m_fpWorkset.find(s);
 			if(srcItr != m_fpWorkset.end())
 				m_fpWorkset.erase(srcItr);
 
-			//we haven't change our state variables values meaning we should not notify
-			//out out edges.
-			if(!changed)
-				return;
+			////we haven't change our state variables values meaning we should not notify
+			////out out edges.
+			//if(!changed)
+			//	return;
 
 			//adds all the out flowpoints from the source flowpoint to the workset.
 			Graph::out_edge_iterator out_i,out_end;
@@ -174,10 +193,10 @@ namespace{
 			return val;
 		}
 
-		void evaluateBranchInvariants(FPSharedPtr fp,MCSharedPtr attachedMC,bool isCondHoldEdge) const
+		void evaluateBranchInvariants(FPSharedPtr fp,MCSharedPtr newMC, bool isCondHoldEdge) const
 		{
 			ASSERT_RETURN_VOID(fp != NULL);
-			ASSERT_RETURN_VOID(attachedMC != NULL);
+			ASSERT_RETURN_VOID(newMC != NULL);
 
 			SNode* node = fp->syntaxNode();
 			ASSERT_RETURN_VOID(node != NULL);
@@ -214,7 +233,7 @@ namespace{
 				Invariant notInv = InvariantNotOp(inv);
 				for(Invariant::iterator invItr = notInv.begin(); invItr != notInv.end(); ++invItr)
 				{
-					attachedMC->addEdgeFromInvariant(fp,*invItr);
+					newMC->addEdgeFromInvariant(fp,*invItr);
 				}
 				return;
 			}
@@ -224,7 +243,7 @@ namespace{
 				SPExpr orderCond = ExprMgr::the().create(subConditions[i]);
 				ASSERT_LOOP_CONTINUE(orderCond != NULL);
 				InvariantMember inv = computeExprInvariant((const BinExpr&)*orderCond);
-				attachedMC->addEdgeFromInvariant(fp,inv);
+				newMC->addEdgeFromInvariant(fp,inv);
 			}
 		}
 
@@ -371,7 +390,9 @@ namespace{
 
 		FPWorkSet& m_fpWorkset;
 	private:
-		bool m_firstRun;
+		bool &m_firstRun;
+		bool &m_conclusionChanged;
+		MCSharedPtr m_emptyMC;
 	};
 }
 
@@ -388,25 +409,27 @@ void CFGExprEvaluator::Evaluate()
 			unprocessedFPs.insert(*fpItr);
 	}
 
-	FPIDToVarState fpStatesResult;
-	ExprEvalVisitor vis(unprocessedFPs,fpStatesResult);
+	bool firstTime = true;
+	bool concChanged =false;
 
-	//do{
+	FPIDToVarState fpStatesResult;
+	ExprEvalVisitor vis(unprocessedFPs,fpStatesResult,firstTime,concChanged);
+
+	do{
 		//process the C.F.G in DFS and try to evaluate expressions.
 		if (m_cfg.Start())
 		{
 			FP_CFG_ID s = m_cfg.Start()->cfgID();
-			boost::depth_first_visit(m_cfg, s, vis, get(boost::vertex_color, m_cfg));
+			boost::depth_first_search(m_cfg, vis, boost::get(boost::vertex_color,m_cfg),s);
 		}
 		else
 		{
 			//no starting point set - do regular dfs
-			boost::depth_first_search(m_cfg, boost::visitor(vis));
 		}
 		vis.m_firstRun = false;
-	//}
+	}
 	////this is an iterative algorithm until we reached l.f.p (where there is no more unprocessed flowpoint)
-	//while(!unprocessedFPs.empty());
+	while(vis.m_conclusionChanged);
 
 	//generate the MCs, something like
 	//updateMCsWithTransitionsVariants(fpStatesResult);
