@@ -65,6 +65,14 @@ public:
 	}
 	//operators
 	const MCGraph& operator=(const MCGraph& other);
+	bool operator ==(const MCGraph& other) const
+	{
+		return isContainedMC(other) && other.isContainedMC(*this);
+	}
+	bool operator !=(const MCGraph& other) const
+	{
+		return !(*this == other);
+	}
 
 protected:
 	typedef std::map<std::string,vertex_descriptor> ParamNameToVertex;
@@ -73,6 +81,8 @@ protected:
 	void addInvariantFromFlowPoint(FPointWeakPtr fID);
 	MCGraph::vertex_descriptor addVertexForVar(const ParamName& varName);
 	edge_descriptor addOrUpdateEdge(vertex_descriptor u,vertex_descriptor v,Order o);
+	///checks if i am contained by the given mc.
+	bool isContainedMC(const MCGraph& other) const;
 	
 	ParamNameToVertex m_nameToVertex;
 	FlowPointParams m_fromParams;

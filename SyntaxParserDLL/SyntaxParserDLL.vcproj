@@ -108,6 +108,7 @@
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="2"
+			InheritedPropertySheets="..\CommonProperties.vsprops"
 			CharacterSet="1"
 			WholeProgramOptimization="1"
 			>
@@ -138,6 +139,7 @@
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
+				WarnAsError="false"
 				Detect64BitPortabilityProblems="true"
 				DebugInformationFormat="3"
 			/>
@@ -258,6 +260,16 @@
 						Outputs="Ansi c Lex.c"
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="Running Flex..."
+						CommandLine="&quot;$(SolutionDir)\ThirdParty\LexYacc\flex&quot; -o&quot;Ansi c Lex.c&quot; &quot;$(InputFileName)&quot;"
+						Outputs="Ansi c Lex.c"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\ansi c.y"
@@ -270,6 +282,16 @@
 						Description="Running Bison..."
 						CommandLine="cd &quot;$(SolutionDir)\ThirdParty\LexYacc&quot;&#x0D;&#x0A;bison -v -d &quot;$(InputPath)&quot;&#x0D;&#x0A;:: move /Y *.c &quot;$(ProjectDir)&quot;&#x0D;&#x0A;:: move /Y *.h &quot;$(ProjectDir)&quot;&#x0D;&#x0A;cd &quot;$(ProjectDir)&quot;&#x0D;&#x0A;"
 						AdditionalDependencies=""
+						Outputs="ansi c_tab.h;ansi c_tab.c"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="Running Bison..."
+						CommandLine="cd &quot;$(SolutionDir)\ThirdParty\LexYacc&quot;&#x0D;&#x0A;bison -v -d &quot;$(InputPath)&quot;&#x0D;&#x0A;:: move /Y *.c &quot;$(ProjectDir)&quot;&#x0D;&#x0A;:: move /Y *.h &quot;$(ProjectDir)&quot;&#x0D;&#x0A;cd &quot;$(ProjectDir)&quot;&#x0D;&#x0A;"
 						Outputs="ansi c_tab.h;ansi c_tab.c"
 					/>
 				</FileConfiguration>
