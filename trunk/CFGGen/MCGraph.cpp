@@ -468,3 +468,29 @@ const MCGraph& MCGraph::operator =(const MCGraph& other)
 	return *this;
 }
 
+bool MCGraph::isContainedMC(const MCGraph &other) const
+{
+	//examine my edge against the other.
+	edge_iterator e_i,e_end;
+	for(boost::tie(e_i,e_end) = boost::edges(*this); e_i != e_end; ++e_i){
+		ParamName x = boost::get(boost::vertex_name,*this,boost::source(*e_i,*this));
+		ParamName y = boost::get(boost::vertex_name,*this,boost::target(*e_i,*this));
+		//gets the vertices of the edge in the other MC.
+		ParamNameToVertex::const_iterator xAtOther = other.m_nameToVertex.find(x);
+		ParamNameToVertex::const_iterator yAtOther = other.m_nameToVertex.find(y);
+		//if the other MC does not contain the same variables then they are different.
+		if(xAtOther == other.m_nameToVertex.end() ||
+		   yAtOther == other.m_nameToVertex.end())
+		   return false;
+		bool edgeExistsAtOther;
+		edge_descriptor eAtOther;
+		boost::tie(eAtOther,edgeExistsAtOther) = boost::edge(xAtOther->second,yAtOther->second,other);
+		if(!edgeExistsAtOther)
+			return false;
+		//checks if the order is the same
+		if(boost::get(boost::edge_weight,*this,*e_i) != boost::get(boost::edge_weight,other,eAtOther))
+			return false;
+	}
+	
+	return true;
+}
