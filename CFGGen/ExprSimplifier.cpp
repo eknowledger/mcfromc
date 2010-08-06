@@ -517,6 +517,33 @@ void ExprSimplifier::initializeCommonPatterns()
 
 	E y29 = E(2,A_CONST);
 
+	// ($1+$2)-$1 ==> $2
+	E x30 = E(OP_SUB,
+		E(OP_ADD,
+		E(1,A_ANY),
+		E(2,A_ANY)),
+		E(2,A_ANY));
+
+	E y30 = E(2,A_ANY);
+
+	// ($2+$1)-$1 ==> $2
+	E x31 = E(OP_SUB,
+		E(OP_ADD,
+		E(2,A_ANY),
+		E(1,A_ANY)),
+		E(2,A_ANY));
+
+	E y31 = E(2,A_ANY);
+
+	// ($1-$2)+$2 ==> $1
+	E x32 = E(OP_ADD,
+		E(OP_SUB,
+		E(1,A_ANY),
+		E(2,A_ANY)),
+		E(2,A_ANY));
+
+	E y32 = E(1,A_ANY);
+
 	AddPattern(x1,y1);
 	AddPattern(x2,y2);
 	AddPattern(x3,y3);
@@ -546,6 +573,9 @@ void ExprSimplifier::initializeCommonPatterns()
 	AddPattern(x27,y27);
 	AddPattern(x28,y28);
 	AddPattern(x29,y29);
+	AddPattern(x30,y30);
+	AddPattern(x31,y31);
+	AddPattern(x32,y32);
 }
 
 E::E( size_t _id, AtomType _t) :
