@@ -4,8 +4,11 @@
 #include <string>
 #include "Expr.h"
 
-///Expression pattern matching data struct
+///This struct represents a mathematical expression pattern.
+///It is used by the ExprSimplifier class to represent source
+///and simplified target expression patterns.
 struct E
+
 {
 	///c'tor for Atoms
 	E(size_t _id, AtomType _t);
@@ -21,12 +24,21 @@ struct E
 	///id used for linking Atom expressions to pattern. 
 	///Must be unique within the same pattern.
 	int id;
+
+	///Atom Expression type = {A_CONST, A_UNDEF, A_VAR, A_ANY}.
+	///A_ANY matches any type of Atom Expression.
 	AtomType t;
+	
+	///The type of expression represented by this pattern. 
+	///Can be: 	E_BINOP - Binary Operator expression.
+	//			E_ATOM - Atom expression.
 	ExprType et;
 
-	///members specific for Binary Operator expression pattern
+	///Members specific for Binary Operator expression pattern
 	OperatorType o;
+	///Left sub-expression pattern in Binary expression
 	E* l;
+	///Right sub-expression pattern in Binary expression
 	E* r;
 };
 
