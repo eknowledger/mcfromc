@@ -17,12 +17,10 @@ namespace{
 	{
 		friend class CFGExprEvaluator;
 	public:
-		ExprEvalVisitor(FPWorkSet& fp_ws,
-						FPIDToVarState& fpStates,
+		ExprEvalVisitor(FPIDToVarState& fpStates,
 						bool& firstTime,
 						bool& conclusionChanged)
-			: m_fpWorkset(fp_ws)
-			, m_varStateAtFP(fpStates)
+			: m_varStateAtFP(fpStates)
 			, m_firstRun(firstTime)
 			, m_conclusionChanged(conclusionChanged)
 		{
@@ -64,17 +62,12 @@ namespace{
 			//currently we only generate try to evaluate on f->g where f is expression block since this is 
 			//the only relevant transition for MCs
 			if(srcFP->Type() == FlowPoint::EXPRESSION_BLOCK){
-				//checks if we need to process the current expression flowpoint if not lets move on
-				FPWorkSet::iterator srcItr = m_fpWorkset.find(s);
-				/*if(srcItr != m_fpWorkset.end()){*/
-					const std::vector<FlowPoint*>& exprsFPs = (static_cast<Block*>(srcFP.get()))->flowPoints(); 
-					for (size_t i = 0; i < exprsFPs.size(); ++i)
-						evaluateExprFlowPoint(exprsFPs[i],state);
-				//}
+				const std::vector<FlowPoint*>& exprsFPs = (static_cast<Block*>(srcFP.get()))->flowPoints(); 
+				for (size_t i = 0; i < exprsFPs.size(); ++i)
+					evaluateExprFlowPoint(exprsFPs[i],state);
 			}
 			else{
 				//update the new MC with its invariants.
-
 				bool isCondHoldEdge = boost::get(boost::edge_invariantTrue,g,e);
 				evaluateBranchInvariants(srcFP, newMC, isCondHoldEdge);
 			}
@@ -95,22 +88,6 @@ namespace{
 			}
 			
 			mergeStateInFPVar(tgtFP,state);
-			//remove ourself from the workset.
-			FPWorkSet::iterator srcItr = m_fpWorkset.find(s);
-			if(srcItr != m_fpWorkset.end())
-				m_fpWorkset.erase(srcItr);
-
-			////we haven't change our state variables values meaning we should not notify
-			////out out edges.
-			//if(!changed)
-			//	return;
-
-			//adds all the out flowpoints from the source flowpoint to the workset.
-			Graph::out_edge_iterator out_i,out_end;
-			for(boost::tie(out_i,out_end) = boost::out_edges(t,g); out_i != out_end; ++out_i){
-				if(boost::out_degree(boost::target(*out_i,g),g) > 0)
-					m_fpWorkset.insert(boost::target(*out_i,g));
-			}
 		}
 
 		template <typename Edge, typename Graph>
@@ -123,11 +100,6 @@ namespace{
 		void back_edge(Edge e, const Graph& g)
 		{
 
-		}
-
-		inline FPIDToVarState getFlowPointsStates()
-		{
-			return m_varStateAtFP;
 		}
 
 	private:
@@ -382,13 +354,8 @@ namespace{
 			return transitionVariantSet;
 		}
 
-
-
-
 		//should be replaced by exterior property map.
 		FPIDToVarState& m_varStateAtFP;
-
-		FPWorkSet& m_fpWorkset;
 	private:
 		bool &m_firstRun;
 		bool &m_conclusionChanged;
@@ -401,85 +368,22 @@ void CFGExprEvaluator::Evaluate()
 	//adds all the program state variables to the MCs
 	m_cfg.UpdateTransitionsWithVars();
 
-	//adds all the flowpoints into the workset.
-	CFG::vertex_iterator fpItr,fpItrEnd;
-	FPWorkSet unprocessedFPs;
-	for(boost::tie(fpItr,fpItrEnd) = boost::vertices(m_cfg); fpItr != fpItrEnd; ++fpItr){
-		if(boost::out_degree(*fpItr,m_cfg) > 0)
-			unprocessedFPs.insert(*fpItr);
-	}
-
 	bool firstTime = true;
 	bool concChanged =false;
 
 	FPIDToVarState fpStatesResult;
-	ExprEvalVisitor vis(unprocessedFPs,fpStatesResult,firstTime,concChanged);
+	ExprEvalVisitor vis(fpStatesResult,firstTime,concChanged);
 
 	do{
 		//process the C.F.G in DFS and try to evaluate expressions.
+		FP_CFG_ID s = *(boost::vertices(m_cfg).first);	//default for D.F.S is the first vertex
 		if (m_cfg.Start())
 		{
-			FP_CFG_ID s = m_cfg.Start()->cfgID();
+			s = m_cfg.Start()->cfgID();
 			boost::depth_first_search(m_cfg, vis, boost::get(boost::vertex_color,m_cfg),s);
-		}
-		else
-		{
-			//no starting point set - do regular dfs
 		}
 		vis.m_firstRun = false;
 	}
-	////this is an iterative algorithm until we reached l.f.p (where there is no more unprocessed flowpoint)
+	//this is an iterative algorithm until we reached l.f.p (where there is no more unprocessed flowpoint)
 	while(vis.m_conclusionChanged);
-
-	//generate the MCs, something like
-	//updateMCsWithTransitionsVariants(fpStatesResult);
-
 }
-
-void CFGExprEvaluator::updateMCsWithTransitionsVariants(FPIDToVarState& fpStates)
-{
-	CFG::edge_iterator e_i,e_end;
-	for(boost::tie(e_i,e_end) = boost::edges(m_cfg); e_i != e_end; ++e_i){
-		//Gets the map of the source and target flowpoints of the edge.
-		FP_CFG_ID fID = boost::source(*e_i,m_cfg);
-		FP_CFG_ID gID = boost::target(*e_i,m_cfg);
-		VarToValue& srcState = fpStates[fID];
-		VarToValue& tgtState = fpStates[gID];
-		//compare each variable in the source to target.
-		TransitionVariantSet transitionVariantSet = ComputeExprBlockInvariants(srcState,tgtState);
-		//Gets the attached mc and adds Transition invariants to it
-		MCWeakPtr mcWeak = boost::get(boost::edge_sizeChange,m_cfg,*e_i);
-		MCSharedPtr mc = mcWeak.lock();
-		ASSERT_LOOP_CONTINUE(mc != NULL);
-		for(TransitionVariantSet::iterator transItr = transitionVariantSet.begin();
-			transItr != transitionVariantSet.end();
-			++transItr)
-		{
-			mc->addTrnasitionVariant(*transItr);
-		}
-	}
-}
-TransitionVariantSet CFGExprEvaluator::ComputeExprBlockInvariants(VarToValue& inValue, VarToValue& outValue) const
-{
-	TransitionVariantSet transitionVariantSet;
-	//for all variable values at block end
-	for (VarToValueIt outIt = outValue.begin(); outIt != outValue.end(); ++outIt)
-	{
-		//and for all variable values at block begin
-		for (VarToValueIt inIt = inValue.begin(); inIt != inValue.end(); ++inIt)
-		{
-			ParamName var1 =(*inIt).first;
-			ParamName var2 =(*outIt).first;
-			//find order between 2 variable values
-			Order o = ExprMgr::the().ComputeOrder(outValue[var2], inValue[var1], outValue);
-			if (o != END_ORDER)
-			{
-				//order found, add invariant
-				transitionVariantSet.insert(boost::make_tuple(var1, o, var2));
-			}
-		}
-	}
-
-	return transitionVariantSet;
-}
-

@@ -16,10 +16,6 @@ public:
 
 	void Evaluate();
 
-protected:
-	void updateMCsWithTransitionsVariants(FPIDToVarState& fpStates);
-	TransitionVariantSet ComputeExprBlockInvariants(VarToValue& inValue, VarToValue& outValue) const;
-
 private:
 
 	CFG& m_cfg;
