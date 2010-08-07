@@ -340,7 +340,7 @@ MCGraph::edge_descriptor MCGraph::addOrUpdateEdge(vertex_descriptor u,vertex_des
 	if(exists){
 		//checks if we need to update it.
 		Order current = (Order) boost::get(boost::edge_weight,*this,e);
-		if(current == LEQ && o == LESS)
+		if(current == GEQ && o == GREATER)
 			boost::put(boost::edge_weight,*this,e,o);
 		return e;
 	}
@@ -391,12 +391,12 @@ bool MCGraph::logicalClosure()
 				continue;
 
 			//what the distance between u,v?
-			if(d[*uItr][*vItr] == LEQ)
+			if(d[*uItr][*vItr] == GEQ)
 				//the path is not strict, and there isn't an edge already
-				addOrUpdateEdge(*uItr,*vItr,LEQ);
+				addOrUpdateEdge(*uItr,*vItr,GEQ);
 			else if (d[*uItr][*vItr] < 0){
 				//the path is strict add a strict edge.
-				addOrUpdateEdge(*uItr,*vItr,LESS);
+				addOrUpdateEdge(*uItr,*vItr,GREATER);
 			}
 		}
 

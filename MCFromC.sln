@@ -17,6 +17,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CFGGen", "CFGGen\CFGGen.vcp
 	EndProjectSection
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "MCFromCSetup", "MCFromCSetup\MCFromCSetup.vdproj", "{DF5FF336-E72B-4C74-A54C-0C85E64E6224}"
+	ProjectSection(ProjectDependencies) = postProject
+		{18BA556D-6D89-4A71-BED4-60CBCF31F105} = {18BA556D-6D89-4A71-BED4-60CBCF31F105}
+		{B0581DE2-1B7F-4711-BFCE-7662F35E3678} = {B0581DE2-1B7F-4711-BFCE-7662F35E3678}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

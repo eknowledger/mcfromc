@@ -43,7 +43,7 @@
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.panelMain.AutoScroll = true;
-            this.panelMain.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panelMain.BackColor = System.Drawing.Color.White;
             this.panelMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelMain.Controls.Add(this.MCGraphPictureBox);
             this.panelMain.Location = new System.Drawing.Point(12, 37);
@@ -53,6 +53,7 @@
             // 
             // MCGraphPictureBox
             // 
+            this.MCGraphPictureBox.BackColor = System.Drawing.Color.White;
             this.MCGraphPictureBox.InitialImage = null;
             this.MCGraphPictureBox.Location = new System.Drawing.Point(3, 3);
             this.MCGraphPictureBox.Name = "MCGraphPictureBox";

@@ -38,7 +38,7 @@ NodeData* root_node;
 %token CASE DEFAULT IF ELSE SWITCH WHILE DO FOR GOTO CONTINUE BREAK RETURN
 
 %type <node> postfix_expression and_expression equality_expression relational_expression shift_expression exclusive_or_expression inclusive_or_expression unary_operator multiplicative_expression additive_expression logical_and_expression statement_list statement compound_statement selection_statement conditional_expression expression expression_statement assignment_expression unary_expression logical_or_expression
-%type <node> primary_expression initializer initializer_list assignment_operator
+%type <node> primary_expression initializer assignment_operator
 %type <node> iteration_statement function_definition translation_unit external_declaration parameter_type_list declaration_list parameter_declaration parameter_list type_specifier init_declarator init_declarator_list declaration declaration_specifiers declarator direct_declarator
 
 %start translation_unit
@@ -294,7 +294,7 @@ assignment_expression
 	{
 		$$ = $1;
 	}
-	| unary_expression assignment_operator assignment_expression
+	| unary_expression assignment_operator conditional_expression
 	{		
 		NodeData* p = createNode(ASSIGNMENT_EXPR);
 		appendChild(p, $1);
@@ -488,31 +488,9 @@ identifier_list
 	;
 
 initializer
-	: assignment_expression
+	: conditional_expression
 	{
 		$$ = $1;
-	}
-	| '{' initializer_list '}'
-	{
-		$$ = $2;
-	}
-	| '{' initializer_list ',' '}'
-	{
-		$$ = $2;
-	}
-	;
-
-initializer_list
-	: initializer
-	{
-		$$ = $1;
-	}
-	| initializer_list ',' initializer
-	{
-		NodeData* p = createNode(NONE);
-		appendChild(p, $1);
-		appendChild(p, $3);
-		$$ = p;
 	}
 	;
 

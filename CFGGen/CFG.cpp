@@ -96,14 +96,13 @@ void CFG::RemoveEdge(FlowPoint* f,FlowPoint* g)
 	CFGBase::vertex_descriptor v = g->cfgID();
 	
 	//removes the mc from the known MCs
-	CFGBase::edge_descriptor e = boost::edge(u,v,*this).first;
-	MCWeakPtr attachedMC = boost::get(boost::edge_sizeChange,*this,e);
-	MCSharedPtr spMC = attachedMC.lock();
-	MCSet::iterator mcItr = m_knwonMCs.find(spMC);
-	if(mcItr != m_knwonMCs.end())
-		m_knwonMCs.erase(mcItr);
-
-	boost::remove_edge(u,v,*this);
+	bool isEdgeExists;
+	CFGBase::edge_descriptor e;
+	boost::tie(e,isEdgeExists) = boost::edge(u,v,*this);
+	while(isEdgeExists){
+		removeEdgeHelper(e);
+		boost::tie(e,isEdgeExists) = boost::edge(u,v,*this);
+	}
 }
 
 void CFG::MarkEdgeAsInvariantTrue(FlowPoint* f,FlowPoint* g, bool truthValue)
@@ -251,4 +250,40 @@ void CFG::AddConstant( ValType value )
 	std::ostringstream ostr;
 	ostr << value;
 	m_knownConstants[ostr.str()] = ExprMgr::the().createConst(value);
+}
+
+void CFG::PerformLogicalClousures(bool removeUnsatisfiable)
+{
+	std::set<edge_descriptor> edgesToRemove;
+
+	edge_iterator e_i,e_end;
+	for(boost::tie(e_i,e_end) = boost::edges(*this); e_i != e_end; ++e_i){
+		MCWeakPtr mcWeak = boost::get(boost::edge_sizeChange,*this,*e_i);
+		MCSharedPtr mc = mcWeak.lock();
+		ASSERT_LOOP_CONTINUE(mc != NULL);
+		bool toBeRemoved = !mc->logicalClosure();
+		if(toBeRemoved)
+			edgesToRemove.insert(*e_i);
+	}
+
+	if(!removeUnsatisfiable)
+		return;
+
+	for(std::set<edge_descriptor>::iterator eToRemove_i = edgesToRemove.begin();
+		eToRemove_i != edgesToRemove.end();
+		++eToRemove_i)
+	{
+		removeEdgeHelper(*eToRemove_i);
+	}
+}
+
+void CFG::removeEdgeHelper(edge_descriptor e)
+{
+	MCWeakPtr attachedMC = boost::get(boost::edge_sizeChange,*this,e);
+	MCSharedPtr spMC = attachedMC.lock();
+	MCSet::iterator mcItr = m_knwonMCs.find(spMC);
+	if(mcItr != m_knwonMCs.end())
+		m_knwonMCs.erase(mcItr);
+
+	boost::remove_edge(e,*this);
 }

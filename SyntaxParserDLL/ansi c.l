@@ -56,24 +56,11 @@ int check_type();
 
 {L}({L}|{D})*		{ count(); return(check_type()); }
 
-0[xX]{H}+{IS}?	{ count(); return(CONSTANT); }
-0{D}+{IS}?		{ 
+{D}+			{ 
 					count();
 					yylval.value =  atoi(yytext);
 					return(CONSTANT);
 				}
-{D}+{IS}?		{ 
-					count();
-					yylval.value =  atoi(yytext);
-					return(CONSTANT);
-				}
-L?'(\\.|[^\\'])+'	{ count(); return(CONSTANT); }
-
-{D}+{E}{FS}?		{ count(); return(CONSTANT); }
-{D}*"."{D}+({E})?{FS}?	{ count(); return(CONSTANT); }
-{D}+"."{D}*({E})?{FS}?	{ count(); return(CONSTANT); }
-
-L?\"(\\.|[^\\"])*\"	{ count(); return(STRING_LITERAL); }
 
 "..."			{ count(); return(ELLIPSIS); }
 ">>="			{ count(); return(RIGHT_ASSIGN); }
