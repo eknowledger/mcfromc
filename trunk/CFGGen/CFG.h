@@ -76,7 +76,11 @@ public:
 		return m_knwonMCs;
 	}
 	void UpdateTransitionsWithVars();
+	void PerformLogicalClousures(bool removeUnsatisfiable);
 	void AssignFlowPointIDs();
+
+protected:
+	void removeEdgeHelper(edge_descriptor e);
 
 private:
 	FPSet m_knownFPs;

@@ -15,10 +15,10 @@
 #include <atlconv.h>
 
 enum Order{
-	LESS = -1,		/* <							*/
+	LESS = -4,		/* <							*/
 	LEQ,			/* <=							*/
 	EQ,				/* =							*/
-	GREATER,		/* >							*/
+	GREATER = -1,	/* >							*/
 	GEQ,			/* >=							*/
 	END_ORDER		/* Indicates there is no order	*/
 };

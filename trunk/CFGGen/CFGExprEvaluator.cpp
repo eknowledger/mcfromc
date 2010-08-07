@@ -386,4 +386,7 @@ void CFGExprEvaluator::Evaluate()
 	}
 	//this is an iterative algorithm until we reached l.f.p (where there is no more unprocessed flowpoint)
 	while(vis.m_conclusionChanged);
+
+	//perform logical closure, but do not remove edges
+	m_cfg.PerformLogicalClousures(false);
 }

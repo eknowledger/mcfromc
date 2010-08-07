@@ -128,7 +128,7 @@
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.GraphPanel.AutoScroll = true;
-            this.GraphPanel.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.GraphPanel.BackColor = System.Drawing.SystemColors.Control;
             this.GraphPanel.Controls.Add(this.GraphTabControl);
             this.GraphPanel.Location = new System.Drawing.Point(0, 0);
             this.GraphPanel.Name = "GraphPanel";
@@ -285,7 +285,7 @@
             this.OpenFileButton.Image = ((System.Drawing.Image)(resources.GetObject("OpenFileButton.Image")));
             this.OpenFileButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.OpenFileButton.Name = "OpenFileButton";
-            this.OpenFileButton.Size = new System.Drawing.Size(86, 24);
+            this.OpenFileButton.Size = new System.Drawing.Size(92, 24);
             this.OpenFileButton.Text = "Open C File";
             this.OpenFileButton.Click += new System.EventHandler(this.OpenFileButton_Click);
             // 
@@ -295,7 +295,7 @@
             this.editCodeButton.Image = ((System.Drawing.Image)(resources.GetObject("editCodeButton.Image")));
             this.editCodeButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.editCodeButton.Name = "editCodeButton";
-            this.editCodeButton.Size = new System.Drawing.Size(77, 24);
+            this.editCodeButton.Size = new System.Drawing.Size(82, 24);
             this.editCodeButton.Text = "Edit Code";
             this.editCodeButton.ToolTipText = "Enable editing of C Code on left pane";
             this.editCodeButton.Click += new System.EventHandler(this.EditCodeButton_Click);
@@ -305,7 +305,7 @@
             this.GenerateCFGButton.Image = ((System.Drawing.Image)(resources.GetObject("GenerateCFGButton.Image")));
             this.GenerateCFGButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.GenerateCFGButton.Name = "GenerateCFGButton";
-            this.GenerateCFGButton.Size = new System.Drawing.Size(99, 24);
+            this.GenerateCFGButton.Size = new System.Drawing.Size(103, 24);
             this.GenerateCFGButton.Text = "Generate CFG";
             this.GenerateCFGButton.Click += new System.EventHandler(this.GenerateCFGButton_Click);
             // 
