@@ -20,6 +20,7 @@ Below you can find the algorithm for converting the C.F.G flow points along with
    i.e. *ex(x)* <-- *5* , is equivalent to replacing all occurrences of *x* in *ex* with the value *5*.
  # *MC(e)*
    The Monotonicity Constraints graph associated with an edge *e* of the CFG.
+ # *invariants* - tuple in the following form <x1,o,x2> where o is on of {>,>=,<,<=,=}
 
 == Sub Functions/Procedures ==
  # *UNIQUE_UNDEFINED_VALUE*()
@@ -54,6 +55,17 @@ Below you can find the algorithm for converting the C.F.G flow points along with
        # if diff > 0 add strict edge xOut -> yIn to MC(e)
        # if diff < 0 add strict edge yIn -> xOut to MC(e)
        # if diff = 0 add non stricts edges xOut->yIn and yIn -> xOut to MC(e)
+ 
+ # *COMPUTE-LOGICAL-CLOSURE(f,g,mc)* - *f* and *g* are source and target flowpoints, *mc* is the MC that is attached to the edge *f->g*
+   # add arcs that represents f's invariants.
+   # add arcc that represents g's invariants.
+   # for each edge on the mc put weight
+     # if the edge is strict than wight is -1 otherwise 0.
+   # if mc contains negative cycle return error.
+   # for each u,v in mc's vertices do
+      # compute short path between u,v if there is no path continue to next pair.
+      # if the path is negative then add strict arc between u->v to mc
+      # else add non strict arc u->v to mc
 
 == Algorithm ==
  # emptyMC <- empty MC with all the constants and known variables
@@ -76,7 +88,10 @@ Below you can find the algorithm for converting the C.F.G flow points along with
                  # *ex(x)* <-- *current(x)* 
               ## *current(y)* <-- *EVALUATE(ex, current)*
         ## else (this is a branch flowpoint)
-           # invariants <- INVARIANTS(f)
+           # logicalExpTree <-- logic(f)
+           # if complement edge (logical expression is false)
+             # logicalExpTree <-- compute complement for the logic tree.
+           # invariants <-- convert tree logical tree to invariants(logicalExpTree)
            # for each invariant in INVARIANTS(f)
              # add edge to MC(e)
         ## newMC <- *COMPUTE_MC_GRAPH*(*e*,*val(f)*,*current*)
