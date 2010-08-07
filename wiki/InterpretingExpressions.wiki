@@ -54,7 +54,7 @@ In the second assignment command, x will assume the expression U1+5 :
      |--AtomExpr(5)
 }}}
 
- * When substituting a variable with a composite expression (not an AtomExpr), it is possible in some cases to reduce the expression into a simpler form which might be easier to check for size change. This simplification is done using the ExprSimplifier class.
+ * When substituting a variable with a composite expression (not an AtomExpr), it is possible in some cases to reduce the expression into a simpler form which might be easier to check for size change. This simplification is done using the ExprSimplifier class, which tries to match the expression into a pattern of a predefined set of expression patterns. If such a pattern is found, then the expression is simplified according to the rules defined in ExprSimplifier for the found pattern.
  * We can deduce the relation (<= <, =, >=, >) between two simple BinExpr with only 2 atom expressions below. In this case, since (U1+5) - U1 = 5, we can deduce that x's value increased by 5 during the second assignment command.
  * The order between 2 expressions is determined by subtracting one expression from the other and then trying to evaluate(and simplify) the result expression.
  
