@@ -105,6 +105,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_04913A45BECD40FEA368B460F4AEE9B8"
+        "OwnerKey" = "8:_2932DF553D9D413392B8720CBB93B898"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_04B9152914B34A5190DBB5BBBE6A747E"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -641,6 +647,12 @@
         {
         "MsmKey" = "8:_28D29214BA874BDE8678840EFC67E22D"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_2932DF553D9D413392B8720CBB93B898"
+        "OwnerKey" = "8:_A30E54B83D424F81BFAC82AB03D895D8"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1283,12 +1295,6 @@
         {
         "MsmKey" = "8:_4CA68087B3A74FF08D41D06FF163CB54"
         "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_4D428F518B20433EAB57478AAD3E0B19"
-        "OwnerKey" = "8:_84C53D88DCE34F208705DDAA12193B86"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -2121,6 +2127,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_826D8872F6B2416BB82E50A3A6399ADF"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_833B8DFD1E0C4075A7438E4F210768F8"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -2159,12 +2171,6 @@
         {
         "MsmKey" = "8:_847209231B4C42CE999D0CBAEDDFCB47"
         "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_84C53D88DCE34F208705DDAA12193B86"
-        "OwnerKey" = "8:_A30E54B83D424F81BFAC82AB03D895D8"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -2524,6 +2530,12 @@
         "Entry"
         {
         "MsmKey" = "8:_9AADBDFDFDFD4D27A4FD3D6425F21439"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9ADBBBA0007C4C96AA27CF0AABF19138"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -3328,6 +3340,12 @@
         "Entry"
         {
         "MsmKey" = "8:_CC5DFF5072764048BBB2E7209ABD3261"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_CC834EFC1E864F8A98DDC7D36BC02606"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -8566,7 +8584,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:ParserDotNetBridge, Version=1.0.3871.18608, Culture=neutral, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:ParserDotNetBridge, Version=1.0.3871.39983, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
                     "_50498B2E8FEFCF8C9E13AF1FB72C16CE"
@@ -11293,6 +11311,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_826D8872F6B2416BB82E50A3A6399ADF"
+            {
+            "SourcePath" = "8:..\\Input\\do_while.c"
+            "TargetName" = "8:do_while.c"
+            "Tag" = "8:"
+            "Folder" = "8:_ED55D5964375455C87E2E94F99CE5C62"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_833B8DFD1E0C4075A7438E4F210768F8"
             {
             "SourcePath" = "8:..\\ThirdParty\\Graphviz\\lib\\release\\lib\\gts.lib"
@@ -12619,6 +12657,26 @@
             "TargetName" = "8:a_invempty.gif"
             "Tag" = "8:"
             "Folder" = "8:_33BE38697FF24146AA4184E816D66E4F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9ADBBBA0007C4C96AA27CF0AABF19138"
+            {
+            "SourcePath" = "8:..\\Input\\arithmetics.c"
+            "TargetName" = "8:arithmetics.c"
+            "Tag" = "8:"
+            "Folder" = "8:_ED55D5964375455C87E2E94F99CE5C62"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -15279,6 +15337,26 @@
             "TargetName" = "8:zlib1.dll"
             "Tag" = "8:"
             "Folder" = "8:_1DD448C6DC0744DD9F5716C0D1DACB80"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CC834EFC1E864F8A98DDC7D36BC02606"
+            {
+            "SourcePath" = "8:..\\Input\\collatz.c"
+            "TargetName" = "8:collatz.c"
+            "Tag" = "8:"
+            "Folder" = "8:_ED55D5964375455C87E2E94F99CE5C62"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -18572,7 +18650,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:MCFromC"
         "ProductCode" = "8:{15897137-3726-4105-9D53-AB462B33FBDE}"
-        "PackageCode" = "8:{DAA8559E-7E78-470E-96AC-77770CEF9573}"
+        "PackageCode" = "8:{160394C5-25D7-4091-AD0C-41347419E509}"
         "UpgradeCode" = "8:{4BE61212-86CE-443D-AC00-78AF713763B1}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
@@ -19101,7 +19179,7 @@
         }
         "MergeModule"
         {
-            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_4D428F518B20433EAB57478AAD3E0B19"
+            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_04913A45BECD40FEA368B460F4AEE9B8"
             {
             "UseDynamicProperties" = "11:TRUE"
             "IsDependency" = "11:TRUE"
@@ -19115,7 +19193,7 @@
             "Feature" = "8:"
             "IsolateTo" = "8:"
             }
-            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_84C53D88DCE34F208705DDAA12193B86"
+            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_2932DF553D9D413392B8720CBB93B898"
             {
             "UseDynamicProperties" = "11:TRUE"
             "IsDependency" = "11:TRUE"
@@ -19134,7 +19212,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_A30E54B83D424F81BFAC82AB03D895D8"
             {
-            "SourcePath" = "8:..\\Debug\\CFGGen.dll"
+            "SourcePath" = "8:..\\Release\\CFGGen.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_653DF56B5EE24983886948D97D6B59C8"
@@ -19162,7 +19240,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_EDD8DA0B4BD34BE2BF4E041D76790178"
             {
-            "SourcePath" = "8:..\\CFGViewer\\obj\\Debug\\CFGViewer.exe"
+            "SourcePath" = "8:..\\CFGViewer\\obj\\Release\\CFGViewer.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_653DF56B5EE24983886948D97D6B59C8"
